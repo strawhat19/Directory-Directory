@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Directory Directory",
+    "slug": "directory-directory",
+    "scheme": "directorydirectory",
+    "icon": "./assets/concepts/logos/v5/launcher-blue-on-black.png",
+    "backgroundColor": "#ffffff",
+    "primaryColor": "#0762ed",
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-router"],
+    "web": {
+      "bundler": "metro",
+      "favicon": "./assets/concepts/logos/v5/launcher-blue-on-black.png"
+    },
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}

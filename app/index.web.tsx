@@ -1,7 +1,5 @@
 import LandingPage from '../src/components/LandingPage'
 
-export const dynamic = 'force-dynamic'
-
-export default function Page() {
+export default function Index() {
   return <LandingPage year={new Date().getFullYear()} />
 }

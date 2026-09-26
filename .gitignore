@@ -1,6 +1,9 @@
 node_modules/
-.next/
-out/
+.expo/
+dist/
+web-build/
+ios/
+android/
 .env*
 *.tsbuildinfo
-next-env.d.ts
+expo-env.d.ts

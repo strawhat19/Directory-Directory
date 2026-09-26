@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="v6-title v6-description">
+  <title id="v6-title">Directory Directory tricolor mark</title>
+  <desc id="v6-description">Three thin, nested index-tab D outlines in blue, red, and green.</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(6 5) scale(.82)">
+    <path id="v6-outer-blue-d" stroke="#0874F9" stroke-width="8" d="M25 20h24c4 0 7 2 9 6l4 8h15c28 0 47 20 47 45s-19 45-47 45H25c-4 0-7-3-7-7V27c0-4 3-7 7-7Z"/>
+    <path id="v6-middle-red-d" stroke="#D83B42" stroke-width="7" d="M44 43h17c3 0 5 1 6 4l3 5h10c17 0 28 12 28 27s-11 27-28 27H44c-3 0-5-2-5-5V48c0-3 2-5 5-5Z"/>
+    <path id="v6-inner-green-d" stroke="#21A668" stroke-width="6" d="M59 59h9c2 0 3 1 4 3l2 3h6c9 0 15 6 15 14s-6 14-15 14H59c-2 0-3-1-3-3V62c0-2 1-3 3-3Z"/>
+  </g>
+</svg>

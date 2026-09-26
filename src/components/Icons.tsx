@@ -7,29 +7,22 @@ type UiIconName = `search` | `chevron` | `grid` | `table` | `list` | `sun` | `mo
 type CategoryIconProps = IconProps & { name: CategoryName };
 type UiIconProps = IconProps & { name: UiIconName };
 
+const brandMarkPath = [
+  `M25 20h24c4 0 7 2 9 6l4 8h15c28 0 47 20 47 45s-19 45-47 45H25c-4 0-7-3-7-7V27c0-4 3-7 7-7Z`,
+  `M44 43h17c3 0 5 1 6 4l3 5h10c17 0 28 12 28 27s-11 27-28 27H44c-3 0-5-2-5-5V48c0-3 2-5 5-5Z`,
+  `M59 59h9c2 0 3 1 4 3l2 3h6c9 0 15 6 15 14s-6 14-15 14H59c-2 0-3-1-3-3V62c0-2 1-3 3-3Z`,
+  `M69 70h4c1 0 2 1 2 2l2 3h1c5 0 8 3 8 7s-3 7-8 7h-9V70Z`,
+].join(` `);
+
 export const BrandMark = ({ className = ``, ...props }: IconProps) => (
   <svg
-    viewBox="0 0 100 100"
+    viewBox={`0 0 128 128`}
     fill="currentColor"
     aria-hidden="true"
     className={`brand-mark ${className}`.trim()}
     {...props}
   >
-    <path
-      className="brand-mark-outer-d"
-      fillRule="evenodd"
-      d="M7 4h15c3 0 5 1 6 4l4 7h17c29 0 47 18 47 42S78 98 49 98H7c-3 0-5-2-5-5V9c0-3 2-5 5-5Zm16 18c-3 0-5 2-5 5v52c0 3 2 5 5 5h26c19 0 32-11 32-27S68 29 49 29H34c-2 0-3-1-4-3l-2-4h-5Z"
-    />
-    <path
-      className="brand-mark-middle-d"
-      fillRule="evenodd"
-      d="M32 32h10c2 0 3 1 4 3l2 4h5c14 0 23 8 23 19S67 77 53 77H32c-2 0-3-1-3-3V35c0-2 1-3 3-3Zm12 13c-2 0-3 1-3 3v16c0 2 1 3 3 3h8c7 0 12-4 12-10s-5-10-12-10h-3l-1-2h-4Z"
-    />
-    <path
-      className="brand-mark-inner-d"
-      fillRule="evenodd"
-      d="M44 46h3c1 0 2 0 2 1l1 2h2c6 0 10 4 10 9s-4 9-10 9h-8c-1 0-2-1-2-2V48c0-1 1-2 2-2Zm6 7v10h2c3 0 5-2 5-5s-2-5-5-5h-2Z"
-    />
+    <path className={`brand-mark-shape`} fillRule={`evenodd`} d={brandMarkPath} />
   </svg>
 );
 

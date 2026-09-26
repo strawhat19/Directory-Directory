@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import type { FormEvent } from 'react'
-import { BrandMark, CategoryIcon, NestedDArt, UiIcon } from './Icons'
+import { BrandMark, CategoryIcon, UiIcon } from './Icons'
 import { categories, directories, placeholderPublicDirectoryCount, topics } from '../data/directories'
 import type { CategoryId, TopicId } from '../data/directories'
 
@@ -14,7 +14,7 @@ const viewModes: ViewMode[] = [`grid`, `table`, `list`]
 const headingWords = [`Start`, `somewhere`, `better.`]
 
 export default function LandingPage({ year }: { year: number }) {
-  const [theme, setTheme] = useState<Theme>(`light`)
+  const [theme, setTheme] = useState<Theme>(`dark`)
   const [menuOpen, setMenuOpen] = useState(false)
   const [dialog, setDialog] = useState<DialogKind>(null)
   const [searchText, setSearchText] = useState(``)
@@ -25,10 +25,7 @@ export default function LandingPage({ year }: { year: number }) {
 
   useEffect(() => {
     const storedTheme = window.localStorage.getItem(`directory-directory-theme`)
-    const prefersDark = window.matchMedia(`(prefers-color-scheme: dark)`).matches
-    const initialTheme: Theme = storedTheme === `dark` || storedTheme === `light`
-      ? storedTheme
-      : prefersDark ? `dark` : `light`
+    const initialTheme: Theme = storedTheme === `light` ? `light` : `dark`
 
     setTheme(initialTheme)
     document.documentElement.dataset.theme = initialTheme
@@ -61,7 +58,7 @@ export default function LandingPage({ year }: { year: number }) {
   }, [activeCategory, activeQuery, activeTopic])
 
   const toggleTheme = () => {
-    const nextTheme: Theme = theme === `light` ? `dark` : `light`
+    const nextTheme: Theme = theme === `dark` ? `light` : `dark`
     setTheme(nextTheme)
     document.documentElement.dataset.theme = nextTheme
     window.localStorage.setItem(`directory-directory-theme`, nextTheme)
@@ -102,7 +99,10 @@ export default function LandingPage({ year }: { year: number }) {
         <header id={`site-header`} className={`site-header`}>
           <a id={`brand-link`} className={`brand-link`} href={`#top`} onClick={() => setMenuOpen(false)}>
             <BrandMark id={`header-brand-mark`} className={`brand-link__mark`} />
-            <span id={`brand-name`} className={`brand-link__name`}>Directory Directory</span>
+            <span id={`brand-name`} className={`brand-link__name`}>
+              <span id={`brand-name-first`} className={`brand-link__name-line`}>Directory</span>
+              <span id={`brand-name-second`} className={`brand-link__name-line`}>Directory</span>
+            </span>
           </a>
 
           <nav id={`site-navigation`} className={`site-navigation${menuOpen ? ` site-navigation--open` : ``}`} aria-label={`Main navigation`}>
@@ -136,10 +136,10 @@ export default function LandingPage({ year }: { year: number }) {
               className={`theme-toggle`}
               type={`button`}
               onClick={toggleTheme}
-              aria-label={`Switch to ${theme === `light` ? `dark` : `light`} mode`}
-              title={`Switch to ${theme === `light` ? `dark` : `light`} mode`}
+              aria-label={`Switch to ${theme === `dark` ? `light` : `dark`} mode`}
+              title={`Switch to ${theme === `dark` ? `light` : `dark`} mode`}
             >
-              <UiIcon id={`theme-toggle-icon`} className={`theme-toggle__icon`} name={theme === `light` ? `moon` : `sun`} />
+              <UiIcon id={`theme-toggle-icon`} className={`theme-toggle__icon`} name={theme === `dark` ? `sun` : `moon`} />
             </button>
             <button id={`header-sign-in`} className={`tab-button tab-button--sign-in`} type={`button`} onClick={() => setDialog(`signin`)}>
               Sign in
@@ -160,7 +160,10 @@ export default function LandingPage({ year }: { year: number }) {
 
         <section id={`top`} className={`hero-section`} aria-labelledby={`hero-heading`}>
           <div id={`hero-copy`} className={`hero-copy`}>
-            <p id={`hero-eyebrow`} className={`hero-eyebrow reveal-fade`}>The Directory of Directories</p>
+            <p id={`hero-eyebrow`} className={`hero-eyebrow reveal-fade`}>
+              <span id={`hero-eyebrow-dot`} className={`hero-eyebrow__dot`} aria-hidden={true} />
+              The directory of directories
+            </p>
             <h1 id={`hero-heading`} className={`hero-heading`} aria-label={`Start somewhere better.`}>
               {headingWords.map((word, index) => (
                 <span id={`hero-word-wrap-${index}`} className={`hero-heading__word-wrap`} key={word} aria-hidden={true}>
@@ -174,7 +177,9 @@ export default function LandingPage({ year }: { year: number }) {
                 </span>
               ))}
             </h1>
-            <p id={`hero-description`} className={`hero-description reveal-fade`}>Find focused directories for what you’re into.</p>
+            <p id={`hero-description`} className={`hero-description reveal-fade`}>
+              A thoughtful starting point for discovering useful places, people, and ideas online.
+            </p>
 
             <form id={`hero-search-form`} className={`hero-search reveal-fade`} role={`search`} onSubmit={submitSearch}>
               <div id={`search-field`} className={`hero-search__field`}>
@@ -194,13 +199,33 @@ export default function LandingPage({ year }: { year: number }) {
                 />
               </div>
               <button id={`directory-search-button`} className={`tab-button tab-button--search`} type={`submit`}>
+                <UiIcon id={`directory-search-button-icon`} className={`tab-button__icon`} name={`search`} />
                 <span id={`directory-search-button-label`} className={`tab-button__label`}>Search</span>
               </button>
             </form>
+            <p id={`hero-search-hint`} className={`hero-search-hint`}>
+              Explore curated directories across four interests.
+            </p>
           </div>
 
-          <NestedDArt id={`hero-nested-d`} className={`hero-nested-d`} />
+          <div id={`hero-mark-panel`} className={`hero-mark-panel`} aria-hidden={true}>
+            <span id={`hero-mark-panel-index`} className={`hero-mark-panel__index`}>DD / 001</span>
+            <BrandMark id={`hero-brand-mark`} className={`hero-mark-panel__mark`} />
+            <span id={`hero-mark-panel-caption`} className={`hero-mark-panel__caption`}>Good places to begin.</span>
+            <div id={`hero-mark-panel-accents`} className={`hero-mark-panel__accents`}>
+              <span id={`hero-mark-panel-blue`} className={`hero-mark-panel__accent hero-mark-panel__accent--blue`} />
+              <span id={`hero-mark-panel-red`} className={`hero-mark-panel__accent hero-mark-panel__accent--red`} />
+              <span id={`hero-mark-panel-green`} className={`hero-mark-panel__accent hero-mark-panel__accent--green`} />
+            </div>
+          </div>
 
+          <div id={`categories-heading-group`} className={`categories-heading-group`}>
+            <div id={`categories-heading-copy`} className={`categories-heading-copy`}>
+              <p id={`categories-eyebrow`} className={`section-kicker`}>Browse by interest</p>
+              <h2 id={`categories-heading`} className={`section-heading`}>Start with what interests you.</h2>
+            </div>
+            <p id={`categories-description`} className={`section-description`}>Four paths into a more interesting web.</p>
+          </div>
           <div id={`categories`} className={`category-grid`} role={`group`} aria-label={`Browse directory categories`}>
             {categories.map((category, index) => (
               <button

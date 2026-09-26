@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="v7-title v7-description">
+  <title id="v8-title">Directory Directory balanced tricolor mark</title>
+  <desc id="v8-description">Three nested index-tab D outlines with balanced space above and below each inner D. Blue is largest, green is in the middle, and red is smallest.</desc>
+  <g fill="none" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path id="v8-outer-blue-d" stroke="#0874F9" vector-effect="non-scaling-stroke" transform="translate(5.78 4.96) scale(.82)" d="M25 20h24c4 0 7 2 9 6l4 8h15c28 0 47 20 47 45s-19 45-47 45H25c-4 0-7-3-7-7V27c0-4 3-7 7-7Z"/>
+    <path id="v8-middle-green-d" stroke="#21A668" vector-effect="non-scaling-stroke" transform="translate(24.524 29.708) scale(.556)" d="M25 20h24c4 0 7 2 9 6l4 8h15c28 0 47 20 47 45s-19 45-47 45H25c-4 0-7-3-7-7V27c0-4 3-7 7-7Z"/>
+    <path id="v8-inner-red-d" stroke="#D83B42" vector-effect="non-scaling-stroke" transform="translate(43.268 52.608) scale(.292)" d="M25 20h24c4 0 7 2 9 6l4 8h15c28 0 47 20 47 45s-19 45-47 45H25c-4 0-7-3-7-7V27c0-4 3-7 7-7Z"/>
+  </g>
+</svg>
