@@ -1,0 +1,41 @@
+<svg id="directory-v12-light-dark-comparison" class="directory-logo-comparison" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" role="img" aria-labelledby="comparison-title comparison-description">
+  <title id="comparison-title">Directory Directory V12 — outline and filled on white and black</title>
+  <desc id="comparison-description">A four-panel presentation of the same muted-blue logo on white and black backgrounds, using outline and filled treatments.</desc>
+  <defs>
+    <symbol id="comparison-outline-symbol" viewBox="0 0 160 160">
+  <path id="comparison-outline-d" class="directory-enclosing-d" fill="none" stroke="#6684B6" stroke-width="9" stroke-linejoin="round" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" />
+  <path id="comparison-outline-green-folder-pill" class="directory-folder-pill directory-green-folder-pill" fill="none" stroke="#21A668" stroke-width="2.25" stroke-linejoin="round" d="M44 59V55Q44 52 47 52H54Q56 52 57.5 54.5L59.5 58Q60.1 59 61.5 59H94a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="comparison-outline-blue-folder-pill" class="directory-folder-pill directory-blue-folder-pill" fill="none" stroke="#6684B6" stroke-width="2.25" stroke-linejoin="round" d="M44 82V78Q44 75 47 75H54Q56 75 57.5 77.5L59.5 81Q60.1 82 61.5 82H103a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="comparison-outline-red-folder-pill" class="directory-folder-pill directory-red-folder-pill" fill="none" stroke="#D83B42" stroke-width="2.25" stroke-linejoin="round" d="M44 105V101Q44 98 47 98H54Q56 98 57.5 100.5L59.5 104Q60.1 105 61.5 105H84a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+    </symbol>
+    <symbol id="comparison-filled-symbol" viewBox="0 0 160 160">
+  <defs>
+    <mask id="comparison-filled-row-clearance" x="0" y="0" width="160" height="160" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type: luminance;">
+      <rect id="comparison-filled-mask-canvas" class="directory-mask-canvas" width="160" height="160" fill="#FFFFFF" />
+      <path id="comparison-filled-green-clearance" class="directory-row-clearance" fill="#000000" stroke="#000000" stroke-width="3.5" stroke-linejoin="round" d="M44 59V55Q44 52 47 52H54Q56 52 57.5 54.5L59.5 58Q60.1 59 61.5 59H94a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+      <path id="comparison-filled-blue-clearance" class="directory-row-clearance" fill="#000000" stroke="#000000" stroke-width="3.5" stroke-linejoin="round" d="M44 82V78Q44 75 47 75H54Q56 75 57.5 77.5L59.5 81Q60.1 82 61.5 82H103a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+      <path id="comparison-filled-red-clearance" class="directory-row-clearance" fill="#000000" stroke="#000000" stroke-width="3.5" stroke-linejoin="round" d="M44 105V101Q44 98 47 98H54Q56 98 57.5 100.5L59.5 104Q60.1 105 61.5 105H84a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+    </mask>
+  </defs>
+  <path id="comparison-filled-d" class="directory-enclosing-d" fill="#6684B6" stroke="#6684B6" stroke-width="9" stroke-linejoin="round" mask="url(#comparison-filled-row-clearance)" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" />
+  <path id="comparison-filled-green-folder-pill" class="directory-folder-pill directory-green-folder-pill" fill="#21A668" d="M44 59V55Q44 52 47 52H54Q56 52 57.5 54.5L59.5 58Q60.1 59 61.5 59H94a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="comparison-filled-blue-folder-pill" class="directory-folder-pill directory-blue-folder-pill" fill="#6684B6" d="M44 82V78Q44 75 47 75H54Q56 75 57.5 77.5L59.5 81Q60.1 82 61.5 82H103a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="comparison-filled-red-folder-pill" class="directory-folder-pill directory-red-folder-pill" fill="#D83B42" d="M44 105V101Q44 98 47 98H54Q56 98 57.5 100.5L59.5 104Q60.1 105 61.5 105H84a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+    </symbol>
+  </defs>
+  <rect id="comparison-background" class="directory-comparison-background" width="1200" height="820" fill="#E9EDF2" />
+  <text id="comparison-heading" class="directory-comparison-heading" x="48" y="56" fill="#202D41" font-family="Arial, sans-serif" font-size="24" font-weight="700">Directory Directory / V12</text>
+  <text id="comparison-subheading" class="directory-comparison-subheading" x="48" y="88" fill="#536176" font-family="Arial, sans-serif" font-size="16">V9 D + top-left folder tabs · blue #6684B6</text>
+  <rect id="comparison-outline-light-panel" class="directory-comparison-panel directory-comparison-light-panel" x="32" y="120" width="556" height="326" rx="20" fill="#FFFFFF" />
+  <rect id="comparison-outline-dark-panel" class="directory-comparison-panel directory-comparison-dark-panel" x="612" y="120" width="556" height="326" rx="20" fill="#000000" />
+  <rect id="comparison-filled-light-panel" class="directory-comparison-panel directory-comparison-light-panel" x="32" y="462" width="556" height="326" rx="20" fill="#FFFFFF" />
+  <rect id="comparison-filled-dark-panel" class="directory-comparison-panel directory-comparison-dark-panel" x="612" y="462" width="556" height="326" rx="20" fill="#000000" />
+  <text id="comparison-outline-light-label" class="directory-comparison-label" x="58" y="154" fill="#536176" font-family="Arial, sans-serif" font-size="14">OUTLINE / WHITE</text>
+  <text id="comparison-outline-dark-label" class="directory-comparison-label" x="638" y="154" fill="#B9C4D5" font-family="Arial, sans-serif" font-size="14">OUTLINE / BLACK</text>
+  <text id="comparison-filled-light-label" class="directory-comparison-label" x="58" y="496" fill="#536176" font-family="Arial, sans-serif" font-size="14">FILLED / WHITE</text>
+  <text id="comparison-filled-dark-label" class="directory-comparison-label" x="638" y="496" fill="#B9C4D5" font-family="Arial, sans-serif" font-size="14">FILLED / BLACK</text>
+  <use id="comparison-outline-on-white" class="directory-comparison-logo" href="#comparison-outline-symbol" x="190" y="174" width="240" height="240" />
+  <use id="comparison-outline-on-black" class="directory-comparison-logo" href="#comparison-outline-symbol" x="770" y="174" width="240" height="240" />
+  <use id="comparison-filled-on-white" class="directory-comparison-logo" href="#comparison-filled-symbol" x="190" y="516" width="240" height="240" />
+  <use id="comparison-filled-on-black" class="directory-comparison-logo" href="#comparison-filled-symbol" x="770" y="516" width="240" height="240" />
+</svg>

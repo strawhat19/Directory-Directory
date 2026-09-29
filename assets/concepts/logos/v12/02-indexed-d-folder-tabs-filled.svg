@@ -1,0 +1,16 @@
+<svg id="directory-v12-folder-tabs-filled" class="directory-logo directory-logo-filled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="filled-title filled-description">
+  <title id="filled-title">Directory Directory — top-left folder tabs, filled</title>
+  <desc id="filled-description">The original V9 D silhouette is filled in muted steel blue. Three colored rounded pills have small rounded folder tabs on their upper-left edges, separated from the D by transparent clearance.</desc>
+  <defs>
+    <mask id="filled-row-clearance" x="0" y="0" width="160" height="160" maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" style="mask-type: luminance;">
+      <rect id="filled-mask-canvas" class="directory-mask-canvas" width="160" height="160" fill="#FFFFFF" />
+      <path id="filled-green-clearance" class="directory-row-clearance" fill="#000000" stroke="#000000" stroke-width="3.5" stroke-linejoin="round" d="M44 59V55Q44 52 47 52H54Q56 52 57.5 54.5L59.5 58Q60.1 59 61.5 59H94a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+      <path id="filled-blue-clearance" class="directory-row-clearance" fill="#000000" stroke="#000000" stroke-width="3.5" stroke-linejoin="round" d="M44 82V78Q44 75 47 75H54Q56 75 57.5 77.5L59.5 81Q60.1 82 61.5 82H103a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+      <path id="filled-red-clearance" class="directory-row-clearance" fill="#000000" stroke="#000000" stroke-width="3.5" stroke-linejoin="round" d="M44 105V101Q44 98 47 98H54Q56 98 57.5 100.5L59.5 104Q60.1 105 61.5 105H84a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+    </mask>
+  </defs>
+  <path id="filled-d" class="directory-enclosing-d" fill="#6684B6" stroke="#6684B6" stroke-width="9" stroke-linejoin="round" mask="url(#filled-row-clearance)" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" />
+  <path id="filled-green-folder-pill" class="directory-folder-pill directory-green-folder-pill" fill="#21A668" d="M44 59V55Q44 52 47 52H54Q56 52 57.5 54.5L59.5 58Q60.1 59 61.5 59H94a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="filled-blue-folder-pill" class="directory-folder-pill directory-blue-folder-pill" fill="#6684B6" d="M44 82V78Q44 75 47 75H54Q56 75 57.5 77.5L59.5 81Q60.1 82 61.5 82H103a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="filled-red-folder-pill" class="directory-folder-pill directory-red-folder-pill" fill="#D83B42" d="M44 105V101Q44 98 47 98H54Q56 98 57.5 100.5L59.5 104Q60.1 105 61.5 105H84a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+</svg>

@@ -1,0 +1,8 @@
+<svg id="directory-v12-folder-tabs-outline" class="directory-logo directory-logo-outline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="outline-title outline-description">
+  <title id="outline-title">Directory Directory — top-left folder tabs, outline</title>
+  <desc id="outline-description">The original V9 D in muted steel blue surrounds three rounded pill outlines. Every pill has a small rounded folder tab rising from its upper-left edge. Rows remain green, blue, and red.</desc>
+  <path id="outline-d" class="directory-enclosing-d" fill="none" stroke="#6684B6" stroke-width="9" stroke-linejoin="round" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" />
+  <path id="outline-green-folder-pill" class="directory-folder-pill directory-green-folder-pill" fill="none" stroke="#21A668" stroke-width="2.25" stroke-linejoin="round" d="M44 59V55Q44 52 47 52H54Q56 52 57.5 54.5L59.5 58Q60.1 59 61.5 59H94a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="outline-blue-folder-pill" class="directory-folder-pill directory-blue-folder-pill" fill="none" stroke="#6684B6" stroke-width="2.25" stroke-linejoin="round" d="M44 82V78Q44 75 47 75H54Q56 75 57.5 77.5L59.5 81Q60.1 82 61.5 82H103a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+  <path id="outline-red-folder-pill" class="directory-folder-pill directory-red-folder-pill" fill="none" stroke="#D83B42" stroke-width="2.25" stroke-linejoin="round" d="M44 105V101Q44 98 47 98H54Q56 98 57.5 100.5L59.5 104Q60.1 105 61.5 105H84a5 5 0 0 1 0 10H44a5 5 0 0 1 0-10Z" />
+</svg>
