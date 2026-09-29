@@ -1,0 +1,8 @@
+<svg id="directory-v10-indexed-d-tabs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="indexed-tabs-title indexed-tabs-description">
+  <title id="indexed-tabs-title">Directory Directory — indexed D with row tabs</title>
+  <desc id="indexed-tabs-description">The blue tabbed D from V9 contains green, blue, and red listing lines; every line has a small raised folder tab.</desc>
+  <path id="indexed-tabs-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="indexed-tabs-green-row" d="M44 59h38v-6h12v6h5v10H44Z" fill="#21A668"/>
+  <path id="indexed-tabs-blue-row" d="M44 82h47v-6h11v6h8v10H44Z" fill="#0874F9"/>
+  <path id="indexed-tabs-red-row" d="M44 105h27v-6h10v6h8v10H44Z" fill="#D83B42"/>
+</svg>

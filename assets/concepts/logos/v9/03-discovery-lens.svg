@@ -1,0 +1,7 @@
+<svg id="directory-v9-discovery-lens" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="lens-title lens-description">
+  <title id="lens-title">Directory Directory — discovery lens</title>
+  <desc id="lens-description">A blue tabbed D frames a green search lens with a short red handle.</desc>
+  <path id="lens-d-outline" d="M29 25h35c5 0 8 3 10 7l5 9h17c28 0 48 20 48 47s-20 47-48 47H29c-7 0-12-5-12-12V37c0-7 5-12 12-12Z" fill="none" stroke="#0874F9" stroke-width="10" stroke-linejoin="round" />
+  <circle id="lens-green-ring" cx="71" cy="81" r="24" fill="none" stroke="#21A668" stroke-width="9" />
+  <path id="lens-red-handle" d="m89 99 17 17" fill="none" stroke="#D83B42" stroke-width="10" stroke-linecap="round" />
+</svg>

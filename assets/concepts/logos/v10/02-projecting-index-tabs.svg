@@ -1,0 +1,8 @@
+<svg id="directory-v10-projecting-index-tabs" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="projecting-tabs-title projecting-tabs-description">
+  <title id="projecting-tabs-title">Directory Directory — projecting index tabs</title>
+  <desc id="projecting-tabs-description">The V9 blue D outline holds three listing bars with compact index tabs projecting from the right end of each colored line.</desc>
+  <path id="projecting-tabs-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="projecting-tabs-green-row" d="M44 58h43v4h11v8H87v4H44Z" fill="#21A668"/>
+  <path id="projecting-tabs-blue-row" d="M44 81h51v4h11v8H95v4H44Z" fill="#0874F9"/>
+  <path id="projecting-tabs-red-row" d="M44 104h33v4h11v8H77v4H44Z" fill="#D83B42"/>
+</svg>

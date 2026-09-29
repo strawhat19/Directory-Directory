@@ -1,0 +1,8 @@
+<svg id="directory-v9-indexed-d" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="indexed-title indexed-description">
+  <title id="indexed-title">Directory Directory — indexed D</title>
+  <desc id="indexed-description">A blue tabbed D outline contains three short green, blue, and red directory rows.</desc>
+  <path id="indexed-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round" />
+  <path id="indexed-green-row" d="M44 64h50" fill="none" stroke="#21A668" stroke-width="10" stroke-linecap="round" />
+  <path id="indexed-blue-row" d="M44 87h59" fill="none" stroke="#0874F9" stroke-width="10" stroke-linecap="round" />
+  <path id="indexed-red-row" d="M44 110h40" fill="none" stroke="#D83B42" stroke-width="10" stroke-linecap="round" />
+</svg>

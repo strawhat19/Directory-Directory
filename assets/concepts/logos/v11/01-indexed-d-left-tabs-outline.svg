@@ -1,0 +1,8 @@
+<svg id="directory-v11-left-tabs-outline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="outline-title outline-description">
+  <title id="outline-title">Directory Directory — rounded left tabs, outline</title>
+  <desc id="outline-description">A blue outlined D surrounds three outlined directory rows in green, blue, and red. A rounded index tab hugs the left end of each row.</desc>
+  <path id="outline-d" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="outline-green-tabbed-row" d="M48 54c3.8 0 7.2 2.1 8.9 5H94a5 5 0 0 1 0 10H56.9c-1.7 2.9-5.1 5-8.9 5-5.5 0-10-4.5-10-10s4.5-10 10-10Z" fill="none" stroke="#21A668" stroke-width="3.5" stroke-linejoin="round"/>
+  <path id="outline-blue-tabbed-row" d="M48 77c3.8 0 7.2 2.1 8.9 5H105a5 5 0 0 1 0 10H56.9c-1.7 2.9-5.1 5-8.9 5-5.5 0-10-4.5-10-10s4.5-10 10-10Z" fill="none" stroke="#0874F9" stroke-width="3.5" stroke-linejoin="round"/>
+  <path id="outline-red-tabbed-row" d="M48 100c3.8 0 7.2 2.1 8.9 5H84a5 5 0 0 1 0 10H56.9c-1.7 2.9-5.1 5-8.9 5-5.5 0-10-4.5-10-10s4.5-10 10-10Z" fill="none" stroke="#D83B42" stroke-width="3.5" stroke-linejoin="round"/>
+</svg>

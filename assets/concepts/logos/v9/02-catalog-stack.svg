@@ -1,0 +1,9 @@
+<svg id="directory-v9-catalog-stack" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="stack-title stack-description">
+  <title id="stack-title">Directory Directory — catalog stack</title>
+  <desc id="stack-description">Three offset index folders in red, green, and blue sit on a dark app tile; a white D marks the front folder.</desc>
+  <rect id="stack-dark-tile" width="160" height="160" rx="32" fill="#0B1018" />
+  <path id="stack-red-folder" d="M51 24h19l8 10h45c9 0 16 7 16 16v69H42V40c0-9 0-16 9-16Z" fill="#D83B42" />
+  <path id="stack-green-folder" d="M40 40h22l8 10h54c9 0 16 7 16 16v61H24V56c0-9 7-16 16-16Z" fill="#21A668" />
+  <path id="stack-blue-folder" d="M32 59h24l8 10h62c9 0 16 7 16 16v44c0 9-7 16-16 16H32c-9 0-16-7-16-16V75c0-9 7-16 16-16Z" fill="#0874F9" />
+  <path id="stack-white-d" d="M52 88h19c16 0 28 10 28 22s-12 22-28 22H52V88Z" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linejoin="round" />
+</svg>

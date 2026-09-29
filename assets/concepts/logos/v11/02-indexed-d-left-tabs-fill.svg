@@ -1,0 +1,8 @@
+<svg id="directory-v11-left-tabs-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="fill-title fill-description">
+  <title id="fill-title">Directory Directory — rounded left tabs, fill</title>
+  <desc id="fill-description">A solid blue D holds green, blue, and red filled directory rows. White edges separate the rows and each rounded tab hugs its row on the left.</desc>
+  <path id="fill-d" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="#0874F9"/>
+  <path id="fill-green-tabbed-row" d="M48 54c3.8 0 7.2 2.1 8.9 5H94a5 5 0 0 1 0 10H56.9c-1.7 2.9-5.1 5-8.9 5-5.5 0-10-4.5-10-10s4.5-10 10-10Z" fill="#21A668" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round"/>
+  <path id="fill-blue-tabbed-row" d="M48 77c3.8 0 7.2 2.1 8.9 5H105a5 5 0 0 1 0 10H56.9c-1.7 2.9-5.1 5-8.9 5-5.5 0-10-4.5-10-10s4.5-10 10-10Z" fill="#0874F9" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round"/>
+  <path id="fill-red-tabbed-row" d="M48 100c3.8 0 7.2 2.1 8.9 5H84a5 5 0 0 1 0 10H56.9c-1.7 2.9-5.1 5-8.9 5-5.5 0-10-4.5-10-10s4.5-10 10-10Z" fill="#D83B42" stroke="#FFFFFF" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
