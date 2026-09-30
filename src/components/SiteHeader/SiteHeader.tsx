@@ -62,6 +62,138 @@ export default function SiteHeader() {
             </span>
           </span>
         </Link>
+        <div id={`header-utility-actions`} className={`site-header__utility-actions`}>
+          <button
+            type={`button`}
+            id={`header-theme-toggle`}
+            aria-pressed={isDark}
+            onClick={toggleTheme}
+            aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
+            className={`site-header__icon-button site-header__icon-button--primary`}
+          >
+            <Icon
+              size={16}
+              name={isDark ? `sun` : `moon`}
+              id={`header-theme-icon`}
+              className={`site-header__icon`}
+            />
+          </button>
+          <div
+            ref={notifications}
+            id={`header-notifications`}
+            className={`site-header__notifications`}
+          >
+            <button
+              type={`button`}
+              id={`header-notifications-toggle`}
+              aria-label={`Notifications, ${headerNotifications.length} updates`}
+              aria-expanded={notificationsOpen}
+              aria-controls={`header-notifications-panel`}
+              onClick={toggleNotifications}
+              className={`site-header__icon-button site-header__icon-button--secondary`}
+            >
+              <Icon
+                size={16}
+                name={`bell`}
+                id={`header-notifications-icon`}
+                className={`site-header__icon`}
+              />
+              <span
+                aria-hidden={true}
+                id={`header-notifications-badge`}
+                className={`site-header__notification-badge`}
+              >
+                {headerNotifications.length}
+              </span>
+            </button>
+            {notificationsOpen && (
+              <div
+                role={`region`}
+                id={`header-notifications-panel`}
+                className={`site-header__notifications-panel`}
+                aria-label={`Notifications`}
+              >
+                <strong
+                  id={`header-notifications-heading`}
+                  className={`site-header__notifications-heading`}
+                >
+                  {`Notifications`}
+                </strong>
+                <span
+                  id={`header-notifications-count`}
+                  className={`site-header__notifications-count`}
+                >
+                  {`${headerNotifications.length} updates`}
+                </span>
+                <ul
+                  id={`header-notifications-list`}
+                  className={`site-header__notifications-list`}
+                >
+                  {headerNotifications.map((notification) => (
+                    <li
+                      key={notification.id}
+                      id={`header-notification-${notification.id}`}
+                      className={`site-header__notification-item`}
+                    >
+                      <span
+                        id={`header-notification-symbol-${notification.id}`}
+                        className={`site-header__notification-symbol`}
+                      >
+                        <Icon
+                          size={16}
+                          name={notification.icon}
+                          id={`header-notification-icon-${notification.id}`}
+                          className={`site-header__notification-icon`}
+                        />
+                      </span>
+                      <div
+                        id={`header-notification-copy-${notification.id}`}
+                        className={`site-header__notification-copy`}
+                      >
+                        <strong
+                          id={`header-notification-title-${notification.id}`}
+                          className={`site-header__notification-title`}
+                        >
+                          {notification.title}
+                        </strong>
+                        <p
+                          id={`header-notification-text-${notification.id}`}
+                          className={`site-header__notification-text`}
+                        >
+                          {notification.before}
+                          <Link
+                            href={`/sign-up`}
+                            id={`header-notification-sign-up-${notification.id}`}
+                            className={`site-header__notification-link`}
+                          >
+                            {`sign up`}
+                          </Link>
+                          {notification.after}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+          <button
+            type={`button`}
+            onClick={openSearch}
+            id={`header-search-toggle`}
+            tabIndex={searchVisible ? 0 : -1}
+            aria-hidden={!searchVisible}
+            aria-label={`Search directories`}
+            className={`site-header__icon-button site-header__icon-button--primary site-header__search-button${searchVisible ? ` site-header__search-button--visible` : ``}`}
+          >
+            <Icon
+              size={16}
+              name={`search`}
+              id={`header-search-icon`}
+              className={`site-header__icon`}
+            />
+          </button>
+        </div>
         <button
           type={`button`}
           onClick={toggleMenu}
@@ -112,138 +244,6 @@ export default function SiteHeader() {
               </Link>
             ))}
           </nav>
-          <div id={`header-utility-actions`} className={`site-header__utility-actions`}>
-            <button
-              type={`button`}
-              id={`header-theme-toggle`}
-              aria-pressed={isDark}
-              onClick={toggleTheme}
-              aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
-              className={`site-header__icon-button site-header__icon-button--primary`}
-            >
-              <Icon
-                size={16}
-                name={isDark ? `sun` : `moon`}
-                id={`header-theme-icon`}
-                className={`site-header__icon`}
-              />
-            </button>
-            <div
-              ref={notifications}
-              id={`header-notifications`}
-              className={`site-header__notifications`}
-            >
-              <button
-                type={`button`}
-                id={`header-notifications-toggle`}
-                aria-label={`Notifications, ${headerNotifications.length} updates`}
-                aria-expanded={notificationsOpen}
-                aria-controls={`header-notifications-panel`}
-                onClick={toggleNotifications}
-                className={`site-header__icon-button site-header__icon-button--secondary`}
-              >
-                <Icon
-                  size={16}
-                  name={`bell`}
-                  id={`header-notifications-icon`}
-                  className={`site-header__icon`}
-                />
-                <span
-                  aria-hidden={true}
-                  id={`header-notifications-badge`}
-                  className={`site-header__notification-badge`}
-                >
-                  {headerNotifications.length}
-                </span>
-              </button>
-              {notificationsOpen && (
-                <div
-                  role={`region`}
-                  id={`header-notifications-panel`}
-                  className={`site-header__notifications-panel`}
-                  aria-label={`Notifications`}
-                >
-                  <strong
-                    id={`header-notifications-heading`}
-                    className={`site-header__notifications-heading`}
-                  >
-                    {`Notifications`}
-                  </strong>
-                  <span
-                    id={`header-notifications-count`}
-                    className={`site-header__notifications-count`}
-                  >
-                    {`${headerNotifications.length} updates`}
-                  </span>
-                  <ul
-                    id={`header-notifications-list`}
-                    className={`site-header__notifications-list`}
-                  >
-                    {headerNotifications.map((notification) => (
-                      <li
-                        key={notification.id}
-                        id={`header-notification-${notification.id}`}
-                        className={`site-header__notification-item`}
-                      >
-                        <span
-                          id={`header-notification-symbol-${notification.id}`}
-                          className={`site-header__notification-symbol`}
-                        >
-                          <Icon
-                            size={16}
-                            name={notification.icon}
-                            id={`header-notification-icon-${notification.id}`}
-                            className={`site-header__notification-icon`}
-                          />
-                        </span>
-                        <div
-                          id={`header-notification-copy-${notification.id}`}
-                          className={`site-header__notification-copy`}
-                        >
-                          <strong
-                            id={`header-notification-title-${notification.id}`}
-                            className={`site-header__notification-title`}
-                          >
-                            {notification.title}
-                          </strong>
-                          <p
-                            id={`header-notification-text-${notification.id}`}
-                            className={`site-header__notification-text`}
-                          >
-                            {notification.before}
-                            <Link
-                              href={`/sign-up`}
-                              id={`header-notification-sign-up-${notification.id}`}
-                              className={`site-header__notification-link`}
-                            >
-                              {`sign up`}
-                            </Link>
-                            {notification.after}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-            <button
-              type={`button`}
-              onClick={openSearch}
-              id={`header-search-toggle`}
-              tabIndex={searchVisible ? 0 : -1}
-              aria-hidden={!searchVisible}
-              aria-label={`Search directories`}
-              className={`site-header__icon-button site-header__icon-button--primary site-header__search-button${searchVisible ? ` site-header__search-button--visible` : ``}`}
-            >
-              <Icon
-                size={16}
-                name={`search`}
-                id={`header-search-icon`}
-                className={`site-header__icon`}
-              />
-            </button>
-          </div>
           <AuthActions scope={`header`} />
         </div>
       </div>

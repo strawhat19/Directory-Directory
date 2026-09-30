@@ -24,6 +24,7 @@
 
   &__brand {
     gap: 10px;
+    order: 0;
     display: flex;
     align-items: center;
     color: var(--dd-ink);
@@ -45,16 +46,12 @@
   }
 
   &__actions {
-    gap: 16px;
-    display: flex;
-    min-width: 0;
-    flex-wrap: wrap;
-    margin-left: auto;
-    align-items: center;
+    display: contents;
   }
 
   &__navigation {
     gap: 12px;
+    order: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -77,8 +74,13 @@
 
   &__utility-actions {
     gap: 8px;
+    order: 2;
     display: flex;
     align-items: center;
+  }
+
+  &__actions > .auth-actions {
+    order: 3;
   }
 
   &__icon-button {
@@ -272,11 +274,11 @@
     }
 
     &__menu-toggle {
+      order: 2;
       width: 40px;
       height: 40px;
       padding: 0;
       display: grid;
-      margin-left: auto;
       place-items: center;
       border-radius: 10px;
       color: var(--dd-ink);
@@ -292,11 +294,15 @@
     }
 
     &__actions {
+      order: 3;
       gap: 16px;
       width: 100%;
+      display: flex;
+      min-width: 0;
       max-height: 0;
       padding: 0;
-      margin-left: 0;
+      flex-wrap: wrap;
+      align-items: center;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -336,16 +342,32 @@
     }
 
     &__utility-actions {
+      order: 1;
       min-height: 40px;
-    }
-
-    &__actions > .auth-actions {
       margin-left: auto;
     }
 
+    &__actions > .auth-actions {
+      gap: 8px;
+      width: 100%;
+      display: grid;
+      margin-left: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      .auth-actions__link {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+      }
+
+      .auth-actions__error {
+        grid-column: 1 / -1;
+      }
+    }
+
     &__notifications-panel {
-      right: auto;
-      left: 0;
+      right: 0;
+      left: auto;
     }
   }
 }
@@ -353,6 +375,7 @@
 @media (max-width: 600px) {
   .site-header {
     &__bar {
+      gap: 8px;
       max-width: calc(100% - 32px);
       padding: 12px 0;
     }
@@ -375,10 +398,10 @@
 
     &__actions > .auth-actions {
       gap: 6px;
+    }
 
-      .auth-actions__link {
-        padding-inline: 8px;
-      }
+    &__notifications-panel {
+      right: -72px;
     }
   }
 }
