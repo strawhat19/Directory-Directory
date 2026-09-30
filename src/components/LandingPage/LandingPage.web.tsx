@@ -21,7 +21,7 @@ export default function LandingPage() {
           name={`description`}
           id={`page-description`}
           className={`page-description`}
-          content={`Good things. Worth finding. Explore a thoughtful collection of directories for design, tools, communities, and places.`}
+          content={`The Directory of Directories. Explore a thoughtful collection of directories for design, tools, communities, and places.`}
         />
         <meta
           name={`theme-color`}

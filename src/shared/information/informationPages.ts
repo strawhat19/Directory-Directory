@@ -31,7 +31,7 @@ export const informationPages: Record<InformationPageId, InformationPageContent>
         sections: [
             {
                 id: `the-idea`,
-                title: `Good things. Worth finding.`,
+                title: `The Directory of Directories.`,
                 paragraphs: [
                     `The internet is full of useful things. Finding a good starting point can still take a little work. Directory Directory brings directories together in one approachable place, organized around design, tools, communities, places, learning, technology, business, and lifestyle.`,
                     `Whether you are looking for inspiration, something useful for your next project, or a new rabbit hole to explore, the idea is simple: a little direction goes a long way.`,

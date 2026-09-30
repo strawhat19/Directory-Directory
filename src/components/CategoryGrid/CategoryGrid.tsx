@@ -15,7 +15,7 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
       className={`category-section`}
       aria-labelledby={`category-section-heading`}
     >
-      <div id={`category-section-header`} className={`category-section__header`}>
+      {/* <div id={`category-section-header`} className={`category-section__header`}>
         <h2 id={`category-section-heading`} className={`category-section__heading`}>
           {`Find your corner of the internet.`}
         </h2>
@@ -23,7 +23,7 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
           <Icon name={`globe`} id={`category-section-note-icon`} size={12} />
           {`A world of possibilities`}
         </span>
-      </div>
+      </div> */}
       {categoryItems.length === 0 && (
         <div id={`category-empty-state`} className={`category-section__empty`}>
           <p id={`category-empty-message`} className={`category-section__empty-message`}>

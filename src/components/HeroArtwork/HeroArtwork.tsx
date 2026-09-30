@@ -12,9 +12,9 @@ export default function HeroArtwork() {
   return (
     <div id={`hero-artwork`} className={`hero-artwork`} aria-hidden={true}>
       <div id={`hero-artwork-grid`} className={`hero-artwork__grid`} />
-      <span id={`hero-artwork-index`} className={`hero-artwork__index`}>
+      {/* <span id={`hero-artwork-index`} className={`hero-artwork__index`}>
         {`THE INTERNET, FILED UNDER GOOD.`}
-      </span>
+      </span> */}
       <div id={`hero-artwork-mark-frame`} className={`hero-artwork__mark-frame`}>
         <BrandMark
           size={250}
@@ -60,10 +60,10 @@ export default function HeroArtwork() {
           </div>
         ))}
       </div>
-      <span id={`hero-artwork-note`} className={`hero-artwork__note`}>
+      {/* <span id={`hero-artwork-note`} className={`hero-artwork__note`}>
         <Icon name={`sparkles`} id={`hero-artwork-note-icon`} size={13} />
         {`Less searching. More discovering.`}
-      </span>
+      </span> */}
     </div>
   )
 }

@@ -158,7 +158,7 @@ export default function LandingPage() {
                                 accessibilityRole={`header`}
                                 style={[styles.heading, wide && styles.headingWide]}
                             >
-                                {`Good things.\nWorth finding.`}
+                                {`The Directory\nof Directories.`}
                             </Text>
                             <Text {...elementProps(`landing-hero-description`)} style={styles.heroDescription}>
                                 {`Discover the directories that help you find your next favorite thing. One thoughtful collection, endless rabbit holes.`}

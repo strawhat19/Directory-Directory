@@ -15,19 +15,19 @@ export default function Hero({ onExplore }: HeroProps) {
   return (
     <section id={`top`} className={`hero`} aria-labelledby={`hero-heading`}>
       <div id={`hero-copy`} className={`hero__copy`}>
-        <p id={`hero-eyebrow`} className={`hero__eyebrow dd-eyebrow`}>
+        <h2 id={`hero-eyebrow`} className={`hero__eyebrow dd-eyebrow`}>
           <span id={`hero-status-dot`} className={`hero__status-dot`} aria-hidden={true} />
-          {`The Directory of Directories`}
-        </p>
+          {`Directory Database`}
+        </h2>
         <h1 id={`hero-heading`} className={`hero__heading`}>
           <span id={`hero-heading-first-line`} className={`hero__heading-line`}>
-            {`Good things.`}
+            {`The Directory`}
           </span>
           <span
             id={`hero-heading-second-line`}
             className={`hero__heading-line hero__heading-line--blue`}
           >
-            {`Worth finding.`}
+            {`of Directories.`}
           </span>
         </h1>
         <p id={`hero-description`} className={`hero__description`}>
@@ -103,7 +103,7 @@ export default function Hero({ onExplore }: HeroProps) {
             </button>
           </form>
         </div>
-        <div id={`hero-suggestions`} className={`hero__suggestions`}>
+        {/* <div id={`hero-suggestions`} className={`hero__suggestions`}>
           <span id={`hero-suggestions-label`} className={`hero__suggestions-label`}>
             {`A few places to start:`}
           </span>
@@ -123,7 +123,7 @@ export default function Hero({ onExplore }: HeroProps) {
               />
             </button>
           ))}
-        </div>
+        </div> */}
       </div>
       <HeroArtwork />
     </section>
