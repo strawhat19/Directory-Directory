@@ -51,6 +51,7 @@ export function useLandingPage() {
     const { isDark, toggleTheme } = useTheme();
     const { year } = useCopyrightYear();
     const [reduceMotion, setReduceMotion] = useState(false);
+    const [motionPreferenceReady, setMotionPreferenceReady] = useState(false);
     const [showHeaderSearch, setShowHeaderSearch] = useState(false);
     const scroll = useRef<ScrollView>(null);
     const searchInput = useRef<TextInput>(null);
@@ -254,6 +255,7 @@ export function useLandingPage() {
         const showContent = (reduceMotion: boolean) => {
             if (!active) return;
             setReduceMotion(reduceMotion);
+            setMotionPreferenceReady(true);
             animation?.stop();
             pulseAnimation?.stop();
             colorAnimation?.stop();
@@ -357,6 +359,8 @@ export function useLandingPage() {
         isDark,
         landing,
         padding,
+        reduceMotion,
+        motionPreferenceReady,
         columns,
         selected,
         scopeItems,

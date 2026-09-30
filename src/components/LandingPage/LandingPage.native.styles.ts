@@ -214,6 +214,17 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false) {
             lineHeight: 74,
             letterSpacing: -4,
         },
+        headingFirstLine: {
+            width: `100%`,
+        },
+        headingMagicCursor: {
+            color: colors.blue,
+            letterSpacing: 0,
+            fontFamily: regular,
+        },
+        headingMagicCursorHidden: {
+            opacity: 0,
+        },
         heroDescription: {
             fontSize: 15,
             maxWidth: 470,

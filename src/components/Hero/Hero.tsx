@@ -2,6 +2,7 @@ import './Hero.scss'
 import Icon from '../Icon/Icon'
 import { suggestedSearches, useHero } from './useHero'
 import HeroArtwork from '../HeroArtwork/HeroArtwork'
+import { useHeroMagicType } from './useHeroMagicType'
 import { searchScopes } from '../../shared/landing/searchScopes'
 
 type HeroProps = {
@@ -19,17 +20,7 @@ export default function Hero({ onExplore }: HeroProps) {
           <span id={`hero-status-dot`} className={`hero__status-dot`} aria-hidden={true} />
           {`Directory Database`}
         </h2>
-        <h1 id={`hero-heading`} className={`hero__heading`}>
-          <span id={`hero-heading-first-line`} className={`hero__heading-line`}>
-            {`The Directory`}
-          </span>
-          <span
-            id={`hero-heading-second-line`}
-            className={`hero__heading-line hero__heading-line--blue`}
-          >
-            {`of Directories.`}
-          </span>
-        </h1>
+        <HeroMagicHeading />
         <p id={`hero-description`} className={`hero__description`}>
           {`Discover the directories that help you find your next favorite thing. One thoughtful collection, endless rabbit holes.`}
         </p>
@@ -127,5 +118,28 @@ export default function Hero({ onExplore }: HeroProps) {
       </div>
       <HeroArtwork />
     </section>
+  )
+}
+
+const HeroMagicHeading = () => {
+  const magicTypeText = useHeroMagicType()
+
+  return (
+    <h1 id={`hero-heading`} className={`hero__heading`} aria-label={`The Directory of Directories.`}>
+      <span id={`hero-heading-first-line`} className={`hero__heading-line hero__heading-line--magic`} aria-hidden={true}>
+        {`The `}
+        <span id={`hero-heading-magic-text`} className={`hero__magic-text`}>
+          {magicTypeText}
+        </span>
+        <span id={`hero-heading-magic-cursor`} className={`hero__magic-cursor`} />
+      </span>
+      <span
+        id={`hero-heading-second-line`}
+        className={`hero__heading-line hero__heading-line--blue`}
+        aria-hidden={true}
+      >
+        {`of Directories.`}
+      </span>
+    </h1>
   )
 }

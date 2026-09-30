@@ -52,9 +52,23 @@
   &__heading-line {
     display: block;
 
+    &--magic {
+      white-space: nowrap;
+    }
+
     &--blue {
       color: var(--dd-blue);
     }
+  }
+
+  &__magic-cursor {
+    width: 3px;
+    height: 0.8em;
+    display: inline-block;
+    margin-left: 3px;
+    vertical-align: -0.07em;
+    background: var(--dd-blue);
+    animation: hero-magic-cursor 850ms steps(1, end) infinite;
   }
 
   &__description {
@@ -203,6 +217,11 @@
   }
 }
 
+@keyframes hero-magic-cursor {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
 @keyframes hero-status-pulse {
   0%, 100% {
     opacity: 1;
@@ -235,6 +254,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero__magic-cursor {
+    animation: none;
+  }
+
   .hero__status-dot {
     animation: none;
     color: var(--dd-green);
@@ -298,6 +321,6 @@
   }
 
   .hero__heading {
-    font-size: 43px;
+    font-size: clamp(35px, 10.75vw, 43px);
   }
 }

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Icon from '../Icon/Icon';
 import { Link, useRouter } from 'expo-router';
 import { BlurTargetView } from 'expo-blur';
@@ -10,7 +10,108 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
+import { heroMagicTypeTerms } from '../../shared/landing/magicTypeTerms';
 import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+
+const firstHeroMagicTerm = heroMagicTypeTerms[0] ?? `Directory`;
+
+function HeroMagicHeading({ enabled, styles, wide }: {
+    enabled: boolean;
+    wide: boolean;
+    styles: ReturnType<typeof useLandingPage>[`styles`];
+}) {
+    const [text, setText] = useState<string>(firstHeroMagicTerm);
+    const [cursorVisible, setCursorVisible] = useState(false);
+
+    useEffect(() => {
+        setText(firstHeroMagicTerm);
+        if (!enabled || heroMagicTypeTerms.length < 2) return;
+
+        let index = 0;
+        let length = firstHeroMagicTerm.length;
+        let erasing = true;
+        let timeout: ReturnType<typeof setTimeout>;
+
+        const typeNextCharacter = () => {
+            const term = heroMagicTypeTerms[index] ?? firstHeroMagicTerm;
+
+            if (erasing) {
+                length = Math.max(0, length - 1);
+                setText(term.slice(0, length));
+
+                if (length === 0) {
+                    index = (index + 1) % heroMagicTypeTerms.length;
+                    erasing = false;
+                    timeout = setTimeout(typeNextCharacter, 220);
+                    return;
+                }
+
+                timeout = setTimeout(typeNextCharacter, 60);
+                return;
+            }
+
+            const nextTerm = heroMagicTypeTerms[index] ?? firstHeroMagicTerm;
+            length = Math.min(nextTerm.length, length + 1);
+            setText(nextTerm.slice(0, length));
+
+            if (length === nextTerm.length) {
+                erasing = true;
+                timeout = setTimeout(typeNextCharacter, 1800);
+                return;
+            }
+
+            timeout = setTimeout(typeNextCharacter, 95);
+        };
+
+        timeout = setTimeout(typeNextCharacter, 1800);
+        return () => clearTimeout(timeout);
+    }, [enabled]);
+
+    useEffect(() => {
+        if (!enabled || heroMagicTypeTerms.length < 2) {
+            setCursorVisible(false);
+            return;
+        }
+
+        setCursorVisible(true);
+        const interval = setInterval(() => setCursorVisible((visible) => !visible), 540);
+        return () => clearInterval(interval);
+    }, [enabled]);
+
+    return (
+        <View
+            {...elementProps(`landing-hero-heading`)}
+            accessible
+            accessibilityRole={`header`}
+            accessibilityLabel={`The Directory of Directories.`}
+        >
+            <Text
+                {...elementProps(`landing-hero-heading-first-line`)}
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                minimumFontScale={0.72}
+                style={[styles.heading, wide && styles.headingWide, styles.headingFirstLine]}
+            >
+                {`The `}
+                <Text {...elementProps(`landing-hero-magic-term`)}>
+                    {text}
+                </Text>
+                <Text
+                    {...elementProps(`landing-hero-magic-cursor`)}
+                    style={[styles.headingMagicCursor, !cursorVisible && styles.headingMagicCursorHidden]}
+                >
+                    {`|`}
+                </Text>
+            </Text>
+            <Text
+                {...elementProps(`landing-hero-heading-second-line`)}
+                style={[styles.heading, wide && styles.headingWide]}
+            >
+                {`of Directories.`}
+            </Text>
+        </View>
+    );
+}
 
 export default function LandingPage() {
     const router = useRouter();
@@ -25,6 +126,8 @@ export default function LandingPage() {
         dotStyle,
         landing,
         padding,
+        reduceMotion,
+        motionPreferenceReady,
         selected,
         scopeItems,
         onScroll,
@@ -266,13 +369,11 @@ export default function LandingPage() {
                                     {`The Directory of Directories`}
                                 </Text>
                             </View>
-                            <Text
-                                {...elementProps(`landing-hero-heading`)}
-                                accessibilityRole={`header`}
-                                style={[styles.heading, wide && styles.headingWide]}
-                            >
-                                {`The Directory\nof Directories.`}
-                            </Text>
+                            <HeroMagicHeading
+                                wide={wide}
+                                styles={styles}
+                                enabled={motionPreferenceReady && !reduceMotion}
+                            />
                             <Text {...elementProps(`landing-hero-description`)} style={styles.heroDescription}>
                                 {`Discover the directories that help you find your next favorite thing. One thoughtful collection, endless rabbit holes.`}
                             </Text>
