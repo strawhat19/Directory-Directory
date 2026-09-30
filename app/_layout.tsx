@@ -1,23 +1,37 @@
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { AuthProvider } from '../src/shared/auth/AuthProvider';
+import { useTheme } from '../src/shared/theme/useTheme';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { LandingProvider } from '../src/shared/landing/LandingProvider';
+import { ThemeProvider } from '../src/shared/theme/ThemeProvider';
+
+function RootStack() {
+  const { isDark } = useTheme();
+
+  return (
+    <>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: isDark ? `#0b1220` : `#f7f8fa` },
+        }}
+      />
+      <StatusBar style={isDark ? `light` : `dark`} />
+    </>
+  );
+}
 
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <AuthProvider>
-        <LandingProvider>
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: { backgroundColor: `#f7f8fa` },
-            }}
-          />
-          <StatusBar style={`dark`} />
-        </LandingProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <LandingProvider>
+            <RootStack />
+          </LandingProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </SafeAreaProvider>
   );
 }

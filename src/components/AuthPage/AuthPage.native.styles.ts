@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '../LandingPage/LandingPage.native.styles';
+import { getNativePalette } from '../../shared/theme/nativePalette';
 
-export function createAuthStyles(fontsLoaded: boolean) {
+export function createAuthStyles(fontsLoaded: boolean, isDark: boolean) {
+    const palette = getNativePalette(isDark);
     const regular = fontsLoaded ? `Inter_400Regular` : undefined;
     const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
     const heavy = fontsLoaded ? `Inter_800ExtraBold` : undefined;
@@ -25,7 +26,7 @@ export function createAuthStyles(fontsLoaded: boolean) {
             gap: 16,
             zIndex: 10,
             paddingBottom: 16,
-            backgroundColor: `rgba(247, 248, 250, 0.4)`,
+            backgroundColor: palette.headerScrim,
         },
         header: {
             gap: 18,
@@ -69,7 +70,7 @@ export function createAuthStyles(fontsLoaded: boolean) {
             paddingHorizontal: 12,
             flexDirection: `row`,
             alignItems: `center`,
-            backgroundColor: palette.white,
+            backgroundColor: palette.surface,
         },
         navigationLabel: {
             fontSize: 12,
@@ -85,7 +86,7 @@ export function createAuthStyles(fontsLoaded: boolean) {
             borderRadius: 16,
             alignSelf: `center`,
             borderColor: palette.border,
-            backgroundColor: palette.white,
+            backgroundColor: palette.surface,
         },
         eyebrow: {
             gap: 8,
@@ -120,8 +121,8 @@ export function createAuthStyles(fontsLoaded: boolean) {
             borderRadius: 10,
             fontFamily: regular,
             color: palette.muted,
-            borderColor: `#dce8fc`,
-            backgroundColor: `#edf4ff`,
+            borderColor: palette.border,
+            backgroundColor: palette.blueSoft,
         },
         field: {
             gap: 9,

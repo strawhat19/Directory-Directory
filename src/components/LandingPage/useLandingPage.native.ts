@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { AccessibilityInfo, Animated, Easing, ScrollView, useWindowDimensions } from 'react-native';
+import { AccessibilityInfo, Animated, Easing, ScrollView, TextInput, useWindowDimensions, type NativeScrollEvent, type NativeSyntheticEvent } from 'react-native';
 import {
     useFonts,
     Inter_400Regular,
@@ -10,10 +10,11 @@ import {
 } from '@expo-google-fonts/inter';
 
 import { useLanding } from '../../shared/landing/useLanding';
+import { useTheme } from '../../shared/theme/useTheme';
 import { useCopyrightYear } from '../../shared/time/useCopyrightYear';
 import { directories, type CategoryId } from '../../shared/catalog/catalog';
 import { searchScopes, type SearchScope } from '../../shared/landing/searchScopes';
-import { palette, accents, createLandingStyles } from './LandingPage.native.styles';
+import { getLandingAccents, getLandingPalette, createLandingStyles } from './LandingPage.native.styles';
 
 const categoryIcons = {
     tools: `tools`,
@@ -26,22 +27,16 @@ const categoryIcons = {
     communities: `communities`,
 } as const;
 
-const categoryAccents = {
-    tools: accents.green,
-    design: accents.blue,
-    places: accents.ink,
-    learning: accents.yellow,
-    business: accents.orange,
-    lifestyle: accents.pink,
-    technology: accents.purple,
-    communities: accents.red,
-};
-
-const artworkRows = [
-    { label: `Find your next idea`, icon: `design`, accent: accents.blue },
-    { label: `Make something good`, icon: `tools`, accent: accents.green },
-    { label: `Meet your kind of people`, icon: `communities`, accent: accents.red },
-] as const;
+const categoryAccentKeys = {
+    tools: `green`,
+    design: `blue`,
+    places: `ink`,
+    learning: `yellow`,
+    business: `orange`,
+    lifestyle: `pink`,
+    technology: `purple`,
+    communities: `red`,
+} as const;
 
 const topics = [
     { topic: `All`, icon: `globe` },
@@ -53,13 +48,20 @@ const viewModes = [`grid`, `list`] as const;
 
 export function useLandingPage() {
     const landing = useLanding();
+    const { isDark, toggleTheme } = useTheme();
     const { year } = useCopyrightYear();
     const [reduceMotion, setReduceMotion] = useState(false);
+    const [showHeaderSearch, setShowHeaderSearch] = useState(false);
     const scroll = useRef<ScrollView>(null);
+    const searchInput = useRef<TextInput>(null);
     const mainOffset = useRef(0);
     const headerHeight = useRef(0);
+    const scrollOffset = useRef(0);
+    const viewportHeight = useRef(0);
+    const searchLayout = useRef<{ y: number; height: number } | null>(null);
     const exploreOffset = useRef(0);
     const pendingScroll = useRef(false);
+    const headerSearchProgress = useRef(new Animated.Value(0)).current;
     const searchTheme = useRef(new Animated.Value(0)).current;
     const dotPulse = useRef(new Animated.Value(0)).current;
     const dotColor = useRef(new Animated.Value(0)).current;
@@ -81,24 +83,26 @@ export function useLandingPage() {
     const contentWidth = Math.min(width - padding * 2, 1280);
     const columns = width >= 1100 ? 3 : wide ? 2 : 1;
     const categoryColumns = wide ? 4 : 2;
-    const styles = useMemo(() => createLandingStyles(fontsLoaded), [fontsLoaded]);
+    const colors = useMemo(() => getLandingPalette(isDark), [isDark]);
+    const activeAccents = useMemo(() => getLandingAccents(isDark), [isDark]);
+    const styles = useMemo(() => createLandingStyles(fontsLoaded, isDark), [fontsLoaded, isDark]);
     const gridColumns = landing.viewMode === `list` ? 1 : columns;
     const cardWidth = (contentWidth - 18 * (gridColumns - 1)) / gridColumns;
     const selected = landing.selectedDirectory;
-    const selectedAccent = selected ? accents[selected.accent] : accents.blue;
+    const selectedAccent = selected ? activeAccents[selected.accent] : activeAccents.blue;
     const selectedIsSaved = selected ? landing.savedIds.includes(selected.id) : false;
 
     const categoryItems = landing.visibleCategories.map((item) => ({
         ...item,
         icon: categoryIcons[item.id],
-        accent: categoryAccents[item.id],
+        accent: activeAccents[categoryAccentKeys[item.id]],
         active: landing.category === item.id,
         count: directories.filter((directory) => directory.category === item.id).length,
     }));
 
     const directoryItems = landing.visibleDirectories.map((directory) => ({
         ...directory,
-        accentStyle: accents[directory.accent],
+        accentStyle: activeAccents[directory.accent],
         saved: landing.savedIds.includes(directory.id),
     }));
 
@@ -118,6 +122,33 @@ export function useLandingPage() {
         active: item.id === landing.searchScope,
     }));
     const selectedScope = searchScopes.find((item) => item.id === landing.searchScope) ?? searchScopes[0];
+    const artworkRows = [
+        { label: `Find your next idea`, icon: `design`, accent: activeAccents.blue },
+        { label: `Make something good`, icon: `tools`, accent: activeAccents.green },
+        { label: `Meet your kind of people`, icon: `communities`, accent: activeAccents.red },
+    ] as const;
+
+    const updateHeaderSearchVisibility = () => {
+        if (!searchLayout.current || !viewportHeight.current) return;
+        const searchTop = mainOffset.current + searchLayout.current.y;
+        const searchBottom = searchTop + searchLayout.current.height;
+        const visibleTop = scrollOffset.current + headerHeight.current;
+        const visibleBottom = scrollOffset.current + viewportHeight.current;
+        setShowHeaderSearch(searchBottom <= visibleTop || searchTop >= visibleBottom);
+    };
+
+    const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+        scrollOffset.current = event.nativeEvent.contentOffset.y;
+        viewportHeight.current = event.nativeEvent.layoutMeasurement.height;
+        updateHeaderSearchVisibility();
+    };
+
+    const scrollToHeroSearch = () => {
+        if (!searchLayout.current) return;
+        const offset = mainOffset.current + searchLayout.current.y - headerHeight.current - 18;
+        scroll.current?.scrollTo({ y: Math.max(0, offset), animated: !reduceMotion });
+        setTimeout(() => searchInput.current?.focus(), reduceMotion ? 0 : 300);
+    };
 
     const scrollToResults = () => {
         const offset = mainOffset.current + exploreOffset.current - headerHeight.current;
@@ -159,6 +190,23 @@ export function useLandingPage() {
         landing.setQuery(query);
         queueResultsScroll();
     };
+
+    useEffect(() => {
+        if (reduceMotion) {
+            headerSearchProgress.setValue(showHeaderSearch ? 1 : 0);
+            return;
+        }
+
+        const animation = Animated.timing(headerSearchProgress, {
+            toValue: showHeaderSearch ? 1 : 0,
+            duration: 240,
+            useNativeDriver: false,
+            easing: Easing.inOut(Easing.cubic),
+        });
+        animation.start();
+
+        return () => animation.stop();
+    }, [headerSearchProgress, reduceMotion, showHeaderSearch]);
 
     useEffect(() => {
         const themeIndex = searchScopes.findIndex((item) => item.id === landing.searchScope);
@@ -287,7 +335,7 @@ export function useLandingPage() {
 
     const statusColor = dotColor.interpolate({
         inputRange: [0, 0.5, 1],
-        outputRange: [palette.blue, palette.green, palette.blue],
+        outputRange: [colors.blue, colors.green, colors.blue],
     });
     const searchThemeColor = searchTheme.interpolate({
         inputRange: [0, 1, 2],
@@ -295,7 +343,9 @@ export function useLandingPage() {
     });
     const searchBackgroundColor = searchTheme.interpolate({
         inputRange: [0, 1, 2],
-        outputRange: [accents.blue.background, accents.green.background, accents.red.background],
+        outputRange: isDark
+            ? [colors.surface, colors.surface, colors.surface]
+            : [activeAccents.blue.background, activeAccents.green.background, activeAccents.red.background],
     });
 
     return {
@@ -303,15 +353,22 @@ export function useLandingPage() {
         year,
         scroll,
         styles,
+        colors,
+        isDark,
         landing,
         padding,
         columns,
         selected,
         scopeItems,
+        onScroll,
         cardWidth,
         viewItems,
         topicItems,
         artworkRows,
+        searchInput,
+        toggleTheme,
+        showHeaderSearch,
+        scrollToHeroSearch,
         contentWidth,
         categoryItems,
         selectCategory,
@@ -321,8 +378,16 @@ export function useLandingPage() {
         setExploreOffset,
         showSearchResults,
         selectSearchScope,
-        setMainOffset: (offset: number) => { mainOffset.current = offset; },
-        setHeaderHeight: (height: number) => { headerHeight.current = height; },
+        setMainOffset: (offset: number) => { mainOffset.current = offset; updateHeaderSearchVisibility(); },
+        setHeaderHeight: (height: number) => { headerHeight.current = height; updateHeaderSearchVisibility(); },
+        setViewportHeight: (height: number) => { viewportHeight.current = height; updateHeaderSearchVisibility(); },
+        setSearchLayout: (y: number, height: number) => { searchLayout.current = { y, height }; updateHeaderSearchVisibility(); },
+        headerSearchStyle: {
+            opacity: headerSearchProgress,
+            marginLeft: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 8] }),
+            width: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 34] }),
+            transform: [{ translateX: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+        },
         searchPlaceholder: selectedScope.placeholder,
         searchThemeStyle: { backgroundColor: searchThemeColor },
         searchBoxThemeStyle: { borderColor: searchThemeColor, backgroundColor: searchBackgroundColor },

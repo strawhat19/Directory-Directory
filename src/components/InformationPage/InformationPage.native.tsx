@@ -1,24 +1,23 @@
-import { Link } from 'expo-router';
 import { useRef } from 'react';
-import { BlurTargetView } from 'expo-blur';
 import Icon from '../Icon/Icon';
+import { Link } from 'expo-router';
+import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
-import GlassBackdrop from '../GlassBackdrop/GlassBackdrop';
-import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
-import type { InformationPageProps } from './InformationPage.types';
-import { useInformationPage } from './useInformationPage.native';
-import { Pressable, ScrollView, Text, View } from 'react-native';
-import { palette } from '../LandingPage/LandingPage.native.styles';
 import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useInformationPage } from './useInformationPage.native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
+import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
+import type { InformationPageProps } from './InformationPage.types';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages';
 
 export default function InformationPage({ page }: InformationPageProps) {
     const blurTarget = useRef<View | null>(null);
     const content = informationPages[page];
-    const { year, styles, padding } = useInformationPage();
+    const { year, styles, palette, padding } = useInformationPage();
 
     return (
         <SafeAreaView

@@ -1,12 +1,18 @@
+import { useMemo } from 'react';
 import Icon from '../Icon/Icon';
 import { Link } from 'expo-router';
-import { styles } from './AuthActions.native.styles';
 import { Pressable, Text, View } from 'react-native';
 import type { AuthActionsProps } from './AuthActions.types';
 import { authLinks, useAuthActions } from './useAuthActions';
+import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
+import { getNativePalette } from '../../shared/theme/nativePalette';
+import { createAuthActionsStyles } from './AuthActions.native.styles';
 
 export default function AuthActions({ scope }: AuthActionsProps) {
+  const { isDark } = useTheme();
+  const palette = getNativePalette(isDark);
+  const styles = useMemo(() => createAuthActionsStyles(isDark), [isDark]);
   const { user, ready, error, busy, redirect, handleSignOut } = useAuthActions();
 
   return (
@@ -27,7 +33,7 @@ export default function AuthActions({ scope }: AuthActionsProps) {
             {...elementProps(`auth-actions-sign-out`, scope)}
             style={({ pressed }) => [styles.button, (pressed || busy) && styles.pressed]}
           >
-            <Icon name={`log-out`} color={`#0874f9`} id={`${scope}-sign-out-icon`} size={15} />
+            <Icon name={`log-out`} color={palette.blue} id={`${scope}-sign-out-icon`} size={15} />
             <Text style={styles.label} {...elementProps(`auth-actions-sign-out-label`, scope)}>
               {busy ? `Signing out…` : `Sign out`}
             </Text>
@@ -52,7 +58,7 @@ export default function AuthActions({ scope }: AuthActionsProps) {
               size={15}
               name={link.icon}
               id={`${scope}-${link.id}-icon`}
-              color={link.id === `sign-up` ? `#ffffff` : `#0874f9`}
+              color={link.id === `sign-up` ? palette.white : palette.blue}
             />
             <Text
               {...elementProps(`auth-actions-label`, `${scope}-${link.id}`)}

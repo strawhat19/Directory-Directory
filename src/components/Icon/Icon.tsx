@@ -21,9 +21,9 @@ export default function Icon({
       nativeID={iconId}
       width={size}
       height={size}
-      fill={`none`}
+      fill={name === `moon` ? color : `none`}
       stroke={color}
-      strokeWidth={1.7}
+      strokeWidth={name === `moon` ? 1.1 : 1.7}
       style={styles.icon}
       viewBox={`0 0 24 24`}
       strokeLinecap={`round`}

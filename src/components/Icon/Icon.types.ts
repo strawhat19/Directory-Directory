@@ -7,6 +7,9 @@ export type IconName =
   | `pause`
   | `info`
   | `mail`
+  | `moon`
+  | `bell`
+  | `sun`
   | `close`
   | `check`
   | `clock`

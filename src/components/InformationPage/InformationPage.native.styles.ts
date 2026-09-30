@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '../LandingPage/LandingPage.native.styles';
+import { getNativePalette } from '../../shared/theme/nativePalette';
 
-export function createInformationStyles(fontsLoaded: boolean) {
+export function createInformationStyles(fontsLoaded: boolean, isDark: boolean) {
+    const palette = getNativePalette(isDark);
     const regular = fontsLoaded ? `Inter_400Regular` : undefined;
     const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
     const heavy = fontsLoaded ? `Inter_800ExtraBold` : undefined;
@@ -25,7 +26,7 @@ export function createInformationStyles(fontsLoaded: boolean) {
             gap: 16,
             zIndex: 10,
             paddingBottom: 16,
-            backgroundColor: `rgba(247, 248, 250, 0.4)`,
+            backgroundColor: palette.headerScrim,
         },
         header: {
             gap: 20,
@@ -68,10 +69,10 @@ export function createInformationStyles(fontsLoaded: boolean) {
             paddingHorizontal: 12,
             flexDirection: `row`,
             alignItems: `center`,
-            backgroundColor: palette.white,
+            backgroundColor: palette.surface,
         },
         navigationLinkActive: {
-            backgroundColor: `#edf4ff`,
+            backgroundColor: palette.blueSoft,
         },
         navigationLabel: {
             fontSize: 12,
@@ -131,8 +132,8 @@ export function createInformationStyles(fontsLoaded: boolean) {
             padding: 22,
             borderWidth: 1,
             borderRadius: 14,
-            borderColor: `#dce8fc`,
-            backgroundColor: `#edf4ff`,
+            borderColor: palette.border,
+            backgroundColor: palette.blueSoft,
         },
         noteTitle: {
             fontSize: 15,
@@ -150,7 +151,7 @@ export function createInformationStyles(fontsLoaded: boolean) {
             borderWidth: 1,
             borderRadius: 16,
             borderColor: palette.border,
-            backgroundColor: palette.white,
+            backgroundColor: palette.surface,
         },
         section: {
             gap: 14,

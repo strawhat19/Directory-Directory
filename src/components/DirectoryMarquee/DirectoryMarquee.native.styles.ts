@@ -11,6 +11,10 @@ export const styles = StyleSheet.create({
     borderColor: `rgba(227, 231, 238, 0.7)`,
     backgroundColor: `rgba(247, 248, 250, 0.35)`,
   },
+  darkBar: {
+    borderColor: `rgba(43, 57, 80, 0.7)`,
+    backgroundColor: `rgba(11, 18, 32, 0.35)`,
+  },
   viewport: {
     flex: 1,
     height: 56,

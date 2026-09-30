@@ -10,7 +10,6 @@ import AuthActions from '../AuthActions/AuthActions';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { useNativeAuthPage } from './useAuthPage.native';
 import { elementProps } from '../../shared/ui/elementProps';
-import { palette } from '../LandingPage/LandingPage.native.styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
@@ -23,6 +22,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
         ready,
         fields,
         styles,
+        palette,
         values,
         submit,
         content,

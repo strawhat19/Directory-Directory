@@ -23,12 +23,6 @@ export default function LandingPage() {
           className={`page-description`}
           content={`The Directory of Directories. Explore a thoughtful collection of directories for design, tools, communities, and places.`}
         />
-        <meta
-          name={`theme-color`}
-          content={`#f7f8fa`}
-          id={`page-theme-color`}
-          className={`page-theme-color`}
-        />
       </Head>
       <a
         href={`#explore`}

@@ -51,7 +51,7 @@
     color: var(--folder-color);
     background: var(--folder-background);
     border: 1px solid var(--folder-border);
-    transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1), color 260ms ease, background-color 260ms ease, border-color 260ms ease;
 
     &::before {
       top: -9px;
@@ -133,6 +133,29 @@
 
   &:hover &__folder--red {
     transform: translateX(-4px) rotate(1deg);
+  }
+}
+
+:root[data-theme='dark'] {
+  .hero-artwork__grid {
+    background-image: radial-gradient(#365072 1px, transparent 1px);
+  }
+
+  .hero-artwork__folder {
+    --folder-border: color-mix(in srgb, var(--folder-color) 38%, var(--dd-line));
+    --folder-background: color-mix(in srgb, var(--folder-color) 17%, var(--dd-paper));
+
+    &--green {
+      --folder-color: #75c99b;
+    }
+
+    &--blue {
+      --folder-color: #78adff;
+    }
+
+    &--red {
+      --folder-color: #ee858b;
+    }
   }
 }
 

@@ -1,19 +1,19 @@
 import { StyleSheet } from 'react-native';
+import { getNativePalette } from '../../shared/theme/nativePalette';
 
 export const palette = {
-    red: `#d83b42`,
-    blue: `#0874f9`,
-    ink: `#14213d`,
-    green: `#21a668`,
+    ...getNativePalette(false),
     pink: `#cd4c8c`,
-    white: `#ffffff`,
-    muted: `#6b7280`,
-    border: `#e3e7ee`,
     yellow: `#b7860b`,
-    purple: `#8054d7`,
     orange: `#d97722`,
-    background: `#f7f8fa`,
 };
+
+export const getLandingPalette = (isDark: boolean) => ({
+    ...getNativePalette(isDark),
+    pink: palette.pink,
+    yellow: palette.yellow,
+    orange: palette.orange,
+});
 
 export const accents = {
     ink: { color: palette.ink, background: `#eef0f5` },
@@ -26,7 +26,12 @@ export const accents = {
     orange: { color: palette.orange, background: `#fff1e6` },
 };
 
-export function createLandingStyles(fontsLoaded: boolean) {
+export const getLandingAccents = (isDark: boolean) => isDark
+    ? { ...accents, ink: { color: getLandingPalette(true).ink, background: `#25354c` } }
+    : accents;
+
+export function createLandingStyles(fontsLoaded: boolean, isDark = false) {
+    const colors = getLandingPalette(isDark);
     const regular = fontsLoaded ? `Inter_400Regular` : undefined;
     const medium = fontsLoaded ? `Inter_500Medium` : undefined;
     const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
@@ -36,7 +41,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
     return StyleSheet.create({
         screen: {
             flex: 1,
-            backgroundColor: palette.background,
+            backgroundColor: colors.background,
         },
         scroll: {
             flex: 1,
@@ -50,7 +55,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
         stickyHeader: {
             zIndex: 10,
             paddingBottom: 16,
-            backgroundColor: `rgba(247, 248, 250, 0.4)`,
+            backgroundColor: colors.headerScrim,
         },
         header: {
             gap: 20,
@@ -70,6 +75,41 @@ export function createLandingStyles(fontsLoaded: boolean) {
             alignItems: `center`,
             justifyContent: `flex-end`,
         },
+        headerUtilities: {
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        headerUtilityButton: {
+            width: 34,
+            height: 34,
+            borderRadius: 17,
+            alignItems: `center`,
+            justifyContent: `center`,
+            backgroundColor: colors.blue,
+        },
+        headerNotificationButton: {
+            marginLeft: 8,
+            backgroundColor: colors.blueSoft,
+        },
+        headerNotificationBadge: {
+            top: -3,
+            right: -3,
+            width: 15,
+            height: 15,
+            borderRadius: 8,
+            position: `absolute`,
+            alignItems: `center`,
+            justifyContent: `center`,
+            backgroundColor: colors.blue,
+        },
+        headerNotificationBadgeLabel: {
+            fontSize: 9,
+            fontFamily: bold,
+            color: colors.white,
+        },
+        headerSearchContainer: {
+            overflow: `hidden`,
+        },
         brand: {
             gap: 10,
             flexDirection: `row`,
@@ -79,7 +119,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontSize: 18,
             lineHeight: 19,
             fontFamily: heavy,
-            color: palette.ink,
+            color: colors.ink,
             letterSpacing: -0.6,
         },
         menu: {
@@ -99,7 +139,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
         menuLabel: {
             fontSize: 13,
             fontFamily: semibold,
-            color: palette.ink,
+            color: colors.ink,
         },
         pressed: {
             opacity: 0.65,
@@ -149,7 +189,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             lineHeight: 18,
             letterSpacing: 1.6,
             fontFamily: semibold,
-            color: palette.blue,
+            color: colors.blue,
             textTransform: `uppercase`,
         },
         heading: {
@@ -157,7 +197,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             lineHeight: 54,
             letterSpacing: -2.8,
             fontFamily: heavy,
-            color: palette.ink,
+            color: colors.ink,
         },
         headingWide: {
             fontSize: 68,
@@ -170,14 +210,14 @@ export function createLandingStyles(fontsLoaded: boolean) {
             lineHeight: 25,
             marginTop: 20,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         heroArtwork: {
             padding: 20,
             borderWidth: 1,
             borderRadius: 22,
-            backgroundColor: `#eef2f8`,
-            borderColor: palette.border,
+            backgroundColor: isDark ? `#19263a` : `#eef2f8`,
+            borderColor: colors.border,
         },
         heroArtworkWide: {
             width: 360,
@@ -193,7 +233,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontSize: 23,
             lineHeight: 27,
             fontFamily: heavy,
-            color: palette.ink,
+            color: colors.ink,
             letterSpacing: -0.7,
         },
         artworkSubtitle: {
@@ -201,7 +241,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             marginTop: 8,
             letterSpacing: 1.2,
             fontFamily: medium,
-            color: palette.muted,
+            color: colors.muted,
         },
         artworkRows: {
             gap: 10,
@@ -248,7 +288,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
         searchTabLabel: {
             fontSize: 11,
             fontFamily: semibold,
-            color: palette.white,
+            color: colors.white,
         },
         searchBox: {
             gap: 10,
@@ -277,7 +317,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             minHeight: 44,
             paddingVertical: 0,
             fontFamily: regular,
-            color: palette.ink,
+            color: colors.ink,
         },
         searchButtonContainer: {
             borderRadius: 9,
@@ -294,14 +334,14 @@ export function createLandingStyles(fontsLoaded: boolean) {
         searchButtonLabel: {
             fontSize: 13,
             fontFamily: semibold,
-            color: palette.white,
+            color: colors.white,
         },
         searchHint: {
             fontSize: 11,
             lineHeight: 18,
             marginTop: 10,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         sectionHeader: {
             gap: 10,
@@ -314,13 +354,13 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontSize: 21,
             lineHeight: 29,
             fontFamily: bold,
-            color: palette.ink,
+            color: colors.ink,
             letterSpacing: -0.7,
         },
         sectionCaption: {
             fontSize: 11,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         categorySection: {
             marginBottom: 44,
@@ -335,12 +375,12 @@ export function createLandingStyles(fontsLoaded: boolean) {
             minHeight: 167,
             borderWidth: 1,
             borderRadius: 14,
-            borderColor: palette.border,
-            backgroundColor: palette.white,
+            borderColor: colors.border,
+            backgroundColor: colors.surface,
         },
         categorySelected: {
-            borderColor: palette.blue,
-            backgroundColor: `#f0f6ff`,
+            borderColor: colors.blue,
+            backgroundColor: isDark ? `#1b3555` : `#f0f6ff`,
         },
         categoryIcon: {
             width: 39,
@@ -354,20 +394,20 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontSize: 14,
             lineHeight: 20,
             fontFamily: bold,
-            color: palette.ink,
+            color: colors.ink,
         },
         categoryDescription: {
             fontSize: 11,
             lineHeight: 17,
             marginTop: 4,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         categoryCount: {
             fontSize: 10,
             marginTop: 12,
             fontFamily: medium,
-            color: palette.muted,
+            color: colors.muted,
         },
         explore: {
             marginBottom: 48,
@@ -397,10 +437,10 @@ export function createLandingStyles(fontsLoaded: boolean) {
         topicTabLabel: {
             fontSize: 12,
             fontFamily: semibold,
-            color: palette.muted,
+            color: colors.muted,
         },
         topicTabLabelActive: {
-            color: palette.white,
+            color: colors.white,
         },
         viewControls: {
             gap: 2,
@@ -408,7 +448,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             borderWidth: 1,
             borderRadius: 9,
             flexDirection: `row`,
-            borderColor: palette.border,
+            borderColor: colors.border,
         },
         viewButton: {
             width: 34,
@@ -418,7 +458,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             justifyContent: `center`,
         },
         viewButtonActive: {
-            backgroundColor: palette.white,
+            backgroundColor: colors.surface,
         },
         directoryGrid: {
             gap: 18,
@@ -429,8 +469,8 @@ export function createLandingStyles(fontsLoaded: boolean) {
             overflow: `hidden`,
             borderWidth: 1,
             borderRadius: 15,
-            borderColor: palette.border,
-            backgroundColor: palette.white,
+            borderColor: colors.border,
+            backgroundColor: colors.surface,
         },
         directoryPreview: {
             padding: 21,
@@ -461,12 +501,12 @@ export function createLandingStyles(fontsLoaded: boolean) {
             borderRadius: 6,
             flexDirection: `row`,
             alignItems: `center`,
-            backgroundColor: `#f4f6f9`,
+            backgroundColor: isDark ? `#243249` : `#f4f6f9`,
         },
         featuredBadgeLabel: {
             fontSize: 9,
             fontFamily: medium,
-            color: palette.muted,
+            color: colors.muted,
         },
         directoryTitleRow: {
             gap: 10,
@@ -480,7 +520,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontSize: 18,
             lineHeight: 24,
             fontFamily: bold,
-            color: palette.ink,
+            color: colors.ink,
             letterSpacing: -0.5,
         },
         directoryDescription: {
@@ -488,7 +528,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             minHeight: 54,
             lineHeight: 19,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         directoryFooter: {
             gap: 8,
@@ -505,8 +545,8 @@ export function createLandingStyles(fontsLoaded: boolean) {
             paddingVertical: 5,
             fontFamily: medium,
             paddingHorizontal: 7,
-            color: palette.muted,
-            backgroundColor: `#f4f6f9`,
+            color: colors.muted,
+            backgroundColor: isDark ? `#243249` : `#f4f6f9`,
         },
         bookmarkButton: {
             width: 40,
@@ -516,7 +556,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             justifyContent: `center`,
         },
         bookmarkButtonSaved: {
-            backgroundColor: `#edf4ff`,
+            backgroundColor: colors.blueSoft,
         },
         emptyState: {
             gap: 16,
@@ -524,13 +564,13 @@ export function createLandingStyles(fontsLoaded: boolean) {
             borderWidth: 1,
             borderRadius: 15,
             alignItems: `center`,
-            borderColor: palette.border,
-            backgroundColor: palette.white,
+            borderColor: colors.border,
+            backgroundColor: colors.surface,
         },
         emptyTitle: {
             fontSize: 19,
             fontFamily: bold,
-            color: palette.ink,
+            color: colors.ink,
             textAlign: `center`,
         },
         emptyDescription: {
@@ -539,7 +579,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             lineHeight: 22,
             textAlign: `center`,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         clearButton: {
             gap: 7,
@@ -548,24 +588,24 @@ export function createLandingStyles(fontsLoaded: boolean) {
             paddingHorizontal: 14,
             flexDirection: `row`,
             alignItems: `center`,
-            backgroundColor: `#edf4ff`,
+            backgroundColor: colors.blueSoft,
         },
         clearButtonLabel: {
             fontSize: 12,
             fontFamily: semibold,
-            color: palette.blue,
+            color: colors.blue,
         },
         footer: {
             gap: 24,
             borderTopWidth: 1,
             paddingTop: 32,
-            borderColor: palette.border,
+            borderColor: colors.border,
         },
         footerStatement: {
             fontSize: 25,
             lineHeight: 33,
             fontFamily: bold,
-            color: palette.ink,
+            color: colors.ink,
             letterSpacing: -0.8,
         },
         footerBottom: {
@@ -583,12 +623,12 @@ export function createLandingStyles(fontsLoaded: boolean) {
         footerBrandLabel: {
             fontSize: 11,
             fontFamily: semibold,
-            color: palette.ink,
+            color: colors.ink,
         },
         copyright: {
             fontSize: 10,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         footerDetails: {
             gap: 12,
@@ -606,7 +646,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
         footerLinkLabel: {
             fontSize: 11,
             fontFamily: semibold,
-            color: palette.blue,
+            color: colors.blue,
         },
         modalBackdrop: {
             flex: 1,
@@ -620,7 +660,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             width: `100%`,
             maxWidth: 480,
             borderRadius: 20,
-            backgroundColor: palette.white,
+            backgroundColor: colors.surface,
         },
         modalHeader: {
             gap: 12,
@@ -634,7 +674,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             lineHeight: 34,
             marginBottom: 12,
             fontFamily: bold,
-            color: palette.ink,
+            color: colors.ink,
             letterSpacing: -0.8,
         },
         modalDescription: {
@@ -642,7 +682,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             lineHeight: 23,
             marginBottom: 24,
             fontFamily: regular,
-            color: palette.muted,
+            color: colors.muted,
         },
         sampleNotice: {
             fontSize: 11,
@@ -651,8 +691,8 @@ export function createLandingStyles(fontsLoaded: boolean) {
             borderTopWidth: 1,
             marginTop: 22,
             fontFamily: regular,
-            color: palette.muted,
-            borderColor: palette.border,
+            color: colors.muted,
+            borderColor: colors.border,
         },
         modalVisitButton: {
             gap: 8,
@@ -664,12 +704,12 @@ export function createLandingStyles(fontsLoaded: boolean) {
             flexDirection: `row`,
             alignItems: `center`,
             justifyContent: `center`,
-            borderColor: palette.blue,
+            borderColor: colors.blue,
         },
         modalVisitLabel: {
             fontSize: 12,
             fontFamily: semibold,
-            color: palette.blue,
+            color: colors.blue,
         },
         modalSaveButton: {
             gap: 8,
@@ -678,7 +718,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
             flexDirection: `row`,
             alignItems: `center`,
             justifyContent: `center`,
-            backgroundColor: palette.blue,
+            backgroundColor: colors.blue,
         },
     });
 }

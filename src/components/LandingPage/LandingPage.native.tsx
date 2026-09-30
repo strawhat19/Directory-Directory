@@ -1,34 +1,41 @@
 import { useRef } from 'react';
 import Icon from '../Icon/Icon';
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
-import { palette } from './LandingPage.native.styles';
 import { useLandingPage } from './useLandingPage.native';
 import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
-import { Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 export default function LandingPage() {
+    const router = useRouter();
     const blurTarget = useRef<View | null>(null);
     const {
         wide,
         year,
         scroll,
         styles,
+        colors,
+        isDark,
         dotStyle,
         landing,
         padding,
         selected,
         scopeItems,
+        onScroll,
         cardWidth,
         viewItems,
         topicItems,
         artworkRows,
+        searchInput,
+        toggleTheme,
+        showHeaderSearch,
+        scrollToHeroSearch,
         categoryItems,
         selectCategory,
         categoryWidth,
@@ -45,8 +52,20 @@ export default function LandingPage() {
         selectSearchScope,
         setMainOffset,
         setHeaderHeight,
+        setSearchLayout,
+        setViewportHeight,
         setExploreOffset,
+        headerSearchStyle,
     } = useLandingPage();
+
+    const openNotifications = () => Alert.alert(
+        `Notifications`,
+        `This application is in development, sign up to let us know you are interested\n\nWe are sorry to show ads, we are only doing this to support our small business, please sign up to support us!`,
+        [
+            { text: `Close`, style: `cancel` },
+            { text: `Sign up`, onPress: () => router.push(`/sign-up`) },
+        ],
+    );
 
     return (
         <SafeAreaView
@@ -59,8 +78,11 @@ export default function LandingPage() {
                 stickyHeaderIndices={[0]}
                 ref={scroll}
                 style={styles.scroll}
+                onScroll={onScroll}
+                scrollEventThrottle={16}
                 keyboardShouldPersistTaps={`handled`}
                 contentContainerStyle={[styles.content, { paddingHorizontal: padding }]}
+                onLayout={(event) => setViewportHeight(event.nativeEvent.layout.height)}
             >
                 <View
                     {...elementProps(`landing-sticky-header`)}
@@ -114,6 +136,75 @@ export default function LandingPage() {
                                         </Pressable>
                                     </Link>
                                 ))}
+                            </View>
+                            <View
+                                {...elementProps(`landing-header-utilities`)}
+                                style={styles.headerUtilities}
+                            >
+                                <Pressable
+                                    {...elementProps(`landing-header-theme-button`)}
+                                    onPress={toggleTheme}
+                                    accessibilityRole={`button`}
+                                    accessibilityLabel={isDark ? `Switch to light mode` : `Switch to dark mode`}
+                                    style={({ pressed }) => [styles.headerUtilityButton, pressed && styles.pressed]}
+                                >
+                                    <Icon
+                                        id={`landing-header-theme-icon`}
+                                        className={`landing-header-theme-icon`}
+                                        name={isDark ? `sun` : `moon`}
+                                        color={colors.white}
+                                        size={17}
+                                    />
+                                </Pressable>
+                                <Pressable
+                                    {...elementProps(`landing-header-notifications-button`)}
+                                    onPress={openNotifications}
+                                    accessibilityRole={`button`}
+                                    accessibilityLabel={`Notifications, 2 updates`}
+                                    style={({ pressed }) => [styles.headerUtilityButton, styles.headerNotificationButton, pressed && styles.pressed]}
+                                >
+                                    <Icon
+                                        id={`landing-header-notifications-icon`}
+                                        className={`landing-header-notifications-icon`}
+                                        name={`bell`}
+                                        color={colors.blue}
+                                        size={17}
+                                    />
+                                    <View
+                                        {...elementProps(`landing-header-notifications-badge`)}
+                                        style={styles.headerNotificationBadge}
+                                    >
+                                        <Text
+                                            {...elementProps(`landing-header-notifications-badge-label`)}
+                                            style={styles.headerNotificationBadgeLabel}
+                                        >
+                                            {`2`}
+                                        </Text>
+                                    </View>
+                                </Pressable>
+                                <Animated.View
+                                    {...elementProps(`landing-header-search-container`)}
+                                    pointerEvents={showHeaderSearch ? `auto` : `none`}
+                                    accessibilityElementsHidden={!showHeaderSearch}
+                                    importantForAccessibility={showHeaderSearch ? `auto` : `no-hide-descendants`}
+                                    style={[styles.headerSearchContainer, headerSearchStyle]}
+                                >
+                                    <Pressable
+                                        {...elementProps(`landing-header-search-button`)}
+                                        onPress={scrollToHeroSearch}
+                                        accessibilityRole={`button`}
+                                        accessibilityLabel={`Go to search`}
+                                        style={({ pressed }) => [styles.headerUtilityButton, pressed && styles.pressed]}
+                                    >
+                                        <Icon
+                                            id={`landing-header-search-icon`}
+                                            className={`landing-header-search-icon`}
+                                            name={`search`}
+                                            color={colors.white}
+                                            size={17}
+                                        />
+                                    </Pressable>
+                                </Animated.View>
                             </View>
                             <AuthActions scope={`landing-header`} />
                         </View>
@@ -220,7 +311,11 @@ export default function LandingPage() {
                         </View>
                     </View>
 
-                    <View {...elementProps(`landing-search-section`)} style={styles.searchSection}>
+                    <View
+                        {...elementProps(`landing-search-section`)}
+                        style={styles.searchSection}
+                        onLayout={(event) => setSearchLayout(event.nativeEvent.layout.y, event.nativeEvent.layout.height)}
+                    >
                         <View
                             {...elementProps(`landing-search-tabs`)}
                             accessibilityRole={`tablist`}
@@ -247,7 +342,7 @@ export default function LandingPage() {
                                             id={`landing-search-tab-icon-${item.id}`}
                                             className={`landing-search-tab-icon`}
                                             name={item.icon}
-                                            color={palette.white}
+                                            color={colors.white}
                                             size={14}
                                         />
                                         <Text
@@ -287,13 +382,14 @@ export default function LandingPage() {
                             </View>
                             <TextInput
                                 {...elementProps(`landing-search-input`)}
+                                ref={searchInput}
                                 value={landing.query}
                                 returnKeyType={`search`}
                                 onChangeText={landing.setQuery}
                                 onSubmitEditing={showSearchResults}
                                 style={styles.searchInput}
                                 placeholder={searchPlaceholder}
-                                placeholderTextColor={palette.muted}
+                                placeholderTextColor={colors.muted}
                                 accessibilityLabel={`Search directories`}
                             />
                             <Animated.View
@@ -307,7 +403,7 @@ export default function LandingPage() {
                                     accessibilityLabel={`Show search results`}
                                     style={({ pressed }) => [styles.searchButton, pressed && styles.pressed]}
                                 >
-                                    <Icon id={`landing-search-button-icon`} className={`landing-search-button-icon`} name={`arrow-right`} color={palette.white} size={17} />
+                                    <Icon id={`landing-search-button-icon`} className={`landing-search-button-icon`} name={`arrow-right`} color={colors.white} size={17} />
                                     <Text {...elementProps(`landing-search-button-label`)} style={styles.searchButtonLabel}>
                                         {`Search`}
                                     </Text>
@@ -377,7 +473,7 @@ export default function LandingPage() {
                                         id={`landing-categories-empty-icon`}
                                         className={`landing-categories-empty-icon`}
                                         name={`search`}
-                                        color={palette.blue}
+                                        color={colors.blue}
                                         size={28}
                                     />
                                     <Text
@@ -402,7 +498,7 @@ export default function LandingPage() {
                                             id={`landing-categories-empty-clear-icon`}
                                             className={`landing-categories-empty-clear-icon`}
                                             name={`arrow-right`}
-                                            color={palette.blue}
+                                            color={colors.blue}
                                             size={15}
                                         />
                                         <Text
@@ -451,7 +547,7 @@ export default function LandingPage() {
                                                 className={`landing-topic-tab-icon`}
                                                 name={item.icon}
                                                 size={13}
-                                                color={item.active ? palette.white : palette.muted}
+                                                color={item.active ? colors.white : colors.muted}
                                             />
                                             <Text
                                                 {...elementProps(`landing-topic-tab-label`, item.id)}
@@ -482,7 +578,7 @@ export default function LandingPage() {
                                             className={`landing-view-icon`}
                                             name={item.mode}
                                             size={17}
-                                            color={item.active ? palette.ink : palette.muted}
+                                            color={item.active ? colors.ink : colors.muted}
                                         />
                                     </Pressable>
                                 ))}
@@ -517,7 +613,7 @@ export default function LandingPage() {
                                                 </View>
                                                 {directory.featured && (
                                                     <View {...elementProps(`landing-directory-featured`, directory.id)} style={styles.featuredBadge}>
-                                                        <Icon id={`landing-directory-featured-icon-${directory.id}`} className={`landing-directory-featured-icon`} name={`sparkles`} color={palette.muted} size={11} />
+                                                        <Icon id={`landing-directory-featured-icon-${directory.id}`} className={`landing-directory-featured-icon`} name={`sparkles`} color={colors.muted} size={11} />
                                                         <Text {...elementProps(`landing-directory-featured-label`, directory.id)} style={styles.featuredBadgeLabel}>
                                                             {`Featured`}
                                                         </Text>
@@ -528,7 +624,7 @@ export default function LandingPage() {
                                                 <Text {...elementProps(`landing-directory-title`, directory.id)} style={styles.directoryTitle}>
                                                     {directory.name}
                                                 </Text>
-                                                <Icon id={`landing-directory-preview-arrow-${directory.id}`} className={`landing-directory-preview-arrow`} name={`arrow-up-right`} color={palette.muted} size={16} />
+                                                <Icon id={`landing-directory-preview-arrow-${directory.id}`} className={`landing-directory-preview-arrow`} name={`arrow-up-right`} color={colors.muted} size={16} />
                                             </View>
                                             <Text {...elementProps(`landing-directory-description`, directory.id)} style={styles.directoryDescription}>
                                                 {directory.summary}
@@ -554,7 +650,7 @@ export default function LandingPage() {
                                                     id={`landing-directory-save-icon-${directory.id}`}
                                                     className={`landing-directory-save-icon`}
                                                     name={directory.saved ? `check` : `bookmark`}
-                                                    color={directory.saved ? palette.blue : palette.muted}
+                                                    color={directory.saved ? colors.blue : colors.muted}
                                                     size={18}
                                                 />
                                             </Pressable>
@@ -565,7 +661,7 @@ export default function LandingPage() {
 
                         {landing.visibleDirectories.length === 0 && (
                             <View {...elementProps(`landing-empty-state`)} style={styles.emptyState}>
-                                <Icon id={`landing-empty-icon`} className={`landing-empty-icon`} name={landing.topic === `Saved` ? `bookmark` : `search`} color={palette.blue} size={28} />
+                                <Icon id={`landing-empty-icon`} className={`landing-empty-icon`} name={landing.topic === `Saved` ? `bookmark` : `search`} color={colors.blue} size={28} />
                                 <Text {...elementProps(`landing-empty-title`)} style={styles.emptyTitle}>
                                     {landing.topic === `Saved` ? `Your next good find is waiting.` : `No finds here just yet.`}
                                 </Text>
@@ -578,7 +674,7 @@ export default function LandingPage() {
                                     accessibilityRole={`button`}
                                     style={({ pressed }) => [styles.clearButton, pressed && styles.pressed]}
                                 >
-                                    <Icon id={`landing-empty-clear-icon`} className={`landing-empty-clear-icon`} name={`arrow-right`} color={palette.blue} size={15} />
+                                    <Icon id={`landing-empty-clear-icon`} className={`landing-empty-clear-icon`} name={`arrow-right`} color={colors.blue} size={15} />
                                     <Text {...elementProps(`landing-empty-clear-label`)} style={styles.clearButtonLabel}>
                                         {`Explore all directories`}
                                     </Text>
@@ -626,7 +722,7 @@ export default function LandingPage() {
                                         id={`landing-footer-piratechs-icon`}
                                         className={`landing-footer-piratechs-icon`}
                                         name={`arrow-up-right`}
-                                        color={palette.blue}
+                                        color={colors.blue}
                                         size={14}
                                     />
                                 </Pressable>
@@ -666,7 +762,7 @@ export default function LandingPage() {
                                     accessibilityLabel={`Close directory preview`}
                                     style={({ pressed }) => [styles.bookmarkButton, pressed && styles.pressed]}
                                 >
-                                    <Icon id={`landing-modal-close-icon`} className={`landing-modal-close-icon`} name={`close`} color={palette.ink} size={22} />
+                                    <Icon id={`landing-modal-close-icon`} className={`landing-modal-close-icon`} name={`close`} color={colors.ink} size={22} />
                                 </Pressable>
                             </View>
                             <Text {...elementProps(`landing-modal-title`, selected.id)} accessibilityRole={`header`} style={styles.modalTitle}>
@@ -691,7 +787,7 @@ export default function LandingPage() {
                                     <Icon
                                         size={18}
                                         name={`arrow-up-right`}
-                                        color={palette.blue}
+                                        color={colors.blue}
                                         id={`landing-modal-visit-icon-${selected.id}`}
                                         className={`landing-modal-visit-icon`}
                                     />
@@ -711,7 +807,7 @@ export default function LandingPage() {
                                 accessibilityState={{ selected: selectedIsSaved }}
                                 style={({ pressed }) => [styles.modalSaveButton, pressed && styles.pressed]}
                             >
-                                <Icon id={`landing-modal-save-icon`} className={`landing-modal-save-icon`} name={selectedIsSaved ? `check` : `bookmark`} color={palette.white} size={18} />
+                                <Icon id={`landing-modal-save-icon`} className={`landing-modal-save-icon`} name={selectedIsSaved ? `check` : `bookmark`} color={colors.white} size={18} />
                                 <Text {...elementProps(`landing-modal-save-label`, selected.id)} style={styles.searchButtonLabel}>
                                     {selectedIsSaved ? `Saved to your collection` : `Save to your collection`}
                                 </Text>

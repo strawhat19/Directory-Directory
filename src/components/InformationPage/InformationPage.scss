@@ -21,7 +21,7 @@
   position: fixed;
   padding: 12px 18px;
   border-radius: 8px;
-  color: var(--dd-paper);
+  color: var(--dd-on-blue);
   background: var(--dd-blue);
   transform: translateY(-160%);
   transition: transform 220ms ease;
@@ -131,7 +131,7 @@
     margin-top: 28px;
     border-radius: 14px;
     background: var(--dd-blue-soft);
-    border: 1px solid #dce8fc;
+    border: 1px solid var(--dd-line);
   }
 
   &__note-icon {

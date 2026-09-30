@@ -146,6 +146,12 @@
     }
 }
 
+:root[data-theme='dark'] .directory-preview {
+    &__monogram {
+        background: color-mix(in srgb, currentColor 14%, var(--dd-paper));
+    }
+}
+
 @keyframes directory-preview-enter {
     from {
         opacity: 0;

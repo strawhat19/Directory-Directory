@@ -1,16 +1,15 @@
-import { Link } from 'expo-router';
 import { useRef } from 'react';
-import { BlurTargetView } from 'expo-blur';
 import Icon from '../Icon/Icon';
+import { Link } from 'expo-router';
+import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
-import AuthActions from '../AuthActions/AuthActions';
-import GlassBackdrop from '../GlassBackdrop/GlassBackdrop';
-import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { contactFields } from './useContactForm';
+import AuthActions from '../AuthActions/AuthActions';
 import { useContactPage } from './useContactPage.native';
-import { palette } from '../LandingPage/LandingPage.native.styles';
 import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
+import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
@@ -20,6 +19,7 @@ export default function ContactPage() {
         year,
         status,
         styles,
+        palette,
         values,
         padding,
         preview,
@@ -108,7 +108,7 @@ export default function ContactPage() {
                     </Pressable>
                 </Link>
                 <View {...elementProps(`contact-eyebrow`)} style={styles.eyebrow}>
-                    <Icon size={16} name={`mail`} color={`#8054d7`} id={`contact-eyebrow-icon`} className={`contact-eyebrow-icon`} />
+                    <Icon size={16} name={`mail`} color={palette.purple} id={`contact-eyebrow-icon`} className={`contact-eyebrow-icon`} />
                     <Text {...elementProps(`contact-eyebrow-label`)} style={styles.eyebrowLabel}>
                         {`A little conversation`}
                     </Text>

@@ -1,5 +1,6 @@
 import './DirectoryMarquee.scss'
 import Icon from '../Icon/Icon'
+import type { CSSProperties } from 'react'
 import { useDirectoryMarquee } from './useDirectoryMarquee.web'
 import { popularDirectories } from '../../shared/navigation/popularDirectories'
 
@@ -74,14 +75,17 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
                   className={`directory-marquee__pill`}
                   tabIndex={copyIndex === 1 ? undefined : -1}
                   aria-label={`${directory.label} (opens in a new tab)`}
+                  data-ink-accent={directory.color === `#14213d` ? `true` : undefined}
                   data-marquee-original={copyIndex === 1 ? `true` : undefined}
                   id={`directory-marquee-pill-${scope}-${copyIndex}-${directory.id}`}
-                  style={{ color: directory.color, backgroundColor: directory.background }}
+                  style={{
+                    '--pill-color': directory.color,
+                    '--pill-background': directory.background,
+                  } as CSSProperties}
                 >
                   <Icon
                     size={14}
                     name={directory.icon}
-                    color={directory.color}
                     className={`directory-marquee__pill-icon`}
                     id={`directory-marquee-icon-${scope}-${copyIndex}-${directory.id}`}
                   />

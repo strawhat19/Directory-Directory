@@ -1,7 +1,8 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '../LandingPage/LandingPage.native.styles';
+import { getNativePalette } from '../../shared/theme/nativePalette';
 
-export function createContactStyles(fontsLoaded: boolean) {
+export function createContactStyles(fontsLoaded: boolean, isDark: boolean) {
+    const palette = getNativePalette(isDark);
     const regular = fontsLoaded ? `Inter_400Regular` : undefined;
     const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
     const heavy = fontsLoaded ? `Inter_800ExtraBold` : undefined;
@@ -25,7 +26,7 @@ export function createContactStyles(fontsLoaded: boolean) {
             gap: 16,
             zIndex: 10,
             paddingBottom: 16,
-            backgroundColor: `rgba(247, 248, 250, 0.4)`,
+            backgroundColor: palette.headerScrim,
         },
         header: {
             gap: 20,
@@ -68,10 +69,10 @@ export function createContactStyles(fontsLoaded: boolean) {
             paddingHorizontal: 12,
             flexDirection: `row`,
             alignItems: `center`,
-            backgroundColor: palette.white,
+            backgroundColor: palette.surface,
         },
         activeLink: {
-            backgroundColor: `#f3edff`,
+            backgroundColor: palette.purpleSoft,
         },
         navigationLabel: {
             fontSize: 12,
@@ -92,7 +93,7 @@ export function createContactStyles(fontsLoaded: boolean) {
         },
         eyebrowLabel: {
             fontSize: 10,
-            color: `#8054d7`,
+            color: palette.purple,
             letterSpacing: 1.4,
             fontFamily: semibold,
             textTransform: `uppercase`,
@@ -115,8 +116,8 @@ export function createContactStyles(fontsLoaded: boolean) {
             padding: 22,
             borderWidth: 1,
             borderRadius: 14,
-            borderColor: `#e7ddfb`,
-            backgroundColor: `#f3edff`,
+            borderColor: palette.purpleBorder,
+            backgroundColor: palette.purpleSoft,
         },
         title: {
             fontSize: 19,
@@ -131,7 +132,7 @@ export function createContactStyles(fontsLoaded: boolean) {
             borderWidth: 1,
             borderRadius: 16,
             borderColor: palette.border,
-            backgroundColor: palette.white,
+            backgroundColor: palette.surface,
         },
         field: {
             gap: 9,

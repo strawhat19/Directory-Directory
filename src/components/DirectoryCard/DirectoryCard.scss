@@ -146,6 +146,16 @@
     }
 }
 
+:root[data-theme='dark'] .directory-card {
+    &:hover {
+        box-shadow: 0 10px 26px rgb(0 0 0 / 18%);
+    }
+
+    &__monogram {
+        background: color-mix(in srgb, currentColor 14%, var(--dd-paper));
+    }
+}
+
 .directory-explorer--list .directory-card {
     &__main {
         gap: 24px;

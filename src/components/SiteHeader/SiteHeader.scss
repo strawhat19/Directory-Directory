@@ -6,7 +6,7 @@
   position: sticky;
   min-height: 56px;
   margin-left: calc(50% - 50vw);
-  background: rgb(247 248 250 / 68%);
+  background: color-mix(in srgb, var(--dd-page) 68%, transparent);
   border-bottom: 1px solid var(--dd-line);
   -webkit-backdrop-filter: blur(18px) saturate(125%);
   backdrop-filter: blur(18px) saturate(125%);
@@ -26,6 +26,7 @@
     gap: 10px;
     display: flex;
     align-items: center;
+    color: var(--dd-ink);
   }
 
   &__brand-name {
@@ -61,12 +62,196 @@
     font-size: 12px;
     font-weight: 550;
     align-items: center;
+    color: var(--dd-ink);
     transition: color 200ms ease;
 
     &:hover,
     &--active {
       color: var(--dd-blue);
     }
+  }
+
+  &__utility-actions {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon-button {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    display: grid;
+    flex: none;
+    position: relative;
+    border-radius: 50%;
+    place-items: center;
+    transition: width 250ms ease, margin 250ms ease, opacity 250ms ease, transform 250ms ease, background 250ms ease, box-shadow 250ms ease;
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &--primary {
+      color: var(--dd-on-blue);
+      background: var(--dd-blue);
+
+      &:hover {
+        background: color-mix(in srgb, var(--dd-blue) 88%, black);
+        box-shadow: 0 6px 18px #0874f92b;
+      }
+    }
+
+    &--secondary {
+      color: var(--dd-blue);
+      background: var(--dd-blue-soft);
+
+      &:hover {
+        background: color-mix(in srgb, var(--dd-blue) 14%, var(--dd-paper));
+      }
+    }
+  }
+
+  &__notifications {
+    position: relative;
+  }
+
+  &__notification-badge {
+    top: -4px;
+    right: -4px;
+    width: 15px;
+    height: 15px;
+    display: grid;
+    position: absolute;
+    border-radius: 50%;
+    place-items: center;
+    color: var(--dd-on-blue);
+    font-size: 8px;
+    font-weight: 700;
+    background: var(--dd-blue);
+    border: 2px solid var(--dd-page);
+  }
+
+  &__notifications-panel {
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 12;
+    width: 350px;
+    max-width: calc(100vw - 32px);
+    padding: 14px;
+    position: absolute;
+    border-radius: 14px;
+    color: var(--dd-ink);
+    background: var(--dd-paper);
+    border: 1px solid var(--dd-line);
+    box-shadow: 0 12px 28px rgb(0 0 0 / 12%);
+  }
+
+  &__notifications-heading {
+    font-size: 13px;
+  }
+
+  &__notifications-count {
+    margin-left: 6px;
+    color: var(--dd-blue);
+    font-size: 11px;
+  }
+
+  &__notifications-list {
+    gap: 10px;
+    display: grid;
+    margin: 12px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__notification-item {
+    gap: 10px;
+    display: flex;
+    padding: 10px;
+    border-radius: 10px;
+    background: var(--dd-page);
+    border: 1px solid var(--dd-line);
+  }
+
+  &__notification-symbol {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    flex: none;
+    border-radius: 50%;
+    place-items: center;
+    color: var(--dd-blue);
+    background: var(--dd-blue-soft);
+  }
+
+  &__notification-copy {
+    min-width: 0;
+  }
+
+  &__notification-title {
+    display: block;
+    color: var(--dd-ink);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  &__notification-text {
+    margin: 4px 0 0;
+    color: var(--dd-muted);
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  &__notification-link {
+    display: inline;
+    color: var(--dd-blue);
+    font-size: 11px;
+    font-weight: 650;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__search-button {
+    width: 0;
+    opacity: 0;
+    min-width: 0;
+    overflow: hidden;
+    margin-left: -8px;
+    pointer-events: none;
+    transform: translateY(5px) scale(0.75);
+
+    &--visible {
+      width: 32px;
+      opacity: 1;
+      margin-left: 0;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+  }
+}
+
+:root[data-theme='dark'] .site-header {
+  &__brand,
+  &__nav-link {
+    color: var(--dd-ink);
+  }
+
+  &__nav-link:hover,
+  &__nav-link--active {
+    color: var(--dd-blue);
+  }
+
+  &__notifications-panel {
+    box-shadow: 0 12px 28px rgb(0 0 0 / 24%);
+  }
+
+  &__notification-link {
+    color: var(--dd-blue);
   }
 }
 
@@ -94,6 +279,11 @@
 
     &__nav-link {
       min-height: 36px;
+    }
+
+    &__notifications-panel {
+      right: auto;
+      left: -40px;
     }
   }
 }

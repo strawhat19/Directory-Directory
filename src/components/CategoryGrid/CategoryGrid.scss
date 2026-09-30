@@ -173,6 +173,10 @@
   }
 }
 
+:root[data-theme='dark'] .category-folder {
+  --category-tint: color-mix(in srgb, var(--category-color) 15%, var(--dd-paper));
+}
+
 @media (max-width: 900px) {
   .category-grid {
     gap: 22px 17px;

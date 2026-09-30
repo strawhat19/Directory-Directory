@@ -1,7 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { palette } from '../LandingPage/LandingPage.native.styles';
+import { getNativePalette } from '../../shared/theme/nativePalette';
 
-export const styles = StyleSheet.create({
+export const createAuthActionsStyles = (isDark: boolean) => {
+  const palette = getNativePalette(isDark);
+
+  return StyleSheet.create({
   actions: {
     gap: 9,
     flexWrap: `wrap`,
@@ -16,7 +19,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 14,
     flexDirection: `row`,
     alignItems: `center`,
-    backgroundColor: `#edf4ff`,
+    backgroundColor: palette.blueSoft,
   },
   primary: {
     backgroundColor: palette.blue,
@@ -41,4 +44,5 @@ export const styles = StyleSheet.create({
   pressed: {
     opacity: 0.65,
   },
-});
+  });
+};

@@ -56,12 +56,25 @@
     border-radius: 999px;
     white-space: nowrap;
     align-items: center;
+    color: var(--pill-color);
     border: 1px solid #14213d08;
-    transition: filter 220ms ease, box-shadow 220ms ease;
+    background: var(--pill-background);
+    transition: color 260ms ease, background-color 260ms ease, border-color 260ms ease, filter 220ms ease, box-shadow 220ms ease;
 
     &:hover {
       filter: brightness(0.97);
       box-shadow: 0 2px 8px #14213d0c;
     }
+  }
+}
+
+:root[data-theme='dark'] .directory-marquee__pill {
+  border-color: color-mix(in srgb, var(--pill-color) 38%, var(--dd-line));
+  background: color-mix(in srgb, var(--pill-color) 17%, var(--dd-paper));
+
+  &[data-ink-accent='true'] {
+    color: var(--dd-ink);
+    border-color: color-mix(in srgb, var(--dd-ink) 15%, var(--dd-line));
+    background: color-mix(in srgb, var(--dd-ink) 8%, var(--dd-paper));
   }
 }

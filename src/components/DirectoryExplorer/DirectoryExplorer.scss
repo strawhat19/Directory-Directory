@@ -76,7 +76,7 @@
 
         &:hover {
             color: var(--dd-ink);
-            background: #edf0f5;
+            background: color-mix(in srgb, var(--dd-ink) 6%, var(--dd-paper));
         }
 
         &.is-active {
@@ -169,7 +169,7 @@
 
         &:hover {
             color: var(--dd-ink);
-            background: #edf0f5;
+            background: color-mix(in srgb, var(--dd-ink) 6%, var(--dd-paper));
         }
     }
 
