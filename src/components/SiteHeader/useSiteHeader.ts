@@ -10,6 +10,7 @@ export function useSiteHeader() {
   const router = useRouter()
   const { isDark, toggleTheme } = useTheme()
   const [headerHeight, setHeaderHeight] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [searchVisible, setSearchVisible] = useState(pathname !== `/`)
   const links = siteNavigation.map((link) => ({
@@ -72,6 +73,29 @@ export function useSiteHeader() {
   }, [pathname, headerHeight])
 
   useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname])
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    const closeOnOutsideClick = (event: PointerEvent) => {
+      if (!header.current?.contains(event.target as Node)) setMenuOpen(false)
+    }
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === `Escape`) setMenuOpen(false)
+    }
+
+    document.addEventListener(`pointerdown`, closeOnOutsideClick)
+    document.addEventListener(`keydown`, closeOnEscape)
+
+    return () => {
+      document.removeEventListener(`pointerdown`, closeOnOutsideClick)
+      document.removeEventListener(`keydown`, closeOnEscape)
+    }
+  }, [menuOpen])
+
+  useEffect(() => {
     if (!notificationsOpen) return
 
     const closeOnOutsideClick = (event: PointerEvent) => {
@@ -91,6 +115,7 @@ export function useSiteHeader() {
   }, [notificationsOpen])
 
   const openSearch = () => {
+    setMenuOpen(false)
     const input = document.getElementById(`hero-search-input`) as HTMLInputElement | null
 
     if (!input) {
@@ -108,7 +133,10 @@ export function useSiteHeader() {
     links,
     header,
     isDark,
+    menuOpen,
     openSearch,
+    closeMenu: () => setMenuOpen(false),
+    toggleMenu: () => setMenuOpen((open) => !open),
     toggleTheme,
     notifications,
     searchVisible,

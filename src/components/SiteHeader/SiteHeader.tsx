@@ -28,7 +28,10 @@ export default function SiteHeader() {
     links,
     header,
     isDark,
+    menuOpen,
+    closeMenu,
     openSearch,
+    toggleMenu,
     toggleTheme,
     notifications,
     searchVisible,
@@ -44,6 +47,7 @@ export default function SiteHeader() {
           href={`/`}
           id={`header-brand-link`}
           className={`site-header__brand`}
+          onClick={closeMenu}
           aria-label={`Directory Directory home`}
         >
           <BrandMark
@@ -58,7 +62,29 @@ export default function SiteHeader() {
             </span>
           </span>
         </Link>
-        <div id={`header-actions`} className={`site-header__actions`}>
+        <button
+          type={`button`}
+          onClick={toggleMenu}
+          id={`header-menu-toggle`}
+          aria-expanded={menuOpen}
+          aria-controls={`header-actions`}
+          aria-label={menuOpen ? `Close menu` : `Open menu`}
+          className={`site-header__menu-toggle`}
+        >
+          <Icon
+            size={18}
+            name={menuOpen ? `close` : `menu`}
+            id={`header-menu-icon`}
+            className={`site-header__menu-icon`}
+          />
+          <span id={`header-menu-label`} className={`site-header__menu-label`}>
+            {menuOpen ? `Close` : `Menu`}
+          </span>
+        </button>
+        <div
+          id={`header-actions`}
+          className={`site-header__actions${menuOpen ? ` site-header__actions--open` : ``}`}
+        >
           <nav
             id={`header-navigation`}
             className={`site-header__navigation`}
@@ -68,6 +94,7 @@ export default function SiteHeader() {
               <Link
                 key={link.id}
                 href={link.href}
+                onClick={closeMenu}
                 id={`header-${link.id}-link`}
                 aria-current={link.active ? `page` : undefined}
                 className={`site-header__nav-link${link.active ? ` site-header__nav-link--active` : ``}`}

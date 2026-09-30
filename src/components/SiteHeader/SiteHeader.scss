@@ -40,6 +40,10 @@
     display: block;
   }
 
+  &__menu-toggle {
+    display: none;
+  }
+
   &__actions {
     gap: 16px;
     display: flex;
@@ -260,35 +264,113 @@
   }
 }
 
-@media (max-width: 600px) {
+@keyframes site-header-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1200px) {
   .site-header {
     &__bar {
-      gap: 14px;
-      padding: 16px 0;
-      align-items: flex-start;
-      flex-direction: column;
+      gap: 12px;
+      padding: 14px 0;
+    }
+
+    &__menu-toggle {
+      gap: 8px;
+      display: inline-flex;
+      min-height: 40px;
+      padding: 8px 12px;
+      margin-left: auto;
+      align-items: center;
+      border-radius: 10px;
+      color: var(--dd-blue);
+      cursor: pointer;
+      background: var(--dd-blue-soft);
+      border: 1px solid var(--dd-line);
+      transition: color 200ms ease, background 200ms ease, transform 200ms ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        background: color-mix(in srgb, var(--dd-blue) 14%, var(--dd-paper));
+      }
+    }
+
+    &__menu-label {
+      font-size: 12px;
+      font-weight: 650;
     }
 
     &__actions {
-      gap: 14px;
+      gap: 16px;
+      width: 100%;
+      display: none;
+      padding: 14px 0 4px;
       margin-left: 0;
+      align-items: flex-start;
+      border-top: 1px solid var(--dd-line);
+
+      &--open {
+        display: flex;
+        animation: site-header-menu-in 220ms ease-out;
+      }
     }
 
     &__navigation {
-      gap: 12px;
+      gap: 6px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    &__nav-link {
+      min-height: 44px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: color 200ms ease, background 200ms ease;
+
+      &:hover,
+      &--active {
+        background: var(--dd-blue-soft);
+      }
+    }
+
+    &__utility-actions {
+      min-height: 40px;
+    }
+
+    &__notifications-panel {
+      right: auto;
+      left: 0;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    &__bar {
+      padding: 12px 0;
     }
 
     &__brand-name {
       font-size: 14px;
     }
 
-    &__nav-link {
-      min-height: 36px;
+    &__navigation {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+  }
+}
 
-    &__notifications-panel {
-      right: auto;
-      left: -40px;
-    }
+@media (prefers-reduced-motion: reduce) {
+  .site-header__actions--open {
+    animation: none;
   }
 }
