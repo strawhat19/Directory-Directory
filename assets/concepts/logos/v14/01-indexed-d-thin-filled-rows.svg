@@ -1,0 +1,8 @@
+<svg id="directory-v14-indexed-d" class="directory-indexed-d" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="directory-title directory-description">
+  <title id="directory-title">Directory Directory — thinner filled rows</title>
+  <desc id="directory-description">The original blue folder D surrounds three thinner green, blue and red folder rows. Each row has a ten-unit pill body, circular five-unit end caps and a six-unit tab that rises seamlessly from the rounded left boundary.</desc>
+  <path id="directory-d-outline" class="directory-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="directory-green-folder-row" class="directory-folder-row" d="M34 51H48C50.8 51 52.2 52 53.6 53.5L55.8 55.9Q56.8 57 59 57H119A5 5 0 0 1 119 67H34A5 5 0 0 1 29 62V56A5 5 0 0 1 34 51Z" fill="#21A668"/>
+  <path id="directory-blue-folder-row" class="directory-folder-row" d="M34 79H48C50.8 79 52.2 80 53.6 81.5L55.8 83.9Q56.8 85 59 85H129A5 5 0 0 1 129 95H34A5 5 0 0 1 29 90V84A5 5 0 0 1 34 79Z" fill="#0874F9"/>
+  <path id="directory-red-folder-row" class="directory-folder-row" d="M34 107H48C50.8 107 52.2 108 53.6 109.5L55.8 111.9Q56.8 113 59 113H115A5 5 0 0 1 115 123H34A5 5 0 0 1 29 118V112A5 5 0 0 1 34 107Z" fill="#D83B42"/>
+</svg>

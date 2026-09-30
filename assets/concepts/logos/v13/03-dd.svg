@@ -1,0 +1,46 @@
+<svg
+  role="img"
+  viewBox="0 0 232 160"
+  id="directory-v13-dd"
+  class="directory-monogram directory-monogram-dd"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="dd-title dd-description"
+>
+  <title id="dd-title">Directory Directory — DD</title>
+  <desc id="dd-description">Two custom rounded D letterforms with folder-tab shoulders. The blue and green outlines each contain one seamless folder record; the second record is red. All shapes are vectors on a transparent canvas.</desc>
+  <g
+    fill="none"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    id="dd-letter-outlines"
+    class="directory-letter-outlines"
+  >
+    <path
+      stroke="#0874F9"
+      id="dd-first-d-outline"
+      class="directory-letter directory-letter-d directory-letter-blue"
+      d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z"
+    />
+    <path
+      stroke="#21A668"
+      transform="translate(112)"
+      id="dd-second-d-outline"
+      class="directory-letter directory-letter-d directory-letter-green"
+      d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z"
+    />
+  </g>
+  <path
+    fill="#21A668"
+    id="dd-first-d-folder-record"
+    class="directory-folder-record directory-folder-record-green"
+    d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z"
+  />
+  <path
+    fill="#D83B42"
+    transform="translate(112)"
+    id="dd-second-d-folder-record"
+    class="directory-folder-record directory-folder-record-red"
+    d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z"
+  />
+</svg>

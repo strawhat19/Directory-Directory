@@ -1,0 +1,46 @@
+<svg
+  role="img"
+  viewBox="0 0 344 160"
+  id="directory-v13-dba"
+  class="directory-monogram directory-monogram-dba"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="dba-title dba-description"
+>
+  <title id="dba-title">Directory Directory — DBA</title>
+  <desc id="dba-description">A blue folder-tab D, green double-bowl B, and red A form a custom geometric DBA monogram. The A has a softened apex and a level record-like crossbar; a seamless red folder record sits inside the D. All shapes are vectors on a transparent canvas.</desc>
+  <g
+    fill="none"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    id="dba-letter-outlines"
+    class="directory-letter-outlines"
+  >
+    <path
+      stroke="#0874F9"
+      id="dba-d-outline"
+      class="directory-letter directory-letter-d directory-letter-blue"
+      d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z"
+    />
+    <path
+      stroke="#21A668"
+      transform="translate(112)"
+      id="dba-b-outline"
+      class="directory-letter directory-letter-b directory-letter-green"
+      d="M20 20H56C82 20 101 32 101 51C101 68 89 80 69 82C92 84 108 95 108 113C108 130 89 137 63 137H20Q10 137 10 127V30Q10 20 20 20ZM10 82H69"
+    />
+    <path
+      stroke="#D83B42"
+      transform="translate(224)"
+      id="dba-a-outline"
+      class="directory-letter directory-letter-a directory-letter-red"
+      d="M8 137L47 28C50.8 17.4 61.2 17.4 65 28L104 137M23.4 94H88.6"
+    />
+  </g>
+  <path
+    fill="#D83B42"
+    id="dba-d-folder-record"
+    class="directory-folder-record directory-folder-record-red"
+    d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z"
+  />
+</svg>

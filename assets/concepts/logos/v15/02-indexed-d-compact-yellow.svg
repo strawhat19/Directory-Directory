@@ -1,0 +1,8 @@
+<svg id="directory-v15-indexed-d-yellow" class="directory-indexed-d" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="directory-title directory-description">
+  <title id="directory-title">Directory Directory — Compact rows · yellow</title>
+  <desc id="directory-description">The original blue folder D surrounds shorter green, yellow and red folder pills. The ten-unit bodies have seamless tabs and five-unit end caps. The rows sit closer together with more space at the right of the D.</desc>
+  <path id="directory-d-outline" class="directory-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="directory-green-folder-row" class="directory-folder-row" d="M34 55H48C50.8 55 52.2 56 53.6 57.5L55.8 59.9Q56.8 61 59 61H107A5 5 0 0 1 107 71H34A5 5 0 0 1 29 66V60A5 5 0 0 1 34 55Z" fill="#21A668"/>
+  <path id="directory-yellow-folder-row" class="directory-folder-row" d="M34 79H48C50.8 79 52.2 80 53.6 81.5L55.8 83.9Q56.8 85 59 85H117A5 5 0 0 1 117 95H34A5 5 0 0 1 29 90V84A5 5 0 0 1 34 79Z" fill="#F2C532"/>
+  <path id="directory-red-folder-row" class="directory-folder-row" d="M34 103H48C50.8 103 52.2 104 53.6 105.5L55.8 107.9Q56.8 109 59 109H103A5 5 0 0 1 103 119H34A5 5 0 0 1 29 114V108A5 5 0 0 1 34 103Z" fill="#D83B42"/>
+</svg>

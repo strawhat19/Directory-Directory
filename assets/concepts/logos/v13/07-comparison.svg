@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="980" viewBox="0 0 1440 980" role="img" aria-labelledby="directory-overview-title directory-overview-desc">
+<title id="directory-overview-title">Directory Directory V13 — indexed D and database monograms</title>
+<desc id="directory-overview-desc">Two refinements of the original V9 D use larger seamless folder rows. Four custom vector monograms explore DD, DB, DDB and DBA.</desc>
+<rect width="1440" height="980" fill="#F8FAFC"/>
+<text x="40" y="57" fill="#152C42" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="700">Directory Directory / V13</text>
+<text x="40" y="91" fill="#53677B" font-family="Arial, Helvetica, sans-serif" font-size="18">V9 colors · Seamless folder tabs · Database letterforms</text>
+<rect x="40" y="130" width="440" height="382" rx="16" fill="#FFFFFF" stroke="#E1E8EF"/>
+<text x="62" y="166" fill="#53677B" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="1">01 / SEAMLESS OUTLINE</text>
+<svg xmlns="http://www.w3.org/2000/svg" id="preview-0-directory-v13-indexed-d" class="directory-indexed-d" viewBox="0 0 160 160" role="img" aria-labelledby="preview-0-directory-title preview-0-directory-description" x="64" y="194" width="392" height="286" preserveAspectRatio="xMidYMid meet">
+  <title id="preview-0-directory-title">Directory Directory — seamless tabs</title>
+  <desc id="preview-0-directory-description">The original V9 blue folder D surrounds three enlarged green, blue and red rows. Each row's rounded left boundary rises smoothly into its folder tab as a single contour. Row lengths follow the available space within the D.</desc>
+  <path id="preview-0-directory-d-outline" class="directory-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round" />
+  <path id="preview-0-directory-green-folder-row" class="directory-folder-row" d="M36 46H48C50.8 46 52.2 47.5 53.6 49.7L55.8 53.3Q56.8 55 59 55H117A7 7 0 0 1 117 69H36A7 7 0 0 1 29 62V53A7 7 0 0 1 36 46Z" fill="none" stroke="#21A668" stroke-width="2.5" stroke-linejoin="round" />
+  <path id="preview-0-directory-blue-folder-row" class="directory-folder-row" d="M36 74H48C50.8 74 52.2 75.5 53.6 77.7L55.8 81.3Q56.8 83 59 83H127A7 7 0 0 1 127 97H36A7 7 0 0 1 29 90V81A7 7 0 0 1 36 74Z" fill="none" stroke="#0874F9" stroke-width="2.5" stroke-linejoin="round" />
+  <path id="preview-0-directory-red-folder-row" class="directory-folder-row" d="M36 102H48C50.8 102 52.2 103.5 53.6 105.7L55.8 109.3Q56.8 111 59 111H113A7 7 0 0 1 113 125H36A7 7 0 0 1 29 118V109A7 7 0 0 1 36 102Z" fill="none" stroke="#D83B42" stroke-width="2.5" stroke-linejoin="round" />
+</svg>
+<rect x="500" y="130" width="440" height="382" rx="16" fill="#FFFFFF" stroke="#E1E8EF"/>
+<text x="522" y="166" fill="#53677B" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="1">02 / SOLID ROWS</text>
+<svg xmlns="http://www.w3.org/2000/svg" id="preview-1-directory-v13-indexed-d" class="directory-indexed-d" viewBox="0 0 160 160" role="img" aria-labelledby="preview-1-directory-title preview-1-directory-description" x="524" y="194" width="392" height="286" preserveAspectRatio="xMidYMid meet">
+  <title id="preview-1-directory-title">Directory Directory — filled rows</title>
+  <desc id="preview-1-directory-description">The original V9 blue folder D surrounds three enlarged green, blue and red rows. Each row's rounded left boundary rises smoothly into its folder tab as a single contour. Row lengths follow the available space within the D.</desc>
+  <path id="preview-1-directory-d-outline" class="directory-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round" />
+  <path id="preview-1-directory-green-folder-row" class="directory-folder-row" d="M36 46H48C50.8 46 52.2 47.5 53.6 49.7L55.8 53.3Q56.8 55 59 55H117A7 7 0 0 1 117 69H36A7 7 0 0 1 29 62V53A7 7 0 0 1 36 46Z" fill="#21A668" />
+  <path id="preview-1-directory-blue-folder-row" class="directory-folder-row" d="M36 74H48C50.8 74 52.2 75.5 53.6 77.7L55.8 81.3Q56.8 83 59 83H127A7 7 0 0 1 127 97H36A7 7 0 0 1 29 90V81A7 7 0 0 1 36 74Z" fill="#0874F9" />
+  <path id="preview-1-directory-red-folder-row" class="directory-folder-row" d="M36 102H48C50.8 102 52.2 103.5 53.6 105.7L55.8 109.3Q56.8 111 59 111H113A7 7 0 0 1 113 125H36A7 7 0 0 1 29 118V109A7 7 0 0 1 36 102Z" fill="#D83B42" />
+</svg>
+<rect x="960" y="130" width="440" height="382" rx="16" fill="#FFFFFF" stroke="#E1E8EF"/>
+<text x="982" y="166" fill="#53677B" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="1">03 / DD</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 232 160" id="preview-2-directory-v13-dd" class="directory-monogram directory-monogram-dd" aria-labelledby="preview-2-dd-title preview-2-dd-description" x="984" y="194" width="392" height="286" preserveAspectRatio="xMidYMid meet">
+  <title id="preview-2-dd-title">Directory Directory — DD</title>
+  <desc id="preview-2-dd-description">Two custom rounded D letterforms with folder-tab shoulders. The blue and green outlines each contain one seamless folder record; the second record is red. All shapes are vectors on a transparent canvas.</desc>
+  <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" id="preview-2-dd-letter-outlines" class="directory-letter-outlines">
+    <path stroke="#0874F9" id="preview-2-dd-first-d-outline" class="directory-letter directory-letter-d directory-letter-blue" d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z" />
+    <path stroke="#21A668" transform="translate(112)" id="preview-2-dd-second-d-outline" class="directory-letter directory-letter-d directory-letter-green" d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z" />
+  </g>
+  <path fill="#21A668" id="preview-2-dd-first-d-folder-record" class="directory-folder-record directory-folder-record-green" d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z" />
+  <path fill="#D83B42" transform="translate(112)" id="preview-2-dd-second-d-folder-record" class="directory-folder-record directory-folder-record-red" d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z" />
+</svg>
+<rect x="40" y="540" width="440" height="382" rx="16" fill="#FFFFFF" stroke="#E1E8EF"/>
+<text x="62" y="576" fill="#53677B" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="1">04 / DB</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 232 160" id="preview-3-directory-v13-db" class="directory-monogram directory-monogram-db" aria-labelledby="preview-3-db-title preview-3-db-description" x="64" y="604" width="392" height="286" preserveAspectRatio="xMidYMid meet">
+  <title id="preview-3-db-title">Directory Directory — DB</title>
+  <desc id="preview-3-db-description">A blue folder-tab D and a custom green double-bowl B form a compact database monogram. A red seamless folder record sits inside the D. The rounded B crossbar echoes a database divider; all shapes are vectors on a transparent canvas.</desc>
+  <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" id="preview-3-db-letter-outlines" class="directory-letter-outlines">
+    <path stroke="#0874F9" id="preview-3-db-d-outline" class="directory-letter directory-letter-d directory-letter-blue" d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z" />
+    <path stroke="#21A668" transform="translate(112)" id="preview-3-db-b-outline" class="directory-letter directory-letter-b directory-letter-green" d="M20 20H56C82 20 101 32 101 51C101 68 89 80 69 82C92 84 108 95 108 113C108 130 89 137 63 137H20Q10 137 10 127V30Q10 20 20 20ZM10 82H69" />
+  </g>
+  <path fill="#D83B42" id="preview-3-db-d-folder-record" class="directory-folder-record directory-folder-record-red" d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z" />
+</svg>
+<rect x="500" y="540" width="440" height="382" rx="16" fill="#FFFFFF" stroke="#E1E8EF"/>
+<text x="522" y="576" fill="#53677B" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="1">05 / DDB</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 344 160" id="preview-4-directory-v13-ddb" class="directory-monogram directory-monogram-ddb" aria-labelledby="preview-4-ddb-title preview-4-ddb-description" x="524" y="604" width="392" height="286" preserveAspectRatio="xMidYMid meet">
+  <title id="preview-4-ddb-title">Directory Directory — DDB</title>
+  <desc id="preview-4-ddb-description">Three custom rounded letterforms form DDB: a blue tabbed D, a green tabbed D, and a red double-bowl B. The D counters contain seamless folder records, connecting the monogram to directory and database indexing. All shapes are vectors on a transparent canvas.</desc>
+  <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" id="preview-4-ddb-letter-outlines" class="directory-letter-outlines">
+    <path stroke="#0874F9" id="preview-4-ddb-first-d-outline" class="directory-letter directory-letter-d directory-letter-blue" d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z" />
+    <path stroke="#21A668" transform="translate(112)" id="preview-4-ddb-second-d-outline" class="directory-letter directory-letter-d directory-letter-green" d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z" />
+    <path stroke="#D83B42" transform="translate(224)" id="preview-4-ddb-b-outline" class="directory-letter directory-letter-b directory-letter-red" d="M20 20H56C82 20 101 32 101 51C101 68 89 80 69 82C92 84 108 95 108 113C108 130 89 137 63 137H20Q10 137 10 127V30Q10 20 20 20ZM10 82H69" />
+  </g>
+  <path fill="#21A668" id="preview-4-ddb-first-d-folder-record" class="directory-folder-record directory-folder-record-green" d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z" />
+  <path fill="#D83B42" transform="translate(112)" id="preview-4-ddb-second-d-folder-record" class="directory-folder-record directory-folder-record-red" d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z" />
+</svg>
+<rect x="960" y="540" width="440" height="382" rx="16" fill="#FFFFFF" stroke="#E1E8EF"/>
+<text x="982" y="576" fill="#53677B" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="1">06 / DBA</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" viewBox="0 0 344 160" id="preview-5-directory-v13-dba" class="directory-monogram directory-monogram-dba" aria-labelledby="preview-5-dba-title preview-5-dba-description" x="984" y="604" width="392" height="286" preserveAspectRatio="xMidYMid meet">
+  <title id="preview-5-dba-title">Directory Directory — DBA</title>
+  <desc id="preview-5-dba-description">A blue folder-tab D, green double-bowl B, and red A form a custom geometric DBA monogram. The A has a softened apex and a level record-like crossbar; a seamless red folder record sits inside the D. All shapes are vectors on a transparent canvas.</desc>
+  <g fill="none" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" id="preview-5-dba-letter-outlines" class="directory-letter-outlines">
+    <path stroke="#0874F9" id="preview-5-dba-d-outline" class="directory-letter directory-letter-d directory-letter-blue" d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z" />
+    <path stroke="#21A668" transform="translate(112)" id="preview-5-dba-b-outline" class="directory-letter directory-letter-b directory-letter-green" d="M20 20H56C82 20 101 32 101 51C101 68 89 80 69 82C92 84 108 95 108 113C108 130 89 137 63 137H20Q10 137 10 127V30Q10 20 20 20ZM10 82H69" />
+    <path stroke="#D83B42" transform="translate(224)" id="preview-5-dba-a-outline" class="directory-letter directory-letter-a directory-letter-red" d="M8 137L47 28C50.8 17.4 61.2 17.4 65 28L104 137M23.4 94H88.6" />
+  </g>
+  <path fill="#D83B42" id="preview-5-dba-d-folder-record" class="directory-folder-record directory-folder-record-red" d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z" />
+</svg>
+</svg>

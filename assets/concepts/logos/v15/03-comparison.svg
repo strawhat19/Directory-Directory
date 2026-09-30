@@ -1,0 +1,29 @@
+<svg id="directory-v15-comparison" class="directory-comparison" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 840" role="img" aria-labelledby="comparison-title comparison-description">
+  <title id="comparison-title">Directory Directory — V15</title>
+  <desc id="comparison-description">Two versions of the compact folder rows: original blue middle row and a yellow middle row experiment.</desc>
+  <rect width="1440" height="840" fill="#F4F6F9"/>
+  <text x="60" y="72" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#18253D">Directory Directory / V15</text>
+  <text x="60" y="110" font-family="Arial, sans-serif" font-size="20" fill="#607087">Shorter pills · closer spacing · yellow color exploration</text>
+  <rect x="60" y="150" width="630" height="630" rx="24" fill="white"/>
+  <text x="96" y="201" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#18253D">01 / Compact rows · blue</text>
+<svg id="panel-0-directory-v15-indexed-d-blue" class="directory-indexed-d" xmlns="http://www.w3.org/2000/svg" x="115" y="227" width="520" height="520" viewBox="0 0 160 160" role="img" aria-labelledby="panel-0-directory-title panel-0-directory-description">
+  <title id="panel-0-directory-title">Directory Directory — Compact rows · blue</title>
+  <desc id="panel-0-directory-description">The original blue folder D surrounds shorter green, blue and red folder pills. The ten-unit bodies have seamless tabs and five-unit end caps. The rows sit closer together with more space at the right of the D.</desc>
+  <path id="panel-0-directory-d-outline" class="directory-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="panel-0-directory-green-folder-row" class="directory-folder-row" d="M34 55H48C50.8 55 52.2 56 53.6 57.5L55.8 59.9Q56.8 61 59 61H107A5 5 0 0 1 107 71H34A5 5 0 0 1 29 66V60A5 5 0 0 1 34 55Z" fill="#21A668"/>
+  <path id="panel-0-directory-blue-folder-row" class="directory-folder-row" d="M34 79H48C50.8 79 52.2 80 53.6 81.5L55.8 83.9Q56.8 85 59 85H117A5 5 0 0 1 117 95H34A5 5 0 0 1 29 90V84A5 5 0 0 1 34 79Z" fill="#0874F9"/>
+  <path id="panel-0-directory-red-folder-row" class="directory-folder-row" d="M34 103H48C50.8 103 52.2 104 53.6 105.5L55.8 107.9Q56.8 109 59 109H103A5 5 0 0 1 103 119H34A5 5 0 0 1 29 114V108A5 5 0 0 1 34 103Z" fill="#D83B42"/>
+</svg>
+
+  <rect x="750" y="150" width="630" height="630" rx="24" fill="white"/>
+  <text x="786" y="201" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#18253D">02 / Compact rows · yellow</text>
+<svg id="panel-1-directory-v15-indexed-d-yellow" class="directory-indexed-d" xmlns="http://www.w3.org/2000/svg" x="805" y="227" width="520" height="520" viewBox="0 0 160 160" role="img" aria-labelledby="panel-1-directory-title panel-1-directory-description">
+  <title id="panel-1-directory-title">Directory Directory — Compact rows · yellow</title>
+  <desc id="panel-1-directory-description">The original blue folder D surrounds shorter green, yellow and red folder pills. The ten-unit bodies have seamless tabs and five-unit end caps. The rows sit closer together with more space at the right of the D.</desc>
+  <path id="panel-1-directory-d-outline" class="directory-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="panel-1-directory-green-folder-row" class="directory-folder-row" d="M34 55H48C50.8 55 52.2 56 53.6 57.5L55.8 59.9Q56.8 61 59 61H107A5 5 0 0 1 107 71H34A5 5 0 0 1 29 66V60A5 5 0 0 1 34 55Z" fill="#21A668"/>
+  <path id="panel-1-directory-yellow-folder-row" class="directory-folder-row" d="M34 79H48C50.8 79 52.2 80 53.6 81.5L55.8 83.9Q56.8 85 59 85H117A5 5 0 0 1 117 95H34A5 5 0 0 1 29 90V84A5 5 0 0 1 34 79Z" fill="#F2C532"/>
+  <path id="panel-1-directory-red-folder-row" class="directory-folder-row" d="M34 103H48C50.8 103 52.2 104 53.6 105.5L55.8 107.9Q56.8 109 59 109H103A5 5 0 0 1 103 119H34A5 5 0 0 1 29 114V108A5 5 0 0 1 34 103Z" fill="#D83B42"/>
+</svg>
+
+</svg>

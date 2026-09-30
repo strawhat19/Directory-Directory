@@ -1,0 +1,39 @@
+<svg
+  role="img"
+  viewBox="0 0 232 160"
+  id="directory-v13-db"
+  class="directory-monogram directory-monogram-db"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="db-title db-description"
+>
+  <title id="db-title">Directory Directory — DB</title>
+  <desc id="db-description">A blue folder-tab D and a custom green double-bowl B form a compact database monogram. A red seamless folder record sits inside the D. The rounded B crossbar echoes a database divider; all shapes are vectors on a transparent canvas.</desc>
+  <g
+    fill="none"
+    stroke-width="9"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    id="db-letter-outlines"
+    class="directory-letter-outlines"
+  >
+    <path
+      stroke="#0874F9"
+      id="db-d-outline"
+      class="directory-letter directory-letter-d directory-letter-blue"
+      d="M24 20H45C50 20 53 23 55 27L60 37H64C89 37 108 59 108 87S89 137 64 137H24C16 137 10 131 10 123V34C10 26 16 20 24 20Z"
+    />
+    <path
+      stroke="#21A668"
+      transform="translate(112)"
+      id="db-b-outline"
+      class="directory-letter directory-letter-b directory-letter-green"
+      d="M20 20H56C82 20 101 32 101 51C101 68 89 80 69 82C92 84 108 95 108 113C108 130 89 137 63 137H20Q10 137 10 127V30Q10 20 20 20ZM10 82H69"
+    />
+  </g>
+  <path
+    fill="#D83B42"
+    id="db-d-folder-record"
+    class="directory-folder-record directory-folder-record-red"
+    d="M35 75H43C45 75 46.5 76 47.5 77.8L49.2 80.8Q50 82 52 82H80A6 6 0 0 1 80 94H35A6 6 0 0 1 29 88V81A6 6 0 0 1 35 75Z"
+  />
+</svg>

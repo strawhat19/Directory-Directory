@@ -1,7 +1,20 @@
 # Directory Directory
 
-Directory Directory is an Expo Router app for iOS, Android, and web, written in React Native and TypeScript. Its minimal dark interface uses Inter and the nested-D mark from the [V4 concept](assets/concepts/logos/v4/03-nested-index-hybrid.png). The [V5 logo set](assets/concepts/logos/v5/README.md) contains blue, red, green, and black variants. Web styling uses Sass; native styling uses React Native styles.
+The Directory of Directories is a single landing page built with Expo Router, React Native, TypeScript, and Sass. It runs on web, iOS, and Android with a light editorial layout and the selected [V15 indexed D logo](assets/concepts/logos/v15/01-indexed-d-compact-blue.svg).
 
-Use Node.js 22.13 or newer. Install dependencies with `npm install`, then start Expo with `npm start`. Run `npm run ios`, `npm run android`, or `npm run web` to open a platform directly.
+The app is frontend only. Its sample catalog supports search, category filters, saved directories, grid and list views, and directory previews. Saved items live in React context for the current session; refreshing or restarting the app resets them. There is no backend or authentication.
 
-The app starts in dark mode and remembers an explicit light-mode choice. It includes search, category filters, topic tabs, view controls, and preview dialogs for Sign in and Submit a directory. The entries and public-directory total in `src/data/directories.ts` are sample placeholders to replace when the catalog is ready.
+Install dependencies with `npm install`, then run `npm start`. To start a specific platform, use `npm run web`, `npm run ios`, or `npm run android`. Expo provides the mobile project for app store deployment, and the web app can be exported to host on a custom domain.
+
+## Structure
+
+- `app/` contains the shared landing route and platform layouts.
+- `src/components/` contains one folder per component, with structure, logic, and styles separated.
+- `src/shared/landing/` holds the sample catalog and shared React context.
+- `src/shared/ui/` provides descriptive element identifiers for native components.
+- `public/` contains the exact selected SVG for the web header.
+- `assets/concepts/` preserves the original design and logo concepts.
+
+Web components use Sass. Native components use React Native styles and adapt the same page for smaller screens. Visible elements have descriptive classes and identifiers to make feedback easy to reference.
+
+Code has not been tested, built, or otherwise verified, following `AGENTS.md`; review the diff and verify before committing.

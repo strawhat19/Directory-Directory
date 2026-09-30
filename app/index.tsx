@@ -1,5 +1,5 @@
-import NativeLandingPage from '../src/components/NativeLandingPage'
+import LandingPage from '../src/components/LandingPage/LandingPage';
 
 export default function Index() {
-  return <NativeLandingPage />
+  return <LandingPage />;
 }

@@ -1,0 +1,8 @@
+<svg id="directory-v13-indexed-d" class="directory-indexed-d" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="directory-title directory-description">
+  <title id="directory-title">Directory Directory — seamless tabs</title>
+  <desc id="directory-description">The original V9 blue folder D surrounds three enlarged green, blue and red rows. Each row's rounded left boundary rises smoothly into its folder tab as a single contour. Row lengths follow the available space within the D.</desc>
+  <path id="directory-d-outline" class="directory-d-outline" d="M28 20h38c5 0 8 3 10 7l5 10h16c28 0 50 22 50 50s-22 50-50 50H28c-8 0-14-6-14-14V34c0-8 6-14 14-14Z" fill="none" stroke="#0874F9" stroke-width="9" stroke-linejoin="round"/>
+  <path id="directory-green-folder-row" class="directory-folder-row" d="M36 46H48C50.8 46 52.2 47.5 53.6 49.7L55.8 53.3Q56.8 55 59 55H117A7 7 0 0 1 117 69H36A7 7 0 0 1 29 62V53A7 7 0 0 1 36 46Z" fill="none" stroke="#21A668" stroke-width="2.5" stroke-linejoin="round"/>
+  <path id="directory-blue-folder-row" class="directory-folder-row" d="M36 74H48C50.8 74 52.2 75.5 53.6 77.7L55.8 81.3Q56.8 83 59 83H127A7 7 0 0 1 127 97H36A7 7 0 0 1 29 90V81A7 7 0 0 1 36 74Z" fill="none" stroke="#0874F9" stroke-width="2.5" stroke-linejoin="round"/>
+  <path id="directory-red-folder-row" class="directory-folder-row" d="M36 102H48C50.8 102 52.2 103.5 53.6 105.7L55.8 109.3Q56.8 111 59 111H113A7 7 0 0 1 113 125H36A7 7 0 0 1 29 118V109A7 7 0 0 1 36 102Z" fill="none" stroke="#D83B42" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
