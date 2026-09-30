@@ -20,7 +20,10 @@
   z-index: 20;
   position: fixed;
   padding: 12px 18px;
+  border: 0;
   border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
   color: var(--dd-on-blue);
   background: var(--dd-blue);
   transform: translateY(-160%);
@@ -102,12 +105,18 @@
 
   &__link {
     gap: 10px;
+    width: 100%;
     display: flex;
     padding: 11px 0;
+    border: 0;
     font-size: 11px;
+    font-family: inherit;
     line-height: 1.6;
+    text-align: left;
+    cursor: pointer;
     align-items: center;
     color: var(--dd-muted);
+    background: transparent;
     transition: color 220ms ease, transform 220ms ease;
 
     &:hover {

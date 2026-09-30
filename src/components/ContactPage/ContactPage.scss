@@ -19,6 +19,9 @@
   z-index: 20;
   position: fixed;
   padding: 12px 18px;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
   border-radius: 8px;
   color: var(--dd-on-blue);
   background: var(--dd-blue);

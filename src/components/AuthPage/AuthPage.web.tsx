@@ -6,6 +6,7 @@ import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
 import type { AuthPageProps } from './AuthPage.types'
 import { authDemoNotice, useAuthPage } from './useAuthPage'
+import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 export default function AuthPage({ mode }: AuthPageProps) {
   const {
@@ -34,17 +35,21 @@ export default function AuthPage({ mode }: AuthPageProps) {
           className={`auth-page-description`}
         />
       </Head>
-      <a
-        href={`#auth-main-${mode}`}
+      <button
+        type={`button`}
         id={`auth-skip-link-${mode}`}
         className={`auth-skip-link`}
+        onClick={() => {
+          smoothScrollToElement(`#auth-main-${mode}`)
+          document.getElementById(`auth-main-${mode}`)?.focus({ preventScroll: true })
+        }}
       >
         {`Skip to ${content.label.toLowerCase()} form`}
-      </a>
+      </button>
       <div id={`auth-page-${mode}`} className={`auth-page`}>
         <div id={`auth-page-shell-${mode}`} className={`auth-page__shell`}>
           <SiteHeader />
-          <main id={`auth-main-${mode}`} className={`auth-main`}>
+          <main id={`auth-main-${mode}`} className={`auth-main`} tabIndex={-1}>
             <section id={`auth-panel-${mode}`} className={`auth-panel`}>
               <p id={`auth-eyebrow-${mode}`} className={`auth-panel__eyebrow dd-eyebrow`}>
                 <Icon

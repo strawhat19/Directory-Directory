@@ -5,6 +5,7 @@ import Head from 'expo-router/head'
 import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
 import { contactFields, useContactForm } from './useContactForm'
+import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 export default function ContactPage() {
   const { status, values, preview, updateField, previewMessage } = useContactForm()
@@ -22,13 +23,21 @@ export default function ContactPage() {
           content={`Questions, ideas, or feedback for Directory Directory. Preview a message or visit Piratechs.`}
         />
       </Head>
-      <a href={`#contact-main`} id={`contact-skip-link`} className={`contact-skip-link`}>
+      <button
+        type={`button`}
+        id={`contact-skip-link`}
+        className={`contact-skip-link`}
+        onClick={() => {
+          smoothScrollToElement(`#contact-main`)
+          document.getElementById(`contact-main`)?.focus({ preventScroll: true })
+        }}
+      >
         {`Skip to contact form`}
-      </a>
+      </button>
       <div id={`contact-page`} className={`contact-page`}>
         <div id={`contact-page-shell`} className={`contact-page__shell`}>
           <SiteHeader />
-          <main id={`contact-main`} className={`contact-main`}>
+          <main id={`contact-main`} className={`contact-main`} tabIndex={-1}>
             <div id={`contact-intro`} className={`contact-intro`}>
               <Link
                 href={`/`}

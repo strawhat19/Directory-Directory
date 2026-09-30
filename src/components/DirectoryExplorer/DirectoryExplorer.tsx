@@ -22,6 +22,7 @@ export default function DirectoryExplorer() {
     return (
         <section
             id={`explore`}
+            tabIndex={-1}
             aria-labelledby={`directory-explorer-title`}
             className={`directory-explorer directory-explorer--${viewMode}`}
         >

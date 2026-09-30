@@ -2,6 +2,7 @@ import './SiteFooter.scss'
 import Icon from '../Icon/Icon'
 import { useSiteFooter } from './useSiteFooter'
 import BrandMark from '../BrandMark/BrandMark'
+import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 type SiteFooterProps = {
   onExplore?: () => void
@@ -9,6 +10,7 @@ type SiteFooterProps = {
 
 export default function SiteFooter({ onExplore }: SiteFooterProps) {
   const { year, isHome, exploreAll } = useSiteFooter(onExplore)
+  const scrollToTop = () => smoothScrollToElement(isHome ? `#top` : `#site-header`)
 
   return (
     <footer id={`site-footer`} className={`site-footer`}>
@@ -37,7 +39,11 @@ export default function SiteFooter({ onExplore }: SiteFooterProps) {
       </div>
       <div id={`footer-bottom`} className={`site-footer__bottom`}>
         <a
-          href={isHome ? `#top` : `/`}
+          href={`/`}
+          onClick={isHome ? (event) => {
+            event.preventDefault()
+            scrollToTop()
+          } : undefined}
           id={`footer-brand-link`}
           className={`site-footer__brand`}
           aria-label={`Directory Directory home`}
@@ -63,14 +69,15 @@ export default function SiteFooter({ onExplore }: SiteFooterProps) {
             {`Made by Piratechs`}
             <Icon name={`arrow-up-right`} id={`footer-piratechs-icon`} size={13} />
           </a>
-          <a
-            href={`#top`}
+          <button
+            type={`button`}
+            onClick={scrollToTop}
             id={`footer-back-top`}
             className={`site-footer__back-top`}
           >
             {`Back to top`}
             <Icon name={`arrow-up-right`} id={`footer-back-top-icon`} size={13} />
-          </a>
+          </button>
         </div>
       </div>
     </footer>

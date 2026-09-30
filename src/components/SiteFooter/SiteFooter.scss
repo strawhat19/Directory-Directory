@@ -91,6 +91,14 @@
       color: var(--dd-blue);
     }
   }
+
+  &__back-top {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    font: inherit;
+    background: transparent;
+  }
 }
 
 @media (max-width: 760px) {

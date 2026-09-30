@@ -5,6 +5,7 @@ import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
 import CategoryGrid from '../CategoryGrid/CategoryGrid'
 import { useLandingPage } from './useLandingPage.web'
+import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 import DirectoryPreview from '../DirectoryPreview/DirectoryPreview'
 import DirectoryExplorer from '../DirectoryExplorer/DirectoryExplorer'
 
@@ -24,13 +25,17 @@ export default function LandingPage() {
           content={`The Directory of Directories. Explore a thoughtful collection of directories for design, tools, communities, and places.`}
         />
       </Head>
-      <a
-        href={`#explore`}
+      <button
+        type={`button`}
+        onClick={() => {
+          smoothScrollToElement(`#explore`)
+          document.querySelector<HTMLElement>(`#explore`)?.focus({ preventScroll: true })
+        }}
         id={`landing-skip-link`}
         className={`landing-skip-link`}
       >
         {`Skip to directories`}
-      </a>
+      </button>
       <div id={`landing-page`} className={`landing-page`}>
         <div id={`landing-page-shell`} className={`landing-page__shell`}>
           <SiteHeader />

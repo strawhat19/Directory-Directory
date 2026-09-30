@@ -255,12 +255,8 @@
   }
 
   &__notifications .site-header__icon-button--secondary,
-  .auth-actions__link--sign-in .auth-actions__label {
+  .auth-actions__link--sign-in {
     color: var(--dd-ink);
-  }
-
-  .auth-actions__link--sign-in .icon {
-    color: var(--dd-blue);
   }
 }
 

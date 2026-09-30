@@ -1,15 +1,9 @@
 import { useCallback } from 'react'
+import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 export function useLandingPage() {
   const scrollToSection = useCallback((id: string) => {
-    requestAnimationFrame(() => {
-      const reducedMotion = window.matchMedia(`(prefers-reduced-motion: reduce)`).matches
-
-      document.getElementById(id)?.scrollIntoView({
-        block: `start`,
-        behavior: reducedMotion ? `auto` : `smooth`,
-      })
-    })
+    smoothScrollToElement(`#${id}`)
   }, [])
 
   return { scrollToSection }

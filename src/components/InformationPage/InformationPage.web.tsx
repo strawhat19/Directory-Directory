@@ -6,6 +6,7 @@ import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
 import type { InformationPageProps } from './InformationPage.types'
 import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages'
+import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 export default function InformationPage({ page }: InformationPageProps) {
   const content = informationPages[page]
@@ -23,17 +24,21 @@ export default function InformationPage({ page }: InformationPageProps) {
           className={`information-page-description`}
         />
       </Head>
-      <a
-        href={`#information-main-${page}`}
+      <button
+        type={`button`}
         id={`information-skip-link-${page}`}
         className={`information-skip-link`}
+        onClick={() => {
+          document.querySelector<HTMLElement>(`#information-main-${page}`)?.focus({ preventScroll: true })
+          smoothScrollToElement(`#information-main-${page}`)
+        }}
       >
         {`Skip to page content`}
-      </a>
+      </button>
       <div id={`information-page-${page}`} className={`information-page`}>
         <div id={`information-shell-${page}`} className={`information-page__shell`}>
           <SiteHeader />
-          <main id={`information-main-${page}`} className={`information-main`}>
+          <main id={`information-main-${page}`} className={`information-main`} tabIndex={-1}>
             <div id={`information-hero-${page}`} className={`information-hero`}>
               <Link
                 href={`/`}
@@ -91,11 +96,12 @@ export default function InformationPage({ page }: InformationPageProps) {
                     {`On this page`}
                   </p>
                   {content.sections.map((section, index) => (
-                    <a
+                    <button
                       key={section.id}
-                      href={`#information-section-${page}-${section.id}`}
+                      type={`button`}
                       id={`information-contents-link-${page}-${section.id}`}
                       className={`information-sidebar__link`}
+                      onClick={() => smoothScrollToElement(`#information-section-${page}-${section.id}`)}
                     >
                       <span
                         id={`information-contents-number-${page}-${section.id}`}
@@ -115,7 +121,7 @@ export default function InformationPage({ page }: InformationPageProps) {
                         className={`information-sidebar__icon`}
                         size={13}
                       />
-                    </a>
+                    </button>
                   ))}
                 </nav>
                 <div id={`information-note-${page}`} className={`information-sidebar__note`}>
