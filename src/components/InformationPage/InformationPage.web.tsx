@@ -71,7 +71,7 @@ export default function InformationPage({ page }: InformationPageProps) {
               <p id={`information-summary-${page}`} className={`information-hero__summary`}>
                 {content.summary}
               </p>
-              {page !== `about` ? (
+              {page === `terms` || page === `privacy` ? (
                 <p id={`information-updated-${page}`} className={`information-hero__updated`}>
                   {`Last updated ${informationUpdatedDate}`}
                 </p>

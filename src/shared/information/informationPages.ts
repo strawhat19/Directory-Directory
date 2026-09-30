@@ -1,6 +1,6 @@
 import type { IconName } from '../../components/Icon/Icon.types';
 
-export type InformationPageId = `about` | `terms` | `privacy`;
+export type InformationPageId = `about` | `api` | `docs` | `discover` | `pricing` | `terms` | `privacy`;
 
 export type InformationSection = {
     id: string;
@@ -58,6 +58,105 @@ export const informationPages: Record<InformationPageId, InformationPageContent>
                 title: `Keep the conversation going`,
                 paragraphs: [
                     `For project information, questions, or feedback, visit Piratechs using the link below. We appreciate a good idea as much as a good find.`,
+                ],
+            },
+        ],
+    },
+    api: {
+        icon: `tools`,
+        eyebrow: `For builders`,
+        title: `API`,
+        summary: `An overview of where API access stands as Directory Directory takes shape.`,
+        noteTitle: `No public API yet`,
+        note: `The current catalogue is a local preview. There are no public endpoints, API keys, or developer accounts to request.`,
+        sections: [
+            {
+                id: `current-status`,
+                title: `Current status`,
+                paragraphs: [
+                    `Directory Directory does not offer a public API today. The sample listings are included with the app rather than served through a documented endpoint.`,
+                    `You can browse the preview, search its sample catalogue, and explore the interface without an API key.`,
+                ],
+            },
+            {
+                id: `share-your-interest`,
+                title: `Share your interest`,
+                paragraphs: [
+                    `If API access would help your project, tell us what you would want to build. Your feedback can help shape future plans, but no API release or access date is promised.`,
+                ],
+            },
+        ],
+    },
+    docs: {
+        icon: `file-text`,
+        eyebrow: `Getting started`,
+        title: `Docs`,
+        summary: `A short guide to exploring the current Directory Directory preview.`,
+        noteTitle: `Preview guide`,
+        note: `This page covers the features available in the current app. Developer API documentation is not available yet.`,
+        sections: [
+            {
+                id: `explore-listings`,
+                title: `Find a directory`,
+                paragraphs: [
+                    `Start on the home page and search the sample collection by name or topic. Browse categories and use the available filters to narrow what you see.`,
+                    `Switch between grid and list views, then open a listing to read its preview. The listings are examples for exploring the app, not verified recommendations.`,
+                ],
+            },
+            {
+                id: `save-listings`,
+                title: `Save for this visit`,
+                paragraphs: [
+                    `Use a listing's bookmark button to keep it close while you explore. Searches, filters, and saved listings stay in memory during your visit and clear when you refresh the website or restart the app.`,
+                ],
+            },
+        ],
+    },
+    discover: {
+        icon: `sparkles`,
+        eyebrow: `Follow your curiosity`,
+        title: `Discover`,
+        summary: `Explore the ideas and categories behind the Directory Directory preview.`,
+        noteTitle: `A sample collection`,
+        note: `The current listings are illustrative examples, so treat this as a preview of the discovery experience.`,
+        sections: [
+            {
+                id: `browse-your-way`,
+                title: `Browse your way`,
+                paragraphs: [
+                    `Browse directories across design, tools, communities, places, learning, technology, business, and lifestyle. Choose a category that catches your eye or search for something specific.`,
+                    `The home page brings search, filters, and listing previews together so you can move from a broad idea to a closer look.`,
+                ],
+            },
+            {
+                id: `keep-exploring`,
+                title: `Keep exploring`,
+                paragraphs: [
+                    `Open a listing to see more details, try another search, or bookmark an example during your visit. The collection is sample content and may change as the app develops.`,
+                ],
+            },
+        ],
+    },
+    pricing: {
+        icon: `business`,
+        eyebrow: `Simple to explore`,
+        title: `Pricing`,
+        summary: `Directory Directory is currently a free preview with no paid plans.`,
+        noteTitle: `No checkout or subscription`,
+        note: `There are no paid tiers, billing accounts, or purchases in the current app.`,
+        sections: [
+            {
+                id: `free-preview`,
+                title: `Explore the preview for free`,
+                paragraphs: [
+                    `You can browse, search, filter, and bookmark the sample listings without paying or creating an account. These features are part of the current preview.`,
+                ],
+            },
+            {
+                id: `future-pricing`,
+                title: `Looking ahead`,
+                paragraphs: [
+                    `No future pricing or paid features have been announced here. If that changes, this page will explain the available options before you are asked to pay for anything.`,
                 ],
             },
         ],

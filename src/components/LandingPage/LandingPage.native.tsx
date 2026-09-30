@@ -67,6 +67,35 @@ export default function LandingPage() {
         ],
     );
 
+    const headerMenuLinks = siteNavigation.map((item) => (
+        <Link
+            {...elementProps(`landing-header-menu-link`, item.id)}
+            asChild
+            key={item.id}
+            href={item.href}
+        >
+            <Pressable
+                {...elementProps(`landing-header-menu-button`, item.id)}
+                accessibilityRole={`link`}
+                style={({ pressed }) => [styles.menuButton, pressed && styles.pressed]}
+            >
+                <Icon
+                    id={`landing-header-menu-icon-${item.id}`}
+                    className={`landing-header-menu-icon`}
+                    name={item.icon}
+                    color={item.color}
+                    size={16}
+                />
+                <Text
+                    {...elementProps(`landing-header-menu-label`, item.id)}
+                    style={styles.menuLabel}
+                >
+                    {item.label}
+                </Text>
+            </Pressable>
+        </Link>
+    ));
+
     return (
         <SafeAreaView
             {...elementProps(`directory-directory-screen`)}
@@ -104,39 +133,24 @@ export default function LandingPage() {
                             {...elementProps(`landing-header-controls`)}
                             style={styles.headerControls}
                         >
-                            <View
-                                {...elementProps(`landing-header-menu`)}
-                                style={styles.menu}
-                            >
-                                {siteNavigation.map((item) => (
-                                    <Link
-                                        {...elementProps(`landing-header-menu-link`, item.id)}
-                                        asChild
-                                        key={item.id}
-                                        href={item.href}
-                                    >
-                                        <Pressable
-                                            {...elementProps(`landing-header-menu-button`, item.id)}
-                                            accessibilityRole={`link`}
-                                            style={({ pressed }) => [styles.menuButton, pressed && styles.pressed]}
-                                        >
-                                            <Icon
-                                                id={`landing-header-menu-icon-${item.id}`}
-                                                className={`landing-header-menu-icon`}
-                                                name={item.icon}
-                                                color={item.color}
-                                                size={16}
-                                            />
-                                            <Text
-                                                {...elementProps(`landing-header-menu-label`, item.id)}
-                                                style={styles.menuLabel}
-                                            >
-                                                {item.label}
-                                            </Text>
-                                        </Pressable>
-                                    </Link>
-                                ))}
-                            </View>
+                            {wide ? (
+                                <View
+                                    {...elementProps(`landing-header-menu`)}
+                                    style={styles.menu}
+                                >
+                                    {headerMenuLinks}
+                                </View>
+                            ) : (
+                                <ScrollView
+                                    {...elementProps(`landing-header-menu`)}
+                                    horizontal
+                                    style={styles.menuScroll}
+                                    contentContainerStyle={styles.menuScrollContent}
+                                    showsHorizontalScrollIndicator={false}
+                                >
+                                    {headerMenuLinks}
+                                </ScrollView>
+                            )}
                             <View
                                 {...elementProps(`landing-header-utilities`)}
                                 style={styles.headerUtilities}
@@ -167,7 +181,7 @@ export default function LandingPage() {
                                         id={`landing-header-notifications-icon`}
                                         className={`landing-header-notifications-icon`}
                                         name={`bell`}
-                                        color={colors.blue}
+                                        color={isDark ? colors.white : colors.blue}
                                         size={17}
                                     />
                                     <View

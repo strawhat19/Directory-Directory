@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   bar: {
-    height: 58,
+    height: 42,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     flexDirection: `row`,
@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
   },
   viewport: {
     flex: 1,
-    height: 56,
+    height: 40,
   },
   fade: {
     top: 1,
@@ -42,10 +42,10 @@ export const styles = StyleSheet.create({
   },
   pill: {
     gap: 7,
-    minHeight: 36,
+    minHeight: 28,
     borderWidth: 1,
-    borderRadius: 18,
-    paddingVertical: 8,
+    borderRadius: 14,
+    paddingVertical: 4,
     paddingHorizontal: 12,
     alignItems: `center`,
     flexDirection: `row`,

@@ -14,6 +14,7 @@ export default function AuthActions({ scope }: AuthActionsProps) {
   const palette = getNativePalette(isDark);
   const styles = useMemo(() => createAuthActionsStyles(isDark), [isDark]);
   const { user, ready, error, busy, redirect, handleSignOut } = useAuthActions();
+  const darkHeaderSignIn = isDark && scope.includes(`header`);
 
   return (
     <View {...elementProps(`auth-actions`, scope)} style={styles.actions}>
@@ -62,7 +63,7 @@ export default function AuthActions({ scope }: AuthActionsProps) {
             />
             <Text
               {...elementProps(`auth-actions-label`, `${scope}-${link.id}`)}
-              style={[styles.label, link.id === `sign-up` && styles.white]}
+              style={[styles.label, (link.id === `sign-up` || (link.id === `sign-in` && darkHeaderSignIn)) && styles.white]}
             >
               {link.label}
             </Text>

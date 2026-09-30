@@ -12,7 +12,7 @@
   backdrop-filter: blur(18px) saturate(125%);
 
   &__bar {
-    gap: 24px;
+    gap: 20px;
     display: flex;
     margin: 0 auto;
     flex-wrap: wrap;
@@ -41,7 +41,7 @@
   }
 
   &__actions {
-    gap: 24px;
+    gap: 16px;
     display: flex;
     min-width: 0;
     flex-wrap: wrap;
@@ -50,7 +50,7 @@
   }
 
   &__navigation {
-    gap: 20px;
+    gap: 12px;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -118,10 +118,10 @@
   }
 
   &__notification-badge {
-    top: -4px;
-    right: -4px;
-    width: 15px;
-    height: 15px;
+    top: -6px;
+    right: -6px;
+    width: 19px;
+    height: 19px;
     display: grid;
     position: absolute;
     border-radius: 50%;
@@ -253,6 +253,15 @@
   &__notification-link {
     color: var(--dd-blue);
   }
+
+  &__notifications .site-header__icon-button--secondary,
+  .auth-actions__link--sign-in .auth-actions__label {
+    color: var(--dd-ink);
+  }
+
+  .auth-actions__link--sign-in .icon {
+    color: var(--dd-blue);
+  }
 }
 
 @media (max-width: 600px) {
@@ -270,7 +279,7 @@
     }
 
     &__navigation {
-      gap: 16px;
+      gap: 12px;
     }
 
     &__brand-name {

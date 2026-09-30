@@ -141,7 +141,7 @@ export default function InformationPage({ page }: InformationPageProps) {
                     <Text {...elementProps(`information-summary`, page)} style={styles.summary}>
                         {content.summary}
                     </Text>
-                    {page !== `about` ? (
+                    {page === `terms` || page === `privacy` ? (
                         <Text {...elementProps(`information-updated`, page)} style={styles.updated}>
                             {`Last updated ${informationUpdatedDate}`}
                         </Text>

@@ -92,11 +92,11 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false) {
             backgroundColor: colors.blueSoft,
         },
         headerNotificationBadge: {
-            top: -3,
-            right: -3,
-            width: 15,
-            height: 15,
-            borderRadius: 8,
+            top: -4,
+            right: -4,
+            width: 18,
+            height: 18,
+            borderRadius: 9,
             position: `absolute`,
             alignItems: `center`,
             justifyContent: `center`,
@@ -127,6 +127,16 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false) {
             maxWidth: `100%`,
             flexWrap: `wrap`,
             flexDirection: `row`,
+        },
+        menuScroll: {
+            width: `100%`,
+            maxWidth: `100%`,
+            flexGrow: 0,
+        },
+        menuScrollContent: {
+            gap: 4,
+            flexDirection: `row`,
+            alignItems: `center`,
         },
         menuButton: {
             gap: 7,
