@@ -1,0 +1,256 @@
+.contact-page {
+  width: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-padding-top: calc(var(--site-header-height, 180px) + 24px);
+
+  &__shell {
+    margin: 0 auto;
+    max-width: 1260px;
+    padding: 0 52px;
+  }
+}
+
+.contact-skip-link {
+  top: 12px;
+  left: 12px;
+  z-index: 20;
+  position: fixed;
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: var(--dd-paper);
+  background: var(--dd-blue);
+  transform: translateY(-160%);
+  transition: transform 220ms ease;
+
+  &:focus {
+    transform: translateY(0);
+  }
+}
+
+.contact-main {
+  gap: 70px;
+  display: grid;
+  align-items: start;
+  padding: 48px 0 26px;
+  grid-template-columns: 1fr 1.1fr;
+  animation: contact-entrance 650ms ease both;
+}
+
+.contact-intro {
+  &__back-link {
+    gap: 8px;
+    display: inline-flex;
+    margin-bottom: 36px;
+    font-size: 11px;
+    align-items: center;
+    color: var(--dd-muted);
+    transition: color 220ms ease;
+
+    &:hover {
+      color: var(--dd-blue);
+    }
+  }
+
+  &__eyebrow {
+    color: #8054d7;
+  }
+
+  &__heading {
+    font-weight: 760;
+    line-height: 1.08;
+    margin: 22px 0 20px;
+    letter-spacing: -2.8px;
+    font-size: clamp(42px, 5vw, 60px);
+  }
+
+  &__description {
+    margin: 0;
+    font-size: 15px;
+    max-width: 400px;
+    line-height: 1.85;
+    color: var(--dd-muted);
+  }
+
+  &__notice {
+    padding: 22px;
+    margin-top: 28px;
+    border-radius: 14px;
+    background: #f3edff;
+    border: 1px solid #e7ddfb;
+  }
+
+  &__notice-heading {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 650;
+    letter-spacing: -0.3px;
+  }
+
+  &__notice-description {
+    font-size: 12px;
+    margin: 10px 0 0;
+    line-height: 1.85;
+    color: var(--dd-muted);
+  }
+
+  &__external-link {
+    gap: 7px;
+    display: inline-flex;
+    margin-top: 22px;
+    font-size: 12px;
+    font-weight: 600;
+    align-items: center;
+    color: var(--dd-blue);
+    transition: color 220ms ease, transform 220ms ease;
+
+    &:hover {
+      color: #0066e6;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.contact-form-panel {
+  padding: 30px;
+  border-radius: 16px;
+  background: var(--dd-paper);
+  border: 1px solid var(--dd-line);
+}
+
+.contact-form {
+  gap: 22px;
+  display: flex;
+  flex-direction: column;
+
+  &__heading {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 650;
+    letter-spacing: -0.8px;
+  }
+
+  &__field {
+    gap: 9px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &__input {
+    width: 100%;
+    outline: none;
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.7;
+    padding: 12px 14px;
+    border-radius: 9px;
+    color: var(--dd-ink);
+    background: var(--dd-page);
+    border: 1px solid var(--dd-line);
+    transition: border-color 220ms ease, box-shadow 220ms ease;
+
+    &:focus {
+      border-color: var(--dd-blue);
+      box-shadow: 0 0 0 4px #0874f90c;
+    }
+
+    &::placeholder {
+      color: #8991a0;
+    }
+
+    &--message {
+      resize: vertical;
+      min-height: 150px;
+    }
+  }
+
+  &__button {
+    align-self: flex-start;
+  }
+
+  &__status {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.8;
+    color: var(--dd-muted);
+  }
+}
+
+.contact-preview {
+  margin-top: 26px;
+  padding-top: 24px;
+  overflow-wrap: anywhere;
+  border-top: 1px solid var(--dd-line);
+
+  &__heading {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 650;
+  }
+
+  &__name {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 18px 0 6px;
+  }
+
+  &__email {
+    margin: 0;
+    font-size: 12px;
+    color: var(--dd-muted);
+  }
+
+  &__message {
+    font-size: 13px;
+    margin: 18px 0 0;
+    line-height: 1.85;
+    white-space: pre-wrap;
+    color: var(--dd-muted);
+  }
+}
+
+@keyframes contact-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .contact-page__shell {
+    padding: 0 32px;
+  }
+
+  .contact-main {
+    gap: 35px;
+  }
+}
+
+@media (max-width: 760px) {
+  .contact-main {
+    padding-top: 30px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .contact-page__shell {
+    padding: 0 20px;
+  }
+
+  .contact-form-panel {
+    padding: 22px;
+  }
+}

@@ -16,9 +16,29 @@
   &__status-dot {
     width: 6px;
     height: 6px;
+    flex: none;
+    position: relative;
     border-radius: 50%;
-    background: var(--dd-green);
-    box-shadow: 0 0 0 4px #21a66812;
+    color: var(--dd-green);
+    background: currentColor;
+    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 8%, transparent);
+    animation: hero-status-pulse 2400ms ease-in-out infinite, hero-status-color 8s ease-in-out infinite;
+
+    &::before,
+    &::after {
+      inset: -1px;
+      opacity: 0;
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      border: 1px solid currentColor;
+      animation: hero-status-radar 2800ms ease-out infinite;
+    }
+
+    &::after {
+      animation-delay: -1400ms;
+    }
   }
 
   &__heading {
@@ -45,28 +65,78 @@
     color: var(--dd-muted);
   }
 
+  &__search-panel {
+    margin-top: 28px;
+    --search-color: #0874f9;
+
+    &--categories {
+      --search-color: #21a668;
+    }
+
+    &--directors {
+      --search-color: #d83b42;
+    }
+  }
+
+  &__search-scopes {
+    gap: 5px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &__scope {
+    gap: 6px;
+    z-index: 1;
+    display: flex;
+    font-size: 11px;
+    position: relative;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    align-items: center;
+    color: white;
+    border-radius: 10px 16px 0 0;
+    background-color: var(--search-color);
+    border: 1px solid var(--search-color);
+    transition: border-color 400ms ease, background-color 400ms ease, box-shadow 400ms ease;
+
+    &:hover {
+      box-shadow: inset 0 0 0 1px #ffffff66;
+    }
+
+    &[aria-pressed='true'] {
+      font-weight: 650;
+      box-shadow: inset 0 -3px 0 #ffffff99;
+    }
+
+    &:focus-visible {
+      z-index: 2;
+      outline-offset: 3px;
+      outline: 2px solid var(--search-color);
+    }
+  }
+
   &__search {
     gap: 12px;
     display: flex;
     padding: 6px;
-    margin-top: 28px;
-    border-radius: 12px;
+    border-radius: 0 12px 12px 12px;
     align-items: center;
-    background: var(--dd-paper);
-    border: 1px solid var(--dd-line);
+    border: 1px solid var(--search-color);
+    background-color: color-mix(in srgb, var(--search-color) 4%, var(--dd-paper));
     box-shadow: 0 5px 18px #14213d04;
-    transition: border-color 220ms ease, box-shadow 220ms ease;
+    transition: border-color 400ms ease, background-color 400ms ease, box-shadow 400ms ease;
 
     &:focus-within {
-      border-color: var(--dd-blue);
-      box-shadow: 0 0 0 4px #0874f90c;
+      border-color: var(--search-color);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--search-color) 8%, transparent);
     }
   }
 
   &__search-icon {
     flex: none;
     margin-left: 12px;
-    color: var(--dd-muted);
+    color: var(--search-color);
+    transition: color 400ms ease;
   }
 
   &__search-input {
@@ -91,6 +161,16 @@
   &__search-submit {
     flex: none;
     padding: 14px 17px;
+
+    &.dd-button--primary {
+      background-color: var(--search-color);
+      transition: transform 220ms ease, background-color 400ms ease, box-shadow 400ms ease;
+
+      &:hover {
+        background-color: color-mix(in srgb, var(--search-color) 88%, black);
+        box-shadow: 0 6px 18px color-mix(in srgb, var(--search-color) 17%, transparent);
+      }
+    }
   }
 
   &__suggestions {
@@ -119,6 +199,50 @@
 
     &:hover {
       color: var(--dd-blue);
+    }
+  }
+}
+
+@keyframes hero-status-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 8%, transparent);
+  }
+
+  50% {
+    opacity: 0.85;
+    transform: scale(1.12);
+    box-shadow: 0 0 0 4px color-mix(in srgb, currentColor 10%, transparent);
+  }
+}
+
+@keyframes hero-status-radar {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  85%, 100% {
+    opacity: 0;
+    transform: scale(2.8);
+  }
+}
+
+@keyframes hero-status-color {
+  0%, 100% { color: #0874f9; }
+  50% { color: #21a668; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__status-dot {
+    animation: none;
+    color: var(--dd-green);
+
+    &::before,
+    &::after {
+      opacity: 0;
+      animation: none;
     }
   }
 }
@@ -159,6 +283,12 @@
 }
 
 @media (max-width: 400px) {
+  .hero__scope {
+    gap: 5px;
+    font-size: 10px;
+    padding: 10px 11px;
+  }
+
   .hero__search-submit {
     padding: 14px 12px;
   }

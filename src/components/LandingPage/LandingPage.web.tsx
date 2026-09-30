@@ -39,9 +39,9 @@ export default function LandingPage() {
       </a>
       <div id={`landing-page`} className={`landing-page`}>
         <div id={`landing-page-shell`} className={`landing-page__shell`}>
-          <SiteHeader onNavigate={scrollToSection} />
+          <SiteHeader />
           <main id={`landing-main`} className={`landing-main`}>
-            <Hero onExplore={() => scrollToSection(`explore`)} />
+            <Hero onExplore={scrollToSection} />
             <CategoryGrid onExplore={() => scrollToSection(`explore`)} />
             <DirectoryExplorer />
           </main>

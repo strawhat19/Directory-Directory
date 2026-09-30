@@ -5,9 +5,13 @@ export const palette = {
     blue: `#0874f9`,
     ink: `#14213d`,
     green: `#21a668`,
+    pink: `#cd4c8c`,
     white: `#ffffff`,
     muted: `#6b7280`,
     border: `#e3e7ee`,
+    yellow: `#b7860b`,
+    purple: `#8054d7`,
+    orange: `#d97722`,
     background: `#f7f8fa`,
 };
 
@@ -15,7 +19,11 @@ export const accents = {
     ink: { color: palette.ink, background: `#eef0f5` },
     red: { color: palette.red, background: `#fff0ee` },
     blue: { color: palette.blue, background: `#edf4ff` },
+    pink: { color: palette.pink, background: `#fdeef5` },
     green: { color: palette.green, background: `#edf8f1` },
+    yellow: { color: palette.yellow, background: `#fff8db` },
+    purple: { color: palette.purple, background: `#f3edff` },
+    orange: { color: palette.orange, background: `#fff1e6` },
 };
 
 export function createLandingStyles(fontsLoaded: boolean) {
@@ -39,13 +47,28 @@ export function createLandingStyles(fontsLoaded: boolean) {
             paddingBottom: 32,
             alignSelf: `center`,
         },
+        stickyHeader: {
+            zIndex: 10,
+            paddingBottom: 16,
+            backgroundColor: palette.background,
+        },
         header: {
             gap: 20,
+            flexWrap: `wrap`,
             paddingTop: 20,
             paddingBottom: 28,
             flexDirection: `row`,
             alignItems: `center`,
             justifyContent: `space-between`,
+        },
+        headerControls: {
+            gap: 14,
+            maxWidth: `100%`,
+            flexWrap: `wrap`,
+            marginLeft: `auto`,
+            flexDirection: `row`,
+            alignItems: `center`,
+            justifyContent: `flex-end`,
         },
         brand: {
             gap: 10,
@@ -59,15 +82,21 @@ export function createLandingStyles(fontsLoaded: boolean) {
             color: palette.ink,
             letterSpacing: -0.6,
         },
-        savedButton: {
+        menu: {
+            gap: 4,
+            maxWidth: `100%`,
+            flexWrap: `wrap`,
+            flexDirection: `row`,
+        },
+        menuButton: {
             gap: 7,
             minHeight: 44,
             paddingVertical: 10,
-            paddingHorizontal: 13,
+            paddingHorizontal: 8,
             flexDirection: `row`,
             alignItems: `center`,
         },
-        savedLabel: {
+        menuLabel: {
             fontSize: 13,
             fontFamily: semibold,
             color: palette.ink,
@@ -90,10 +119,34 @@ export function createLandingStyles(fontsLoaded: boolean) {
         heroCopy: {
             flex: 1,
         },
+        eyebrowLine: {
+            gap: 8,
+            marginBottom: 20,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        eyebrowRadar: {
+            width: 7,
+            height: 7,
+            position: `relative`,
+        },
+        eyebrowRadarRing: {
+            top: 0,
+            left: 0,
+            width: 7,
+            height: 7,
+            borderWidth: 1,
+            borderRadius: 4,
+            position: `absolute`,
+        },
+        eyebrowDot: {
+            width: 7,
+            height: 7,
+            borderRadius: 4,
+        },
         eyebrow: {
             fontSize: 11,
             lineHeight: 18,
-            marginBottom: 20,
             letterSpacing: 1.6,
             fontFamily: semibold,
             color: palette.blue,
@@ -169,16 +222,54 @@ export function createLandingStyles(fontsLoaded: boolean) {
         searchSection: {
             marginBottom: 36,
         },
+        searchTabs: {
+            gap: 4,
+            flexDirection: `row`,
+            alignItems: `flex-end`,
+        },
+        searchTabContainer: {
+            flex: 1,
+            overflow: `hidden`,
+            borderTopLeftRadius: 12,
+            borderTopRightRadius: 12,
+        },
+        searchTab: {
+            gap: 6,
+            minHeight: 43,
+            paddingVertical: 10,
+            paddingHorizontal: 8,
+            flexDirection: `row`,
+            alignItems: `center`,
+            justifyContent: `center`,
+        },
+        searchTabActive: {
+            backgroundColor: `rgba(255, 255, 255, 0.15)`,
+        },
+        searchTabLabel: {
+            fontSize: 11,
+            fontFamily: semibold,
+            color: palette.white,
+        },
         searchBox: {
             gap: 10,
             padding: 8,
             paddingLeft: 17,
             borderWidth: 1,
             borderRadius: 14,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
             flexDirection: `row`,
             alignItems: `center`,
-            borderColor: palette.border,
-            backgroundColor: palette.white,
+        },
+        searchIcon: {
+            width: 20,
+            height: 20,
+            position: `relative`,
+        },
+        searchIconLayer: {
+            top: 0,
+            left: 0,
+            position: `absolute`,
         },
         searchInput: {
             flex: 1,
@@ -188,6 +279,10 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontFamily: regular,
             color: palette.ink,
         },
+        searchButtonContainer: {
+            borderRadius: 9,
+            overflow: `hidden`,
+        },
         searchButton: {
             gap: 8,
             minHeight: 46,
@@ -195,7 +290,6 @@ export function createLandingStyles(fontsLoaded: boolean) {
             paddingHorizontal: 15,
             flexDirection: `row`,
             alignItems: `center`,
-            backgroundColor: palette.blue,
         },
         searchButtonLabel: {
             fontSize: 13,
@@ -228,9 +322,11 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontFamily: regular,
             color: palette.muted,
         },
+        categorySection: {
+            marginBottom: 44,
+        },
         categories: {
             gap: 12,
-            marginBottom: 44,
             flexWrap: `wrap`,
             flexDirection: `row`,
         },
@@ -474,6 +570,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
         },
         footerBottom: {
             gap: 18,
+            flexWrap: `wrap`,
             flexDirection: `row`,
             alignItems: `center`,
             justifyContent: `space-between`,
@@ -492,6 +589,24 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontSize: 10,
             fontFamily: regular,
             color: palette.muted,
+        },
+        footerDetails: {
+            gap: 12,
+            flexWrap: `wrap`,
+            flexDirection: `row`,
+            alignItems: `center`,
+            justifyContent: `space-between`,
+        },
+        footerLink: {
+            gap: 7,
+            minHeight: 44,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        footerLinkLabel: {
+            fontSize: 11,
+            fontFamily: semibold,
+            color: palette.blue,
         },
         modalBackdrop: {
             flex: 1,

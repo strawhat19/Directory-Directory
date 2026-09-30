@@ -5,7 +5,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
-  scroll-padding-top: 28px;
+  scroll-padding-top: calc(var(--site-header-height, 180px) + 24px);
 
   &__shell {
     margin: 0 auto;

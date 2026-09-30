@@ -1,5 +1,13 @@
-export type CategoryId = `design` | `tools` | `communities` | `places`;
-export type DirectoryAccent = `blue` | `green` | `red` | `ink`;
+export type CategoryId =
+    | `tools`
+    | `design`
+    | `places`
+    | `learning`
+    | `business`
+    | `lifestyle`
+    | `technology`
+    | `communities`;
+export type DirectoryAccent = `ink` | `red` | `blue` | `pink` | `green` | `yellow` | `purple` | `orange`;
 
 export interface DirectoryCategory {
     id: CategoryId;
@@ -38,6 +46,26 @@ export const categories: DirectoryCategory[] = [
         id: `places`,
         label: `Places`,
         description: `Find somewhere worth getting lost in.`,
+    },
+    {
+        id: `learning`,
+        label: `Learning`,
+        description: `Fresh knowledge for your next bright idea.`,
+    },
+    {
+        id: `technology`,
+        label: `Technology`,
+        description: `Explore what is new and what comes next.`,
+    },
+    {
+        id: `business`,
+        label: `Business`,
+        description: `Resources for building something of your own.`,
+    },
+    {
+        id: `lifestyle`,
+        label: `Lifestyle`,
+        description: `Good finds for a more thoughtful everyday.`,
     },
 ];
 
@@ -131,5 +159,45 @@ export const directories: DirectoryEntry[] = [
         name: `Form & Function`,
         label: `Design systems & resources`,
         summary: `Design systems, accessible resources, and useful building blocks for your next good idea.`,
+    },
+    {
+        id: `curiosity-classroom`,
+        initials: `Cc`,
+        accent: `yellow`,
+        featured: false,
+        category: `learning`,
+        name: `Curiosity Classroom`,
+        label: `Courses & learning resources`,
+        summary: `A sample collection of courses, reading lists, and resources for learning something new.`,
+    },
+    {
+        id: `future-files`,
+        initials: `Ff`,
+        accent: `purple`,
+        featured: false,
+        category: `technology`,
+        name: `Future Files`,
+        label: `Technology & emerging ideas`,
+        summary: `A sample starting point for exploring new technology, useful experiments, and emerging ideas.`,
+    },
+    {
+        id: `independent-playbook`,
+        initials: `Ip`,
+        accent: `orange`,
+        featured: false,
+        category: `business`,
+        name: `Independent Playbook`,
+        label: `Small business & entrepreneurship`,
+        summary: `A sample directory of practical resources for independent businesses and people getting started.`,
+    },
+    {
+        id: `everyday-edit`,
+        initials: `Ee`,
+        accent: `pink`,
+        featured: false,
+        category: `lifestyle`,
+        name: `Everyday Edit`,
+        label: `Lifestyle & everyday inspiration`,
+        summary: `A sample collection of everyday inspiration, thoughtful habits, and little things worth finding.`,
     },
 ];

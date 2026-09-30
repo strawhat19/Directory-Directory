@@ -2,17 +2,31 @@ export type IconName =
   | `grid`
   | `list`
   | `plus`
+  | `play`
   | `menu`
+  | `pause`
+  | `info`
+  | `mail`
   | `close`
   | `check`
+  | `clock`
   | `globe`
   | `tools`
+  | `shield`
+  | `log-in`
   | `design`
   | `search`
   | `places`
   | `bookmark`
   | `sparkles`
+  | `file-text`
+  | `log-out`
+  | `learning`
+  | `business`
+  | `lifestyle`
+  | `user-plus`
   | `arrow-right`
+  | `technology`
   | `communities`
   | `arrow-up-right`;
 

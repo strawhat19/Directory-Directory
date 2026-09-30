@@ -7,11 +7,13 @@ import {
     type PropsWithChildren,
     type SetStateAction,
 } from 'react';
+import type { SearchScope } from './searchScopes';
 import {
     categories,
     directories,
     type CategoryId,
     type DirectoryEntry,
+    type DirectoryCategory,
 } from '../catalog/catalog';
 
 export type ViewMode = `grid` | `list`;
@@ -22,7 +24,9 @@ export interface LandingContextValue {
     topic: DirectoryTopic;
     savedIds: string[];
     viewMode: ViewMode;
+    searchScope: SearchScope;
     category: CategoryId | null;
+    visibleCategories: DirectoryCategory[];
     visibleDirectories: DirectoryEntry[];
     selectedDirectory: DirectoryEntry | null;
     closeDirectory: () => void;
@@ -33,6 +37,7 @@ export interface LandingContextValue {
     setQuery: Dispatch<SetStateAction<string>>;
     setTopic: Dispatch<SetStateAction<DirectoryTopic>>;
     setViewMode: Dispatch<SetStateAction<ViewMode>>;
+    setSearchScope: Dispatch<SetStateAction<SearchScope>>;
 }
 
 export const LandingContext = createContext<LandingContextValue | undefined>(undefined);
@@ -42,6 +47,7 @@ export function LandingProvider({ children }: PropsWithChildren) {
     const [savedIds, setSavedIds] = useState<string[]>([]);
     const [topic, setTopic] = useState<DirectoryTopic>(`All`);
     const [viewMode, setViewMode] = useState<ViewMode>(`grid`);
+    const [searchScope, setSearchScope] = useState<SearchScope>(`all`);
     const [category, setCategory] = useState<CategoryId | null>(null);
     const [selectedDirectory, setSelectedDirectory] = useState<DirectoryEntry | null>(null);
 
@@ -70,6 +76,8 @@ export function LandingProvider({ children }: PropsWithChildren) {
             : [...current, id]);
     }, []);
 
+    const visibleCategories = categories;
+
     const visibleDirectories = useMemo(() => {
         const search = query.trim().toLowerCase();
 
@@ -78,8 +86,9 @@ export function LandingProvider({ children }: PropsWithChildren) {
             if (topic === `Featured` && !entry.featured) return false;
             if (topic === `Saved` && !savedIds.includes(entry.id)) return false;
 
-            const categoryLabel = categories.find((item) => item.id === entry.category)?.label ?? ``;
-            const searchableText = `${entry.name} ${entry.summary} ${entry.label} ${categoryLabel}`;
+            const categoryItem = categories.find((item) => item.id === entry.category);
+            const categoryText = `${categoryItem?.label ?? ``} ${categoryItem?.description ?? ``}`;
+            const searchableText = `${entry.name} ${entry.summary} ${entry.label} ${categoryText}`;
 
             return !search || searchableText.toLowerCase().includes(search);
         });
@@ -93,12 +102,15 @@ export function LandingProvider({ children }: PropsWithChildren) {
         category,
         setQuery,
         setTopic,
+        searchScope,
         clearFilters,
         toggleSaved,
         setViewMode,
+        setSearchScope,
         openDirectory,
         selectCategory,
         closeDirectory,
+        visibleCategories,
         visibleDirectories,
         selectedDirectory,
     }), [
@@ -107,11 +119,13 @@ export function LandingProvider({ children }: PropsWithChildren) {
         savedIds,
         viewMode,
         category,
+        searchScope,
         clearFilters,
         toggleSaved,
         openDirectory,
         selectCategory,
         closeDirectory,
+        visibleCategories,
         visibleDirectories,
         selectedDirectory,
     ]);

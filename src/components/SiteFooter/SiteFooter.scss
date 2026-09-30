@@ -56,6 +56,21 @@
     letter-spacing: -0.3px;
   }
 
+  &__details {
+    gap: 5px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__actions {
+    gap: 9px;
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+  }
+
   &__copyright {
     margin: 0;
     font-size: 9px;
@@ -63,6 +78,7 @@
     color: var(--dd-muted);
   }
 
+  &__creator,
   &__back-top {
     gap: 5px;
     display: flex;
@@ -90,9 +106,16 @@
       flex-wrap: wrap;
     }
 
-    &__copyright {
+    &__details {
       order: 3;
       width: 100%;
+      flex: auto;
+      align-items: flex-start;
     }
+
+    &__actions {
+      margin-left: auto;
+    }
+
   }
 }

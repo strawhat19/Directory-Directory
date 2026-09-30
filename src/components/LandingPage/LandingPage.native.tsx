@@ -1,32 +1,47 @@
+import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Animated, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 import Icon from '../Icon/Icon';
 import BrandMark from '../BrandMark/BrandMark';
+import AuthActions from '../AuthActions/AuthActions';
+import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { useLandingPage } from './useLandingPage.native';
 import { palette } from './LandingPage.native.styles';
 import { elementProps } from '../../shared/ui/elementProps';
+import { siteNavigation } from '../../shared/navigation/siteNavigation';
 
 export default function LandingPage() {
     const {
         wide,
+        year,
         scroll,
         styles,
+        dotStyle,
         landing,
         padding,
         selected,
+        scopeItems,
         cardWidth,
         viewItems,
-        showSaved,
         topicItems,
         artworkRows,
         categoryItems,
+        selectCategory,
         categoryWidth,
         entranceStyle,
+        radarRingStyles,
         directoryItems,
+        searchIconItems,
+        searchThemeStyle,
+        searchPlaceholder,
         selectedAccent,
         selectedIsSaved,
-        showDirectories,
+        searchBoxThemeStyle,
+        showSearchResults,
+        selectSearchScope,
+        setMainOffset,
+        setHeaderHeight,
         setExploreOffset,
     } = useLandingPage();
 
@@ -38,41 +53,106 @@ export default function LandingPage() {
         >
             <ScrollView
                 {...elementProps(`directory-directory-scroll`)}
+                stickyHeaderIndices={[0]}
                 ref={scroll}
                 style={styles.scroll}
                 keyboardShouldPersistTaps={`handled`}
                 contentContainerStyle={[styles.content, { paddingHorizontal: padding }]}
             >
-                <View {...elementProps(`landing-header`)} style={styles.header}>
-                    <View {...elementProps(`landing-header-brand`)} style={styles.brand}>
-                        <BrandMark id={`landing-header-mark`} className={`landing-header-mark`} size={43} />
-                        <Text {...elementProps(`landing-header-brand-name`)} style={styles.brandName}>
-                            {`Directory\nDirectory`}
-                        </Text>
+                <View
+                    {...elementProps(`landing-sticky-header`)}
+                    style={styles.stickyHeader}
+                    onLayout={(event) => {
+                        setHeaderHeight(event.nativeEvent.layout.height);
+                    }}
+                >
+                    <View {...elementProps(`landing-header`)} style={styles.header}>
+                        <View {...elementProps(`landing-header-brand`)} style={styles.brand}>
+                            <BrandMark id={`landing-header-mark`} className={`landing-header-mark`} size={43} />
+                            <Text {...elementProps(`landing-header-brand-name`)} style={styles.brandName}>
+                                {`Directory\nDirectory`}
+                            </Text>
+                        </View>
+                        <View
+                            {...elementProps(`landing-header-controls`)}
+                            style={styles.headerControls}
+                        >
+                            <View
+                                {...elementProps(`landing-header-menu`)}
+                                style={styles.menu}
+                            >
+                                {siteNavigation.map((item) => (
+                                    <Link
+                                        {...elementProps(`landing-header-menu-link`, item.id)}
+                                        asChild
+                                        key={item.id}
+                                        href={item.href}
+                                    >
+                                        <Pressable
+                                            {...elementProps(`landing-header-menu-button`, item.id)}
+                                            accessibilityRole={`link`}
+                                            style={({ pressed }) => [styles.menuButton, pressed && styles.pressed]}
+                                        >
+                                            <Icon
+                                                id={`landing-header-menu-icon-${item.id}`}
+                                                className={`landing-header-menu-icon`}
+                                                name={item.icon}
+                                                color={item.color}
+                                                size={16}
+                                            />
+                                            <Text
+                                                {...elementProps(`landing-header-menu-label`, item.id)}
+                                                style={styles.menuLabel}
+                                            >
+                                                {item.label}
+                                            </Text>
+                                        </Pressable>
+                                    </Link>
+                                ))}
+                            </View>
+                            <AuthActions scope={`landing-header`} />
+                        </View>
                     </View>
-                    <Pressable
-                        {...elementProps(`landing-header-saved-button`)}
-                        onPress={showSaved}
-                        accessibilityRole={`button`}
-                        accessibilityLabel={`Show saved directories`}
-                        style={({ pressed }) => [styles.savedButton, pressed && styles.pressed]}
-                    >
-                        <Icon id={`landing-header-saved-icon`} className={`landing-header-saved-icon`} name={`bookmark`} size={17} />
-                        <Text {...elementProps(`landing-header-saved-label`)} style={styles.savedLabel}>
-                            {`Saved${landing.savedIds.length ? ` (${landing.savedIds.length})` : ``}`}
-                        </Text>
-                    </Pressable>
+                    <DirectoryMarquee scope={`landing-header`} />
                 </View>
 
                 <Animated.View
                     {...elementProps(`landing-main`)}
                     style={entranceStyle}
+                    onLayout={(event) => {
+                        setMainOffset(event.nativeEvent.layout.y);
+                    }}
                 >
                     <View {...elementProps(`landing-hero`)} style={[styles.hero, wide && styles.heroWide]}>
                         <View {...elementProps(`landing-hero-copy`)} style={styles.heroCopy}>
-                            <Text {...elementProps(`landing-hero-eyebrow`)} style={styles.eyebrow}>
-                                {`The Directory of Directories`}
-                            </Text>
+                            <View
+                                {...elementProps(`landing-hero-eyebrow-line`)}
+                                style={styles.eyebrowLine}
+                            >
+                                <View
+                                    {...elementProps(`landing-hero-eyebrow-radar`)}
+                                    pointerEvents={`none`}
+                                    style={styles.eyebrowRadar}
+                                >
+                                    {radarRingStyles.map((ringStyle, index) => (
+                                        <Animated.View
+                                            {...elementProps(`landing-hero-eyebrow-radar-ring`, `${index}`)}
+                                            key={index}
+                                            style={[styles.eyebrowRadarRing, ringStyle]}
+                                        />
+                                    ))}
+                                    <Animated.View
+                                        {...elementProps(`landing-hero-eyebrow-dot`)}
+                                        style={[styles.eyebrowDot, dotStyle]}
+                                    />
+                                </View>
+                                <Text
+                                    {...elementProps(`landing-hero-eyebrow`)}
+                                    style={styles.eyebrow}
+                                >
+                                    {`The Directory of Directories`}
+                                </Text>
+                            </View>
                             <Text
                                 {...elementProps(`landing-hero-heading`)}
                                 accessibilityRole={`header`}
@@ -133,48 +213,119 @@ export default function LandingPage() {
                     </View>
 
                     <View {...elementProps(`landing-search-section`)} style={styles.searchSection}>
-                        <View {...elementProps(`landing-search-box`)} style={styles.searchBox}>
-                            <Icon id={`landing-search-icon`} className={`landing-search-icon`} name={`search`} color={palette.muted} size={20} />
+                        <View
+                            {...elementProps(`landing-search-tabs`)}
+                            accessibilityRole={`tablist`}
+                            style={styles.searchTabs}
+                        >
+                            {scopeItems.map((item) => (
+                                <Animated.View
+                                    {...elementProps(`landing-search-tab-container`, item.id)}
+                                    key={item.id}
+                                    style={[styles.searchTabContainer, searchThemeStyle]}
+                                >
+                                    <Pressable
+                                        {...elementProps(`landing-search-tab`, item.id)}
+                                        accessibilityRole={`tab`}
+                                        accessibilityState={{ selected: item.active }}
+                                        onPress={() => selectSearchScope(item.id)}
+                                        style={({ pressed }) => [
+                                            styles.searchTab,
+                                            item.active && styles.searchTabActive,
+                                            pressed && styles.pressed,
+                                        ]}
+                                    >
+                                        <Icon
+                                            id={`landing-search-tab-icon-${item.id}`}
+                                            className={`landing-search-tab-icon`}
+                                            name={item.icon}
+                                            color={palette.white}
+                                            size={14}
+                                        />
+                                        <Text
+                                            {...elementProps(`landing-search-tab-label`, item.id)}
+                                            style={styles.searchTabLabel}
+                                        >
+                                            {item.label}
+                                        </Text>
+                                    </Pressable>
+                                </Animated.View>
+                            ))}
+                        </View>
+                        <Animated.View
+                            {...elementProps(`landing-search-box`)}
+                            style={[styles.searchBox, searchBoxThemeStyle]}
+                        >
+                            <View
+                                {...elementProps(`landing-search-icon-container`)}
+                                pointerEvents={`none`}
+                                style={styles.searchIcon}
+                            >
+                                {searchIconItems.map((item) => (
+                                    <Animated.View
+                                        {...elementProps(`landing-search-icon-layer`, item.id)}
+                                        key={item.id}
+                                        style={[styles.searchIconLayer, { opacity: item.opacity }]}
+                                    >
+                                        <Icon
+                                            id={`landing-search-icon-${item.id}`}
+                                            className={`landing-search-icon`}
+                                            name={`search`}
+                                            color={item.color}
+                                            size={20}
+                                        />
+                                    </Animated.View>
+                                ))}
+                            </View>
                             <TextInput
                                 {...elementProps(`landing-search-input`)}
                                 value={landing.query}
                                 returnKeyType={`search`}
                                 onChangeText={landing.setQuery}
-                                onSubmitEditing={showDirectories}
+                                onSubmitEditing={showSearchResults}
                                 style={styles.searchInput}
-                                placeholder={`What are you looking for?`}
+                                placeholder={searchPlaceholder}
                                 placeholderTextColor={palette.muted}
                                 accessibilityLabel={`Search directories`}
                             />
-                            <Pressable
-                                {...elementProps(`landing-search-button`)}
-                                onPress={showDirectories}
-                                accessibilityRole={`button`}
-                                accessibilityLabel={`Show search results`}
-                                style={({ pressed }) => [styles.searchButton, pressed && styles.pressed]}
+                            <Animated.View
+                                {...elementProps(`landing-search-button-container`)}
+                                style={[styles.searchButtonContainer, searchThemeStyle]}
                             >
-                                <Icon id={`landing-search-button-icon`} className={`landing-search-button-icon`} name={`arrow-right`} color={palette.white} size={17} />
-                                <Text {...elementProps(`landing-search-button-label`)} style={styles.searchButtonLabel}>
-                                    {`Search`}
-                                </Text>
-                            </Pressable>
-                        </View>
+                                <Pressable
+                                    {...elementProps(`landing-search-button`)}
+                                    onPress={showSearchResults}
+                                    accessibilityRole={`button`}
+                                    accessibilityLabel={`Show search results`}
+                                    style={({ pressed }) => [styles.searchButton, pressed && styles.pressed]}
+                                >
+                                    <Icon id={`landing-search-button-icon`} className={`landing-search-button-icon`} name={`arrow-right`} color={palette.white} size={17} />
+                                    <Text {...elementProps(`landing-search-button-label`)} style={styles.searchButtonLabel}>
+                                        {`Search`}
+                                    </Text>
+                                </Pressable>
+                            </Animated.View>
+                        </Animated.View>
                         <Text {...elementProps(`landing-search-hint`)} style={styles.searchHint}>
                             {`A few good starting points: design, useful tools, communities, places.`}
                         </Text>
                     </View>
 
-                    <View {...elementProps(`landing-categories-heading`)} style={styles.sectionHeader}>
-                        <Text {...elementProps(`landing-categories-title`)} accessibilityRole={`header`} style={styles.sectionTitle}>
-                            {`Browse by category`}
-                        </Text>
-                    </View>
-                    <View {...elementProps(`landing-categories`)} style={styles.categories}>
-                        {categoryItems.map((item) => (
+                    <View
+                            {...elementProps(`landing-categories-section`)}
+                            style={styles.categorySection}
+                        >
+                            <View {...elementProps(`landing-categories-heading`)} style={styles.sectionHeader}>
+                                <Text {...elementProps(`landing-categories-title`)} accessibilityRole={`header`} style={styles.sectionTitle}>
+                                    {`Browse by category`}
+                                </Text>
+                            </View>
+                            <View {...elementProps(`landing-categories`)} style={styles.categories}>
+                                {categoryItems.map((item) => (
                                 <Pressable
                                     {...elementProps(`landing-category`, item.id)}
                                     key={item.id}
-                                    onPress={() => landing.selectCategory(item.id)}
+                                    onPress={() => selectCategory(item.id)}
                                     accessibilityRole={`button`}
                                     accessibilityState={{ selected: item.active }}
                                     accessibilityLabel={`${item.label}, ${item.count} directories`}
@@ -207,7 +358,54 @@ export default function LandingPage() {
                                         {`${item.count} directories`}
                                     </Text>
                                 </Pressable>
-                        ))}
+                                ))}
+                            </View>
+                            {categoryItems.length === 0 && (
+                                <View
+                                    {...elementProps(`landing-categories-empty-state`)}
+                                    style={styles.emptyState}
+                                >
+                                    <Icon
+                                        id={`landing-categories-empty-icon`}
+                                        className={`landing-categories-empty-icon`}
+                                        name={`search`}
+                                        color={palette.blue}
+                                        size={28}
+                                    />
+                                    <Text
+                                        {...elementProps(`landing-categories-empty-title`)}
+                                        style={styles.emptyTitle}
+                                    >
+                                        {`No categories found.`}
+                                    </Text>
+                                    <Text
+                                        {...elementProps(`landing-categories-empty-description`)}
+                                        style={styles.emptyDescription}
+                                    >
+                                        {`Try another search or explore all categories.`}
+                                    </Text>
+                                    <Pressable
+                                        {...elementProps(`landing-categories-empty-clear-button`)}
+                                        onPress={landing.clearFilters}
+                                        accessibilityRole={`button`}
+                                        style={({ pressed }) => [styles.clearButton, pressed && styles.pressed]}
+                                    >
+                                        <Icon
+                                            id={`landing-categories-empty-clear-icon`}
+                                            className={`landing-categories-empty-clear-icon`}
+                                            name={`arrow-right`}
+                                            color={palette.blue}
+                                            size={15}
+                                        />
+                                        <Text
+                                            {...elementProps(`landing-categories-empty-clear-label`)}
+                                            style={styles.clearButtonLabel}
+                                        >
+                                            {`Explore all categories`}
+                                        </Text>
+                                    </Pressable>
+                                </View>
+                            )}
                     </View>
 
                     <View
@@ -393,8 +591,38 @@ export default function LandingPage() {
                                 </Text>
                             </View>
                             <Text {...elementProps(`landing-footer-copyright`)} style={styles.copyright}>
-                                {`© ${new Date().getFullYear()}`}
+                                {`© ${year ?? `—`} Directory Directory`}
                             </Text>
+                        </View>
+                        <View
+                            {...elementProps(`landing-footer-details`)}
+                            style={styles.footerDetails}
+                        >
+                            <Link
+                                {...elementProps(`landing-footer-piratechs-link`)}
+                                asChild
+                                href={`https://piratechs.com/`}
+                            >
+                                <Pressable
+                                    {...elementProps(`landing-footer-piratechs-button`)}
+                                    accessibilityRole={`link`}
+                                    style={({ pressed }) => [styles.footerLink, pressed && styles.pressed]}
+                                >
+                                    <Text
+                                        {...elementProps(`landing-footer-piratechs-label`)}
+                                        style={styles.footerLinkLabel}
+                                    >
+                                        {`Piratechs`}
+                                    </Text>
+                                    <Icon
+                                        id={`landing-footer-piratechs-icon`}
+                                        className={`landing-footer-piratechs-icon`}
+                                        name={`arrow-up-right`}
+                                        color={palette.blue}
+                                        size={14}
+                                    />
+                                </Pressable>
+                            </Link>
                         </View>
                     </View>
                 </Animated.View>

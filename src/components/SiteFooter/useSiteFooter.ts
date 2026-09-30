@@ -1,13 +1,27 @@
+import { usePathname, useRouter } from 'expo-router'
 import { useLanding } from '../../shared/landing/useLanding'
+import { useCopyrightYear } from '../../shared/time/useCopyrightYear'
 
-export function useSiteFooter(onExplore: () => void) {
+export function useSiteFooter(onExplore?: () => void) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const { year } = useCopyrightYear()
   const { clearFilters } = useLanding()
-  const year = new Date().getFullYear()
 
   const exploreAll = () => {
     clearFilters()
-    onExplore()
+
+    if (onExplore) {
+      onExplore()
+      return
+    }
+
+    router.push(`/`)
   }
 
-  return { year, exploreAll }
+  return {
+    year,
+    exploreAll,
+    isHome: pathname === `/`,
+  }
 }

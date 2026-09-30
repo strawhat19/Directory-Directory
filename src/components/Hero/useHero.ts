@@ -1,10 +1,15 @@
 import type { FormEvent } from 'react'
 import { useLanding } from '../../shared/landing/useLanding'
+import type { SearchScope } from '../../shared/landing/searchScopes'
 
 export const suggestedSearches = [`Design`, `Open source`, `Communities`]
 
-export function useHero(onExplore: () => void) {
-  const { query, setQuery, clearFilters } = useLanding()
+export function useHero(onExplore: (id: string) => void) {
+  const { query, setQuery, searchScope, clearFilters, setSearchScope } = useLanding()
+
+  const selectScope = (scope: SearchScope) => {
+    setSearchScope(scope)
+  }
 
   const search = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -12,14 +17,14 @@ export function useHero(onExplore: () => void) {
 
     clearFilters()
     setQuery(nextQuery)
-    onExplore()
+    onExplore(`explore`)
   }
 
   const searchSuggestion = (suggestion: string) => {
     clearFilters()
     setQuery(suggestion)
-    onExplore()
+    onExplore(`explore`)
   }
 
-  return { query, setQuery, search, searchSuggestion }
+  return { query, search, setQuery, searchScope, selectScope, searchSuggestion }
 }

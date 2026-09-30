@@ -23,10 +23,27 @@
     align-items: center;
     color: var(--dd-muted);
   }
+
+  &__empty {
+    gap: 18px;
+    display: flex;
+    padding: 24px;
+    border-radius: 12px;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--dd-paper);
+    border: 1px solid var(--dd-line);
+  }
+
+  &__empty-message {
+    margin: 0;
+    font-size: 12px;
+    color: var(--dd-muted);
+  }
 }
 
 .category-grid {
-  gap: 17px;
+  gap: 28px 17px;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
@@ -73,6 +90,26 @@
   &--places {
     --category-color: #637a98;
     --category-tint: #eef1f6;
+  }
+
+  &--learning {
+    --category-color: #b7860b;
+    --category-tint: #fff8db;
+  }
+
+  &--technology {
+    --category-color: #8054d7;
+    --category-tint: #f3edff;
+  }
+
+  &--business {
+    --category-color: #d97722;
+    --category-tint: #fff1e6;
+  }
+
+  &--lifestyle {
+    --category-color: #cd4c8c;
+    --category-tint: #fdeef5;
   }
 
   &:hover,
@@ -149,6 +186,11 @@
 
     &__note {
       display: none;
+    }
+
+    &__empty {
+      align-items: flex-start;
+      flex-direction: column;
     }
   }
 

@@ -4,11 +4,11 @@ import { useSiteFooter } from './useSiteFooter'
 import BrandMark from '../BrandMark/BrandMark'
 
 type SiteFooterProps = {
-  onExplore: () => void
+  onExplore?: () => void
 }
 
 export default function SiteFooter({ onExplore }: SiteFooterProps) {
-  const { year, exploreAll } = useSiteFooter(onExplore)
+  const { year, isHome, exploreAll } = useSiteFooter(onExplore)
 
   return (
     <footer id={`site-footer`} className={`site-footer`}>
@@ -37,23 +37,41 @@ export default function SiteFooter({ onExplore }: SiteFooterProps) {
       </div>
       <div id={`footer-bottom`} className={`site-footer__bottom`}>
         <a
-          href={`#top`}
+          href={isHome ? `#top` : `/`}
           id={`footer-brand-link`}
           className={`site-footer__brand`}
-          aria-label={`Directory Directory, back to top`}
+          aria-label={`Directory Directory home`}
         >
           <BrandMark size={25} id={`footer-brand-mark`} />
           <span id={`footer-brand-name`} className={`site-footer__brand-name`}>
             {`Directory Directory`}
           </span>
         </a>
-        <p id={`footer-copyright`} className={`site-footer__copyright`}>
-          {`© ${year} Directory Directory. Made for the curious.`}
-        </p>
-        <a href={`#top`} id={`footer-back-top`} className={`site-footer__back-top`}>
-          {`Back to top`}
-          <Icon name={`arrow-up-right`} id={`footer-back-top-icon`} size={13} />
-        </a>
+        <div id={`footer-details`} className={`site-footer__details`}>
+          <p id={`footer-copyright`} className={`site-footer__copyright`}>
+            {`© ${year === null ? `` : `${year} `}Directory Directory. Made for the curious.`}
+          </p>
+        </div>
+        <div id={`footer-actions`} className={`site-footer__actions`}>
+          <a
+            target={`_blank`}
+            id={`footer-piratechs-link`}
+            href={`https://piratechs.com/`}
+            rel={`noopener noreferrer`}
+            className={`site-footer__creator`}
+          >
+            {`Made by Piratechs`}
+            <Icon name={`arrow-up-right`} id={`footer-piratechs-icon`} size={13} />
+          </a>
+          <a
+            href={`#top`}
+            id={`footer-back-top`}
+            className={`site-footer__back-top`}
+          >
+            {`Back to top`}
+            <Icon name={`arrow-up-right`} id={`footer-back-top-icon`} size={13} />
+          </a>
+        </div>
       </div>
     </footer>
   )

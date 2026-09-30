@@ -1,13 +1,33 @@
-import { useLanding } from '../../shared/landing/useLanding'
+import { useEffect, useRef } from 'react'
+import { usePathname } from 'expo-router'
+import { siteNavigation } from '../../shared/navigation/siteNavigation'
 
-export function useSiteHeader(onNavigate: (id: string) => void) {
-  const { savedIds, clearFilters, setTopic } = useLanding()
+export function useSiteHeader() {
+  const header = useRef<HTMLElement>(null)
+  const pathname = usePathname()
+  const links = siteNavigation.map((link) => ({
+    ...link,
+    active: pathname === link.href,
+  }))
 
-  const showSaved = () => {
-    clearFilters()
-    setTopic(`Saved`)
-    onNavigate(`explore`)
-  }
+  useEffect(() => {
+    const element = header.current
+    const page = element?.closest<HTMLElement>(`.landing-page, .information-page, .contact-page, .auth-page`)
+    if (!element || !page) return
 
-  return { savedCount: savedIds.length, showSaved }
+    const updateHeight = () => {
+      page.style.setProperty(`--site-header-height`, `${element.getBoundingClientRect().height}px`)
+    }
+
+    updateHeight()
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(element)
+
+    return () => {
+      observer.disconnect()
+      page.style.removeProperty(`--site-header-height`)
+    }
+  }, [])
+
+  return { links, header }
 }

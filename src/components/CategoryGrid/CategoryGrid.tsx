@@ -7,7 +7,7 @@ type CategoryGridProps = {
 }
 
 export default function CategoryGrid({ onExplore }: CategoryGridProps) {
-  const { category, categoryItems, exploreCategory } = useCategoryGrid(onExplore)
+  const { category, categoryItems, clearFilters, exploreCategory } = useCategoryGrid(onExplore)
 
   return (
     <section
@@ -24,6 +24,24 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
           {`A world of possibilities`}
         </span>
       </div>
+      {categoryItems.length === 0 && (
+        <div id={`category-empty-state`} className={`category-section__empty`}>
+          <p id={`category-empty-message`} className={`category-section__empty-message`}>
+            {`No categories match your search.`}
+          </p>
+          <button
+            type={`button`}
+            onClick={clearFilters}
+            id={`category-empty-reset`}
+            className={`category-section__empty-reset dd-button dd-button--secondary`}
+          >
+            <Icon name={`close`} id={`category-empty-reset-icon`} size={14} />
+            <span id={`category-empty-reset-label`} className={`category-section__empty-reset-label`}>
+              {`Clear search`}
+            </span>
+          </button>
+        </div>
+      )}
       <div id={`category-grid`} className={`category-grid`}>
         {categoryItems.map((item) => (
           <button
