@@ -77,9 +77,6 @@ export default function SiteHeader() {
             id={`header-menu-icon`}
             className={`site-header__menu-icon`}
           />
-          <span id={`header-menu-label`} className={`site-header__menu-label`}>
-            {menuOpen ? `Close` : `Menu`}
-          </span>
         </button>
         <div
           id={`header-actions`}
