@@ -15,15 +15,17 @@ export function createContactStyles(fontsLoaded: boolean) {
             gap: 24,
             width: `100%`,
             maxWidth: 900,
-            paddingTop: 20,
             paddingBottom: 32,
             alignSelf: `center`,
+        },
+        body: {
+            gap: 24,
         },
         stickyHeader: {
             gap: 16,
             zIndex: 10,
             paddingBottom: 16,
-            backgroundColor: palette.background,
+            backgroundColor: `rgba(247, 248, 250, 0.4)`,
         },
         header: {
             gap: 20,

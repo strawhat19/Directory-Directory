@@ -1,7 +1,10 @@
 import { Link } from 'expo-router';
+import { useRef } from 'react';
+import { BlurTargetView } from 'expo-blur';
 import Icon from '../Icon/Icon';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
+import GlassBackdrop from '../GlassBackdrop/GlassBackdrop';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import type { InformationPageProps } from './InformationPage.types';
 import { useInformationPage } from './useInformationPage.native';
@@ -13,6 +16,7 @@ import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages';
 
 export default function InformationPage({ page }: InformationPageProps) {
+    const blurTarget = useRef<View | null>(null);
     const content = informationPages[page];
     const { year, styles, padding } = useInformationPage();
 
@@ -31,6 +35,8 @@ export default function InformationPage({ page }: InformationPageProps) {
                     {...elementProps(`information-sticky-header`, page)}
                     style={styles.stickyHeader}
                 >
+                    <GlassBackdrop scope={`information-header-${page}`} blurTarget={blurTarget} />
+                    <DirectoryMarquee scope={`information-header-${page}`} />
                     <View
                         {...elementProps(`information-header`, page)}
                         style={styles.header}
@@ -90,8 +96,12 @@ export default function InformationPage({ page }: InformationPageProps) {
                             <AuthActions scope={`information-header-${page}`} />
                         </View>
                     </View>
-                    <DirectoryMarquee scope={`information-header-${page}`} />
                 </View>
+                <BlurTargetView
+                    ref={blurTarget}
+                    style={styles.body}
+                    {...elementProps(`information-body-blur-target`, page)}
+                >
                 <Link href={`/`} asChild>
                     <Pressable
                         {...elementProps(`information-back-link`, page)}
@@ -221,6 +231,7 @@ export default function InformationPage({ page }: InformationPageProps) {
                         </Pressable>
                     </Link>
                 </View>
+                </BlurTargetView>
             </ScrollView>
         </SafeAreaView>
     );

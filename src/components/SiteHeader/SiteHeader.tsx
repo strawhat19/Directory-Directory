@@ -11,6 +11,7 @@ export default function SiteHeader() {
 
   return (
     <header ref={header} id={`site-header`} className={`site-header`}>
+      <DirectoryMarquee scope={`header`} />
       <div id={`header-bar`} className={`site-header__bar`}>
         <Link
           href={`/`}
@@ -63,7 +64,6 @@ export default function SiteHeader() {
           <AuthActions scope={`header`} />
         </div>
       </div>
-      <DirectoryMarquee scope={`header`} />
     </header>
   )
 }

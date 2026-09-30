@@ -10,6 +10,7 @@ type DragGesture = {
   captureTarget: Element;
 };
 
+const pauseOnHover = false;
 const loopPosition = (position: number, width: number) => ((position % width) + width) % width;
 
 export function useDirectoryMarquee() {
@@ -17,14 +18,13 @@ export function useDirectoryMarquee() {
   const cycleWidth = useRef(0);
   const hovering = useRef(false);
   const focused = useRef(false);
-  const pausedRef = useRef(false);
+  const reducedMotion = useRef(false);
   const suppressClick = useRef(false);
   const gesture = useRef<DragGesture | null>(null);
   const track = useRef<HTMLDivElement>(null);
   const cycle = useRef<HTMLDivElement>(null);
   const viewport = useRef<HTMLDivElement>(null);
   const clickTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const [paused, setPaused] = useState(false);
   const [dragging, setDragging] = useState(false);
   const [measured, setMeasured] = useState(false);
   const [copyCount, setCopyCount] = useState(3);
@@ -41,10 +41,7 @@ export function useDirectoryMarquee() {
     const motion = window.matchMedia(`(prefers-reduced-motion: reduce)`);
 
     const applyMotionPreference = () => {
-      if (!motion.matches) return;
-
-      pausedRef.current = true;
-      setPaused(true);
+      reducedMotion.current = motion.matches;
     };
 
     const measure = () => {
@@ -66,8 +63,8 @@ export function useDirectoryMarquee() {
 
       if (
         cycleWidth.current &&
-        !pausedRef.current &&
-        !hovering.current &&
+        !reducedMotion.current &&
+        !(pauseOnHover && hovering.current) &&
         !focused.current &&
         !gesture.current
       ) {
@@ -195,20 +192,13 @@ export function useDirectoryMarquee() {
     focused.current = false;
   };
 
-  const togglePaused = () => {
-    pausedRef.current = !pausedRef.current;
-    setPaused(pausedRef.current);
-  };
-
   return {
     track,
     cycle,
-    paused,
     viewport,
     dragging,
     measured,
     copyCount,
-    togglePaused,
     onPointerDown,
     onPointerMove,
     onClickCapture,

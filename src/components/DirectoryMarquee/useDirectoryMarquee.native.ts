@@ -19,7 +19,6 @@ export function useDirectoryMarquee() {
   const dragged = useRef(false);
   const interacting = useRef(false);
   const touchOrigin = useRef({ x: 0, y: 0 });
-  const [paused, setPaused] = useState(false);
   const [cycleWidth, setCycleWidth] = useState(0);
   const [viewportWidth, setViewportWidth] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(true);
@@ -28,7 +27,6 @@ export function useDirectoryMarquee() {
   );
   const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const isPlaying = !paused && !reduceMotion;
   const copyCount = cycleWidth > 0
     ? Math.max(3, Math.ceil(viewportWidth / cycleWidth) + 3)
     : 3;
@@ -140,7 +138,7 @@ export function useDirectoryMarquee() {
   }, [cycleWidth, viewportWidth]);
 
   useEffect(() => {
-    if (!isPlaying || !appActive || cycleWidth <= 0) return;
+    if (reduceMotion || !appActive || cycleWidth <= 0) return;
 
     let frame = 0;
     let previousTime: number | null = null;
@@ -161,14 +159,12 @@ export function useDirectoryMarquee() {
     frame = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(frame);
-  }, [appActive, cycleWidth, isPlaying]);
+  }, [appActive, cycleWidth, reduceMotion]);
 
   return {
     copies,
     scroll,
     onScroll,
-    isPlaying,
-    reduceMotion,
     onTouchMove,
     measureCycle,
     onTouchStart,
@@ -177,6 +173,5 @@ export function useDirectoryMarquee() {
     pauseInteraction,
     releaseInteraction,
     onScrollBeginDrag,
-    togglePaused: () => setPaused((current) => !current),
   };
 }

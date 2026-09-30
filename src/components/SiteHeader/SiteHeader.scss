@@ -1,15 +1,23 @@
 .site-header {
   top: 0;
   z-index: 10;
+  width: 100vw;
+  min-width: 0;
   position: sticky;
-  background: var(--dd-page);
+  min-height: 56px;
+  margin-left: calc(50% - 50vw);
+  background: rgb(247 248 250 / 68%);
   border-bottom: 1px solid var(--dd-line);
+  -webkit-backdrop-filter: blur(18px) saturate(125%);
+  backdrop-filter: blur(18px) saturate(125%);
 
   &__bar {
     gap: 24px;
     display: flex;
+    margin: 0 auto;
     flex-wrap: wrap;
     padding: 20px 0;
+    max-width: 85dvw;
     align-items: center;
     justify-content: space-between;
   }

@@ -53,10 +53,10 @@ export default function DirectoryExplorer() {
                     className={`directory-explorer__metadata`}
                 >
                     <span
-                        id={`directory-explorer-sample-label`}
-                        className={`directory-explorer__sample-label dd-eyebrow`}
+                        id={`directory-explorer-collection-label`}
+                        className={`directory-explorer__collection-label dd-eyebrow`}
                     >
-                        {`Sample collection`}
+                        {`Curated collection`}
                     </span>
 
                     <span

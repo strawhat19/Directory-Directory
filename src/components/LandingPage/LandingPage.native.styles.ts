@@ -50,7 +50,7 @@ export function createLandingStyles(fontsLoaded: boolean) {
         stickyHeader: {
             zIndex: 10,
             paddingBottom: 16,
-            backgroundColor: palette.background,
+            backgroundColor: `rgba(247, 248, 250, 0.4)`,
         },
         header: {
             gap: 20,
@@ -653,6 +653,23 @@ export function createLandingStyles(fontsLoaded: boolean) {
             fontFamily: regular,
             color: palette.muted,
             borderColor: palette.border,
+        },
+        modalVisitButton: {
+            gap: 8,
+            minHeight: 48,
+            marginTop: 22,
+            marginBottom: 12,
+            borderWidth: 1,
+            borderRadius: 9,
+            flexDirection: `row`,
+            alignItems: `center`,
+            justifyContent: `center`,
+            borderColor: palette.blue,
+        },
+        modalVisitLabel: {
+            fontSize: 12,
+            fontFamily: semibold,
+            color: palette.blue,
         },
         modalSaveButton: {
             gap: 8,

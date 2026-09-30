@@ -1,7 +1,10 @@
 import { Link } from 'expo-router';
+import { useRef } from 'react';
+import { BlurTargetView } from 'expo-blur';
 import Icon from '../Icon/Icon';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
+import GlassBackdrop from '../GlassBackdrop/GlassBackdrop';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { contactFields } from './useContactForm';
 import { useContactPage } from './useContactPage.native';
@@ -12,6 +15,7 @@ import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 export default function ContactPage() {
+    const blurTarget = useRef<View | null>(null);
     const {
         year,
         status,
@@ -35,6 +39,8 @@ export default function ContactPage() {
                     {...elementProps(`contact-sticky-header`)}
                     style={styles.stickyHeader}
                 >
+                    <GlassBackdrop scope={`contact-header`} blurTarget={blurTarget} />
+                    <DirectoryMarquee scope={`contact-header`} />
                     <View
                         {...elementProps(`contact-header`)}
                         style={styles.header}
@@ -84,8 +90,12 @@ export default function ContactPage() {
                             <AuthActions scope={`contact-header`} />
                         </View>
                     </View>
-                    <DirectoryMarquee scope={`contact-header`} />
                 </View>
+                <BlurTargetView
+                    ref={blurTarget}
+                    style={styles.body}
+                    {...elementProps(`contact-body-blur-target`)}
+                >
                 <Link href={`/`} asChild>
                     <Pressable
                         {...elementProps(`contact-back-link`)}
@@ -207,6 +217,7 @@ export default function ContactPage() {
                         </Pressable>
                     </Link>
                 </View>
+                </BlurTargetView>
             </ScrollView>
         </SafeAreaView>
     );

@@ -1,4 +1,5 @@
 import type { IconName } from '../../components/Icon/Icon.types';
+import { linkedDirectories, type DirectoryAccent } from '../catalog/catalog';
 
 export type PopularDirectory = {
     id: string;
@@ -9,69 +10,21 @@ export type PopularDirectory = {
     background: string;
 };
 
-export const popularDirectories: PopularDirectory[] = [
-    {
-        icon: `sparkles`,
-        color: `#bd581b`,
-        id: `product-hunt`,
-        label: `Product Hunt`,
-        background: `#fff1e6`,
-        href: `https://www.producthunt.com/`,
-    },
-    {
-        icon: `tools`,
-        color: `#168652`,
-        id: `alternative-to`,
-        label: `AlternativeTo`,
-        background: `#e6f5ed`,
-        href: `https://alternativeto.net/`,
-    },
-    {
-        icon: `design`,
-        id: `awwwards`,
-        color: `#c13139`,
-        label: `Awwwards`,
-        background: `#fdecef`,
-        href: `https://www.awwwards.com/`,
-    },
-    {
-        id: `behance`,
-        icon: `communities`,
-        label: `Behance`,
-        color: `#0868df`,
-        background: `#edf4ff`,
-        href: `https://www.behance.net/`,
-    },
-    {
-        id: `g2`,
-        label: `G2`,
-        icon: `business`,
-        color: `#7443c8`,
-        background: `#f3edff`,
-        href: `https://www.g2.com/`,
-    },
-    {
-        id: `yelp`,
-        label: `Yelp`,
-        icon: `places`,
-        color: `#b33775`,
-        background: `#fdeef5`,
-        href: `https://www.yelp.com/`,
-    },
-    {
-        id: `all-trails`,
-        icon: `places`,
-        label: `AllTrails`,
-        color: `#168652`,
-        background: `#e6f5ed`,
-        href: `https://www.alltrails.com/`,
-    },
-    {
-        icon: `learning`,
-        color: `#926b08`,
-        id: `open-library`,
-        label: `Open Library`,
-        background: `#fff8db`,
-        href: `https://openlibrary.org/`,
-    },
-];
+const accentColors: Record<DirectoryAccent, { color: string; background: string }> = {
+    ink: { color: `#14213d`, background: `#eef0f5` },
+    red: { color: `#d83b42`, background: `#fff0ee` },
+    blue: { color: `#0874f9`, background: `#edf4ff` },
+    pink: { color: `#cd4c8c`, background: `#fdeef5` },
+    green: { color: `#21a668`, background: `#edf8f1` },
+    yellow: { color: `#b7860b`, background: `#fff8db` },
+    purple: { color: `#8054d7`, background: `#f3edff` },
+    orange: { color: `#d97722`, background: `#fff1e6` },
+};
+
+export const popularDirectories: PopularDirectory[] = linkedDirectories.map((directory) => ({
+    id: directory.id,
+    href: directory.href,
+    icon: directory.category,
+    label: directory.name,
+    ...accentColors[directory.accent],
+}));

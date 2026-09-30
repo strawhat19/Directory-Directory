@@ -1,17 +1,20 @@
-import { Link } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Animated, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
-
+import { useRef } from 'react';
 import Icon from '../Icon/Icon';
+import { Link } from 'expo-router';
+import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
-import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
-import { useLandingPage } from './useLandingPage.native';
 import { palette } from './LandingPage.native.styles';
+import { useLandingPage } from './useLandingPage.native';
 import { elementProps } from '../../shared/ui/elementProps';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
+import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
+import { Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 export default function LandingPage() {
+    const blurTarget = useRef<View | null>(null);
     const {
         wide,
         year,
@@ -66,6 +69,8 @@ export default function LandingPage() {
                         setHeaderHeight(event.nativeEvent.layout.height);
                     }}
                 >
+                    <GlassBackdrop scope={`landing-header`} blurTarget={blurTarget} />
+                    <DirectoryMarquee scope={`landing-header`} />
                     <View {...elementProps(`landing-header`)} style={styles.header}>
                         <View {...elementProps(`landing-header-brand`)} style={styles.brand}>
                             <BrandMark id={`landing-header-mark`} className={`landing-header-mark`} size={43} />
@@ -113,15 +118,18 @@ export default function LandingPage() {
                             <AuthActions scope={`landing-header`} />
                         </View>
                     </View>
-                    <DirectoryMarquee scope={`landing-header`} />
                 </View>
 
-                <Animated.View
-                    {...elementProps(`landing-main`)}
-                    style={entranceStyle}
+                <BlurTargetView
+                    ref={blurTarget}
+                    {...elementProps(`landing-main-blur-target`)}
                     onLayout={(event) => {
                         setMainOffset(event.nativeEvent.layout.y);
                     }}
+                >
+                <Animated.View
+                    {...elementProps(`landing-main`)}
+                    style={entranceStyle}
                 >
                     <View {...elementProps(`landing-hero`)} style={[styles.hero, wide && styles.heroWide]}>
                         <View {...elementProps(`landing-hero-copy`)} style={styles.heroCopy}>
@@ -626,6 +634,7 @@ export default function LandingPage() {
                         </View>
                     </View>
                 </Animated.View>
+                </BlurTargetView>
             </ScrollView>
 
             <Modal
@@ -669,9 +678,32 @@ export default function LandingPage() {
                             <Text {...elementProps(`landing-modal-category`, selected.id)} style={styles.directoryLabel}>
                                 {selected.label}
                             </Text>
-                            <Text {...elementProps(`landing-modal-sample-notice`, selected.id)} style={styles.sampleNotice}>
-                                {`This is a sample listing for the Directory Directory collection. Explore the front-end preview and save your favorites on this device.`}
-                            </Text>
+                            {selected.href ? (
+                                <Pressable
+                                    {...elementProps(`landing-modal-visit`, selected.id)}
+                                    onPress={() => {
+                                        if (selected.href) void Linking.openURL(selected.href).catch(() => undefined);
+                                    }}
+                                    accessibilityRole={`link`}
+                                    accessibilityLabel={`Visit ${selected.name} in browser`}
+                                    style={({ pressed }) => [styles.modalVisitButton, pressed && styles.pressed]}
+                                >
+                                    <Icon
+                                        size={18}
+                                        name={`arrow-up-right`}
+                                        color={palette.blue}
+                                        id={`landing-modal-visit-icon-${selected.id}`}
+                                        className={`landing-modal-visit-icon`}
+                                    />
+                                    <Text {...elementProps(`landing-modal-visit-label`, selected.id)} style={styles.modalVisitLabel}>
+                                        {`Visit directory`}
+                                    </Text>
+                                </Pressable>
+                            ) : (
+                                <Text {...elementProps(`landing-modal-sample-notice`, selected.id)} style={styles.sampleNotice}>
+                                    {`This is a sample listing for the Directory Directory collection. Explore the front-end preview and save your favorites on this device.`}
+                                </Text>
+                            )}
                             <Pressable
                                 {...elementProps(`landing-modal-save`, selected.id)}
                                 onPress={() => landing.toggleSaved(selected.id)}

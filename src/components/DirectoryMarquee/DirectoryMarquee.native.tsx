@@ -1,6 +1,7 @@
 import Icon from '../Icon/Icon';
 import { styles } from './DirectoryMarquee.native.styles';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import Svg, { Defs, LinearGradient, Rect, Stop } from 'react-native-svg';
+import { Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { useDirectoryMarquee } from './useDirectoryMarquee.native';
 import { elementProps } from '../../shared/ui/elementProps';
 import { popularDirectories } from '../../shared/navigation/popularDirectories';
@@ -10,12 +11,12 @@ type DirectoryMarqueeProps = {
 };
 
 export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeProps) {
+  const { width } = useWindowDimensions();
+  const fadeWidth = Math.max(32, Math.min(72, width * 0.06));
   const {
     copies,
     scroll,
     onScroll,
-    isPlaying,
-    reduceMotion,
     onTouchMove,
     measureCycle,
     onTouchStart,
@@ -24,13 +25,12 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
     pauseInteraction,
     releaseInteraction,
     onScrollBeginDrag,
-    togglePaused,
   } = useDirectoryMarquee();
 
   return (
     <View
       {...elementProps(`directory-marquee`, scope)}
-      style={styles.bar}
+      style={[styles.bar, { width }]}
     >
       <ScrollView
         horizontal
@@ -93,34 +93,48 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
           </View>
         ))}
       </ScrollView>
-      <Pressable
-        disabled={reduceMotion}
-        onPress={togglePaused}
-        accessibilityRole={`button`}
-        accessibilityState={{ disabled: reduceMotion }}
-        accessibilityLabel={isPlaying ? `Pause directory scrolling` : `Play directory scrolling`}
-        accessibilityHint={reduceMotion ? `Automatic scrolling is off because reduced motion is enabled.` : undefined}
-        style={({ pressed }) => [
-          styles.control,
-          pressed && styles.pressed,
-          reduceMotion && styles.disabled,
-        ]}
-        {...elementProps(`directory-marquee-control`, scope)}
-      >
-        <Icon
-          size={13}
-          color={`#6b7280`}
-          name={isPlaying ? `pause` : `play`}
-          className={`directory-marquee-control-icon`}
-          id={`directory-marquee-control-icon-${scope}`}
-        />
-        <Text
-          style={styles.controlLabel}
-          {...elementProps(`directory-marquee-control-label`, scope)}
-        >
-          {isPlaying ? `Pause` : `Play`}
-        </Text>
-      </Pressable>
+      {([`left`, `right`] as const).map((side) => {
+        const gradientId = `directory-marquee-fade-gradient-${scope}-${side}`;
+
+        return (
+          <View
+            key={side}
+            pointerEvents={`none`}
+            accessibilityElementsHidden
+            importantForAccessibility={`no-hide-descendants`}
+            style={[
+              styles.fade,
+              side === `left` ? styles.fadeLeft : styles.fadeRight,
+              { width: fadeWidth },
+            ]}
+            {...elementProps(`directory-marquee-fade`, `${scope}-${side}`)}
+          >
+            <Svg width={`100%`} height={`100%`}>
+              <Defs>
+                <LinearGradient
+                  id={gradientId}
+                  x1={`0%`}
+                  y1={`0%`}
+                  x2={`100%`}
+                  y2={`0%`}
+                >
+                  <Stop
+                    offset={`0%`}
+                    stopColor={`#f7f8fa`}
+                    stopOpacity={side === `left` ? 0.76 : 0}
+                  />
+                  <Stop
+                    offset={`100%`}
+                    stopColor={`#f7f8fa`}
+                    stopOpacity={side === `left` ? 0 : 0.76}
+                  />
+                </LinearGradient>
+              </Defs>
+              <Rect width={`100%`} height={`100%`} fill={`url(#${gradientId})`} />
+            </Svg>
+          </View>
+        );
+      })}
     </View>
   );
 }

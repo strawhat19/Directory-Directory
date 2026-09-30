@@ -97,31 +97,53 @@ export default function DirectoryPreview() {
                         {selectedDirectory.summary}
                     </p>
 
-                    <div
-                        id={`directory-preview-sample-note`}
-                        className={`directory-preview__sample-note`}
-                    >
-                        <Icon
-                            size={17}
-                            name={`globe`}
-                            id={`directory-preview-sample-icon`}
-                            className={`directory-preview__sample-icon`}
-                        />
-
-                        <p
-                            id={`directory-preview-sample-description`}
-                            className={`directory-preview__sample-description`}
+                    {selectedDirectory.href ? (
+                        <a
+                            target={`_blank`}
+                            href={selectedDirectory.href}
+                            rel={`noopener noreferrer`}
+                            id={`directory-preview-visit-${selectedDirectory.id}`}
+                            className={`directory-preview__visit dd-button dd-button--primary`}
                         >
-                            {`This is a sample listing in the Directory Directory collection.`}
-                        </p>
-                    </div>
+                            <Icon
+                                size={17}
+                                name={`arrow-up-right`}
+                                id={`directory-preview-visit-icon-${selectedDirectory.id}`}
+                                className={`directory-preview__visit-icon`}
+                            />
+                            <span
+                                id={`directory-preview-visit-label-${selectedDirectory.id}`}
+                                className={`directory-preview__visit-label`}
+                            >
+                                {`Visit directory`}
+                            </span>
+                        </a>
+                    ) : (
+                        <div
+                            id={`directory-preview-sample-note`}
+                            className={`directory-preview__sample-note`}
+                        >
+                            <Icon
+                                size={17}
+                                name={`globe`}
+                                id={`directory-preview-sample-icon`}
+                                className={`directory-preview__sample-icon`}
+                            />
+                            <p
+                                id={`directory-preview-sample-description`}
+                                className={`directory-preview__sample-description`}
+                            >
+                                {`This is a sample listing in the Directory Directory collection.`}
+                            </p>
+                        </div>
+                    )}
 
                     <button
                         type={`button`}
                         aria-pressed={saved}
                         id={`directory-preview-save`}
                         onClick={() => toggleSaved(selectedDirectory.id)}
-                        className={`directory-preview__save dd-button dd-button--${saved ? `secondary` : `primary`}`}
+                        className={`directory-preview__save dd-button dd-button--${selectedDirectory.href || saved ? `secondary` : `primary`}`}
                     >
                         <Icon
                             size={18}

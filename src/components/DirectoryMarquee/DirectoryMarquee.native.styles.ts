@@ -2,18 +2,29 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   bar: {
-    gap: 8,
     height: 58,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     flexDirection: `row`,
+    alignSelf: `center`,
     alignItems: `center`,
-    borderColor: `#e3e7ee`,
-    backgroundColor: `#ffffff`,
+    borderColor: `rgba(227, 231, 238, 0.7)`,
+    backgroundColor: `rgba(247, 248, 250, 0.35)`,
   },
   viewport: {
     flex: 1,
     height: 56,
+  },
+  fade: {
+    top: 1,
+    bottom: 1,
+    position: `absolute`,
+  },
+  fadeLeft: {
+    left: 0,
+  },
+  fadeRight: {
+    right: 0,
   },
   track: {
     alignItems: `center`,
@@ -39,26 +50,7 @@ export const styles = StyleSheet.create({
     fontSize: 11,
     fontWeight: `600`,
   },
-  control: {
-    gap: 5,
-    minWidth: 66,
-    minHeight: 44,
-    borderRadius: 8,
-    paddingHorizontal: 7,
-    alignItems: `center`,
-    flexDirection: `row`,
-    justifyContent: `center`,
-    backgroundColor: `#f7f8fa`,
-  },
-  controlLabel: {
-    fontSize: 10,
-    color: `#6b7280`,
-    fontWeight: `600`,
-  },
   pressed: {
     opacity: 0.65,
-  },
-  disabled: {
-    opacity: 0.55,
   },
 });

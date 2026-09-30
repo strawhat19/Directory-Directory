@@ -1,6 +1,9 @@
 import { Link } from 'expo-router';
+import { useRef } from 'react';
+import { BlurTargetView } from 'expo-blur';
 import Icon from '../Icon/Icon';
 import BrandMark from '../BrandMark/BrandMark';
+import GlassBackdrop from '../GlassBackdrop/GlassBackdrop';
 import { authDemoNotice } from './useAuthPage';
 import type { AuthPageProps } from './AuthPage.types';
 import AuthActions from '../AuthActions/AuthActions';
@@ -13,6 +16,7 @@ import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
 
 export default function AuthPage({ mode }: AuthPageProps) {
+    const blurTarget = useRef<View | null>(null);
     const {
         year,
         error,
@@ -45,6 +49,8 @@ export default function AuthPage({ mode }: AuthPageProps) {
                     {...elementProps(`auth-sticky-header`, mode)}
                     style={styles.stickyHeader}
                 >
+                    <GlassBackdrop scope={`auth-header-${mode}`} blurTarget={blurTarget} />
+                    <DirectoryMarquee scope={`auth-header-${mode}`} />
                     <View {...elementProps(`auth-header`, mode)} style={styles.header}>
                         <Link href={`/`} asChild>
                             <Pressable
@@ -89,8 +95,12 @@ export default function AuthPage({ mode }: AuthPageProps) {
                             <AuthActions scope={`auth-${mode}`} />
                         </View>
                     </View>
-                    <DirectoryMarquee scope={`auth-header-${mode}`} />
                 </View>
+                <BlurTargetView
+                    ref={blurTarget}
+                    style={styles.body}
+                    {...elementProps(`auth-body-blur-target`, mode)}
+                >
                 <View {...elementProps(`auth-panel`, mode)} style={styles.panel}>
                     <View {...elementProps(`auth-eyebrow`, mode)} style={styles.eyebrow}>
                         <Icon
@@ -215,6 +225,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
                         </Pressable>
                     </Link>
                 </View>
+                </BlurTargetView>
             </ScrollView>
         </SafeAreaView>
     );

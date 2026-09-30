@@ -11,12 +11,10 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
   const {
     track,
     cycle,
-    paused,
     viewport,
     dragging,
     measured,
     copyCount,
-    togglePaused,
     onPointerUp,
     onPointerEnter,
     onPointerLeave,
@@ -33,7 +31,7 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
     <section
       id={`directory-marquee-${scope}`}
       className={`directory-marquee`}
-      aria-label={`Popular directories`}
+      aria-label={`Explore directories`}
     >
       <div
         ref={viewport}
@@ -99,27 +97,6 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
           ))}
         </div>
       </div>
-      <button
-        type={`button`}
-        onClick={togglePaused}
-        aria-pressed={paused}
-        className={`directory-marquee__toggle`}
-        id={`directory-marquee-toggle-${scope}`}
-        aria-label={paused ? `Play automatic scrolling` : `Pause automatic scrolling`}
-      >
-        <Icon
-          size={13}
-          name={paused ? `play` : `pause`}
-          className={`directory-marquee__toggle-icon`}
-          id={`directory-marquee-toggle-icon-${scope}`}
-        />
-        <span
-          className={`directory-marquee__toggle-label`}
-          id={`directory-marquee-toggle-label-${scope}`}
-        >
-          {paused ? `Play` : `Pause`}
-        </span>
-      </button>
     </section>
   )
 }
