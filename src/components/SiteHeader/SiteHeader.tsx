@@ -62,189 +62,191 @@ export default function SiteHeader() {
             </span>
           </span>
         </Link>
-        <div id={`header-utility-actions`} className={`site-header__utility-actions`}>
-          <button
-            type={`button`}
-            id={`header-theme-toggle`}
-            aria-pressed={isDark}
-            onClick={toggleTheme}
-            aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
-            className={`site-header__icon-button site-header__icon-button--primary`}
-          >
-            <Icon
-              size={16}
-              name={isDark ? `sun` : `moon`}
-              id={`header-theme-icon`}
-              className={`site-header__icon`}
-            />
-          </button>
-          <div
-            ref={notifications}
-            id={`header-notifications`}
-            className={`site-header__notifications`}
-          >
+        <div id={`header-controls`} className={`site-header__controls`}>
+          <div id={`header-utility-actions`} className={`site-header__utility-actions`}>
             <button
               type={`button`}
-              id={`header-notifications-toggle`}
-              aria-label={`Notifications, ${headerNotifications.length} updates`}
-              aria-expanded={notificationsOpen}
-              aria-controls={`header-notifications-panel`}
-              onClick={toggleNotifications}
-              className={`site-header__icon-button site-header__icon-button--secondary`}
+              id={`header-theme-toggle`}
+              aria-pressed={isDark}
+              onClick={toggleTheme}
+              aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
+              className={`site-header__icon-button site-header__icon-button--primary`}
             >
               <Icon
                 size={16}
-                name={`bell`}
-                id={`header-notifications-icon`}
+                name={isDark ? `sun` : `moon`}
+                id={`header-theme-icon`}
                 className={`site-header__icon`}
               />
-              <span
-                aria-hidden={true}
-                id={`header-notifications-badge`}
-                className={`site-header__notification-badge`}
-              >
-                {headerNotifications.length}
-              </span>
             </button>
-            {notificationsOpen && (
-              <div
-                role={`region`}
-                id={`header-notifications-panel`}
-                className={`site-header__notifications-panel`}
-                aria-label={`Notifications`}
+            <div
+              ref={notifications}
+              id={`header-notifications`}
+              className={`site-header__notifications`}
+            >
+              <button
+                type={`button`}
+                id={`header-notifications-toggle`}
+                aria-label={`Notifications, ${headerNotifications.length} updates`}
+                aria-expanded={notificationsOpen}
+                aria-controls={`header-notifications-panel`}
+                onClick={toggleNotifications}
+                className={`site-header__icon-button site-header__icon-button--secondary`}
               >
-                <strong
-                  id={`header-notifications-heading`}
-                  className={`site-header__notifications-heading`}
-                >
-                  {`Notifications`}
-                </strong>
+                <Icon
+                  size={16}
+                  name={`bell`}
+                  id={`header-notifications-icon`}
+                  className={`site-header__icon`}
+                />
                 <span
-                  id={`header-notifications-count`}
-                  className={`site-header__notifications-count`}
+                  aria-hidden={true}
+                  id={`header-notifications-badge`}
+                  className={`site-header__notification-badge`}
                 >
-                  {`${headerNotifications.length} updates`}
+                  {headerNotifications.length}
                 </span>
-                <ul
-                  id={`header-notifications-list`}
-                  className={`site-header__notifications-list`}
+              </button>
+              {notificationsOpen && (
+                <div
+                  role={`region`}
+                  id={`header-notifications-panel`}
+                  className={`site-header__notifications-panel`}
+                  aria-label={`Notifications`}
                 >
-                  {headerNotifications.map((notification) => (
-                    <li
-                      key={notification.id}
-                      id={`header-notification-${notification.id}`}
-                      className={`site-header__notification-item`}
-                    >
-                      <span
-                        id={`header-notification-symbol-${notification.id}`}
-                        className={`site-header__notification-symbol`}
+                  <strong
+                    id={`header-notifications-heading`}
+                    className={`site-header__notifications-heading`}
+                  >
+                    {`Notifications`}
+                  </strong>
+                  <span
+                    id={`header-notifications-count`}
+                    className={`site-header__notifications-count`}
+                  >
+                    {`${headerNotifications.length} updates`}
+                  </span>
+                  <ul
+                    id={`header-notifications-list`}
+                    className={`site-header__notifications-list`}
+                  >
+                    {headerNotifications.map((notification) => (
+                      <li
+                        key={notification.id}
+                        id={`header-notification-${notification.id}`}
+                        className={`site-header__notification-item`}
                       >
-                        <Icon
-                          size={16}
-                          name={notification.icon}
-                          id={`header-notification-icon-${notification.id}`}
-                          className={`site-header__notification-icon`}
-                        />
-                      </span>
-                      <div
-                        id={`header-notification-copy-${notification.id}`}
-                        className={`site-header__notification-copy`}
-                      >
-                        <strong
-                          id={`header-notification-title-${notification.id}`}
-                          className={`site-header__notification-title`}
+                        <span
+                          id={`header-notification-symbol-${notification.id}`}
+                          className={`site-header__notification-symbol`}
                         >
-                          {notification.title}
-                        </strong>
-                        <p
-                          id={`header-notification-text-${notification.id}`}
-                          className={`site-header__notification-text`}
+                          <Icon
+                            size={16}
+                            name={notification.icon}
+                            id={`header-notification-icon-${notification.id}`}
+                            className={`site-header__notification-icon`}
+                          />
+                        </span>
+                        <div
+                          id={`header-notification-copy-${notification.id}`}
+                          className={`site-header__notification-copy`}
                         >
-                          {notification.before}
-                          <Link
-                            href={`/sign-up`}
-                            id={`header-notification-sign-up-${notification.id}`}
-                            className={`site-header__notification-link`}
+                          <strong
+                            id={`header-notification-title-${notification.id}`}
+                            className={`site-header__notification-title`}
                           >
-                            {`sign up`}
-                          </Link>
-                          {notification.after}
-                        </p>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+                            {notification.title}
+                          </strong>
+                          <p
+                            id={`header-notification-text-${notification.id}`}
+                            className={`site-header__notification-text`}
+                          >
+                            {notification.before}
+                            <Link
+                              href={`/sign-up`}
+                              id={`header-notification-sign-up-${notification.id}`}
+                              className={`site-header__notification-link`}
+                            >
+                              {`sign up`}
+                            </Link>
+                            {notification.after}
+                          </p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <button
+              type={`button`}
+              onClick={openSearch}
+              id={`header-search-toggle`}
+              tabIndex={searchVisible ? 0 : -1}
+              aria-hidden={!searchVisible}
+              aria-label={`Search directories`}
+              className={`site-header__icon-button site-header__icon-button--primary site-header__search-button${searchVisible ? ` site-header__search-button--visible` : ``}`}
+            >
+              <Icon
+                size={16}
+                name={`search`}
+                id={`header-search-icon`}
+                className={`site-header__icon`}
+              />
+            </button>
           </div>
           <button
             type={`button`}
-            onClick={openSearch}
-            id={`header-search-toggle`}
-            tabIndex={searchVisible ? 0 : -1}
-            aria-hidden={!searchVisible}
-            aria-label={`Search directories`}
-            className={`site-header__icon-button site-header__icon-button--primary site-header__search-button${searchVisible ? ` site-header__search-button--visible` : ``}`}
+            onClick={toggleMenu}
+            id={`header-menu-toggle`}
+            aria-expanded={menuOpen}
+            aria-controls={`header-actions`}
+            aria-label={menuOpen ? `Close menu` : `Open menu`}
+            className={`site-header__menu-toggle`}
           >
             <Icon
               size={16}
-              name={`search`}
-              id={`header-search-icon`}
-              className={`site-header__icon`}
+              name={menuOpen ? `close` : `menu`}
+              id={`header-menu-icon`}
+              className={`site-header__menu-icon`}
             />
           </button>
-        </div>
-        <button
-          type={`button`}
-          onClick={toggleMenu}
-          id={`header-menu-toggle`}
-          aria-expanded={menuOpen}
-          aria-controls={`header-actions`}
-          aria-label={menuOpen ? `Close menu` : `Open menu`}
-          className={`site-header__menu-toggle`}
-        >
-          <Icon
-            size={18}
-            name={menuOpen ? `close` : `menu`}
-            id={`header-menu-icon`}
-            className={`site-header__menu-icon`}
-          />
-        </button>
-        <div
-          id={`header-actions`}
-          className={`site-header__actions${menuOpen ? ` site-header__actions--open` : ``}`}
-        >
-          <nav
-            id={`header-navigation`}
-            className={`site-header__navigation`}
-            aria-label={`Main navigation`}
+          <div
+            id={`header-actions`}
+            className={`site-header__actions${menuOpen ? ` site-header__actions--open` : ``}`}
           >
-            {links.map((link) => (
-              <Link
-                key={link.id}
-                href={link.href}
-                onClick={closeMenu}
-                id={`header-${link.id}-link`}
-                aria-current={link.active ? `page` : undefined}
-                className={`site-header__nav-link${link.active ? ` site-header__nav-link--active` : ``}`}
-              >
-                <Icon
-                  size={15}
-                  name={link.icon}
-                  color={link.color}
-                  id={`header-${link.id}-icon`}
-                  className={`site-header__nav-icon`}
-                />
-                <span
-                  id={`header-${link.id}-label`}
-                  className={`site-header__nav-label`}
+            <nav
+              id={`header-navigation`}
+              className={`site-header__navigation`}
+              aria-label={`Main navigation`}
+            >
+              {links.map((link) => (
+                <Link
+                  key={link.id}
+                  href={link.href}
+                  onClick={closeMenu}
+                  id={`header-${link.id}-link`}
+                  aria-current={link.active ? `page` : undefined}
+                  className={`site-header__nav-link${link.active ? ` site-header__nav-link--active` : ``}`}
                 >
-                  {link.label}
-                </span>
-              </Link>
-            ))}
-          </nav>
-          <AuthActions scope={`header`} />
+                  <Icon
+                    size={15}
+                    name={link.icon}
+                    color={link.color}
+                    id={`header-${link.id}-icon`}
+                    className={`site-header__nav-icon`}
+                  />
+                  <span
+                    id={`header-${link.id}-label`}
+                    className={`site-header__nav-label`}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              ))}
+            </nav>
+            <AuthActions scope={`header`} />
+          </div>
         </div>
       </div>
     </header>
