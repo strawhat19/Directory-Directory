@@ -24,6 +24,7 @@
 
   &__brand {
     gap: 10px;
+    order: 0;
     display: flex;
     align-items: center;
     color: var(--dd-ink);
@@ -40,7 +41,7 @@
     display: block;
   }
 
-  &__actions {
+  &__controls {
     gap: 16px;
     display: flex;
     min-width: 0;
@@ -49,8 +50,17 @@
     align-items: center;
   }
 
+  &__menu-toggle {
+    display: none;
+  }
+
+  &__actions {
+    display: contents;
+  }
+
   &__navigation {
     gap: 12px;
+    order: 1;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -73,8 +83,13 @@
 
   &__utility-actions {
     gap: 8px;
+    order: 2;
     display: flex;
     align-items: center;
+  }
+
+  &__actions > .auth-actions {
+    order: 3;
   }
 
   &__icon-button {
@@ -260,35 +275,163 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1200px) {
   .site-header {
     &__bar {
-      gap: 14px;
-      padding: 16px 0;
-      align-items: flex-start;
-      flex-direction: column;
+      gap: 12px;
+      padding: 14px 0 0;
+      transition: padding 320ms ease;
+
+      &:has(.site-header__actions--open) {
+        padding-bottom: 14px;
+      }
+    }
+
+    &__controls {
+      display: contents;
+    }
+
+    &__menu-toggle {
+      order: 2;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--dd-ink);
+      cursor: pointer;
+      background: transparent;
+      border: 1px solid var(--dd-line);
+      transition: background 200ms ease, transform 200ms ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        background: var(--dd-paper);
+      }
     }
 
     &__actions {
-      gap: 14px;
-      margin-left: 0;
+      order: 3;
+      gap: 16px;
+      width: 100%;
+      display: flex;
+      min-width: 0;
+      max-height: 0;
+      padding: 0;
+      flex-wrap: wrap;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(-8px);
+      justify-content: space-between;
+      border-top: 1px solid transparent;
+      transition: max-height 320ms ease, padding 320ms ease, opacity 220ms ease, transform 320ms ease, visibility 320ms ease, border-color 320ms ease;
+
+      &--open {
+        opacity: 1;
+        max-height: 480px;
+        padding: 14px 0 4px;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+        border-top-color: var(--dd-line);
+      }
     }
 
     &__navigation {
-      gap: 12px;
+      gap: 6px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    &__nav-link {
+      min-height: 44px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      transition: color 200ms ease, background 200ms ease;
+
+      &:hover,
+      &--active {
+        background: var(--dd-blue-soft);
+      }
+    }
+
+    &__utility-actions {
+      order: 1;
+      min-height: 40px;
+      margin-left: auto;
+    }
+
+    &__actions > .auth-actions {
+      gap: 8px;
+      width: 100%;
+      display: grid;
+      margin-left: 0;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      .auth-actions__link {
+        width: 100%;
+        min-width: 0;
+        justify-content: center;
+      }
+
+      .auth-actions__error {
+        grid-column: 1 / -1;
+      }
+    }
+
+    &__notifications-panel {
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header {
+    &__bar {
+      gap: 8px;
+      max-width: calc(100% - 32px);
+      padding: 12px 0 0;
+
+      &:has(.site-header__actions--open) {
+        padding-bottom: 12px;
+      }
     }
 
     &__brand-name {
       font-size: 14px;
     }
 
-    &__nav-link {
-      min-height: 36px;
+    &__navigation {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    &__actions {
+      gap: 12px 8px;
+    }
+
+    &__utility-actions {
+      gap: 6px;
+    }
+
+    &__actions > .auth-actions {
+      gap: 6px;
     }
 
     &__notifications-panel {
-      right: auto;
-      left: -40px;
+      right: -72px;
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header__bar,
+  .site-header__actions,
+  .site-header__menu-toggle {
+    transition: none;
   }
 }

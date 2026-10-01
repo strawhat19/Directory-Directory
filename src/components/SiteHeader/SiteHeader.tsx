@@ -28,7 +28,10 @@ export default function SiteHeader() {
     links,
     header,
     isDark,
+    menuOpen,
+    closeMenu,
     openSearch,
+    toggleMenu,
     toggleTheme,
     notifications,
     searchVisible,
@@ -44,6 +47,7 @@ export default function SiteHeader() {
           href={`/`}
           id={`header-brand-link`}
           className={`site-header__brand`}
+          onClick={closeMenu}
           aria-label={`Directory Directory home`}
         >
           <BrandMark
@@ -58,36 +62,7 @@ export default function SiteHeader() {
             </span>
           </span>
         </Link>
-        <div id={`header-actions`} className={`site-header__actions`}>
-          <nav
-            id={`header-navigation`}
-            className={`site-header__navigation`}
-            aria-label={`Main navigation`}
-          >
-            {links.map((link) => (
-              <Link
-                key={link.id}
-                href={link.href}
-                id={`header-${link.id}-link`}
-                aria-current={link.active ? `page` : undefined}
-                className={`site-header__nav-link${link.active ? ` site-header__nav-link--active` : ``}`}
-              >
-                <Icon
-                  size={15}
-                  name={link.icon}
-                  color={link.color}
-                  id={`header-${link.id}-icon`}
-                  className={`site-header__nav-icon`}
-                />
-                <span
-                  id={`header-${link.id}-label`}
-                  className={`site-header__nav-label`}
-                >
-                  {link.label}
-                </span>
-              </Link>
-            ))}
-          </nav>
+        <div id={`header-controls`} className={`site-header__controls`}>
           <div id={`header-utility-actions`} className={`site-header__utility-actions`}>
             <button
               type={`button`}
@@ -220,7 +195,58 @@ export default function SiteHeader() {
               />
             </button>
           </div>
-          <AuthActions scope={`header`} />
+          <button
+            type={`button`}
+            onClick={toggleMenu}
+            id={`header-menu-toggle`}
+            aria-expanded={menuOpen}
+            aria-controls={`header-actions`}
+            aria-label={menuOpen ? `Close menu` : `Open menu`}
+            className={`site-header__menu-toggle`}
+          >
+            <Icon
+              size={16}
+              name={menuOpen ? `close` : `menu`}
+              id={`header-menu-icon`}
+              className={`site-header__menu-icon`}
+            />
+          </button>
+          <div
+            id={`header-actions`}
+            className={`site-header__actions${menuOpen ? ` site-header__actions--open` : ``}`}
+          >
+            <nav
+              id={`header-navigation`}
+              className={`site-header__navigation`}
+              aria-label={`Main navigation`}
+            >
+              {links.map((link) => (
+                <Link
+                  key={link.id}
+                  href={link.href}
+                  onClick={closeMenu}
+                  id={`header-${link.id}-link`}
+                  aria-current={link.active ? `page` : undefined}
+                  className={`site-header__nav-link${link.active ? ` site-header__nav-link--active` : ``}`}
+                >
+                  <Icon
+                    size={15}
+                    name={link.icon}
+                    color={link.color}
+                    id={`header-${link.id}-icon`}
+                    className={`site-header__nav-icon`}
+                  />
+                  <span
+                    id={`header-${link.id}-label`}
+                    className={`site-header__nav-label`}
+                  >
+                    {link.label}
+                  </span>
+                </Link>
+              ))}
+            </nav>
+            <AuthActions scope={`header`} />
+          </div>
         </div>
       </div>
     </header>
