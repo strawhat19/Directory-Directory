@@ -8,11 +8,13 @@ import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import { createAuthActionsStyles } from './AuthActions.native.styles';
+import { useSearchAccent } from '../../shared/landing/useSearchAccent';
 
 export default function AuthActions({ scope }: AuthActionsProps) {
   const { isDark } = useTheme();
-  const palette = getNativePalette(isDark);
-  const styles = useMemo(() => createAuthActionsStyles(isDark), [isDark]);
+  const accent = useSearchAccent();
+  const palette = getNativePalette(isDark, accent);
+  const styles = useMemo(() => createAuthActionsStyles(isDark, accent), [isDark, accent]);
   const { user, ready, error, busy, redirect, handleSignOut } = useAuthActions();
   const darkHeaderSignIn = isDark && scope.includes(`header`);
 

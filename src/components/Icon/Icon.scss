@@ -1,4 +1,5 @@
 .icon {
   display: block;
   flex-shrink: 0;
+  transition: color 350ms ease, fill 350ms ease, stroke 350ms ease;
 }

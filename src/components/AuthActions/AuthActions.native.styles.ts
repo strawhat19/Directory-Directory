@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 import { getNativePalette } from '../../shared/theme/nativePalette';
+import type { SearchAccent } from '../../shared/landing/searchScopes';
 
-export const createAuthActionsStyles = (isDark: boolean) => {
-  const palette = getNativePalette(isDark);
+export const createAuthActionsStyles = (isDark: boolean, accent?: SearchAccent) => {
+  const palette = getNativePalette(isDark, accent);
 
   return StyleSheet.create({
   actions: {

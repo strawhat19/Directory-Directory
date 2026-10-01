@@ -5,6 +5,8 @@
   align-items: center;
 
   &__link {
+    --dd-blue: var(--dd-accent);
+    --dd-blue-soft: var(--dd-accent-soft);
     gap: 7px;
     font-size: 11px;
     padding: 11px 14px;

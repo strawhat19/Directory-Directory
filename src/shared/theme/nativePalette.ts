@@ -1,3 +1,5 @@
+import type { SearchAccent } from '../landing/searchScopes';
+
 const lightPalette = {
   red: `#d83b42`,
   blue: `#0874f9`,
@@ -28,4 +30,8 @@ const darkPalette = {
   headerScrim: `rgba(11, 18, 32, 0.4)`,
 };
 
-export const getNativePalette = (isDark: boolean) => isDark ? darkPalette : lightPalette;
+export const getNativePalette = (isDark: boolean, accent?: SearchAccent) => {
+  const palette = isDark ? darkPalette : lightPalette;
+
+  return accent ? { ...palette, blue: accent.color, blueSoft: accent.background } : palette;
+};

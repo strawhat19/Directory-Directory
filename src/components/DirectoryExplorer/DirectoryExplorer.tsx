@@ -7,6 +7,7 @@ export default function DirectoryExplorer() {
     const {
         query,
         topic,
+        status,
         topics,
         viewMode,
         setTopic,
@@ -15,6 +16,13 @@ export default function DirectoryExplorer() {
         resultCount,
         clearFilters,
         setViewMode,
+        changeStatus,
+        selectedStatus,
+        directoryTopic,
+        changeCategory,
+        categoryOptions,
+        directoryStatuses,
+        changeDirectoryTopic,
         selectedCategory,
         visibleDirectories,
     } = useDirectoryExplorer();
@@ -140,6 +148,89 @@ export default function DirectoryExplorer() {
                 </div>
             </div>
 
+            <div id={`directory-explorer-taxonomy`} className={`directory-explorer__taxonomy`}>
+                <label id={`directory-explorer-category-label`} className={`directory-explorer__field`} htmlFor={`directory-explorer-category-select`}>
+                    <span id={`directory-explorer-category-caption`} className={`directory-explorer__field-caption`}>
+                        {`Category`}
+                    </span>
+                    <select
+                        value={selectedCategory?.id ?? ``}
+                        onChange={(event) => changeCategory(event.target.value)}
+                        id={`directory-explorer-category-select`}
+                        className={`directory-explorer__select`}
+                    >
+                        <option id={`directory-explorer-category-option-all`} className={`directory-explorer__option`} value={``}>
+                            {`All Categories`}
+                        </option>
+                        {categoryOptions.map((category) => (
+                            <option
+                                key={category.id}
+                                value={category.id}
+                                id={`directory-explorer-category-option-${category.id}`}
+                                className={`directory-explorer__option`}
+                            >
+                                {category.label}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <label id={`directory-explorer-topic-label`} className={`directory-explorer__field`} htmlFor={`directory-explorer-topic-select`}>
+                    <span id={`directory-explorer-topic-caption`} className={`directory-explorer__field-caption`}>
+                        {`Topic${selectedCategory ? ` In ${selectedCategory.label}` : ``}`}
+                    </span>
+                    <select
+                        disabled={!selectedCategory}
+                        value={directoryTopic ?? ``}
+                        onChange={(event) => changeDirectoryTopic(event.target.value)}
+                        id={`directory-explorer-topic-select`}
+                        className={`directory-explorer__select`}
+                    >
+                        <option id={`directory-explorer-topic-option-all`} className={`directory-explorer__option`} value={``}>
+                            {selectedCategory ? `All Topics` : `Choose A Category`}
+                        </option>
+                        {selectedCategory?.topics.map((topic, index) => (
+                            <option
+                                key={topic}
+                                value={topic}
+                                id={`directory-explorer-topic-option-${selectedCategory.id}-${index}`}
+                                className={`directory-explorer__option`}
+                            >
+                                {topic}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+                <label id={`directory-explorer-status-label`} className={`directory-explorer__field`} htmlFor={`directory-explorer-status-select`}>
+                    <span id={`directory-explorer-status-caption`} className={`directory-explorer__field-caption`}>
+                        {`Status`}
+                    </span>
+                    <select
+                        value={status ?? ``}
+                        onChange={(event) => changeStatus(event.target.value)}
+                        id={`directory-explorer-status-select`}
+                        className={`directory-explorer__select`}
+                    >
+                        <option id={`directory-explorer-status-option-all`} className={`directory-explorer__option`} value={``}>
+                            {`All Statuses`}
+                        </option>
+                        {directoryStatuses.map((status) => (
+                            <option
+                                key={status.id}
+                                value={status.id}
+                                title={status.description}
+                                id={`directory-explorer-status-option-${status.id}`}
+                                className={`directory-explorer__option`}
+                            >
+                                {status.label}
+                            </option>
+                        ))}
+                    </select>
+                </label>
+            </div>
+            <p id={`directory-explorer-feedback-note`} className={`directory-explorer__feedback-note`}>
+                {`New Means Recently Added Here • Your Votes And Reviews Stay On This Device`}
+            </p>
+
             {hasFilters && (
                 <div
                     id={`directory-explorer-filters`}
@@ -173,7 +264,7 @@ export default function DirectoryExplorer() {
                         >
                             <Icon
                                 size={13}
-                                name={selectedCategory.id}
+                                name={selectedCategory.icon}
                                 id={`directory-explorer-category-filter-${selectedCategory.id}-icon`}
                                 className={`directory-explorer__filter-icon`}
                             />
@@ -184,6 +275,17 @@ export default function DirectoryExplorer() {
                             >
                                 {selectedCategory.label}
                             </span>
+                        </span>
+                    )}
+
+                    {directoryTopic && (
+                        <span id={`directory-explorer-topic-filter`} className={`directory-explorer__filter`}>
+                            {`#${directoryTopic.replaceAll(/[^a-zA-Z0-9]/g, ``)}`}
+                        </span>
+                    )}
+                    {selectedStatus && (
+                        <span id={`directory-explorer-status-filter`} className={`directory-explorer__filter`} title={selectedStatus.description}>
+                            {selectedStatus.label}
                         </span>
                     )}
 

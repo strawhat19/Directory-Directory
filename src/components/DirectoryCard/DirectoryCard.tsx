@@ -1,6 +1,7 @@
 import './DirectoryCard.scss';
 import Icon from '../Icon/Icon';
 import useDirectoryCard from './useDirectoryCard';
+import DirectoryFeedback from '../DirectoryFeedback/DirectoryFeedback';
 import type { DirectoryEntry } from '../../shared/catalog/catalog';
 
 interface DirectoryCardProps {
@@ -10,8 +11,13 @@ interface DirectoryCardProps {
 export default function DirectoryCard({ directory }: DirectoryCardProps) {
     const {
         saved,
+        statuses,
         category,
         identity,
+        selectTopic,
+        websiteLabel,
+        feedbackReady,
+        isTopicSelected,
         previewDirectory,
         toggleDirectorySaved,
     } = useDirectoryCard(directory);
@@ -21,6 +27,12 @@ export default function DirectoryCard({ directory }: DirectoryCardProps) {
             id={identity}
             className={`directory-card directory-card--${directory.accent}`}
         >
+            <span
+                aria-hidden={true}
+                id={`${identity}-tab`}
+                className={`directory-card__tab`}
+            />
+
             <button
                 type={`button`}
                 id={`${identity}-preview`}
@@ -94,8 +106,62 @@ export default function DirectoryCard({ directory }: DirectoryCardProps) {
                 </span>
             </button>
 
+            <div id={`${identity}-details`} className={`directory-card__details`}>
+                <div id={`${identity}-statuses`} className={`directory-card__statuses actionsCell`}>
+                    {statuses.map((status) => (
+                        <span
+                            key={status.id}
+                            title={status.description}
+                            id={`${identity}-status-${status.id}`}
+                            className={`directory-card__status rowStatus rowStatus--${status.tone}`}
+                        >
+                            <span id={`${identity}-status-dot-wrap-${status.id}`} className={`statusDotWrap`}>
+                                <span id={`${identity}-status-dot-${status.id}`} className={`statusDot`} />
+                            </span>
+                            <span id={`${identity}-status-text-${status.id}`} className={`statusText`}>
+                                {status.label}
+                            </span>
+                        </span>
+                    ))}
+                </div>
+                <div id={`${identity}-topics`} className={`directory-card__topics`}>
+                    {directory.topics.map((topic, index) => (
+                        <button
+                            key={topic}
+                            type={`button`}
+                            onClick={() => selectTopic(topic)}
+                            aria-pressed={isTopicSelected(topic)}
+                            id={`${identity}-topic-${index}`}
+                            className={`directory-card__topic`}
+                        >
+                            {`#${topic.replaceAll(/[^a-zA-Z0-9]/g, ``)}`}
+                        </button>
+                    ))}
+                </div>
+                <a
+                    target={`_blank`}
+                    href={directory.href}
+                    title={directory.href}
+                    rel={`noopener noreferrer`}
+                    id={`${identity}-website`}
+                    className={`directory-card__website`}
+                >
+                    <Icon
+                        size={13}
+                        name={`arrow-up-right`}
+                        id={`${identity}-website-icon`}
+                        className={`directory-card__website-icon`}
+                    />
+                    <span id={`${identity}-website-label`} className={`directory-card__website-label`}>
+                        {websiteLabel}
+                    </span>
+                </a>
+                <DirectoryFeedback directoryId={directory.id} directoryName={directory.name} />
+            </div>
+
             <button
                 type={`button`}
+                disabled={!feedbackReady}
                 aria-pressed={saved}
                 id={`${identity}-save`}
                 onClick={toggleDirectorySaved}

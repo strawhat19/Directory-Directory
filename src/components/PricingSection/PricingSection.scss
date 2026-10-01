@@ -6,6 +6,7 @@
   padding: 72px 0 48px;
   background-size: 24px 24px;
   background-color: var(--dd-blue);
+  transition: background-color 350ms ease;
   margin-left: calc(50% - 50vw);
   background-image: radial-gradient(#ffffff1c 1px, transparent 1px);
 
@@ -114,7 +115,7 @@
   }
 
   &--director {
-    --plan-color: var(--dd-blue);
+    --plan-color: #0874f9;
   }
 
   &--dragon {

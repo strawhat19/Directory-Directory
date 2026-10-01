@@ -2,6 +2,7 @@ export type IconName =
   | `grid`
   | `list`
   | `plus`
+  | `star`
   | `play`
   | `menu`
   | `pause`
@@ -25,6 +26,8 @@ export type IconName =
   | `sparkles`
   | `file-text`
   | `log-out`
+  | `upvote`
+  | `downvote`
   | `learning`
   | `business`
   | `lifestyle`

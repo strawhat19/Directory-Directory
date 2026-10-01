@@ -9,6 +9,7 @@ import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
+import DirectoryFeedback from '../DirectoryFeedback/DirectoryFeedback';
 import PricingSection from '../PricingSection/PricingSection.native';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { heroMagicTypeTerms } from '../../shared/landing/magicTypeTerms';
@@ -16,10 +17,11 @@ import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput
 
 const firstHeroMagicTerm = heroMagicTypeTerms[0] ?? `Directory`;
 
-function HeroMagicHeading({ enabled, styles, wide }: {
+function HeroMagicHeading({ enabled, styles, wide, accentStyle }: {
     enabled: boolean;
     wide: boolean;
     styles: ReturnType<typeof useLandingPage>[`styles`];
+    accentStyle: ReturnType<typeof useLandingPage>[`accentTextStyle`];
 }) {
     const [text, setText] = useState<string>(firstHeroMagicTerm);
     const [cursorVisible, setCursorVisible] = useState(false);
@@ -97,19 +99,19 @@ function HeroMagicHeading({ enabled, styles, wide }: {
                 <Text {...elementProps(`landing-hero-magic-term`)}>
                     {text}
                 </Text>
-                <Text
+                <Animated.Text
                     {...elementProps(`landing-hero-magic-cursor`)}
-                    style={[styles.headingMagicCursor, !cursorVisible && styles.headingMagicCursorHidden]}
+                    style={[styles.headingMagicCursor, accentStyle, !cursorVisible && styles.headingMagicCursorHidden]}
                 >
                     {`|`}
-                </Text>
+                </Animated.Text>
             </Text>
-            <Text
+            <Animated.Text
                 {...elementProps(`landing-hero-heading-second-line`)}
-                style={[styles.heading, wide && styles.headingWide]}
+                style={[styles.heading, wide && styles.headingWide, styles.headingAccent, accentStyle]}
             >
                 {`of Directories.`}
-            </Text>
+            </Animated.Text>
         </View>
     );
 }
@@ -119,6 +121,7 @@ export default function LandingPage() {
     const { width } = useWindowDimensions();
     const blurTarget = useRef<View | null>(null);
     const {
+        accent,
         wide,
         year,
         scroll,
@@ -126,11 +129,13 @@ export default function LandingPage() {
         colors,
         isDark,
         dotStyle,
+        accentTextStyle,
         landing,
         padding,
         reduceMotion,
         motionPreferenceReady,
         selected,
+        statusItems,
         scopeItems,
         onScroll,
         cardWidth,
@@ -142,11 +147,14 @@ export default function LandingPage() {
         showHeaderSearch,
         scrollToHeroSearch,
         categoryItems,
+        selectedCategory,
         selectCategory,
         categoryWidth,
         entranceStyle,
         radarRingStyles,
         directoryItems,
+        directoryTopicItems,
+        selectDirectoryTopic,
         searchIconItems,
         searchThemeStyle,
         searchPlaceholder,
@@ -171,6 +179,9 @@ export default function LandingPage() {
             { text: `Sign up`, onPress: () => router.push(`/sign-up`) },
         ],
     );
+    const visitDirectory = (href: string) => {
+        void Linking.openURL(href).catch(() => Alert.alert(`Unable To Open Website`, `Please Try Again`));
+    };
 
     const headerMenuLinks = siteNavigation.map((item) => (
         <Link
@@ -286,7 +297,7 @@ export default function LandingPage() {
                                         id={`landing-header-notifications-icon`}
                                         className={`landing-header-notifications-icon`}
                                         name={`bell`}
-                                        color={isDark ? colors.white : colors.blue}
+                                        color={isDark ? colors.white : accent.color}
                                         size={17}
                                     />
                                     <View
@@ -364,16 +375,17 @@ export default function LandingPage() {
                                         style={[styles.eyebrowDot, dotStyle]}
                                     />
                                 </View>
-                                <Text
+                                <Animated.Text
                                     {...elementProps(`landing-hero-eyebrow`)}
-                                    style={styles.eyebrow}
+                                    style={[styles.eyebrow, accentTextStyle]}
                                 >
                                     {`The Directory of Directories`}
-                                </Text>
+                                </Animated.Text>
                             </View>
                             <HeroMagicHeading
                                 wide={wide}
                                 styles={styles}
+                                accentStyle={accentTextStyle}
                                 enabled={motionPreferenceReady && !reduceMotion}
                             />
                             <Text {...elementProps(`landing-hero-description`)} style={styles.heroDescription}>
@@ -507,12 +519,17 @@ export default function LandingPage() {
                                 style={styles.searchInput}
                                 placeholder={searchPlaceholder}
                                 placeholderTextColor={colors.muted}
-                                accessibilityLabel={`Search directories`}
+                                accessibilityLabel={searchPlaceholder}
                             />
                             <Animated.View
                                 {...elementProps(`landing-search-button-container`)}
                                 style={[styles.searchButtonContainer, searchThemeStyle]}
                             >
+                                <Animated.View
+                                    pointerEvents={`none`}
+                                    {...elementProps(`landing-search-button-folder-tab`)}
+                                    style={[styles.searchButtonFolderTab, searchThemeStyle]}
+                                />
                                 <Pressable
                                     {...elementProps(`landing-search-button`)}
                                     onPress={showSearchResults}
@@ -522,13 +539,13 @@ export default function LandingPage() {
                                 >
                                     <Icon id={`landing-search-button-icon`} className={`landing-search-button-icon`} name={`arrow-right`} color={colors.white} size={17} />
                                     <Text {...elementProps(`landing-search-button-label`)} style={styles.searchButtonLabel}>
-                                        {`Search`}
+                                        {`Explore`}
                                     </Text>
                                 </Pressable>
                             </Animated.View>
                         </Animated.View>
                         <Text {...elementProps(`landing-search-hint`)} style={styles.searchHint}>
-                            {`A few good starting points: design, useful tools, communities, places.`}
+                            {`Try AI, business, creative, travel, or a #topic.`}
                         </Text>
                     </View>
 
@@ -575,6 +592,22 @@ export default function LandingPage() {
                                     <Text {...elementProps(`landing-category-description`, item.id)} style={styles.categoryDescription}>
                                         {item.description}
                                     </Text>
+                                    <View {...elementProps(`landing-category-topics`, item.id)} style={styles.categoryTopics}>
+                                        {item.topics.slice(0, 3).map((topic, index) => (
+                                            <Text
+                                                {...elementProps(`landing-category-topic`, `${item.id}-${index}`)}
+                                                key={topic}
+                                                style={styles.categoryTopic}
+                                            >
+                                                {`#${topic}`}
+                                            </Text>
+                                        ))}
+                                        {item.topics.length > 3 && (
+                                            <Text {...elementProps(`landing-category-more-topics`, item.id)} style={styles.categoryTopic}>
+                                                {`+${item.topics.length - 3} topics`}
+                                            </Text>
+                                        )}
+                                    </View>
                                     <Text {...elementProps(`landing-category-count`, item.id)} style={styles.categoryCount}>
                                         {`${item.count} directories`}
                                     </Text>
@@ -640,7 +673,7 @@ export default function LandingPage() {
                             <Text {...elementProps(`landing-explore-title`)} accessibilityRole={`header`} style={styles.sectionTitle}>
                                 {`Explore the collection`}
                             </Text>
-                            <Text {...elementProps(`landing-explore-count`)} style={styles.sectionCaption}>
+                            <Text {...elementProps(`landing-explore-count`)} style={styles.exploreCaption}>
                                 {`${landing.visibleDirectories.length} directories`}
                             </Text>
                         </View>
@@ -702,13 +735,100 @@ export default function LandingPage() {
                             </View>
                         </View>
 
+                        <ScrollView
+                            {...elementProps(`landing-status-filters`)}
+                            horizontal
+                            style={styles.filterScroll}
+                            contentContainerStyle={styles.filterContent}
+                            showsHorizontalScrollIndicator={false}
+                        >
+                            <Pressable
+                                {...elementProps(`landing-status-filter`, `all`)}
+                                onPress={() => landing.setStatus(null)}
+                                accessibilityRole={`button`}
+                                accessibilityLabel={`Show All Statuses`}
+                                accessibilityState={{ selected: !landing.status }}
+                                style={({ pressed }) => [styles.filterPill, !landing.status && styles.filterPillActive, pressed && styles.pressed]}
+                            >
+                                <Icon id={`landing-status-filter-all-icon`} className={`landing-status-filter-icon`} name={`globe`} size={12} color={!landing.status ? colors.blue : colors.muted} />
+                                <Text {...elementProps(`landing-status-filter-label`, `all`)} style={[styles.filterLabel, !landing.status && styles.filterLabelActive]}>
+                                    {`All Statuses`}
+                                </Text>
+                            </Pressable>
+                            {statusItems.map((item) => (
+                                <Pressable
+                                    {...elementProps(`landing-status-filter`, item.id)}
+                                    key={item.id}
+                                    onPress={() => landing.setStatus(item.active ? null : item.id)}
+                                    accessibilityRole={`button`}
+                                    accessibilityLabel={`${item.label}: ${item.description}`}
+                                    accessibilityState={{ selected: item.active }}
+                                    style={({ pressed }) => [styles.filterPill, item.active && styles.filterPillActive, pressed && styles.pressed]}
+                                >
+                                    <View {...elementProps(`landing-status-filter-dot`, item.id)} style={[styles.statusDot, { backgroundColor: item.color }]} />
+                                    <Text {...elementProps(`landing-status-filter-label`, item.id)} style={[styles.filterLabel, item.active && styles.filterLabelActive]}>
+                                        {item.label}
+                                    </Text>
+                                </Pressable>
+                            ))}
+                        </ScrollView>
+                        {selectedCategory && (
+                            <View {...elementProps(`landing-category-topic-filters`, selectedCategory.id)}>
+                                <View {...elementProps(`landing-category-topic-heading`, selectedCategory.id)} style={styles.topicFilterHeading}>
+                                    <Text {...elementProps(`landing-category-topic-label`, selectedCategory.id)} style={styles.topicFilterLabel}>
+                                        {`${selectedCategory.label} Topics`}
+                                    </Text>
+                                    <Pressable
+                                        {...elementProps(`landing-filters-clear`)}
+                                        onPress={landing.clearFilters}
+                                        accessibilityRole={`button`}
+                                        accessibilityLabel={`Clear All Filters`}
+                                        style={({ pressed }) => [styles.filterClear, pressed && styles.pressed]}
+                                    >
+                                        <Icon id={`landing-filters-clear-icon`} className={`landing-filters-clear-icon`} name={`close`} size={12} color={colors.blue} />
+                                        <Text {...elementProps(`landing-filters-clear-label`)} style={[styles.filterLabel, styles.filterLabelActive]}>
+                                            {`Clear Filters`}
+                                        </Text>
+                                    </Pressable>
+                                </View>
+                                <ScrollView
+                                    {...elementProps(`landing-directory-topic-filters`, selectedCategory.id)}
+                                    horizontal
+                                    style={styles.filterScroll}
+                                    contentContainerStyle={styles.filterContent}
+                                    showsHorizontalScrollIndicator={false}
+                                >
+                                    {directoryTopicItems.map((item, index) => (
+                                        <Pressable
+                                            {...elementProps(`landing-directory-topic-filter`, `${selectedCategory.id}-${index}`)}
+                                            key={item.topic}
+                                            onPress={() => selectDirectoryTopic(selectedCategory.id, item.topic)}
+                                            accessibilityRole={`button`}
+                                            accessibilityLabel={`Filter ${selectedCategory.label} By ${item.topic}`}
+                                            accessibilityState={{ selected: item.active }}
+                                            style={({ pressed }) => [styles.filterPill, item.active && styles.filterPillActive, pressed && styles.pressed]}
+                                        >
+                                            <Text {...elementProps(`landing-directory-topic-filter-label`, `${selectedCategory.id}-${index}`)} style={[styles.filterLabel, item.active && styles.filterLabelActive]}>
+                                                {`#${item.topic}`}
+                                            </Text>
+                                        </Pressable>
+                                    ))}
+                                </ScrollView>
+                            </View>
+                        )}
+
                         <View {...elementProps(`landing-directory-grid`)} style={styles.directoryGrid}>
                             {directoryItems.map((directory) => (
                                     <View
                                         {...elementProps(`landing-directory-card`, directory.id)}
                                         key={directory.id}
-                                        style={[styles.directoryCard, { width: cardWidth }]}
+                                        style={[styles.directoryCard, { width: cardWidth, borderTopColor: directory.accentStyle.color }]}
                                     >
+                                        <View
+                                            {...elementProps(`landing-directory-folder-tab`, directory.id)}
+                                            pointerEvents={`none`}
+                                            style={[styles.directoryFolderTab, { backgroundColor: directory.accentStyle.color }]}
+                                        />
                                         <Pressable
                                             {...elementProps(`landing-directory-preview`, directory.id)}
                                             onPress={() => landing.openDirectory(directory)}
@@ -747,15 +867,65 @@ export default function LandingPage() {
                                                 {directory.summary}
                                             </Text>
                                         </Pressable>
+                                        <View {...elementProps(`landing-directory-metadata`, directory.id)} style={styles.directoryMetadata}>
+                                            <View {...elementProps(`landing-directory-statuses`, directory.id)} style={styles.directoryStatuses}>
+                                                {directory.statusItems.map((item) => (
+                                                    <View
+                                                        {...elementProps(`landing-directory-row-status`, `${directory.id}-${item.id}`)}
+                                                        key={item.id}
+                                                        accessibilityLabel={`${item.label}: ${item.description}`}
+                                                        style={styles.directoryStatus}
+                                                    >
+                                                        <View {...elementProps(`landing-directory-status-dot`, `${directory.id}-${item.id}`)} style={[styles.statusDot, { backgroundColor: item.color }]} />
+                                                        <Text {...elementProps(`landing-directory-status-text`, `${directory.id}-${item.id}`)} style={[styles.directoryStatusLabel, { color: item.color }]}>
+                                                            {item.label}
+                                                        </Text>
+                                                    </View>
+                                                ))}
+                                            </View>
+                                            <View {...elementProps(`landing-directory-topics`, directory.id)} style={styles.directoryTopics}>
+                                                {directory.topics.map((topic, index) => (
+                                                    <Pressable
+                                                        {...elementProps(`landing-directory-topic`, `${directory.id}-${index}`)}
+                                                        key={topic}
+                                                        onPress={() => selectDirectoryTopic(directory.category, topic)}
+                                                        accessibilityRole={`button`}
+                                                        accessibilityLabel={`Filter By ${topic}`}
+                                                        accessibilityState={{ selected: landing.category === directory.category && landing.directoryTopic === topic }}
+                                                        style={({ pressed }) => [styles.directoryTopic, pressed && styles.pressed]}
+                                                    >
+                                                        <Text {...elementProps(`landing-directory-topic-label`, `${directory.id}-${index}`)} style={styles.directoryTopicLabel}>
+                                                            {`#${topic}`}
+                                                        </Text>
+                                                    </Pressable>
+                                                ))}
+                                            </View>
+                                            <Pressable
+                                                {...elementProps(`landing-directory-website`, directory.id)}
+                                                onPress={() => visitDirectory(directory.href)}
+                                                accessibilityRole={`link`}
+                                                accessibilityLabel={`Visit ${directory.name} Website`}
+                                                style={({ pressed }) => [styles.directoryWebsite, pressed && styles.pressed]}
+                                            >
+                                                <Text {...elementProps(`landing-directory-website-label`, directory.id)} style={styles.directoryWebsiteLabel}>
+                                                    {`Visit Website`}
+                                                </Text>
+                                                <Icon id={`landing-directory-website-icon-${directory.id}`} className={`landing-directory-website-icon`} name={`arrow-up-right`} size={13} color={colors.blue} />
+                                            </Pressable>
+                                        </View>
+                                        <View {...elementProps(`landing-directory-feedback`, directory.id)} style={styles.directoryFeedback}>
+                                            <DirectoryFeedback directoryId={directory.id} directoryName={directory.name} />
+                                        </View>
                                         <View {...elementProps(`landing-directory-footer`, directory.id)} style={styles.directoryFooter}>
                                             <Text {...elementProps(`landing-directory-category`, directory.id)} style={styles.directoryLabel}>
                                                 {directory.label}
                                             </Text>
                                             <Pressable
                                                 {...elementProps(`landing-directory-save`, directory.id)}
+                                                disabled={!landing.feedbackReady}
                                                 onPress={() => landing.toggleSaved(directory.id)}
                                                 accessibilityRole={`button`}
-                                                accessibilityState={{ selected: directory.saved }}
+                                                accessibilityState={{ selected: directory.saved, disabled: !landing.feedbackReady }}
                                                 accessibilityLabel={`${directory.saved ? `Unsave` : `Save`} ${directory.name}`}
                                                 style={({ pressed }) => [
                                                     styles.bookmarkButton,
@@ -890,37 +1060,30 @@ export default function LandingPage() {
                             <Text {...elementProps(`landing-modal-category`, selected.id)} style={styles.directoryLabel}>
                                 {selected.label}
                             </Text>
-                            {selected.href ? (
-                                <Pressable
-                                    {...elementProps(`landing-modal-visit`, selected.id)}
-                                    onPress={() => {
-                                        if (selected.href) void Linking.openURL(selected.href).catch(() => undefined);
-                                    }}
-                                    accessibilityRole={`link`}
-                                    accessibilityLabel={`Visit ${selected.name} in browser`}
-                                    style={({ pressed }) => [styles.modalVisitButton, pressed && styles.pressed]}
-                                >
-                                    <Icon
-                                        size={18}
-                                        name={`arrow-up-right`}
-                                        color={colors.blue}
-                                        id={`landing-modal-visit-icon-${selected.id}`}
-                                        className={`landing-modal-visit-icon`}
-                                    />
-                                    <Text {...elementProps(`landing-modal-visit-label`, selected.id)} style={styles.modalVisitLabel}>
-                                        {`Visit directory`}
-                                    </Text>
-                                </Pressable>
-                            ) : (
-                                <Text {...elementProps(`landing-modal-sample-notice`, selected.id)} style={styles.sampleNotice}>
-                                    {`This is a sample listing for the Directory Directory collection. Explore the front-end preview and save your favorites on this device.`}
+                            <Pressable
+                                {...elementProps(`landing-modal-visit`, selected.id)}
+                                onPress={() => visitDirectory(selected.href)}
+                                accessibilityRole={`link`}
+                                accessibilityLabel={`Visit ${selected.name} in browser`}
+                                style={({ pressed }) => [styles.modalVisitButton, pressed && styles.pressed]}
+                            >
+                                <Icon
+                                    size={18}
+                                    name={`arrow-up-right`}
+                                    color={colors.blue}
+                                    id={`landing-modal-visit-icon-${selected.id}`}
+                                    className={`landing-modal-visit-icon`}
+                                />
+                                <Text {...elementProps(`landing-modal-visit-label`, selected.id)} style={styles.modalVisitLabel}>
+                                    {`Visit Directory`}
                                 </Text>
-                            )}
+                            </Pressable>
                             <Pressable
                                 {...elementProps(`landing-modal-save`, selected.id)}
+                                disabled={!landing.feedbackReady}
                                 onPress={() => landing.toggleSaved(selected.id)}
                                 accessibilityRole={`button`}
-                                accessibilityState={{ selected: selectedIsSaved }}
+                                accessibilityState={{ selected: selectedIsSaved, disabled: !landing.feedbackReady }}
                                 style={({ pressed }) => [styles.modalSaveButton, pressed && styles.pressed]}
                             >
                                 <Icon id={`landing-modal-save-icon`} className={`landing-modal-save-icon`} name={selectedIsSaved ? `check` : `bookmark`} color={colors.white} size={18} />

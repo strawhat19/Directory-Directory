@@ -10,6 +10,8 @@
   --dd-muted: #6c7689;
   --dd-line: #e0e5ed;
   --dd-blue-soft: #edf4ff;
+  --dd-accent: #0874f9;
+  --dd-accent-soft: #edf4ff;
   --dd-radius: 16px;
   --dd-font: 'Inter Variable', Inter, -apple-system, BlinkMacSystemFont, sans-serif;
 }
@@ -22,10 +24,52 @@
   --dd-muted: #a4aec0;
   --dd-line: #2b3950;
   --dd-blue-soft: #15294c;
+  --dd-accent-soft: #15294c;
+}
+
+:root[data-search-scope='directories'] {
+  --dd-accent: #21a668;
+  --dd-accent-soft: #ecf7f1;
+}
+
+:root[data-search-scope='directors'] {
+  --dd-accent: #d83b42;
+  --dd-accent-soft: #fceff0;
+}
+
+:root[data-theme='dark'][data-search-scope='directories'] {
+  --dd-accent-soft: #15372d;
+}
+
+:root[data-theme='dark'][data-search-scope='directors'] {
+  --dd-accent-soft: #3b2029;
 }
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dd-accent) var(--dd-page);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: var(--dd-page);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--dd-accent);
+  border: 2px solid var(--dd-page);
+  transition: background-color 220ms ease;
+
+  &:hover {
+    background: color-mix(in srgb, var(--dd-accent) 85%, var(--dd-ink));
+  }
 }
 
 html {
@@ -91,7 +135,7 @@ input:focus-visible {
   padding: 14px 20px;
   font-size: 13px;
   font-weight: 650;
-  transition: transform 220ms ease, background 220ms ease, box-shadow 220ms ease;
+  transition: color 350ms ease, transform 220ms ease, background 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
 
   &:hover {
     transform: translateY(-2px);
@@ -103,7 +147,7 @@ input:focus-visible {
 
     &:hover {
       background: color-mix(in srgb, var(--dd-blue) 88%, #000000);
-      box-shadow: 0 6px 18px #0874f92b;
+      box-shadow: 0 6px 18px color-mix(in srgb, var(--dd-blue) 17%, transparent);
     }
   }
 
@@ -112,7 +156,7 @@ input:focus-visible {
     background: var(--dd-blue-soft);
 
     &:hover {
-      background: #e0ecff;
+      background: color-mix(in srgb, var(--dd-blue) 12%, var(--dd-paper));
     }
   }
 }
@@ -162,7 +206,7 @@ input:focus-visible {
 }
 
 :root[data-theme='dark'] .dd-button--secondary:hover {
-  background: #1d304e;
+  background: color-mix(in srgb, var(--dd-blue) 22%, var(--dd-paper));
 }
 
 @media (prefers-reduced-motion: reduce) {

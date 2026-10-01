@@ -27,7 +27,7 @@
     right: 4px;
     position: absolute;
     transform: rotate(8deg);
-    filter: drop-shadow(0 8px 16px #0874f916);
+    filter: drop-shadow(0 8px 16px color-mix(in srgb, var(--dd-blue) 9%, transparent));
   }
 
   &__folders {
@@ -75,9 +75,9 @@
 
     &--blue {
       margin-left: 15px;
-      --folder-color: #0874f9;
-      --folder-border: #bdcff0;
-      --folder-background: #eaf1fe;
+      --folder-color: var(--dd-blue);
+      --folder-border: color-mix(in srgb, var(--dd-blue) 22%, var(--dd-paper));
+      --folder-background: var(--dd-blue-soft);
     }
 
     &--red {
@@ -150,7 +150,7 @@
     }
 
     &--blue {
-      --folder-color: #78adff;
+      --folder-color: color-mix(in srgb, var(--dd-blue) 60%, white);
     }
 
     &--red {

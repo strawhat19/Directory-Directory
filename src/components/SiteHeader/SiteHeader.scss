@@ -93,6 +93,8 @@
   }
 
   &__icon-button {
+    --dd-blue: var(--dd-accent);
+    --dd-blue-soft: var(--dd-accent-soft);
     width: 32px;
     height: 32px;
     padding: 0;
@@ -102,7 +104,7 @@
     position: relative;
     border-radius: 50%;
     place-items: center;
-    transition: width 250ms ease, margin 250ms ease, opacity 250ms ease, transform 250ms ease, background 250ms ease, box-shadow 250ms ease;
+    transition: color 350ms ease, width 250ms ease, margin 250ms ease, opacity 250ms ease, transform 250ms ease, background 350ms ease, box-shadow 350ms ease;
 
     &:hover {
       transform: translateY(-2px);
@@ -114,7 +116,7 @@
 
       &:hover {
         background: color-mix(in srgb, var(--dd-blue) 88%, black);
-        box-shadow: 0 6px 18px #0874f92b;
+        box-shadow: 0 6px 18px color-mix(in srgb, var(--dd-blue) 17%, transparent);
       }
     }
 
@@ -146,6 +148,7 @@
     font-weight: 700;
     background: var(--dd-blue);
     border: 2px solid var(--dd-page);
+    transition: background-color 350ms ease;
   }
 
   &__notifications-panel {

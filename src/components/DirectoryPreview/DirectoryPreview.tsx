@@ -5,7 +5,7 @@ import { categories } from '../../shared/catalog/catalog';
 import { useLanding } from '../../shared/landing/useLanding';
 
 export default function DirectoryPreview() {
-    const { savedIds, toggleSaved } = useLanding();
+    const { savedIds, toggleSaved, feedbackReady } = useLanding();
     const {
         dialogRef,
         handleCancel,
@@ -63,7 +63,7 @@ export default function DirectoryPreview() {
                     >
                         <Icon
                             size={13}
-                            name={selectedDirectory.category}
+                            name={category?.icon ?? `globe`}
                             id={`directory-preview-category-icon`}
                             className={`directory-preview__category-icon`}
                         />
@@ -140,6 +140,7 @@ export default function DirectoryPreview() {
 
                     <button
                         type={`button`}
+                        disabled={!feedbackReady}
                         aria-pressed={saved}
                         id={`directory-preview-save`}
                         onClick={() => toggleSaved(selectedDirectory.id)}
@@ -164,7 +165,7 @@ export default function DirectoryPreview() {
                         id={`directory-preview-save-note`}
                         className={`directory-preview__save-note`}
                     >
-                        {`Your saved collection stays here for this session.`}
+                        {`Your saved collection stays on this device.`}
                     </p>
                 </div>
             )}

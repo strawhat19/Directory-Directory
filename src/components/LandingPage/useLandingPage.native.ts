@@ -12,31 +12,10 @@ import {
 import { useLanding } from '../../shared/landing/useLanding';
 import { useTheme } from '../../shared/theme/useTheme';
 import { useCopyrightYear } from '../../shared/time/useCopyrightYear';
-import { directories, type CategoryId } from '../../shared/catalog/catalog';
+import { useSearchAccent } from '../../shared/landing/useSearchAccent';
+import { categories, directories, directoryStatuses, type CategoryId } from '../../shared/catalog/catalog';
 import { searchScopes, type SearchScope } from '../../shared/landing/searchScopes';
 import { getLandingAccents, getLandingPalette, createLandingStyles } from './LandingPage.native.styles';
-
-const categoryIcons = {
-    tools: `tools`,
-    design: `design`,
-    places: `places`,
-    learning: `learning`,
-    business: `business`,
-    lifestyle: `lifestyle`,
-    technology: `technology`,
-    communities: `communities`,
-} as const;
-
-const categoryAccentKeys = {
-    tools: `green`,
-    design: `blue`,
-    places: `ink`,
-    learning: `yellow`,
-    business: `orange`,
-    lifestyle: `pink`,
-    technology: `purple`,
-    communities: `red`,
-} as const;
 
 const topics = [
     { topic: `All`, icon: `globe` },
@@ -48,6 +27,7 @@ const viewModes = [`grid`, `list`] as const;
 
 export function useLandingPage() {
     const landing = useLanding();
+    const accent = useSearchAccent();
     const { isDark, toggleTheme } = useTheme();
     const { year } = useCopyrightYear();
     const [reduceMotion, setReduceMotion] = useState(false);
@@ -65,7 +45,6 @@ export function useLandingPage() {
     const headerSearchProgress = useRef(new Animated.Value(0)).current;
     const searchTheme = useRef(new Animated.Value(0)).current;
     const dotPulse = useRef(new Animated.Value(0)).current;
-    const dotColor = useRef(new Animated.Value(0)).current;
     const radarFirst = useRef(new Animated.Value(1)).current;
     const radarSecond = useRef(new Animated.Value(1)).current;
     const opacity = useRef(new Animated.Value(0)).current;
@@ -86,17 +65,18 @@ export function useLandingPage() {
     const categoryColumns = wide ? 4 : 2;
     const colors = useMemo(() => getLandingPalette(isDark), [isDark]);
     const activeAccents = useMemo(() => getLandingAccents(isDark), [isDark]);
-    const styles = useMemo(() => createLandingStyles(fontsLoaded, isDark), [fontsLoaded, isDark]);
+    const styles = useMemo(() => createLandingStyles(fontsLoaded, isDark, accent), [fontsLoaded, isDark, accent]);
     const gridColumns = landing.viewMode === `list` ? 1 : columns;
     const cardWidth = (contentWidth - 18 * (gridColumns - 1)) / gridColumns;
     const selected = landing.selectedDirectory;
     const selectedAccent = selected ? activeAccents[selected.accent] : activeAccents.blue;
     const selectedIsSaved = selected ? landing.savedIds.includes(selected.id) : false;
+    const selectedCategory = categories.find((item) => item.id === landing.category);
+    const statusColor = { gray: colors.muted, red: colors.red, green: colors.green };
 
     const categoryItems = landing.visibleCategories.map((item) => ({
         ...item,
-        icon: categoryIcons[item.id],
-        accent: activeAccents[categoryAccentKeys[item.id]],
+        accent: activeAccents[item.accent],
         active: landing.category === item.id,
         count: directories.filter((directory) => directory.category === item.id).length,
     }));
@@ -105,7 +85,21 @@ export function useLandingPage() {
         ...directory,
         accentStyle: activeAccents[directory.accent],
         saved: landing.savedIds.includes(directory.id),
+        statusItems: directoryStatuses.filter((item) => directory.statuses.includes(item.id)).map((item) => ({
+            ...item,
+            color: statusColor[item.tone],
+        })),
     }));
+
+    const statusItems = directoryStatuses.map((item) => ({
+        ...item,
+        color: statusColor[item.tone],
+        active: item.id === landing.status,
+    }));
+    const directoryTopicItems = selectedCategory?.topics.map((topic) => ({
+        topic,
+        active: topic === landing.directoryTopic,
+    })) ?? [];
 
     const topicItems = topics.map((item) => ({
         ...item,
@@ -192,6 +186,12 @@ export function useLandingPage() {
         queueResultsScroll();
     };
 
+    const selectDirectoryTopic = (id: CategoryId, topic: string) => {
+        landing.setQuery(``);
+        landing.selectDirectoryTopic(id, topic);
+        queueResultsScroll();
+    };
+
     useEffect(() => {
         if (reduceMotion) {
             headerSearchProgress.setValue(showHeaderSearch ? 1 : 0);
@@ -233,7 +233,6 @@ export function useLandingPage() {
         let active = true;
         let animation: Animated.CompositeAnimation | undefined;
         let pulseAnimation: Animated.CompositeAnimation | undefined;
-        let colorAnimation: Animated.CompositeAnimation | undefined;
         let radarAnimation: Animated.CompositeAnimation | undefined;
 
         const createRadarLoop = (progress: Animated.Value) => Animated.loop(Animated.sequence([
@@ -258,10 +257,8 @@ export function useLandingPage() {
             setMotionPreferenceReady(true);
             animation?.stop();
             pulseAnimation?.stop();
-            colorAnimation?.stop();
             radarAnimation?.stop();
             dotPulse.setValue(0);
-            dotColor.setValue(0);
             radarFirst.setValue(1);
             radarSecond.setValue(1);
 
@@ -301,12 +298,6 @@ export function useLandingPage() {
                     easing: Easing.inOut(Easing.sin),
                 }),
             ]));
-            colorAnimation = Animated.loop(Animated.timing(dotColor, {
-                toValue: 1,
-                duration: 12000,
-                easing: Easing.linear,
-                useNativeDriver: false,
-            }));
             radarAnimation = Animated.parallel([
                 createRadarLoop(radarFirst),
                 Animated.sequence([
@@ -315,7 +306,6 @@ export function useLandingPage() {
                 ]),
             ]);
             pulseAnimation.start();
-            colorAnimation.start();
             radarAnimation.start();
         };
 
@@ -329,28 +319,22 @@ export function useLandingPage() {
             active = false;
             animation?.stop();
             pulseAnimation?.stop();
-            colorAnimation?.stop();
             radarAnimation?.stop();
             subscription.remove();
         };
-    }, [opacity, dotPulse, dotColor, radarFirst, radarSecond, translation]);
+    }, [opacity, dotPulse, radarFirst, radarSecond, translation]);
 
-    const statusColor = dotColor.interpolate({
-        inputRange: [0, 0.5, 1],
-        outputRange: [colors.blue, colors.green, colors.blue],
-    });
     const searchThemeColor = searchTheme.interpolate({
         inputRange: [0, 1, 2],
         outputRange: searchScopes.map((item) => item.color),
     });
     const searchBackgroundColor = searchTheme.interpolate({
         inputRange: [0, 1, 2],
-        outputRange: isDark
-            ? [colors.surface, colors.surface, colors.surface]
-            : [activeAccents.blue.background, activeAccents.green.background, activeAccents.red.background],
+        outputRange: searchScopes.map((item) => isDark ? item.darkTint : item.tint),
     });
 
     return {
+        accent,
         wide,
         year,
         scroll,
@@ -363,6 +347,7 @@ export function useLandingPage() {
         motionPreferenceReady,
         columns,
         selected,
+        statusItems,
         scopeItems,
         onScroll,
         cardWidth,
@@ -375,8 +360,11 @@ export function useLandingPage() {
         scrollToHeroSearch,
         contentWidth,
         categoryItems,
+        selectedCategory,
         selectCategory,
         directoryItems,
+        directoryTopicItems,
+        selectDirectoryTopic,
         selectedAccent,
         selectedIsSaved,
         setExploreOffset,
@@ -393,6 +381,7 @@ export function useLandingPage() {
             transform: [{ translateX: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
         },
         searchPlaceholder: selectedScope.placeholder,
+        accentTextStyle: { color: searchThemeColor },
         searchThemeStyle: { backgroundColor: searchThemeColor },
         searchBoxThemeStyle: { borderColor: searchThemeColor, backgroundColor: searchBackgroundColor },
         searchIconItems: searchScopes.map((item, index) => ({
@@ -407,10 +396,10 @@ export function useLandingPage() {
         dotStyle: {
             opacity: dotPulse.interpolate({ inputRange: [0, 1], outputRange: [0.65, 1] }),
             transform: [{ scale: dotPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.3] }) }],
-            backgroundColor: statusColor,
+            backgroundColor: searchThemeColor,
         },
         radarRingStyles: [radarFirst, radarSecond].map((progress) => ({
-            borderColor: statusColor,
+            borderColor: searchThemeColor,
             opacity: progress.interpolate({ inputRange: [0, 0.15, 1], outputRange: [0, 0.6, 0] }),
             transform: [{ scale: progress.interpolate({ inputRange: [0, 1], outputRange: [1, 3] }) }],
         })),

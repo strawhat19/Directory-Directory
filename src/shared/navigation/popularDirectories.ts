@@ -1,5 +1,5 @@
 import type { IconName } from '../../components/Icon/Icon.types';
-import { linkedDirectories, type DirectoryAccent } from '../catalog/catalog';
+import { categories, linkedDirectories, type DirectoryAccent } from '../catalog/catalog';
 
 export type PopularDirectory = {
     id: string;
@@ -24,7 +24,7 @@ const accentColors: Record<DirectoryAccent, { color: string; background: string 
 export const popularDirectories: PopularDirectory[] = linkedDirectories.map((directory) => ({
     id: directory.id,
     href: directory.href,
-    icon: directory.category,
+    icon: categories.find((category) => category.id === directory.category)?.icon ?? `globe`,
     label: directory.name,
     ...accentColors[directory.accent],
 }));

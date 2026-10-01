@@ -15,6 +15,9 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
       className={`category-section`}
       aria-labelledby={`category-section-heading`}
     >
+      <h2 id={`category-section-heading`} className={`category-section__heading dd-visually-hidden`}>
+        {`Browse Categories`}
+      </h2>
       {/* <div id={`category-section-header`} className={`category-section__header`}>
         <h2 id={`category-section-heading`} className={`category-section__heading`}>
           {`Find your corner of the internet.`}
@@ -49,7 +52,7 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
             type={`button`}
             aria-pressed={category === item.id}
             id={`category-folder-${item.id}`}
-            className={`category-folder category-folder--${item.id}`}
+            className={`category-folder category-folder--${item.accent}`}
             onClick={() => exploreCategory(item.id)}
           >
             <span id={`category-folder-top-${item.id}`} className={`category-folder__top`}>
@@ -57,7 +60,7 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
                 id={`category-folder-icon-box-${item.id}`}
                 className={`category-folder__icon-box`}
               >
-                <Icon name={item.id} id={`category-folder-icon-${item.id}`} size={21} />
+                <Icon name={item.icon} id={`category-folder-icon-${item.id}`} size={21} />
               </span>
               <span
                 id={`category-folder-count-${item.id}`}
@@ -88,6 +91,22 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
               className={`category-folder__description`}
             >
               {item.description}
+            </span>
+            <span id={`category-folder-topics-${item.id}`} className={`category-folder__topics`}>
+              {item.topics.slice(0, 3).map((topic, index) => (
+                <span
+                  key={topic}
+                  className={`category-folder__topic`}
+                  id={`category-folder-topic-${item.id}-${index}`}
+                >
+                  {`#${topic.replaceAll(/[^a-zA-Z0-9]/g, ``)}`}
+                </span>
+              ))}
+              {item.topics.length > 3 && (
+                <span id={`category-folder-more-topics-${item.id}`} className={`category-folder__more-topics`}>
+                  {`+${item.topics.length - 3}`}
+                </span>
+              )}
             </span>
           </button>
         ))}
