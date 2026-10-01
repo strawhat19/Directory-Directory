@@ -1,0 +1,73 @@
+.hero-atom {
+  z-index: 0;
+  opacity: 0.7;
+  position: absolute;
+  inset: -24px -20px;
+  pointer-events: none;
+  color: var(--dd-ink);
+  transition: color 350ms ease;
+
+  &::before {
+    inset: 15%;
+    opacity: 0.6;
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(ellipse, color-mix(in srgb, var(--dd-ink) 5%, transparent), transparent 65%);
+  }
+
+  &__orbits {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+
+  &__orbit {
+    &--red { color: var(--dd-red); }
+    &--blue { color: var(--dd-blue); }
+    &--green { color: var(--dd-green); }
+  }
+
+  &__track {
+    fill: none;
+    opacity: 0.4;
+    stroke-width: 1.4;
+    stroke: currentColor;
+  }
+
+  &__electron {
+    fill: currentColor;
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+
+  &__core-halo {
+    fill: none;
+    opacity: 0.15;
+    stroke-width: 1;
+    stroke: currentColor;
+  }
+
+  &__core {
+    fill: currentColor;
+    filter: drop-shadow(0 0 8px currentColor);
+    animation: hero-atom-core-pulse 4s ease-in-out infinite;
+  }
+}
+
+@keyframes hero-atom-core-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 760px) {
+  .hero-atom {
+    inset: -16px -8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-atom__core {
+    animation: none;
+  }
+}

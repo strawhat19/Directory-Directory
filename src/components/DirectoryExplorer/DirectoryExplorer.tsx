@@ -46,15 +46,15 @@ export default function DirectoryExplorer() {
                         id={`directory-explorer-title`}
                         className={`directory-explorer__title`}
                     >
-                        {`Explore directories`}
+                        {`Directories`}
                     </h2>
 
-                    <p
+                    {/* <p
                         id={`directory-explorer-subtitle`}
                         className={`directory-explorer__subtitle`}
                     >
                         {`Thoughtful collections. A good place to start.`}
-                    </p>
+                    </p> */}
                 </div>
 
                 <div
@@ -65,16 +65,16 @@ export default function DirectoryExplorer() {
                         id={`directory-explorer-collection-label`}
                         className={`directory-explorer__collection-label dd-eyebrow`}
                     >
-                        {`Curated collection`}
+                        {`${resultCount} ${resultCount === 1 ? `directory` : `directories`}`}
                     </span>
 
-                    <span
+                    {/* <span
                         aria-live={`polite`}
                         id={`directory-explorer-result-count`}
                         className={`directory-explorer__result-count`}
                     >
                         {`${resultCount} ${resultCount === 1 ? `directory` : `directories`}`}
-                    </span>
+                    </span> */}
                 </div>
             </div>
 

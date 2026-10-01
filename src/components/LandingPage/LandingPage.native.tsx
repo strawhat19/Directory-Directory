@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Icon from '../Icon/Icon';
+import HeroAtom from '../HeroAtom/HeroAtom';
 import { Link, useRouter } from 'expo-router';
 import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
@@ -396,6 +397,8 @@ export default function LandingPage() {
                             {...elementProps(`landing-hero-artwork`)}
                             style={[styles.heroArtwork, wide && styles.heroArtworkWide]}
                         >
+                            {/* Comment out HeroAtom to remove the decorative animation. */}
+                            <HeroAtom />
                             <View {...elementProps(`landing-artwork-heading`)} style={styles.artworkHeading}>
                                 <BrandMark id={`landing-artwork-mark`} className={`landing-artwork-mark`} size={72} />
                                 <View {...elementProps(`landing-artwork-heading-copy`)}>

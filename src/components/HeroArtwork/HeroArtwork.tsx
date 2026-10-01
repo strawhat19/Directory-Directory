@@ -1,5 +1,6 @@
 import './HeroArtwork.scss'
 import Icon from '../Icon/Icon'
+import HeroAtom from '../HeroAtom/HeroAtom'
 import BrandMark from '../BrandMark/BrandMark'
 
 const folderLabels = [
@@ -12,6 +13,8 @@ export default function HeroArtwork() {
   return (
     <div id={`hero-artwork`} className={`hero-artwork`} aria-hidden={true}>
       <div id={`hero-artwork-grid`} className={`hero-artwork__grid`} />
+      {/* Comment out this component to remove the atom animation. */}
+      <HeroAtom />
       {/* <span id={`hero-artwork-index`} className={`hero-artwork__index`}>
         {`THE INTERNET, FILED UNDER GOOD.`}
       </span> */}
