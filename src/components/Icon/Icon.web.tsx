@@ -8,6 +8,7 @@ export default function Icon({
   name,
   size = 20,
   filled = false,
+  strokeWidth,
   className = ``,
   color = `currentColor`,
 }: IconProps) {
@@ -23,7 +24,7 @@ export default function Icon({
       height={size}
       fill={isSolid || name === `moon` ? color : `none`}
       stroke={isSolid ? `none` : color}
-      strokeWidth={isSolid ? 0 : name === `moon` ? 1.1 : 1.7}
+      strokeWidth={isSolid ? 0 : strokeWidth ?? (name === `moon` ? 1.1 : 1.7)}
       aria-hidden={`true`}
       viewBox={`0 0 24 24`}
       strokeLinecap={`round`}

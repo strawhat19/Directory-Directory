@@ -12,12 +12,23 @@ export const createDirectoryFeedbackStyles = (isDark: boolean) => {
       paddingHorizontal: 14,
       borderTopColor: palette.border,
     },
-    controls: {
-      gap: 8,
+    footer: {
+      gap: 10,
       flexWrap: `wrap`,
       flexDirection: `row`,
       alignItems: `center`,
-      justifyContent: `space-between`,
+    },
+    controls: {
+      gap: 8,
+      minWidth: 0,
+      flexGrow: 1,
+      flexShrink: 0,
+      maxWidth: `100%`,
+      flexWrap: `wrap`,
+      marginLeft: `auto`,
+      flexDirection: `row`,
+      alignItems: `center`,
+      justifyContent: `flex-end`,
     },
     votes: {
       gap: 3,
@@ -26,7 +37,6 @@ export const createDirectoryFeedbackStyles = (isDark: boolean) => {
     },
     rating: {
       gap: 3,
-      flexWrap: `wrap`,
       flexDirection: `row`,
       alignItems: `center`,
     },
@@ -53,13 +63,6 @@ export const createDirectoryFeedbackStyles = (isDark: boolean) => {
     downvoteSelected: {
       backgroundColor: isDark ? `#3b2029` : `#fceff0`,
     },
-    voteScore: {
-      minWidth: 21,
-      fontSize: 11,
-      fontWeight: `700`,
-      textAlign: `center`,
-      color: palette.ink,
-    },
     star: {
       width: 28,
       height: 36,
@@ -71,16 +74,26 @@ export const createDirectoryFeedbackStyles = (isDark: boolean) => {
       backgroundColor: palette.blueSoft,
     },
     reviewToggle: {
-      gap: 5,
-      minHeight: 28,
-      alignSelf: `flex-start`,
+      gap: 6,
+      flexShrink: 0,
+      minHeight: 34,
+      borderWidth: 1,
+      borderRadius: 9,
+      paddingVertical: 7,
+      paddingHorizontal: 10,
       flexDirection: `row`,
       alignItems: `center`,
+      borderColor: isDark ? `#294667` : `#bcd6f7`,
+      backgroundColor: isDark ? `#172637` : `#f0f6fe`,
+    },
+    reviewToggleOpen: {
+      borderColor: palette.blue,
+      backgroundColor: palette.blueSoft,
     },
     linkLabel: {
       fontSize: 10,
       fontWeight: `600`,
-      color: palette.blue,
+      color: palette.ink,
     },
     reviewPanel: {
       gap: 8,

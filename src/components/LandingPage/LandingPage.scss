@@ -5,7 +5,12 @@
   overflow-x: hidden;
   overflow-y: auto;
   scroll-behavior: smooth;
+  transition: scrollbar-color 350ms ease;
   scroll-padding-top: calc(var(--site-header-height, 180px) + 24px);
+
+  &[data-pricing-visible='true'] {
+    --dd-scrollbar-thumb: var(--dd-ink);
+  }
 
   &__shell {
     margin: 0 auto;

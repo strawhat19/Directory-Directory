@@ -1,5 +1,5 @@
-import InformationPage from '../src/components/InformationPage/InformationPage';
+import DiscoverPage from '../src/components/DiscoverPage/DiscoverPage';
 
 export default function Discover() {
-    return <InformationPage page={`discover`} />;
+    return <DiscoverPage />;
 }

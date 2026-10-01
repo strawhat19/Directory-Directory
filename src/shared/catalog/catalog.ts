@@ -1,3 +1,5 @@
+import type { IconName } from '../../components/Icon/Icon.types';
+
 export type CategoryId =
     | `ai`
     | `auto`
@@ -16,6 +18,7 @@ export type DirectoryStatusId = `new` | `top` | `best` | `local` | `popular` | `
 export type DirectoryCategoryIcon = `tools` | `design` | `places` | `learning` | `business` | `lifestyle` | `file-text` | `technology` | `communities` | `clapperboard`;
 
 export interface DirectoryStatus {
+    icon: IconName;
     label: string;
     description: string;
     id: DirectoryStatusId;
@@ -46,15 +49,15 @@ export interface DirectoryEntry {
 }
 
 export const directoryStatuses: DirectoryStatus[] = [
-    { id: `new`, tone: `green`, label: `New`, description: `Recently added to this collection` },
-    { id: `trending`, tone: `red`, label: `Trending`, description: `Recently popular` },
-    { id: `popular`, tone: `green`, label: `Popular`, description: `Consistently popular` },
-    { id: `best`, tone: `green`, label: `Best`, description: `Best all round or in all reactions` },
-    { id: `top`, tone: `red`, label: `Top`, description: `Most popular all time` },
-    { id: `local`, tone: `gray`, label: `Local`, description: `Local to your area` },
-    { id: `regional`, tone: `gray`, label: `Regional`, description: `Local to your region` },
-    { id: `national`, tone: `gray`, label: `National`, description: `Local to your nation` },
-    { id: `international`, tone: `gray`, label: `International`, description: `Global` },
+    { id: `new`, icon: `plus`, tone: `green`, label: `New`, description: `Recently added to this collection` },
+    { id: `trending`, icon: `arrow-up-right`, tone: `red`, label: `Trending`, description: `Recently popular` },
+    { id: `popular`, icon: `star`, tone: `green`, label: `Popular`, description: `Consistently popular` },
+    { id: `best`, icon: `trophy`, tone: `green`, label: `Best`, description: `Best all round or in all reactions` },
+    { id: `top`, icon: `upvote`, tone: `red`, label: `Top`, description: `Most popular all time` },
+    { id: `local`, icon: `places`, tone: `gray`, label: `Local`, description: `Local to your area` },
+    { id: `regional`, icon: `map`, tone: `gray`, label: `Regional`, description: `Local to your region` },
+    { id: `national`, icon: `flag`, tone: `gray`, label: `National`, description: `Local to your nation` },
+    { id: `international`, icon: `globe`, tone: `gray`, label: `International`, description: `Global` },
 ];
 
 export const categories: DirectoryCategory[] = [
@@ -448,6 +451,19 @@ export const directories: DirectoryEntry[] = [
         topics: [`Art`, `Drawing`, `Animation`],
         href: `https://www.artstation.com/`,
         summary: `Discover digital art, illustrations, and portfolios from artists working in games, film, and beyond.`,
+    },
+    {
+        initials: `Ao`,
+        accent: `blue`,
+        featured: true,
+        category: `creative`,
+        topics: [`Development`],
+        id: `awesome-open-source`,
+        name: `Awesome Open Source`,
+        label: `Open source project directory`,
+        statuses: [`new`, `international`],
+        href: `https://awesomeopensource.com/`,
+        summary: `Find and compare open source projects by category, programming language, and package.`,
     },
     {
         id: `imdb`,

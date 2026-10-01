@@ -30,101 +30,90 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
 
   return (
     <View {...elementProps(`directory-feedback`, props.directoryId)} style={styles.feedback}>
-      <View {...elementProps(`directory-feedback-controls`, props.directoryId)} style={styles.controls}>
-        <View {...elementProps(`directory-feedback-votes`, props.directoryId)} style={styles.votes}>
-          <Text {...elementProps(`directory-feedback-vote-label`, props.directoryId)} style={styles.controlLabel}>
-            {`Your Vote`}
+      <View {...elementProps(`directory-feedback-footer`, props.directoryId)} style={styles.footer}>
+        <Pressable
+          disabled={!feedbackReady}
+          onPress={toggleReview}
+          accessibilityRole={`button`}
+          accessibilityState={{ expanded: reviewOpen, disabled: !feedbackReady }}
+          {...elementProps(`directory-feedback-review-toggle`, props.directoryId)}
+          style={({ pressed }) => [styles.reviewToggle, reviewOpen && styles.reviewToggleOpen, pressed && styles.pressed, !feedbackReady && styles.disabled]}
+        >
+          <Icon
+            size={14}
+            name={`file-text`}
+            color={palette.blue}
+            id={`${identity}-review-icon`}
+            className={`directory-feedback-review-icon`}
+          />
+          <Text {...elementProps(`directory-feedback-review-toggle-label`, props.directoryId)} style={styles.linkLabel}>
+            {entry.review ? `Edit Review` : `Write Review`}
           </Text>
-          <Pressable
-            disabled={!feedbackReady}
-            onPress={() => vote(1)}
-            accessibilityRole={`button`}
-            {...elementProps(`directory-feedback-upvote`, props.directoryId)}
-            accessibilityLabel={`Upvote ${directoryName}`}
-            accessibilityState={{ selected: entry.vote === 1, disabled: !feedbackReady }}
-            style={({ pressed }) => [styles.vote, entry.vote === 1 && styles.upvoteSelected, pressed && styles.pressed, !feedbackReady && styles.disabled]}
-          >
-            <Icon
-              size={16}
-              name={`upvote`}
-              id={`${identity}-upvote-icon`}
-              className={`directory-feedback-vote-icon`}
-              color={entry.vote === 1 ? palette.green : palette.muted}
-            />
-          </Pressable>
-          <Text
-            style={styles.voteScore}
-            {...elementProps(`directory-feedback-vote-score`, props.directoryId)}
-            accessibilityLabel={`Your Vote: ${entry.vote > 0 ? `+1` : entry.vote}`}
-          >
-            {entry.vote > 0 ? `+1` : entry.vote}
-          </Text>
-          <Pressable
-            disabled={!feedbackReady}
-            onPress={() => vote(-1)}
-            accessibilityRole={`button`}
-            {...elementProps(`directory-feedback-downvote`, props.directoryId)}
-            accessibilityLabel={`Downvote ${directoryName}`}
-            accessibilityState={{ selected: entry.vote === -1, disabled: !feedbackReady }}
-            style={({ pressed }) => [styles.vote, entry.vote === -1 && styles.downvoteSelected, pressed && styles.pressed, !feedbackReady && styles.disabled]}
-          >
-            <Icon
-              size={16}
-              name={`downvote`}
-              id={`${identity}-downvote-icon`}
-              className={`directory-feedback-vote-icon`}
-              color={entry.vote === -1 ? palette.red : palette.muted}
-            />
-          </Pressable>
-        </View>
-        <View {...elementProps(`directory-feedback-rating`, props.directoryId)} style={styles.rating}>
-          <Text {...elementProps(`directory-feedback-rating-label`, props.directoryId)} style={styles.controlLabel}>
-            {entry.rating ? `Your Rating ${entry.rating}/5` : `Your Rating`}
-          </Text>
-          <View {...elementProps(`directory-feedback-stars`, props.directoryId)} style={styles.stars}>
-            {ratingValues.map((value) => (
-              <Pressable
-                key={value}
-                disabled={!feedbackReady}
-                onPress={() => rate(value)}
-                accessibilityRole={`button`}
-                {...elementProps(`directory-feedback-star`, `${props.directoryId}-${value}`)}
-                accessibilityState={{ selected: entry.rating === value, disabled: !feedbackReady }}
-                accessibilityLabel={entry.rating === value ? `Clear Your ${value}-Star Rating For ${directoryName}` : `Rate ${directoryName} ${value} Of 5 Stars`}
-                style={({ pressed }) => [styles.star, entry.rating >= value && styles.starSelected, pressed && styles.pressed, !feedbackReady && styles.disabled]}
-              >
-                <Icon
-                  size={16}
-                  name={`star`}
-                  filled={entry.rating >= value}
-                  color={entry.rating >= value ? palette.blue : palette.muted}
-                  id={`${identity}-star-${value}-icon`}
-                  className={`directory-feedback-star-icon`}
-                />
-              </Pressable>
-            ))}
+        </Pressable>
+        <View {...elementProps(`directory-feedback-controls`, props.directoryId)} style={styles.controls}>
+          <View {...elementProps(`directory-feedback-votes`, props.directoryId)} style={styles.votes}>
+            <Pressable
+              disabled={!feedbackReady}
+              onPress={() => vote(1)}
+              accessibilityRole={`button`}
+              {...elementProps(`directory-feedback-upvote`, props.directoryId)}
+              accessibilityLabel={`Upvote ${directoryName}`}
+              accessibilityState={{ selected: entry.vote === 1, disabled: !feedbackReady }}
+              style={({ pressed }) => [styles.vote, entry.vote === 1 && styles.upvoteSelected, pressed && styles.pressed, !feedbackReady && styles.disabled]}
+            >
+              <Icon
+                size={16}
+                name={`upvote`}
+                id={`${identity}-upvote-icon`}
+                className={`directory-feedback-vote-icon`}
+                color={entry.vote === 1 ? palette.green : palette.muted}
+              />
+            </Pressable>
+            <Pressable
+              disabled={!feedbackReady}
+              onPress={() => vote(-1)}
+              accessibilityRole={`button`}
+              {...elementProps(`directory-feedback-downvote`, props.directoryId)}
+              accessibilityLabel={`Downvote ${directoryName}`}
+              accessibilityState={{ selected: entry.vote === -1, disabled: !feedbackReady }}
+              style={({ pressed }) => [styles.vote, entry.vote === -1 && styles.downvoteSelected, pressed && styles.pressed, !feedbackReady && styles.disabled]}
+            >
+              <Icon
+                size={16}
+                name={`downvote`}
+                id={`${identity}-downvote-icon`}
+                className={`directory-feedback-vote-icon`}
+                color={entry.vote === -1 ? palette.red : palette.muted}
+              />
+            </Pressable>
+          </View>
+          <View {...elementProps(`directory-feedback-rating`, props.directoryId)} style={styles.rating}>
+            <View {...elementProps(`directory-feedback-stars`, props.directoryId)} style={styles.stars}>
+              {ratingValues.map((value) => (
+                <Pressable
+                  key={value}
+                  disabled={!feedbackReady}
+                  onPress={() => rate(value)}
+                  accessibilityRole={`button`}
+                  {...elementProps(`directory-feedback-star`, `${props.directoryId}-${value}`)}
+                  accessibilityState={{ selected: entry.rating === value, disabled: !feedbackReady }}
+                  accessibilityLabel={entry.rating === value ? `Clear Your ${value}-Star Rating For ${directoryName}` : `Rate ${directoryName} ${value} Of 5 Stars`}
+                  style={({ pressed }) => [styles.star, entry.rating >= value && styles.starSelected, pressed && styles.pressed, !feedbackReady && styles.disabled]}
+                >
+                  <Icon
+                    size={16}
+                    name={`star`}
+                    filled={entry.rating >= value}
+                    color={entry.rating >= value ? palette.blue : palette.muted}
+                    id={`${identity}-star-${value}-icon`}
+                    className={`directory-feedback-star-icon`}
+                  />
+                </Pressable>
+              ))}
+            </View>
           </View>
         </View>
       </View>
-      <Pressable
-        disabled={!feedbackReady}
-        onPress={toggleReview}
-        accessibilityRole={`button`}
-        accessibilityState={{ expanded: reviewOpen, disabled: !feedbackReady }}
-        {...elementProps(`directory-feedback-review-toggle`, props.directoryId)}
-        style={({ pressed }) => [styles.reviewToggle, pressed && styles.pressed, !feedbackReady && styles.disabled]}
-      >
-        <Icon
-          size={13}
-          name={`file-text`}
-          color={palette.blue}
-          id={`${identity}-review-icon`}
-          className={`directory-feedback-review-icon`}
-        />
-        <Text {...elementProps(`directory-feedback-review-toggle-label`, props.directoryId)} style={styles.linkLabel}>
-          {entry.review ? `Edit Review` : `Write Review`}
-        </Text>
-      </Pressable>
       {reviewOpen ? (
         <View {...elementProps(`directory-feedback-review-panel`, props.directoryId)} style={styles.reviewPanel}>
           <Text {...elementProps(`directory-feedback-review-label`, props.directoryId)} style={styles.controlLabel}>
@@ -189,13 +178,15 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
           {entry.review}
         </Text>
       ) : null}
-      <Text
-        accessibilityLiveRegion={`polite`}
-        {...elementProps(`directory-feedback-message`, props.directoryId)}
-        style={[styles.message, Boolean(feedbackError) && styles.error]}
-      >
-        {feedbackError ?? (message || `Saved On This Device`)}
-      </Text>
+      {feedbackError || message ? (
+        <Text
+          accessibilityLiveRegion={`polite`}
+          {...elementProps(`directory-feedback-message`, props.directoryId)}
+          style={[styles.message, Boolean(feedbackError) && styles.error]}
+        >
+          {feedbackError ?? message}
+        </Text>
+      ) : null}
     </View>
   );
 }

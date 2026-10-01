@@ -1,5 +1,7 @@
 export type IconName =
+  | `map`
   | `grid`
+  | `flag`
   | `list`
   | `plus`
   | `star`
@@ -22,6 +24,7 @@ export type IconName =
   | `design`
   | `search`
   | `places`
+  | `trophy`
   | `bookmark`
   | `sparkles`
   | `file-text`
@@ -31,9 +34,11 @@ export type IconName =
   | `learning`
   | `business`
   | `lifestyle`
+  | `arrow-up`
   | `user-plus`
   | `arrow-right`
   | `technology`
+  | `chevron-up`
   | `communities`
   | `clapperboard`
   | `arrow-up-right`;
@@ -44,5 +49,6 @@ export type IconProps = {
   name: IconName;
   color?: string;
   filled?: boolean;
+  strokeWidth?: number;
   className?: string;
 };

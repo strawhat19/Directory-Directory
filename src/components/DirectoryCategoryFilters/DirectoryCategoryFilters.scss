@@ -1,0 +1,101 @@
+$category-filter-colors: (
+    ink: #637a98,
+    red: #d83b42,
+    blue: #0874f9,
+    pink: #cd4c8c,
+    green: #21a668,
+    yellow: #b7860b,
+    purple: #8054d7,
+    orange: #d97722,
+);
+
+.directory-category-filters {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    gap: 10px 8px;
+    flex-wrap: wrap;
+    padding-top: 5px;
+    margin-bottom: 12px;
+
+    &__button {
+        --category-filter-color: var(--dd-ink);
+        gap: 7px;
+        min-width: 0;
+        display: flex;
+        flex: 1 0 126px;
+        min-height: 38px;
+        max-width: 100%;
+        font-size: 11px;
+        font-weight: 600;
+        text-align: left;
+        position: relative;
+        padding: 8px 10px;
+        align-items: center;
+        color: var(--dd-ink);
+        border-radius: 0 9px 9px 9px;
+        border: 1px solid color-mix(in srgb, var(--category-filter-color) 24%, var(--dd-line));
+        background: color-mix(in srgb, var(--category-filter-color) 6%, var(--dd-paper));
+        transition: color 220ms ease, transform 220ms ease, background-color 220ms ease, border-color 220ms ease;
+
+        &::before {
+            top: -5px;
+            left: -1px;
+            width: 25px;
+            height: 5px;
+            content: '';
+            position: absolute;
+            border-radius: 5px 7px 0 0;
+            background: var(--category-filter-color);
+            transition: width 220ms ease, background-color 220ms ease;
+        }
+
+        @each $accent, $color in $category-filter-colors {
+            &--#{$accent} {
+                --category-filter-color: #{$color};
+            }
+        }
+
+        &:hover,
+        &.is-active {
+            color: var(--category-filter-color);
+            border-color: var(--category-filter-color);
+            background: color-mix(in srgb, var(--category-filter-color) 13%, var(--dd-paper));
+        }
+
+        &:hover {
+            transform: translateY(-1px);
+        }
+
+        &.is-active::before {
+            width: 36px;
+        }
+
+        &:focus-visible {
+            outline-offset: 3px;
+            outline: 2px solid var(--category-filter-color);
+        }
+    }
+
+    &__icon {
+        color: var(--category-filter-color);
+    }
+
+    &__label {
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 600px) {
+    .directory-category-filters {
+        gap: 10px 6px;
+        margin-bottom: 10px;
+
+        &__button {
+            min-height: 40px;
+        }
+    }
+}

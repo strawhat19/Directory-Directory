@@ -48,7 +48,7 @@
 * {
   box-sizing: border-box;
   scrollbar-width: thin;
-  scrollbar-color: var(--dd-accent) var(--dd-page);
+  scrollbar-color: var(--dd-scrollbar-thumb, var(--dd-accent)) var(--dd-page);
 }
 
 ::-webkit-scrollbar {
@@ -63,12 +63,12 @@
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  background: var(--dd-accent);
+  background: var(--dd-scrollbar-thumb, var(--dd-accent));
   border: 2px solid var(--dd-page);
   transition: background-color 220ms ease;
 
   &:hover {
-    background: color-mix(in srgb, var(--dd-accent) 85%, var(--dd-ink));
+    background: color-mix(in srgb, var(--dd-scrollbar-thumb, var(--dd-accent)) 85%, var(--dd-ink));
   }
 }
 

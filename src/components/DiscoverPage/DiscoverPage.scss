@@ -1,0 +1,104 @@
+.discover-page {
+    &__intro {
+        gap: 28px;
+        display: flex;
+        padding: 48px 0 32px;
+        align-items: flex-end;
+        justify-content: space-between;
+    }
+
+    &__copy {
+        min-width: 0;
+    }
+
+    &__eyebrow {
+        gap: 7px;
+        display: flex;
+        margin: 0 0 12px;
+        align-items: center;
+        color: var(--dd-accent);
+    }
+
+    &__heading {
+        margin: 0;
+        font-size: 38px;
+        line-height: 1.15;
+        letter-spacing: -1.3px;
+        color: var(--dd-ink);
+    }
+
+    &__summary {
+        font-size: 13px;
+        line-height: 1.7;
+        max-width: 410px;
+        margin: 12px 0 0;
+        color: var(--dd-muted);
+    }
+
+    &__search {
+        gap: 10px;
+        display: flex;
+        flex: 0 1 420px;
+        min-width: 280px;
+        padding: 7px 8px 7px 14px;
+        border-radius: 12px;
+        align-items: center;
+        background: var(--dd-paper);
+        border: 1px solid var(--dd-line);
+        transition: border-color 220ms ease, box-shadow 220ms ease;
+
+        &:focus-within {
+            border-color: var(--dd-accent);
+            box-shadow: 0 0 0 3px var(--dd-accent-soft);
+        }
+    }
+
+    &__search-icon {
+        flex: none;
+        color: var(--dd-accent);
+    }
+
+    &__search-input {
+        flex: 1;
+        border: 0;
+        outline: 0;
+        min-width: 0;
+        font: inherit;
+        font-size: 12px;
+        color: var(--dd-ink);
+        background: transparent;
+
+        &::placeholder {
+            color: var(--dd-muted);
+        }
+    }
+
+    &__search-submit {
+        flex: none;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 900px) {
+    .discover-page__intro {
+        gap: 20px;
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .discover-page__search {
+        flex: none;
+        min-width: 0;
+        max-width: 520px;
+    }
+}
+
+@media (max-width: 600px) {
+    .discover-page__intro {
+        padding: 32px 0;
+    }
+
+    .discover-page__heading {
+        font-size: 30px;
+    }
+}

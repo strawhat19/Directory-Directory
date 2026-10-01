@@ -3,6 +3,7 @@ import Hero from '../Hero/Hero'
 import Head from 'expo-router/head'
 import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
+import ScrollToTop from '../ScrollToTop/ScrollToTop'
 import CategoryGrid from '../CategoryGrid/CategoryGrid'
 import { useLandingPage } from './useLandingPage.web'
 import PricingSection from '../PricingSection/PricingSection'
@@ -49,6 +50,7 @@ export default function LandingPage() {
           <SiteFooter />
         </div>
         <DirectoryPreview />
+        <ScrollToTop />
       </div>
     </>
   )

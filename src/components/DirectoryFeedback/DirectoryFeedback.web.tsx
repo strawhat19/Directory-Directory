@@ -22,109 +22,97 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
 
   return (
     <div id={identity} className={`directory-feedback`}>
-      <div id={`${identity}-controls`} className={`directory-feedback__controls`}>
-        <div
-          role={`group`}
-          id={`${identity}-votes`}
-          className={`directory-feedback__votes`}
-          aria-label={`Your Vote For ${directoryName}`}
+      <div id={`${identity}-footer`} className={`directory-feedback__footer`}>
+        <button
+          type={`button`}
+          onClick={toggleReview}
+          disabled={!feedbackReady}
+          aria-expanded={reviewOpen}
+          id={`${identity}-review-toggle`}
+          className={`directory-feedback__review-toggle`}
+          aria-controls={`${identity}-review-panel`}
         >
-          <span id={`${identity}-vote-label`} className={`directory-feedback__vote-label`}>
-            {`Your Vote`}
+          <Icon
+            size={14}
+            name={`file-text`}
+            id={`${identity}-review-icon`}
+            className={`directory-feedback__review-icon`}
+          />
+          <span id={`${identity}-review-toggle-label`} className={`directory-feedback__review-toggle-label`}>
+            {entry.review ? `Edit Review` : `Write Review`}
           </span>
-          <button
-            type={`button`}
-            disabled={!feedbackReady}
-            onClick={() => vote(1)}
-            id={`${identity}-upvote`}
-            aria-pressed={entry.vote === 1}
-            aria-label={`Upvote ${directoryName}`}
-            className={`directory-feedback__vote directory-feedback__vote--up${entry.vote === 1 ? ` is-selected` : ``}`}
+        </button>
+        <div id={`${identity}-controls`} className={`directory-feedback__controls`}>
+          <div
+            role={`group`}
+            id={`${identity}-votes`}
+            className={`directory-feedback__votes`}
+            aria-label={`Your Vote For ${directoryName}`}
           >
-            <Icon
-              size={16}
-              name={`upvote`}
-              id={`${identity}-upvote-icon`}
-              className={`directory-feedback__vote-icon`}
-            />
-          </button>
-          <span
-            id={`${identity}-vote-score`}
-            className={`directory-feedback__vote-score`}
-            aria-label={`Your Vote: ${entry.vote > 0 ? `+1` : entry.vote}`}
-            title={`Your Vote`}
+            <button
+              type={`button`}
+              disabled={!feedbackReady}
+              onClick={() => vote(1)}
+              id={`${identity}-upvote`}
+              aria-pressed={entry.vote === 1}
+              aria-label={`Upvote ${directoryName}`}
+              className={`directory-feedback__vote directory-feedback__vote--up${entry.vote === 1 ? ` is-selected` : ``}`}
+            >
+              <Icon
+                size={16}
+                name={`upvote`}
+                id={`${identity}-upvote-icon`}
+                className={`directory-feedback__vote-icon`}
+              />
+            </button>
+            <button
+              type={`button`}
+              disabled={!feedbackReady}
+              onClick={() => vote(-1)}
+              id={`${identity}-downvote`}
+              aria-pressed={entry.vote === -1}
+              aria-label={`Downvote ${directoryName}`}
+              className={`directory-feedback__vote directory-feedback__vote--down${entry.vote === -1 ? ` is-selected` : ``}`}
+            >
+              <Icon
+                size={16}
+                name={`downvote`}
+                id={`${identity}-downvote-icon`}
+                className={`directory-feedback__vote-icon`}
+              />
+            </button>
+          </div>
+          <div
+            role={`group`}
+            id={`${identity}-rating`}
+            className={`directory-feedback__rating`}
+            aria-label={`Your Rating For ${directoryName}`}
           >
-            {entry.vote > 0 ? `+1` : entry.vote}
-          </span>
-          <button
-            type={`button`}
-            disabled={!feedbackReady}
-            onClick={() => vote(-1)}
-            id={`${identity}-downvote`}
-            aria-pressed={entry.vote === -1}
-            aria-label={`Downvote ${directoryName}`}
-            className={`directory-feedback__vote directory-feedback__vote--down${entry.vote === -1 ? ` is-selected` : ``}`}
-          >
-            <Icon
-              size={16}
-              name={`downvote`}
-              id={`${identity}-downvote-icon`}
-              className={`directory-feedback__vote-icon`}
-            />
-          </button>
-        </div>
-        <div
-          role={`group`}
-          id={`${identity}-rating`}
-          className={`directory-feedback__rating`}
-          aria-label={`Your Rating For ${directoryName}`}
-        >
-          <span id={`${identity}-rating-label`} className={`directory-feedback__rating-label`}>
-            {entry.rating ? `Your Rating ${entry.rating}/5` : `Your Rating`}
-          </span>
-          <div id={`${identity}-stars`} className={`directory-feedback__stars`}>
-            {ratingValues.map((value) => (
-              <button
-                key={value}
-                type={`button`}
-                disabled={!feedbackReady}
-                onClick={() => rate(value)}
-                id={`${identity}-star-${value}`}
-                aria-pressed={entry.rating === value}
-                aria-label={entry.rating === value ? `Clear Your ${value}-Star Rating For ${directoryName}` : `Rate ${directoryName} ${value} Of 5 Stars`}
-                className={`directory-feedback__star${entry.rating >= value ? ` is-selected` : ``}`}
-              >
-                <Icon
-                  size={16}
-                  name={`star`}
-                  filled={entry.rating >= value}
-                  id={`${identity}-star-${value}-icon`}
-                  className={`directory-feedback__star-icon`}
-                />
-              </button>
-            ))}
+            <div id={`${identity}-stars`} className={`directory-feedback__stars`}>
+              {ratingValues.map((value) => (
+                <button
+                  key={value}
+                  type={`button`}
+                  disabled={!feedbackReady}
+                  onClick={() => rate(value)}
+                  id={`${identity}-star-${value}`}
+                  aria-pressed={entry.rating === value}
+                  aria-label={entry.rating === value ? `Clear Your ${value}-Star Rating For ${directoryName}` : `Rate ${directoryName} ${value} Of 5 Stars`}
+                  className={`directory-feedback__star${entry.rating >= value ? ` is-selected` : ``}`}
+                >
+                  <Icon
+                    size={16}
+                    name={`star`}
+                    filled={entry.rating >= value}
+                    id={`${identity}-star-${value}-icon`}
+                    className={`directory-feedback__star-icon`}
+                  />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-      <button
-        type={`button`}
-        onClick={toggleReview}
-        disabled={!feedbackReady}
-        aria-expanded={reviewOpen}
-        id={`${identity}-review-toggle`}
-        className={`directory-feedback__review-toggle`}
-        aria-controls={`${identity}-review-panel`}
-      >
-        <Icon
-          size={13}
-          name={`file-text`}
-          id={`${identity}-review-icon`}
-          className={`directory-feedback__review-icon`}
-        />
-        <span id={`${identity}-review-toggle-label`} className={`directory-feedback__review-toggle-label`}>
-          {entry.review ? `Edit Review` : `Write Review`}
-        </span>
-      </button>
       {reviewOpen ? (
         <form
           id={`${identity}-review-panel`}
@@ -193,9 +181,11 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
           {entry.review}
         </p>
       ) : null}
-      <p id={`${identity}-message`} className={`directory-feedback__message${feedbackError ? ` is-error` : ``}`} role={`status`}>
-        {feedbackError ?? (message || `Saved On This Device`)}
-      </p>
+      {feedbackError || message ? (
+        <p id={`${identity}-message`} className={`directory-feedback__message${feedbackError ? ` is-error` : ``}`} role={`status`}>
+          {feedbackError ?? message}
+        </p>
+      ) : null}
     </div>
   );
 }

@@ -13,6 +13,7 @@ import { useLanding } from '../../shared/landing/useLanding';
 import { useTheme } from '../../shared/theme/useTheme';
 import { useCopyrightYear } from '../../shared/time/useCopyrightYear';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
+import useDirectoryPagination from '../../shared/landing/useDirectoryPagination';
 import { categories, directories, directoryStatuses, type CategoryId } from '../../shared/catalog/catalog';
 import { searchScopes, type SearchScope } from '../../shared/landing/searchScopes';
 import { getLandingAccents, getLandingPalette, createLandingStyles } from './LandingPage.native.styles';
@@ -20,7 +21,6 @@ import { getLandingAccents, getLandingPalette, createLandingStyles } from './Lan
 const topics = [
     { topic: `All`, icon: `globe` },
     { topic: `Featured`, icon: `sparkles` },
-    { topic: `Saved`, icon: `bookmark` },
 ] as const;
 
 const viewModes = [`grid`, `list`] as const;
@@ -33,15 +33,32 @@ export function useLandingPage() {
     const [reduceMotion, setReduceMotion] = useState(false);
     const [motionPreferenceReady, setMotionPreferenceReady] = useState(false);
     const [showHeaderSearch, setShowHeaderSearch] = useState(false);
+    const [showScrollToTop, setShowScrollToTop] = useState(false);
+    const [scrollToTopOverPricing, setScrollToTopOverPricing] = useState(false);
     const scroll = useRef<ScrollView>(null);
     const searchInput = useRef<TextInput>(null);
     const mainOffset = useRef(0);
     const headerHeight = useRef(0);
     const scrollOffset = useRef(0);
     const viewportHeight = useRef(0);
+    const viewportOffset = useRef(0);
     const searchLayout = useRef<{ y: number; height: number } | null>(null);
+    const heroLayout = useRef<{ y: number; height: number } | null>(null);
+    const pricingLayout = useRef<{ y: number; height: number } | null>(null);
+    const scrollToTopLayout = useRef<{ y: number; height: number } | null>(null);
     const exploreOffset = useRef(0);
+    const exploreGridOffset = useRef(0);
+    const exploreControlsHeight = useRef(0);
     const pendingScroll = useRef(false);
+    const exploreScroll = useRef(new Animated.Value(0)).current;
+    const [exploreStickyLayout, setExploreStickyLayout] = useState({
+        offset: 0,
+        height: 0,
+        mainOffset: 0,
+        headerHeight: 0,
+        controlsOffset: 0,
+        controlsHeight: 0,
+    });
     const headerSearchProgress = useRef(new Animated.Value(0)).current;
     const searchTheme = useRef(new Animated.Value(0)).current;
     const dotPulse = useRef(new Animated.Value(0)).current;
@@ -73,6 +90,18 @@ export function useLandingPage() {
     const selectedIsSaved = selected ? landing.savedIds.includes(selected.id) : false;
     const selectedCategory = categories.find((item) => item.id === landing.category);
     const statusColor = { gray: colors.muted, red: colors.red, green: colors.green };
+    const { pagedDirectories, currentPage, totalPages, pageNumbers, setPage } = useDirectoryPagination(
+        landing.visibleDirectories,
+        gridColumns,
+        JSON.stringify([
+            landing.query,
+            landing.category,
+            landing.topic,
+            landing.status,
+            landing.directoryTopic,
+            landing.viewMode,
+        ]),
+    );
 
     const categoryItems = landing.visibleCategories.map((item) => ({
         ...item,
@@ -81,7 +110,7 @@ export function useLandingPage() {
         count: directories.filter((directory) => directory.category === item.id).length,
     }));
 
-    const directoryItems = landing.visibleDirectories.map((directory) => ({
+    const directoryItems = pagedDirectories.map((directory) => ({
         ...directory,
         accentStyle: activeAccents[directory.accent],
         saved: landing.savedIds.includes(directory.id),
@@ -104,7 +133,7 @@ export function useLandingPage() {
     const topicItems = topics.map((item) => ({
         ...item,
         id: item.topic.toLowerCase(),
-        active: item.topic === landing.topic,
+        active: !landing.status && item.topic === landing.topic,
     }));
 
     const viewItems = viewModes.map((mode) => ({
@@ -132,10 +161,33 @@ export function useLandingPage() {
         setShowHeaderSearch(searchBottom <= visibleTop || searchTop >= visibleBottom);
     };
 
+    const updateScrollToTopVisibility = () => {
+        if (!heroLayout.current) return;
+        const heroBottom = mainOffset.current + heroLayout.current.y + heroLayout.current.height;
+        setShowScrollToTop(scrollOffset.current + headerHeight.current >= heroBottom);
+    };
+
+    const updateScrollToTopAppearance = () => {
+        if (!pricingLayout.current || !scrollToTopLayout.current) return;
+        const pricingTop = mainOffset.current + pricingLayout.current.y;
+        const pricingBottom = pricingTop + pricingLayout.current.height;
+        const buttonTop = scrollOffset.current + scrollToTopLayout.current.y - viewportOffset.current;
+        const buttonBottom = buttonTop + scrollToTopLayout.current.height;
+
+        setScrollToTopOverPricing(buttonBottom > pricingTop && buttonTop < pricingBottom);
+    };
+
     const onScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         scrollOffset.current = event.nativeEvent.contentOffset.y;
+        exploreScroll.setValue(scrollOffset.current);
         viewportHeight.current = event.nativeEvent.layoutMeasurement.height;
         updateHeaderSearchVisibility();
+        updateScrollToTopVisibility();
+        updateScrollToTopAppearance();
+    };
+
+    const scrollToTop = () => {
+        scroll.current?.scrollTo({ y: 0, animated: !reduceMotion });
     };
 
     const scrollToHeroSearch = () => {
@@ -146,8 +198,14 @@ export function useLandingPage() {
     };
 
     const scrollToResults = () => {
-        const offset = mainOffset.current + exploreOffset.current - headerHeight.current;
-        scroll.current?.scrollTo({ y: Math.max(0, offset), animated: true });
+        const offset = mainOffset.current + exploreOffset.current + exploreGridOffset.current
+            - headerHeight.current - exploreControlsHeight.current;
+        scroll.current?.scrollTo({ y: Math.max(0, offset), animated: !reduceMotion });
+    };
+
+    const selectPage = (page: number) => {
+        setPage(page);
+        requestAnimationFrame(() => scrollToResults());
     };
 
     const queueResultsScroll = () => {
@@ -160,8 +218,9 @@ export function useLandingPage() {
         }));
     };
 
-    const setExploreOffset = (offset: number) => {
+    const setExploreLayout = (offset: number, height: number) => {
         exploreOffset.current = offset;
+        setExploreStickyLayout((current) => ({ ...current, offset, height }));
 
         if (pendingScroll.current) {
             scrollToResults();
@@ -332,6 +391,10 @@ export function useLandingPage() {
         inputRange: [0, 1, 2],
         outputRange: searchScopes.map((item) => isDark ? item.darkTint : item.tint),
     });
+    const stickyStart = exploreStickyLayout.mainOffset + exploreStickyLayout.offset
+        + exploreStickyLayout.controlsOffset - exploreStickyLayout.headerHeight;
+    const stickyDistance = Math.max(0, exploreStickyLayout.height
+        - exploreStickyLayout.controlsOffset - exploreStickyLayout.controlsHeight);
 
     return {
         accent,
@@ -350,6 +413,10 @@ export function useLandingPage() {
         statusItems,
         scopeItems,
         onScroll,
+        currentPage,
+        totalPages,
+        pageNumbers,
+        selectPage,
         cardWidth,
         viewItems,
         topicItems,
@@ -357,6 +424,9 @@ export function useLandingPage() {
         searchInput,
         toggleTheme,
         showHeaderSearch,
+        showScrollToTop,
+        scrollToTopOverPricing,
+        scrollToTop,
         scrollToHeroSearch,
         contentWidth,
         categoryItems,
@@ -367,18 +437,60 @@ export function useLandingPage() {
         selectDirectoryTopic,
         selectedAccent,
         selectedIsSaved,
-        setExploreOffset,
+        setExploreLayout,
+        setExploreGridOffset: (offset: number) => { exploreGridOffset.current = offset; },
+        setExploreControlsLayout: (offset: number, height: number) => {
+            exploreControlsHeight.current = height;
+            setExploreStickyLayout((current) => ({ ...current, controlsOffset: offset, controlsHeight: height }));
+        },
         showSearchResults,
         selectSearchScope,
-        setMainOffset: (offset: number) => { mainOffset.current = offset; updateHeaderSearchVisibility(); },
-        setHeaderHeight: (height: number) => { headerHeight.current = height; updateHeaderSearchVisibility(); },
-        setViewportHeight: (height: number) => { viewportHeight.current = height; updateHeaderSearchVisibility(); },
+        setMainOffset: (offset: number) => {
+            mainOffset.current = offset;
+            setExploreStickyLayout((current) => ({ ...current, mainOffset: offset }));
+            updateHeaderSearchVisibility();
+            updateScrollToTopVisibility();
+            updateScrollToTopAppearance();
+        },
+        setHeaderHeight: (height: number) => {
+            headerHeight.current = height;
+            setExploreStickyLayout((current) => ({ ...current, headerHeight: height }));
+            updateHeaderSearchVisibility();
+            updateScrollToTopVisibility();
+        },
+        setHeroLayout: (y: number, height: number) => {
+            heroLayout.current = { y, height };
+            updateScrollToTopVisibility();
+        },
+        setPricingLayout: (y: number, height: number) => {
+            pricingLayout.current = { y, height };
+            updateScrollToTopAppearance();
+        },
+        setScrollToTopLayout: (y: number, height: number) => {
+            scrollToTopLayout.current = { y, height };
+            updateScrollToTopAppearance();
+        },
+        setViewportHeight: (height: number, y = 0) => {
+            viewportHeight.current = height;
+            viewportOffset.current = y;
+            updateHeaderSearchVisibility();
+            updateScrollToTopAppearance();
+        },
         setSearchLayout: (y: number, height: number) => { searchLayout.current = { y, height }; updateHeaderSearchVisibility(); },
         headerSearchStyle: {
             opacity: headerSearchProgress,
             marginLeft: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 8] }),
             width: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 34] }),
             transform: [{ translateX: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+        },
+        exploreStickyStyle: {
+            transform: [{
+                translateY: stickyDistance > 0 ? exploreScroll.interpolate({
+                    inputRange: [stickyStart, stickyStart + stickyDistance],
+                    outputRange: [0, stickyDistance],
+                    extrapolate: `clamp`,
+                }) : 0,
+            }],
         },
         searchPlaceholder: selectedScope.placeholder,
         accentTextStyle: { color: searchThemeColor },

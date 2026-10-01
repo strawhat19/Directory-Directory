@@ -48,7 +48,7 @@ export default function SiteFooter() {
               className={`site-footer__arrow`}
             />
           </a>
-          <button
+          {/* <button
             type={`button`}
             onClick={scrollToTop}
             id={`footer-back-top`}
@@ -62,7 +62,7 @@ export default function SiteFooter() {
               id={`footer-back-top-icon`}
               className={`site-footer__arrow`}
             />
-          </button>
+          </button> */}
         </div>
       </div>
     </footer>
