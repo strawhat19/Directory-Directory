@@ -597,14 +597,21 @@ export default function LandingPage() {
                                             <Text
                                                 {...elementProps(`landing-category-topic`, `${item.id}-${index}`)}
                                                 key={topic}
+                                                numberOfLines={1}
+                                                ellipsizeMode={`tail`}
                                                 style={styles.categoryTopic}
+                                                accessibilityLabel={`#${topic}`}
                                             >
                                                 {`#${topic}`}
                                             </Text>
                                         ))}
                                         {item.topics.length > 3 && (
-                                            <Text {...elementProps(`landing-category-more-topics`, item.id)} style={styles.categoryTopic}>
-                                                {`+${item.topics.length - 3} topics`}
+                                            <Text
+                                                {...elementProps(`landing-category-more-topics`, item.id)}
+                                                numberOfLines={1}
+                                                style={[styles.categoryTopic, styles.categoryMoreTopics]}
+                                            >
+                                                {`+${item.topics.length - 3}`}
                                             </Text>
                                         )}
                                     </View>

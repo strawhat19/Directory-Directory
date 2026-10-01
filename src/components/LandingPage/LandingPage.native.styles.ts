@@ -463,18 +463,25 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
         },
         categoryTopics: {
             gap: 5,
+            minWidth: 0,
             marginTop: 10,
-            flexWrap: `wrap`,
+            flexWrap: `nowrap`,
             flexDirection: `row`,
+            alignItems: `center`,
         },
         categoryTopic: {
+            minWidth: 0,
             fontSize: 9,
+            flexShrink: 1,
             borderRadius: 5,
             paddingVertical: 3,
             paddingHorizontal: 5,
             fontFamily: medium,
             color: colors.muted,
             backgroundColor: colors.background,
+        },
+        categoryMoreTopics: {
+            flexShrink: 0,
         },
         explore: {
             paddingTop: 28,

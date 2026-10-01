@@ -96,6 +96,7 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
               {item.topics.slice(0, 3).map((topic, index) => (
                 <span
                   key={topic}
+                  title={topic}
                   className={`category-folder__topic`}
                   id={`category-folder-topic-${item.id}-${index}`}
                 >

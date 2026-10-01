@@ -176,6 +176,10 @@
     font-size: 11px;
   }
 
+  &__notifications-close {
+    display: none;
+  }
+
   &__notifications-list {
     gap: 10px;
     display: grid;
@@ -425,9 +429,102 @@
       gap: 6px;
     }
 
-    &__notifications-panel {
-      right: -72px;
+    &__notifications {
+      position: static;
     }
+
+    &__notifications-panel {
+      gap: 8px;
+      width: auto;
+      display: grid;
+      padding: 14px;
+      max-width: none;
+      overflow-y: auto;
+      border-radius: 20px;
+      align-items: center;
+      top: calc(100% + 8px);
+      overscroll-behavior: contain;
+      left: max(16px, env(safe-area-inset-left));
+      right: max(16px, env(safe-area-inset-right));
+      grid-template-columns: minmax(0, 1fr) auto 44px;
+      animation: site-header-notifications-enter 240ms ease both;
+      max-height: calc(100dvh - var(--site-header-height, 110px) - 24px - env(safe-area-inset-bottom));
+    }
+
+    &__notifications-heading {
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    &__notifications-count {
+      margin: 0;
+      padding: 5px 8px;
+      white-space: nowrap;
+      border-radius: 999px;
+      background: var(--dd-blue-soft);
+    }
+
+    &__notifications-close {
+      border: 0;
+      padding: 0;
+      width: 44px;
+      height: 44px;
+      display: grid;
+      border-radius: 50%;
+      place-items: center;
+      color: var(--dd-muted);
+      background: var(--dd-page);
+      transition: color 220ms ease, background 220ms ease;
+
+      &:hover {
+        color: var(--dd-blue);
+        background: var(--dd-blue-soft);
+      }
+    }
+
+    &__notifications-list {
+      gap: 12px;
+      margin: 4px 0 0;
+      grid-column: 1 / -1;
+    }
+
+    &__notification-item {
+      gap: 12px;
+      padding: 14px;
+      border-radius: 14px;
+    }
+
+    &__notification-symbol {
+      width: 32px;
+      height: 32px;
+    }
+
+    &__notification-title {
+      font-size: 14px;
+    }
+
+    &__notification-text {
+      margin-top: 6px;
+      font-size: 13px;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+
+    &__notification-link {
+      font-size: inherit;
+    }
+  }
+}
+
+@keyframes site-header-notifications-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

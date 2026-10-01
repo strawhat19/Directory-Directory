@@ -2,6 +2,7 @@ export type CategoryId =
     | `ai`
     | `auto`
     | `news`
+    | `adult`
     | `health`
     | `travel`
     | `creative`
@@ -150,6 +151,14 @@ export const categories: DirectoryCategory[] = [
         icon: `communities`,
         description: `Connect with local groups, events, organizations, and community resources.`,
         topics: [`Events`, `Leaders`, `Churches`, `Religious Sites`, `Culture`, `Government`, `Legal`, `Policing`, `Crime`],
+    },
+    {
+        id: `adult`,
+        label: `Adult`,
+        accent: `purple`,
+        icon: `lifestyle`,
+        description: `Explore dating, relationships, sexual wellness, and educational resources for adults.`,
+        topics: [`Dating`, `Relationships`, `Sexual Wellness`, `Education`, `Therapists`, `Communities`],
     },
 ];
 
@@ -946,6 +955,58 @@ export const directories: DirectoryEntry[] = [
         statuses: [`new`, `local`, `national`],
         href: `https://www.churchfinder.com/`,
         summary: `Find Christian churches in the United States by city, denomination, and congregation profile.`,
+    },
+    {
+        initials: `Ms`,
+        accent: `pink`,
+        featured: false,
+        category: `adult`,
+        id: `meetup-singles`,
+        name: `Meetup Singles`,
+        label: `Singles groups & events`,
+        statuses: [`new`, `local`, `international`],
+        topics: [`Dating`, `Relationships`, `Communities`],
+        href: `https://www.meetup.com/topics/singles/`,
+        summary: `Browse singles groups and social events for meeting people with shared interests.`,
+    },
+    {
+        id: `aasect`,
+        initials: `Aa`,
+        accent: `purple`,
+        featured: false,
+        category: `adult`,
+        name: `AASECT Directory`,
+        label: `Sexual wellness professionals`,
+        statuses: [`new`, `international`],
+        topics: [`Sexual Wellness`, `Education`, `Therapists`],
+        href: `https://www.aasect.org/referral-directory`,
+        summary: `Find certified sexuality educators, counselors, and therapists by country or United States state.`,
+    },
+    {
+        initials: `At`,
+        accent: `blue`,
+        featured: false,
+        category: `adult`,
+        id: `aamft-therapist-locator`,
+        name: `AAMFT Therapist Locator`,
+        label: `Marriage & relationship therapists`,
+        topics: [`Relationships`, `Therapists`],
+        statuses: [`new`, `local`, `national`],
+        href: `https://www.therapistlocator.net/`,
+        summary: `Browse marriage and family therapists offering support for individuals, couples, and relationships.`,
+    },
+    {
+        initials: `Pp`,
+        accent: `pink`,
+        featured: false,
+        category: `adult`,
+        id: `planned-parenthood`,
+        topics: [`Sexual Wellness`],
+        name: `Planned Parenthood`,
+        label: `Sexual health center directory`,
+        statuses: [`new`, `local`, `national`],
+        href: `https://www.plannedparenthood.org/health-center`,
+        summary: `Find United States sexual and reproductive health centers by location, service, and appointment type.`,
     },
 ];
 

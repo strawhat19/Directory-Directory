@@ -51,6 +51,7 @@
 .category-folder {
   gap: 14px;
   width: 100%;
+  min-width: 0;
   display: grid;
   text-align: left;
   padding: 23px 19px;
@@ -170,7 +171,8 @@
   &__topics {
     gap: 5px;
     display: flex;
-    flex-wrap: wrap;
+    min-width: 0;
+    flex-wrap: nowrap;
     align-items: center;
   }
 
@@ -180,8 +182,20 @@
     line-height: 1.5;
     padding: 3px 6px;
     border-radius: 5px;
+    white-space: nowrap;
     color: var(--category-color);
     background: var(--category-tint);
+  }
+
+  &__topic {
+    min-width: 0;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__more-topics {
+    flex-shrink: 0;
   }
 
   &:hover &__arrow {

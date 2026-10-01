@@ -126,6 +126,20 @@ export default function SiteHeader() {
                   >
                     {`${headerNotifications.length} updates`}
                   </span>
+                  <button
+                    type={`button`}
+                    onClick={toggleNotifications}
+                    id={`header-notifications-close`}
+                    aria-label={`Close notifications`}
+                    className={`site-header__notifications-close`}
+                  >
+                    <Icon
+                      size={18}
+                      name={`close`}
+                      id={`header-notifications-close-icon`}
+                      className={`site-header__notifications-close-icon`}
+                    />
+                  </button>
                   <ul
                     id={`header-notifications-list`}
                     className={`site-header__notifications-list`}
