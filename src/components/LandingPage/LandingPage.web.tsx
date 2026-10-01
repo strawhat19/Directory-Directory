@@ -5,9 +5,10 @@ import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
 import CategoryGrid from '../CategoryGrid/CategoryGrid'
 import { useLandingPage } from './useLandingPage.web'
-import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
+import PricingSection from '../PricingSection/PricingSection'
 import DirectoryPreview from '../DirectoryPreview/DirectoryPreview'
 import DirectoryExplorer from '../DirectoryExplorer/DirectoryExplorer'
+import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 export default function LandingPage() {
   const { scrollToSection } = useLandingPage()
@@ -43,8 +44,9 @@ export default function LandingPage() {
             <Hero onExplore={scrollToSection} />
             <CategoryGrid onExplore={() => scrollToSection(`explore`)} />
             <DirectoryExplorer />
+            <PricingSection />
           </main>
-          <SiteFooter onExplore={() => scrollToSection(`explore`)} />
+          <SiteFooter />
         </div>
         <DirectoryPreview />
       </div>

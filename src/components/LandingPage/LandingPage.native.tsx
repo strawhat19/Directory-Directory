@@ -9,9 +9,10 @@ import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
+import PricingSection from '../PricingSection/PricingSection.native';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { heroMagicTypeTerms } from '../../shared/landing/magicTypeTerms';
-import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
 
 const firstHeroMagicTerm = heroMagicTypeTerms[0] ?? `Directory`;
 
@@ -115,6 +116,7 @@ function HeroMagicHeading({ enabled, styles, wide }: {
 
 export default function LandingPage() {
     const router = useRouter();
+    const { width } = useWindowDimensions();
     const blurTarget = useRef<View | null>(null);
     const {
         wide,
@@ -798,10 +800,9 @@ export default function LandingPage() {
                         )}
                     </View>
 
+                    <PricingSection horizontalInset={padding + Math.max(0, (width - 1344) / 2)} />
+
                     <View {...elementProps(`landing-footer`)} style={styles.footer}>
-                        <Text {...elementProps(`landing-footer-statement`)} style={styles.footerStatement}>
-                            {`A little direction\ngoes a long way.`}
-                        </Text>
                         <View {...elementProps(`landing-footer-bottom`)} style={styles.footerBottom}>
                             <View {...elementProps(`landing-footer-brand`)} style={styles.footerBrand}>
                                 <BrandMark id={`landing-footer-mark`} className={`landing-footer-mark`} size={26} />

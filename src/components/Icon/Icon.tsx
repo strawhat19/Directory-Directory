@@ -2,16 +2,21 @@ import { styles } from './Icon.styles';
 import { iconPaths } from './Icon.paths';
 import Svg, { Path } from 'react-native-svg';
 import type { IconProps } from './Icon.types';
+import { filledIconPaths } from './Icon.filled.paths';
 import { elementProps } from '../../shared/ui/elementProps';
 
 export default function Icon({
   id,
   name,
   size = 20,
+  filled = false,
   className = ``,
   color = `#18243a`,
 }: IconProps) {
   const iconId = id ?? `icon-${name}`;
+  const solidPaths = filled ? filledIconPaths[name] : undefined;
+  const paths = solidPaths ?? iconPaths[name];
+  const isSolid = name === `dragon` || Boolean(solidPaths);
 
   return (
     <Svg
@@ -21,9 +26,9 @@ export default function Icon({
       nativeID={iconId}
       width={size}
       height={size}
-      fill={name === `moon` ? color : `none`}
-      stroke={color}
-      strokeWidth={name === `moon` ? 1.1 : 1.7}
+      fill={isSolid || name === `moon` ? color : `none`}
+      stroke={isSolid ? `none` : color}
+      strokeWidth={isSolid ? 0 : name === `moon` ? 1.1 : 1.7}
       style={styles.icon}
       viewBox={`0 0 24 24`}
       strokeLinecap={`round`}
@@ -31,10 +36,11 @@ export default function Icon({
       accessibilityElementsHidden
       importantForAccessibility={`no-hide-descendants`}
     >
-      {iconPaths[name].map((path, index) => (
+      {paths.map((path, index) => (
         <Path
           {...elementProps(`icon-path`, `${iconId}-${index}`)}
           d={path}
+          fillRule={isSolid ? `evenodd` : `nonzero`}
           key={`${iconId}-${index}`}
         />
       ))}

@@ -15,6 +15,7 @@ export type IconName =
   | `clock`
   | `globe`
   | `tools`
+  | `dragon`
   | `shield`
   | `log-in`
   | `design`
@@ -31,6 +32,7 @@ export type IconName =
   | `arrow-right`
   | `technology`
   | `communities`
+  | `clapperboard`
   | `arrow-up-right`;
 
 export type IconProps = {
@@ -38,5 +40,6 @@ export type IconProps = {
   size?: number;
   name: IconName;
   color?: string;
+  filled?: boolean;
   className?: string;
 };

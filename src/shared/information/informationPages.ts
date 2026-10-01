@@ -139,11 +139,11 @@ export const informationPages: Record<InformationPageId, InformationPageContent>
     },
     pricing: {
         icon: `business`,
-        eyebrow: `Simple to explore`,
+        eyebrow: `A Plan For Every Direction`,
         title: `Pricing`,
-        summary: `Directory Directory is currently a free preview with no paid plans.`,
-        noteTitle: `No checkout or subscription`,
-        note: `There are no paid tiers, billing accounts, or purchases in the current app.`,
+        summary: `Find your starting point with Free, Distributor, Director, and Dragon.`,
+        noteTitle: `Paid Plans Coming Soon`,
+        note: `Free is available in the current preview. Paid plans have monthly USD pricing, with subscriptions and features coming soon.`,
         sections: [
             {
                 id: `free-preview`,
@@ -154,9 +154,9 @@ export const informationPages: Record<InformationPageId, InformationPageContent>
             },
             {
                 id: `future-pricing`,
-                title: `Looking ahead`,
+                title: `Paid plans are coming soon`,
                 paragraphs: [
-                    `No future pricing or paid features have been announced here. If that changes, this page will explain the available options before you are asked to pay for anything.`,
+                    `Paid plan prices are listed in USD and billed monthly. Distributor, Director, and Dragon subscriptions and their features are coming soon.`,
                 ],
             },
         ],

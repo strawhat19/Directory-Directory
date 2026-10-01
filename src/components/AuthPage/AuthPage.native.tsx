@@ -204,8 +204,8 @@ export default function AuthPage({ mode }: AuthPageProps) {
                 <View {...elementProps(`auth-footer`, mode)} style={styles.footer}>
                     <Text {...elementProps(`auth-copyright`, mode)} style={styles.footerText}>
                         {year === null
-                            ? `© Directory Directory. Made for the curious.`
-                            : `© ${year} Directory Directory. Made for the curious.`}
+                            ? `© Directory Directory.`
+                            : `© ${year} Directory Directory.`}
                     </Text>
                     <Link href={`https://piratechs.com/`} asChild>
                         <Pressable

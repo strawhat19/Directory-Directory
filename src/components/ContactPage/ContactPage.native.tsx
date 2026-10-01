@@ -196,8 +196,8 @@ export default function ContactPage() {
                 <View {...elementProps(`contact-footer`)} style={styles.footer}>
                     <Text {...elementProps(`contact-copyright`)} style={styles.footerText}>
                         {year === null
-                            ? `© Directory Directory. Made for the curious.`
-                            : `© ${year} Directory Directory. Made for the curious.`}
+                            ? `© Directory Directory.`
+                            : `© ${year} Directory Directory.`}
                     </Text>
                     <Link href={`https://piratechs.com/`} asChild>
                         <Pressable

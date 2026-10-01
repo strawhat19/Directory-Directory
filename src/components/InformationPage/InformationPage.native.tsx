@@ -5,16 +5,18 @@ import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
 import { elementProps } from '../../shared/ui/elementProps';
+import PricingSection from '../PricingSection/PricingSection.native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useInformationPage } from './useInformationPage.native';
-import { Pressable, ScrollView, Text, View } from 'react-native';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import type { InformationPageProps } from './InformationPage.types';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
+import { Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages';
 
 export default function InformationPage({ page }: InformationPageProps) {
+    const { width } = useWindowDimensions();
     const blurTarget = useRef<View | null>(null);
     const content = informationPages[page];
     const { year, styles, palette, padding } = useInformationPage();
@@ -147,6 +149,10 @@ export default function InformationPage({ page }: InformationPageProps) {
                         </Text>
                     ) : null}
                 </View>
+                {page === `pricing` ? (
+                    <PricingSection horizontalInset={padding + Math.max(0, (width - 900) / 2)} />
+                ) : (
+                <>
                 <View {...elementProps(`information-note`, page)} style={styles.note}>
                     <Text {...elementProps(`information-note-title`, page)} style={styles.noteTitle}>
                         {content.noteTitle}
@@ -203,11 +209,13 @@ export default function InformationPage({ page }: InformationPageProps) {
                         </Link>
                     </View>
                 </View>
+                </>
+                )}
                 <View {...elementProps(`information-footer`, page)} style={styles.footer}>
                     <Text {...elementProps(`information-copyright`, page)} style={styles.footerText}>
                         {year === null
-                            ? `© Directory Directory. Made for the curious.`
-                            : `© ${year} Directory Directory. Made for the curious.`}
+                            ? `© Directory Directory.`
+                            : `© ${year} Directory Directory.`}
                     </Text>
                     <Link href={`https://piratechs.com/`} asChild>
                         <Pressable

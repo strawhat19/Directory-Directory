@@ -4,6 +4,7 @@ import Icon from '../Icon/Icon'
 import Head from 'expo-router/head'
 import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
+import PricingSection from '../PricingSection/PricingSection'
 import type { InformationPageProps } from './InformationPage.types'
 import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages'
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
@@ -82,6 +83,7 @@ export default function InformationPage({ page }: InformationPageProps) {
                 </p>
               ) : null}
             </div>
+            {page === `pricing` ? <PricingSection /> : (
             <div id={`information-layout-${page}`} className={`information-layout`}>
               <aside id={`information-sidebar-${page}`} className={`information-sidebar`}>
                 <nav
@@ -197,6 +199,7 @@ export default function InformationPage({ page }: InformationPageProps) {
                 </div>
               </div>
             </div>
+            )}
           </main>
           <SiteFooter />
         </div>

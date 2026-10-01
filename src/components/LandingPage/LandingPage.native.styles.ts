@@ -622,13 +622,6 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false) {
             paddingTop: 32,
             borderColor: colors.border,
         },
-        footerStatement: {
-            fontSize: 25,
-            lineHeight: 33,
-            fontFamily: bold,
-            color: colors.ink,
-            letterSpacing: -0.8,
-        },
         footerBottom: {
             gap: 18,
             flexWrap: `wrap`,
