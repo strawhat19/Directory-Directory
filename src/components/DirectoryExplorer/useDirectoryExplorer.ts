@@ -10,6 +10,7 @@ export default function useDirectoryExplorer() {
         topic,
         status,
         savedIds,
+        searchDirectoryIds,
         viewMode,
         category,
         setTopic,
@@ -37,11 +38,11 @@ export default function useDirectoryExplorer() {
     const { pagedDirectories, currentPage, totalPages, pageNumbers, setPage } = useDirectoryPagination(
         visibleDirectories,
         viewMode === `list` ? 1 : gridColumnCount,
-        JSON.stringify([query, category, topic, status, directoryTopic, viewMode]),
+        JSON.stringify([query, category, topic, status, directoryTopic, viewMode, searchDirectoryIds]),
     );
     const selectedCategory = categories.find((item) => item.id === category);
     const emptySaved = topic === `Saved` && savedIds.length === 0;
-    const hasFilters = Boolean(query.trim() || selectedCategory || status || directoryTopic);
+    const hasFilters = Boolean(query.trim() || selectedCategory || status || directoryTopic || searchDirectoryIds.length);
     const resultCount = visibleDirectories.length;
     const topics: { id: string; label: DirectoryTopic; count: number }[] = [
         { id: `all`, label: `All`, count: directories.length },

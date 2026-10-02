@@ -1,8 +1,9 @@
 import './Hero.scss'
 import Icon from '../Icon/Icon'
-import { suggestedSearches, useHero } from './useHero'
+import { useHero } from './useHero'
 import HeroArtwork from '../HeroArtwork/HeroArtwork'
 import { useHeroMagicType } from './useHeroMagicType'
+import DirectorySearch from '../DirectorySearch/DirectorySearch'
 import { searchScopes } from '../../shared/landing/searchScopes'
 
 type HeroProps = {
@@ -10,7 +11,7 @@ type HeroProps = {
 }
 
 export default function Hero({ onExplore }: HeroProps) {
-  const { query, search, setQuery, searchScope, selectScope, searchSuggestion } = useHero(onExplore)
+  const { searchScope, selectScope } = useHero(onExplore)
   const searchPlaceholder = searchScopes.find((scope) => scope.id === searchScope)?.placeholder
 
   return (
@@ -53,46 +54,12 @@ export default function Hero({ onExplore }: HeroProps) {
               </button>
             ))}
           </div>
-          <form
-            role={`search`}
-            id={`hero-search-form`}
-            className={`hero__search`}
-            onSubmit={search}
-          >
-            <label
-              htmlFor={`hero-search-input`}
-              id={`hero-search-label`}
-              className={`hero__search-label dd-visually-hidden`}
-            >
-              {`Search directories or topics`}
-            </label>
-            <Icon
-              size={20}
-              name={`search`}
-              id={`hero-search-icon`}
-              className={`hero__search-icon`}
-            />
-            <input
-              type={`search`}
-              value={query}
-              autoComplete={`off`}
-              id={`hero-search-input`}
-              className={`hero__search-input`}
-              placeholder={searchPlaceholder}
-              onChange={(event) => setQuery(event.target.value)}
-            />
-            <button
-              type={`submit`}
-              id={`hero-search-submit`}
-              aria-label={`Explore directories`}
-              className={`hero__search-submit dd-button dd-button--primary`}
-            >
-              <span id={`hero-search-submit-label`} className={`hero__search-submit-label`}>
-                {`Explore`}
-              </span>
-              <Icon name={`arrow-right`} id={`hero-search-submit-icon`} size={17} />
-            </button>
-          </form>
+          <DirectorySearch
+            variant={`hero`}
+            idPrefix={`hero-search`}
+            placeholder={searchPlaceholder}
+            onSearch={() => onExplore(`explore`)}
+          />
         </div>
         {/* <div id={`hero-suggestions`} className={`hero__suggestions`}>
           <span id={`hero-suggestions-label`} className={`hero__suggestions-label`}>

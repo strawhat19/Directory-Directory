@@ -14,18 +14,26 @@ $category-filter-colors: (
     min-width: 0;
     display: flex;
     gap: 10px 8px;
-    flex-wrap: wrap;
-    padding-top: 5px;
+    overflow-x: auto;
+    padding-top: 6px;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+    padding-inline: 2px;
     margin-bottom: 12px;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 
     &__button {
         --category-filter-color: var(--dd-ink);
         gap: 7px;
         min-width: 0;
         display: flex;
-        flex: 1 0 126px;
+        flex: 0 0 auto;
         min-height: 38px;
-        max-width: 100%;
         font-size: 11px;
         font-weight: 600;
         text-align: left;
@@ -83,19 +91,29 @@ $category-filter-colors: (
 
     &__label {
         min-width: 0;
-        overflow: hidden;
         white-space: nowrap;
-        text-overflow: ellipsis;
+    }
+
+    &__count {
+        flex-shrink: 0;
+        min-width: 16px;
+        font-size: 9px;
+        padding: 1px 4px;
+        text-align: center;
+        border-radius: 5px;
+        background: color-mix(in srgb, var(--category-filter-color) 12%, transparent);
+        transition: background-color 220ms ease;
     }
 }
 
 @media (max-width: 600px) {
     .directory-category-filters {
-        gap: 10px 6px;
-        margin-bottom: 10px;
+        gap: 6px;
+        margin-bottom: 8px;
 
         &__button {
-            min-height: 40px;
+            min-height: 34px;
+            padding: 6px 10px;
         }
     }
 }

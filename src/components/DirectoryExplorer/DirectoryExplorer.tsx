@@ -2,6 +2,7 @@ import './DirectoryExplorer.scss';
 import Icon from '../Icon/Icon';
 import useDirectoryExplorer from './useDirectoryExplorer';
 import DirectoryCard from '../DirectoryCard/DirectoryCard';
+import DirectorySearch from '../DirectorySearch/DirectorySearch';
 import DirectoryCategoryFilters from '../DirectoryCategoryFilters/DirectoryCategoryFilters';
 
 export default function DirectoryExplorer() {
@@ -72,7 +73,13 @@ export default function DirectoryExplorer() {
                                 id={`directory-explorer-title`}
                                 className={`directory-explorer__title`}
                             >
-                                {`Explore Directories`}
+                                <span
+                                    id={`directory-explorer-title-prefix`}
+                                    className={`directory-explorer__title-prefix`}
+                                >
+                                    {`Explore `}
+                                </span>
+                                {`Directories`}
                             </h2>
                         </div>
 
@@ -84,11 +91,19 @@ export default function DirectoryExplorer() {
                         </p> */}
                     </div>
 
+                    <DirectorySearch
+                        variant={`explorer`}
+                        idPrefix={`directory-explorer-search`}
+                        placeholder={`Search directories…`}
+                        className={`directory-explorer__search`}
+                    />
+
                     <div
                         id={`directory-explorer-metadata`}
                         className={`directory-explorer__metadata`}
                     >
                         <span
+                            aria-live={`polite`}
                             id={`directory-explorer-collection-label`}
                             className={`directory-explorer__collection-label dd-eyebrow`}
                         >

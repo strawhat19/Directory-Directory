@@ -1,5 +1,10 @@
 import { useLanding } from '../../shared/landing/useLanding';
-import { categories, type CategoryId } from '../../shared/catalog/catalog';
+import { categories, directories, type CategoryId } from '../../shared/catalog/catalog';
+
+const countedCategories = categories.map((item) => ({
+    ...item,
+    count: directories.filter((directory) => directory.category === item.id).length,
+}));
 
 export function useDirectoryCategoryFilters() {
     const { category, selectCategory } = useLanding();
@@ -9,5 +14,5 @@ export function useDirectoryCategoryFilters() {
         if (id) selectCategory(id);
     };
 
-    return { category, categories, changeCategory };
+    return { category, changeCategory, categories: countedCategories, totalCount: directories.length };
 }

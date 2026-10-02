@@ -124,88 +124,6 @@
     }
   }
 
-  &__search {
-    gap: 12px;
-    height: 44px;
-    display: flex;
-    padding: 0 6px;
-    overflow: visible;
-    border-radius: 0 12px 12px 12px;
-    align-items: center;
-    border: 1px solid var(--search-color);
-    background-color: color-mix(in srgb, var(--search-color) 4%, var(--dd-paper));
-    box-shadow: 0 5px 18px #14213d04;
-    transition: border-color 400ms ease, background-color 400ms ease, box-shadow 400ms ease;
-
-    &:focus-within {
-      border-color: var(--search-color);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--search-color) 8%, transparent);
-    }
-  }
-
-  &__search-icon {
-    flex: none;
-    margin-left: 12px;
-    color: var(--search-color);
-    transition: color 400ms ease;
-  }
-
-  &__search-input {
-    flex: 1;
-    border: 0;
-    width: 100%;
-    min-width: 0;
-    padding: 8px 0;
-    font-size: 12px;
-    color: var(--dd-ink);
-    background: transparent;
-
-    &:focus-visible {
-      outline: 0;
-    }
-
-    &::placeholder {
-      color: #8991a0;
-    }
-  }
-
-  &__search-submit {
-    flex: none;
-    z-index: 1;
-    height: 44px;
-    min-height: 44px;
-    padding: 0 17px;
-    margin-right: -8px;
-    overflow: visible;
-    position: relative;
-    border-radius: 0 10px 10px;
-
-    &::before {
-      left: 0;
-      top: -7px;
-      width: 28px;
-      height: 8px;
-      content: '';
-      position: absolute;
-      pointer-events: none;
-      background-color: inherit;
-      border: 1px solid var(--dd-paper);
-      border-bottom: 0;
-      border-radius: 6px 8px 0 0;
-      transition: background-color 400ms ease;
-    }
-
-    &.dd-button--primary {
-      background-color: var(--search-color);
-      transition: transform 220ms ease, background-color 400ms ease, box-shadow 400ms ease;
-
-      &:hover {
-        background-color: color-mix(in srgb, var(--search-color) 88%, black);
-        box-shadow: 0 6px 18px color-mix(in srgb, var(--search-color) 17%, transparent);
-      }
-    }
-  }
-
   &__suggestions {
     gap: 13px;
     display: flex;
@@ -323,14 +241,6 @@
     gap: 5px;
     font-size: 10px;
     padding: 10px 11px;
-  }
-
-  .hero__search-submit {
-    padding: 0 12px;
-  }
-
-  .hero__search-submit-label {
-    display: none;
   }
 
   .hero__heading {

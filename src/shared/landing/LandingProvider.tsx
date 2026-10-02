@@ -27,6 +27,7 @@ export interface LandingContextValue {
     query: string;
     topic: DirectoryTopic;
     savedIds: string[];
+    searchDirectoryIds: string[];
     viewMode: ViewMode;
     searchScope: SearchScope;
     feedbackReady: boolean;
@@ -44,6 +45,7 @@ export interface LandingContextValue {
     selectCategory: (id: CategoryId) => void;
     openDirectory: (entry: DirectoryEntry) => void;
     setQuery: Dispatch<SetStateAction<string>>;
+    setSearchDirectoryIds: Dispatch<SetStateAction<string[]>>;
     setTopic: Dispatch<SetStateAction<DirectoryTopic>>;
     setViewMode: Dispatch<SetStateAction<ViewMode>>;
     setSearchScope: Dispatch<SetStateAction<SearchScope>>;
@@ -60,6 +62,7 @@ const directoryIds = new Set(directories.map((entry) => entry.id));
 export function LandingProvider({ children }: PropsWithChildren) {
     const [query, setQuery] = useState(``);
     const [savedIds, setSavedIds] = useState<string[]>([]);
+    const [searchDirectoryIds, setSearchDirectoryIds] = useState<string[]>([]);
     const [topic, setTopic] = useState<DirectoryTopic>(`All`);
     const [viewMode, setViewMode] = useState<ViewMode>(`grid`);
     const [searchScope, setSearchScope] = useState<SearchScope>(`all`);
@@ -105,6 +108,7 @@ export function LandingProvider({ children }: PropsWithChildren) {
 
     const clearFilters = useCallback(() => {
         setQuery(``);
+        setSearchDirectoryIds([]);
         setTopic(`All`);
         setStatus(null);
         setCategory(null);
@@ -180,6 +184,7 @@ export function LandingProvider({ children }: PropsWithChildren) {
             if (directoryTopic && !entry.topics.includes(directoryTopic)) return false;
             if (topic === `Featured` && !entry.featured) return false;
             if (topic === `Saved` && !savedIds.includes(entry.id)) return false;
+            if (searchDirectoryIds.length) return searchDirectoryIds.includes(entry.id);
 
             const categoryItem = categories.find((item) => item.id === entry.category);
             const categoryText = `${categoryItem?.label ?? ``} ${categoryItem?.description ?? ``}`;
@@ -188,7 +193,7 @@ export function LandingProvider({ children }: PropsWithChildren) {
 
             return searchTerms.every((term) => searchableText.includes(term) || compactText.includes(term.replaceAll(/[^a-z0-9]/g, ``)));
         });
-    }, [query, status, category, topic, savedIds, directoryTopic]);
+    }, [query, status, category, topic, savedIds, directoryTopic, searchDirectoryIds]);
 
     const value = useMemo<LandingContextValue>(() => ({
         query,
@@ -196,9 +201,11 @@ export function LandingProvider({ children }: PropsWithChildren) {
         status,
         feedback,
         savedIds,
+        searchDirectoryIds,
         viewMode,
         category,
         setQuery,
+        setSearchDirectoryIds,
         setTopic,
         setStatus,
         searchScope,
@@ -225,6 +232,7 @@ export function LandingProvider({ children }: PropsWithChildren) {
         status,
         feedback,
         savedIds,
+        searchDirectoryIds,
         viewMode,
         category,
         searchScope,

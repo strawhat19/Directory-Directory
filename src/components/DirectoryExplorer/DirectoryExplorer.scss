@@ -32,11 +32,21 @@
     }
 
     &__header {
-        gap: 24px;
+        gap: 20px;
         display: flex;
         margin-bottom: 12px;
-        align-items: flex-end;
+        align-items: center;
         justify-content: space-between;
+    }
+
+    &__intro {
+        flex-shrink: 0;
+    }
+
+    &__search {
+        flex: 1;
+        min-width: 0;
+        max-width: 440px;
     }
 
     &__title-row {
@@ -375,6 +385,14 @@
 }
 
 @media (max-width: 1000px) {
+    .directory-explorer__header {
+        gap: 12px;
+    }
+
+    .directory-explorer__title {
+        font-size: 25px;
+    }
+
     .directory-explorer__results {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -385,23 +403,41 @@
         padding: 40px 0 48px;
 
         &__header {
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
+            gap: 8px;
+            display: grid;
+            margin-bottom: 8px;
             align-items: center;
+            grid-template-columns: auto minmax(0, 1fr);
+        }
+
+        &__intro {
+            grid-row: 1;
+            grid-column: 1;
+        }
+
+        &__search {
+            width: 100%;
+            grid-row: 1;
+            max-width: none;
+            grid-column: 2;
+        }
+
+        &__title-prefix {
+            display: none;
         }
 
         &__title {
-            font-size: 22px;
+            white-space: nowrap;
+            font-size: clamp(17px, 4.8vw, 22px);
         }
 
         &__title-row {
-            gap: 10px;
+            gap: 8px;
         }
 
         &__title-mark {
-            width: 34px;
-            height: 34px;
+            width: 28px;
+            height: 28px;
             border-radius: 10px;
         }
 
@@ -410,31 +446,27 @@
         }
 
         &__metadata {
-            gap: 12px;
-            align-items: center;
-            flex-direction: row;
+            display: none;
         }
 
         &__toolbar {
-            padding: 5px;
+            padding: 4px;
+            min-width: 0;
         }
 
         &__sticky-controls {
             padding: 10px 0 12px;
-
-            .directory-category-filters__button {
-                min-height: 34px;
-                flex-basis: 88px;
-                padding: 6px 8px;
-            }
         }
 
         &__topics {
             gap: 2px;
+            scroll-snap-type: x proximity;
         }
 
         &__topic {
+            min-height: 32px;
             padding: 6px 8px;
+            scroll-snap-align: start;
         }
 
         &__view-controls {

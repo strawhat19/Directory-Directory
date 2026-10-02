@@ -3,7 +3,7 @@ import './DirectoryCategoryFilters.scss';
 import { useDirectoryCategoryFilters } from './useDirectoryCategoryFilters';
 
 export default function DirectoryCategoryFilters() {
-    const { category, categories, changeCategory } = useDirectoryCategoryFilters();
+    const { category, categories, totalCount, changeCategory } = useDirectoryCategoryFilters();
 
     return (
         <div
@@ -31,6 +31,13 @@ export default function DirectoryCategoryFilters() {
                 >
                     {`All`}
                 </span>
+                <span
+                    aria-label={`${totalCount} directories`}
+                    id={`directory-explorer-category-all-count`}
+                    className={`directory-category-filters__count`}
+                >
+                    {totalCount}
+                </span>
             </button>
             {categories.map((item) => (
                 <button
@@ -53,6 +60,13 @@ export default function DirectoryCategoryFilters() {
                         className={`directory-category-filters__label`}
                     >
                         {item.label}
+                    </span>
+                    <span
+                        aria-label={`${item.count} directories`}
+                        id={`directory-explorer-category-${item.id}-count`}
+                        className={`directory-category-filters__count`}
+                    >
+                        {item.count}
                     </span>
                 </button>
             ))}
