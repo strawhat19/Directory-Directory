@@ -100,7 +100,7 @@ export default function CategoryGrid({ onExplore }: CategoryGridProps) {
                   className={`category-folder__topic`}
                   id={`category-folder-topic-${item.id}-${index}`}
                 >
-                  {`#${topic.replaceAll(/[^a-zA-Z0-9]/g, ``)}`}
+                  {topic}
                 </span>
               ))}
               {item.topics.length > 3 && (

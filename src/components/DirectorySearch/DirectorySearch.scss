@@ -18,6 +18,10 @@
         border-top-left-radius: 0;
     }
 
+    &--explorer {
+        height: 38px;
+    }
+
     &--open {
         z-index: 3;
     }
@@ -162,8 +166,10 @@
     }
 
     &--explorer &__submit {
-        padding: 0 12px;
-        min-width: 44px;
+        height: 38px;
+        min-width: 38px;
+        min-height: 38px;
+        padding: 0 10px;
         margin-right: -7px;
         border-radius: 0 12px 12px;
     }
@@ -253,7 +259,7 @@
 @media (max-width: 600px) {
     .directory-search.directory-search--explorer {
         gap: 4px;
-        height: 36px;
+        height: 34px;
 
         .directory-search__icon {
             width: 16px;
@@ -280,10 +286,10 @@
         }
 
         .directory-search__submit {
-            height: 36px;
-            min-width: 36px;
-            min-height: 36px;
-            padding: 0 9px;
+            height: 34px;
+            min-width: 34px;
+            min-height: 34px;
+            padding: 0 8px;
         }
 
         .directory-search__menu {

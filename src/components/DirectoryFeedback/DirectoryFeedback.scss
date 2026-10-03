@@ -33,7 +33,16 @@
     align-items: center;
   }
 
-  &__review-label,
+  &__vote-score {
+    flex: none;
+    width: 24px;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--dd-ink);
+    font-variant-numeric: tabular-nums;
+  }
+
   &__review-length {
     font-size: 10px;
     font-weight: 600;
@@ -88,20 +97,29 @@
     min-height: 34px;
     border-radius: 9px;
     padding: 7px 10px;
-    color: var(--dd-ink);
-    background: color-mix(in srgb, #0874f9 8%, var(--dd-paper));
-    border: 1px solid color-mix(in srgb, #0874f9 24%, var(--dd-line));
+    color: var(--directory-color, var(--dd-blue));
+    background: var(--directory-tint, var(--dd-blue-soft));
+    border: 1px solid color-mix(in srgb, var(--directory-color, var(--dd-blue)) 24%, var(--dd-line));
   }
 
-  &__review-icon { color: #0874f9; }
+  &__review-icon { color: var(--directory-color, var(--dd-blue)); }
 
   &__review-toggle:hover,
   &__review-toggle[aria-expanded='true'] {
-    background: color-mix(in srgb, #0874f9 14%, var(--dd-paper));
-    border-color: color-mix(in srgb, #0874f9 48%, var(--dd-line));
+    background: color-mix(in srgb, var(--directory-color, var(--dd-blue)) 14%, var(--directory-tint, var(--dd-blue-soft)));
+    border-color: color-mix(in srgb, var(--directory-color, var(--dd-blue)) 48%, var(--dd-line));
   }
 
   &__review-panel { gap: 8px; display: grid; }
+
+  &__rating { flex: 1; min-width: 98px; max-width: 142px; }
+  &__rating &__stars { gap: 2px; flex: 1; min-width: 0; justify-content: flex-start; }
+  &__rating &__star {
+    flex: 1;
+    height: 28px;
+    min-width: 18px;
+    max-width: 26px;
+  }
 
   &__review-input {
     width: 100%;
@@ -144,5 +162,5 @@
 
 @media (max-width: 480px) {
   .directory-feedback__controls { gap: 7px; }
-  .directory-feedback__star { width: 28px; }
+  .directory-feedback__rating .directory-feedback__star { max-width: 24px; }
 }

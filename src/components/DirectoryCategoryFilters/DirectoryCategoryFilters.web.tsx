@@ -1,8 +1,10 @@
 import Icon from '../Icon/Icon';
 import './DirectoryCategoryFilters.scss';
 import { useDirectoryCategoryFilters } from './useDirectoryCategoryFilters';
+import { useDirectoryCategoryFilterScroll } from './useDirectoryCategoryFilterScroll.web';
 
 export default function DirectoryCategoryFilters() {
+    const { track, viewport, scrollEdges } = useDirectoryCategoryFilterScroll();
     const { category, categories, totalCount, changeCategory } = useDirectoryCategoryFilters();
 
     return (
@@ -11,65 +13,79 @@ export default function DirectoryCategoryFilters() {
             aria-label={`Filter directories by category`}
             id={`directory-explorer-category-filters`}
             className={`directory-category-filters`}
+            data-scroll-left={scrollEdges.left ? `true` : undefined}
+            data-scroll-right={scrollEdges.right ? `true` : undefined}
         >
-            <button
-                type={`button`}
-                aria-pressed={!category}
-                onClick={() => changeCategory(null)}
-                id={`directory-explorer-category-all`}
-                className={`directory-category-filters__button${!category ? ` is-active` : ``}`}
+            <div
+                ref={viewport}
+                id={`directory-explorer-category-filters-viewport`}
+                className={`directory-category-filters__viewport`}
             >
-                <Icon
-                    size={14}
-                    name={`grid`}
-                    id={`directory-explorer-category-all-icon`}
-                    className={`directory-category-filters__icon`}
-                />
-                <span
-                    id={`directory-explorer-category-all-label`}
-                    className={`directory-category-filters__label`}
+                <div
+                    ref={track}
+                    id={`directory-explorer-category-filters-track`}
+                    className={`directory-category-filters__track`}
                 >
-                    {`All`}
-                </span>
-                <span
-                    aria-label={`${totalCount} directories`}
-                    id={`directory-explorer-category-all-count`}
-                    className={`directory-category-filters__count`}
-                >
-                    {totalCount}
-                </span>
-            </button>
-            {categories.map((item) => (
-                <button
-                    key={item.id}
-                    type={`button`}
-                    title={item.description}
-                    aria-pressed={category === item.id}
-                    onClick={() => changeCategory(item.id)}
-                    id={`directory-explorer-category-${item.id}`}
-                    className={`directory-category-filters__button directory-category-filters__button--${item.accent}${category === item.id ? ` is-active` : ``}`}
-                >
-                    <Icon
-                        size={14}
-                        name={item.icon}
-                        id={`directory-explorer-category-${item.id}-icon`}
-                        className={`directory-category-filters__icon`}
-                    />
-                    <span
-                        id={`directory-explorer-category-${item.id}-label`}
-                        className={`directory-category-filters__label`}
+                    <button
+                        type={`button`}
+                        aria-pressed={!category}
+                        onClick={() => changeCategory(null)}
+                        id={`directory-explorer-category-all`}
+                        className={`directory-category-filters__button${!category ? ` is-active` : ``}`}
                     >
-                        {item.label}
-                    </span>
-                    <span
-                        aria-label={`${item.count} directories`}
-                        id={`directory-explorer-category-${item.id}-count`}
-                        className={`directory-category-filters__count`}
-                    >
-                        {item.count}
-                    </span>
-                </button>
-            ))}
+                        <Icon
+                            size={14}
+                            name={`grid`}
+                            id={`directory-explorer-category-all-icon`}
+                            className={`directory-category-filters__icon`}
+                        />
+                        <span
+                            id={`directory-explorer-category-all-label`}
+                            className={`directory-category-filters__label`}
+                        >
+                            {`All`}
+                        </span>
+                        <span
+                            aria-label={`${totalCount} directories`}
+                            id={`directory-explorer-category-all-count`}
+                            className={`directory-category-filters__count`}
+                        >
+                            {totalCount}
+                        </span>
+                    </button>
+                    {categories.map((item) => (
+                        <button
+                            key={item.id}
+                            type={`button`}
+                            title={item.description}
+                            aria-pressed={category === item.id}
+                            onClick={() => changeCategory(item.id)}
+                            id={`directory-explorer-category-${item.id}`}
+                            className={`directory-category-filters__button directory-category-filters__button--${item.accent}${category === item.id ? ` is-active` : ``}`}
+                        >
+                            <Icon
+                                size={14}
+                                name={item.icon}
+                                id={`directory-explorer-category-${item.id}-icon`}
+                                className={`directory-category-filters__icon`}
+                            />
+                            <span
+                                id={`directory-explorer-category-${item.id}-label`}
+                                className={`directory-category-filters__label`}
+                            >
+                                {item.label}
+                            </span>
+                            <span
+                                aria-label={`${item.count} directories`}
+                                id={`directory-explorer-category-${item.id}-count`}
+                                className={`directory-category-filters__count`}
+                            >
+                                {item.count}
+                            </span>
+                        </button>
+                    ))}
+                </div>
+            </div>
         </div>
     );
 }

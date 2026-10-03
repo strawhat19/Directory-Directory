@@ -38,7 +38,15 @@
 
   &__electron {
     fill: currentColor;
+    offset-rotate: 0deg;
+    offset-position: 0 0;
+    offset-anchor: center;
+    offset-distance: 0%;
+    // Anchor the circle's center so its SVG position is not added to the path.
+    transform-box: fill-box;
     filter: drop-shadow(0 0 5px currentColor);
+    offset-path: path('M 30 200 a 170 65 0 1 0 340 0 a 170 65 0 1 0 -340 0') view-box;
+    animation: hero-atom-orbit 12s linear infinite both;
   }
 
   &__core-halo {
@@ -55,6 +63,11 @@
   }
 }
 
+@keyframes hero-atom-orbit {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+
 @keyframes hero-atom-core-pulse {
   0%, 100% { opacity: 0.55; }
   50% { opacity: 1; }
@@ -67,6 +80,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero-atom__electron {
+    animation-play-state: paused;
+  }
+
   .hero-atom__core {
     animation: none;
   }

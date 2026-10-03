@@ -35,18 +35,12 @@
         border: 0;
         flex: 1;
         display: flex;
-        cursor: pointer;
         text-align: left;
         background: none;
         padding: 22px 25px 25px;
         flex-direction: column;
         border-radius: inherit;
         color: var(--dd-ink);
-
-        &:focus-visible {
-            outline-offset: 4px;
-            outline: 3px solid var(--directory-color);
-        }
     }
 
     &__monogram {
@@ -94,12 +88,23 @@
     &__body {
         flex: 1;
         display: flex;
+        min-width: 0;
         flex-direction: column;
     }
 
-    &__category {
-        font-size: 10px;
+    &__category-row {
+        gap: 12px;
+        display: flex;
+        min-width: 0;
         margin-bottom: 9px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__category {
+        flex-shrink: 0;
+        font-size: 10px;
+        white-space: nowrap;
         color: var(--dd-muted);
     }
 
@@ -107,11 +112,12 @@
         font-size: 21px;
         font-weight: 650;
         line-height: 1.25;
-        margin-bottom: 12px;
+        margin: 0 0 8px;
         letter-spacing: -0.6px;
     }
 
     &__summary {
+        margin: 0;
         font-size: 13px;
         line-height: 1.75;
         color: var(--dd-muted);
@@ -120,6 +126,7 @@
     &__footer {
         gap: 12px;
         display: flex;
+        min-width: 0;
         padding-top: 19px;
         margin-top: 28px;
         align-items: center;
@@ -128,27 +135,10 @@
     }
 
     &__label {
+        min-width: 0;
         font-size: 10px;
         line-height: 1.5;
         color: var(--dd-muted);
-    }
-
-    &__preview-label {
-        gap: 4px;
-        display: flex;
-        flex-shrink: 0;
-        font-size: 11px;
-        font-weight: 600;
-        align-items: center;
-        color: var(--directory-color);
-    }
-
-    &__preview-icon {
-        transition: transform 220ms ease;
-    }
-
-    &:hover &__preview-icon {
-        transform: translate(2px, -2px);
     }
 
     &__save {
@@ -170,6 +160,8 @@
         flex-direction: column;
     }
 
+    .directory-feedback { padding-inline: 0; }
+
     &__statuses,
     &__topics {
         gap: 6px;
@@ -178,27 +170,25 @@
         align-items: center;
     }
 
+    &__statuses {
+        min-width: 0;
+        margin-left: auto;
+        justify-content: flex-end;
+    }
+
     &__status {
         gap: 5px;
         display: inline-flex;
         font-size: 9px;
+        white-space: nowrap;
         align-items: center;
         color: var(--dd-muted);
 
-        .statusDotWrap {
-            display: flex;
-        }
-
-        .statusDot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: #637a98;
-        }
-
-        &.rowStatus--green .statusDot { background: #21a668; }
-        &.rowStatus--red .statusDot { background: #d83b42; }
+        &.rowStatus--red .directory-card__status-icon { color: var(--dd-red); }
+        &.rowStatus--green .directory-card__status-icon { color: var(--dd-green); }
     }
+
+    &__status-icon { flex: none; }
 
     &__topic {
         border: 0;
@@ -222,8 +212,9 @@
         gap: 5px;
         display: flex;
         min-width: 0;
-        font-size: 11px;
-        align-self: flex-start;
+        font-size: 13px;
+        max-width: 100%;
+        margin-left: auto;
         align-items: center;
         color: var(--directory-color);
 
@@ -265,7 +256,7 @@
         min-width: 0;
     }
 
-    &__category {
+    &__category-row {
         margin-bottom: 6px;
     }
 
@@ -278,19 +269,11 @@
         gap: 12px;
         padding: 0;
         margin: 0;
-        width: 180px;
+        width: auto;
+        max-width: 320px;
         flex-shrink: 0;
-        align-items: flex-end;
-        flex-direction: column;
-    }
-
-    &__label {
-        text-align: right;
-    }
-
-    &__save {
-        top: 50%;
-        transform: translateY(-50%);
+        align-items: center;
+        flex-direction: row;
     }
 }
 
@@ -300,7 +283,7 @@
             gap: 18px;
             flex-wrap: wrap;
             align-items: flex-start;
-            padding: 22px 64px 22px 22px;
+            padding: 22px;
         }
 
         &__monogram {
@@ -310,15 +293,16 @@
         }
 
         &__body {
-            flex-basis: calc(100% - 62px);
+            flex-basis: 100%;
         }
 
         &__footer {
-            margin-left: 62px;
+            width: 100%;
+            max-width: none;
+            margin-left: 0;
+            flex-basis: 100%;
             align-items: flex-start;
             flex-direction: row;
-            width: calc(100% - 62px);
-            flex-basis: calc(100% - 62px);
             justify-content: space-between;
         }
 
@@ -329,7 +313,7 @@
         &__save {
             top: 23px;
             right: 17px;
-            transform: none;
         }
+
     }
 }

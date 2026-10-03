@@ -46,7 +46,6 @@
     &__search {
         flex: 1;
         min-width: 0;
-        max-width: 440px;
     }
 
     &__title-row {
@@ -108,10 +107,24 @@
         font-variant-numeric: tabular-nums;
     }
 
+    &__filter-row {
+        gap: 12px;
+        min-width: 0;
+        display: grid;
+        align-items: center;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        .directory-category-filters {
+            margin-bottom: 0;
+        }
+    }
+
     &__toolbar {
         gap: 8px;
         display: flex;
         padding: 6px;
+        min-width: 0;
+        position: relative;
         border-radius: 10px;
         margin-bottom: 0;
         align-items: center;
@@ -119,23 +132,56 @@
         border: 1px solid var(--dd-line);
         justify-content: space-between;
         box-shadow: 0 4px 16px rgb(20 33 61 / 3%);
+
+        &::before,
+        &::after {
+            top: 6px;
+            bottom: 6px;
+            z-index: 1;
+            opacity: 0;
+            width: 32px;
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            transition: opacity 180ms ease;
+        }
+
+        &::before {
+            left: 6px;
+            background: linear-gradient(to right, var(--dd-paper), transparent);
+        }
+
+        &::after {
+            right: 6px;
+            background: linear-gradient(to left, var(--dd-paper), transparent);
+        }
+
+        &[data-scroll-left='true']::before,
+        &[data-scroll-right='true']::after {
+            opacity: 1;
+        }
     }
 
     &__topics {
         flex: 1;
-        gap: 4px;
-        padding: 2px;
-        display: flex;
         min-width: 0;
         overflow-x: auto;
         overflow-y: hidden;
         scrollbar-width: none;
-        align-items: center;
         scroll-behavior: smooth;
 
         &::-webkit-scrollbar {
             display: none;
         }
+    }
+
+    &__topics-track {
+        gap: 4px;
+        padding: 2px;
+        display: flex;
+        min-width: 100%;
+        width: max-content;
+        align-items: center;
     }
 
     &__topic {
@@ -418,7 +464,6 @@
         &__search {
             width: 100%;
             grid-row: 1;
-            max-width: none;
             grid-column: 2;
         }
 
@@ -449,9 +494,22 @@
             display: none;
         }
 
+        &__filter-row {
+            gap: 8px;
+        }
+
         &__toolbar {
             padding: 4px;
             min-width: 0;
+
+            &::before,
+            &::after {
+                top: 4px;
+                bottom: 4px;
+            }
+
+            &::before { left: 4px; }
+            &::after { right: 4px; }
         }
 
         &__sticky-controls {
@@ -459,8 +517,11 @@
         }
 
         &__topics {
-            gap: 2px;
             scroll-snap-type: x proximity;
+        }
+
+        &__topics-track {
+            gap: 2px;
         }
 
         &__topic {
@@ -482,6 +543,19 @@
         &__results {
             gap: 28px 16px;
             grid-template-columns: minmax(0, 1fr);
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .directory-explorer {
+        &__toolbar::before,
+        &__toolbar::after {
+            transition: none;
+        }
+
+        &__topics {
+            scroll-behavior: auto;
         }
     }
 }

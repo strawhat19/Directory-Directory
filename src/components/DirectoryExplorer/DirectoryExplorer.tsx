@@ -3,9 +3,11 @@ import Icon from '../Icon/Icon';
 import useDirectoryExplorer from './useDirectoryExplorer';
 import DirectoryCard from '../DirectoryCard/DirectoryCard';
 import DirectorySearch from '../DirectorySearch/DirectorySearch';
+import { useHorizontalScrollEdges } from '../../shared/ui/useHorizontalScrollEdges.web';
 import DirectoryCategoryFilters from '../DirectoryCategoryFilters/DirectoryCategoryFilters';
 
 export default function DirectoryExplorer() {
+    const { track, viewport, scrollEdges } = useHorizontalScrollEdges();
     const {
         query,
         topic,
@@ -120,106 +122,120 @@ export default function DirectoryExplorer() {
                     </div>
                 </div>
 
-                <DirectoryCategoryFilters />
-
                 <div
-                    id={`directory-explorer-toolbar`}
-                    className={`directory-explorer__toolbar`}
+                    id={`directory-explorer-filter-row`}
+                    className={`directory-explorer__filter-row`}
                 >
                     <div
-                        role={`group`}
-                        aria-label={`Directory filters`}
-                        id={`directory-explorer-topics`}
-                        className={`directory-explorer__topics`}
+                        id={`directory-explorer-toolbar`}
+                        className={`directory-explorer__toolbar`}
+                        data-scroll-left={scrollEdges.left ? `true` : undefined}
+                        data-scroll-right={scrollEdges.right ? `true` : undefined}
                     >
-                        {topics.map((item) => (
-                            <button
-                                key={item.id}
-                                type={`button`}
-                                aria-pressed={!status && topic === item.label}
-                                onClick={() => changeTopic(item.label)}
-                                id={`directory-explorer-topic-${item.id}`}
-                                className={`directory-explorer__topic${!status && topic === item.label ? ` is-active` : ``}`}
+                        <div
+                            ref={viewport}
+                            role={`group`}
+                            aria-label={`Directory filters`}
+                            id={`directory-explorer-topics`}
+                            className={`directory-explorer__topics`}
+                        >
+                            <div
+                                ref={track}
+                                id={`directory-explorer-topics-track`}
+                                className={`directory-explorer__topics-track`}
                             >
-                                <Icon
-                                    size={13}
-                                    name={item.label === `All` ? `grid` : `sparkles`}
-                                    id={`directory-explorer-topic-${item.id}-icon`}
-                                    className={`directory-explorer__topic-icon`}
-                                />
+                                {topics.map((item) => (
+                                    <button
+                                        key={item.id}
+                                        type={`button`}
+                                        aria-pressed={!status && topic === item.label}
+                                        onClick={() => changeTopic(item.label)}
+                                        id={`directory-explorer-topic-${item.id}`}
+                                        className={`directory-explorer__topic${!status && topic === item.label ? ` is-active` : ``}`}
+                                    >
+                                        <Icon
+                                            size={13}
+                                            name={item.label === `All` ? `grid` : `sparkles`}
+                                            id={`directory-explorer-topic-${item.id}-icon`}
+                                            className={`directory-explorer__topic-icon`}
+                                        />
 
-                                <span
-                                    id={`directory-explorer-topic-${item.id}-label`}
-                                    className={`directory-explorer__topic-label`}
-                                >
-                                    {item.label}
-                                </span>
+                                        <span
+                                            id={`directory-explorer-topic-${item.id}-label`}
+                                            className={`directory-explorer__topic-label`}
+                                        >
+                                            {item.label}
+                                        </span>
 
-                                <span
-                                    id={`directory-explorer-topic-${item.id}-count`}
-                                    className={`directory-explorer__topic-count`}
+                                        <span
+                                            id={`directory-explorer-topic-${item.id}-count`}
+                                            className={`directory-explorer__topic-count`}
+                                        >
+                                            {item.count}
+                                        </span>
+                                    </button>
+                                ))}
+                                {directoryStatuses.map((item) => (
+                                    <button
+                                        key={item.id}
+                                        type={`button`}
+                                        title={item.description}
+                                        aria-pressed={status === item.id}
+                                        id={`directory-explorer-status-${item.id}`}
+                                        onClick={() => changeStatus(status === item.id ? `` : item.id)}
+                                        className={`directory-explorer__topic directory-explorer__status${status === item.id ? ` is-active` : ``}`}
+                                    >
+                                        <Icon
+                                            size={13}
+                                            name={item.icon}
+                                            id={`directory-explorer-status-${item.id}-icon`}
+                                            className={`directory-explorer__topic-icon directory-explorer__status-icon directory-explorer__status-icon--${item.tone}`}
+                                        />
+                                        <span
+                                            id={`directory-explorer-status-${item.id}-label`}
+                                            className={`directory-explorer__topic-label`}
+                                        >
+                                            {item.label}
+                                        </span>
+                                        <span
+                                            id={`directory-explorer-status-${item.id}-count`}
+                                            className={`directory-explorer__topic-count`}
+                                        >
+                                            {item.count}
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* <div
+                            role={`group`}
+                            aria-label={`Directory layout`}
+                            id={`directory-explorer-view-controls`}
+                            className={`directory-explorer__view-controls`}
+                        >
+                            {([`grid`, `list`] as const).map((view) => (
+                                <button
+                                    key={view}
+                                    type={`button`}
+                                    aria-label={`${view === `grid` ? `Grid` : `List`} view`}
+                                    aria-pressed={viewMode === view}
+                                    onClick={() => setViewMode(view)}
+                                    id={`directory-explorer-view-${view}`}
+                                    className={`directory-explorer__view dd-icon-button${viewMode === view ? ` is-active` : ``}`}
                                 >
-                                    {item.count}
-                                </span>
-                            </button>
-                        ))}
-                        {directoryStatuses.map((item) => (
-                            <button
-                                key={item.id}
-                                type={`button`}
-                                title={item.description}
-                                aria-pressed={status === item.id}
-                                id={`directory-explorer-status-${item.id}`}
-                                onClick={() => changeStatus(status === item.id ? `` : item.id)}
-                                className={`directory-explorer__topic directory-explorer__status${status === item.id ? ` is-active` : ``}`}
-                            >
-                                <Icon
-                                    size={13}
-                                    name={item.icon}
-                                    id={`directory-explorer-status-${item.id}-icon`}
-                                    className={`directory-explorer__topic-icon directory-explorer__status-icon directory-explorer__status-icon--${item.tone}`}
-                                />
-                                <span
-                                    id={`directory-explorer-status-${item.id}-label`}
-                                    className={`directory-explorer__topic-label`}
-                                >
-                                    {item.label}
-                                </span>
-                                <span
-                                    id={`directory-explorer-status-${item.id}-count`}
-                                    className={`directory-explorer__topic-count`}
-                                >
-                                    {item.count}
-                                </span>
-                            </button>
-                        ))}
+                                    <Icon
+                                        size={18}
+                                        name={view}
+                                        id={`directory-explorer-view-${view}-icon`}
+                                        className={`directory-explorer__view-icon`}
+                                    />
+                                </button>
+                            ))}
+                        </div> */}
                     </div>
 
-                    {/* <div
-                        role={`group`}
-                        aria-label={`Directory layout`}
-                        id={`directory-explorer-view-controls`}
-                        className={`directory-explorer__view-controls`}
-                    >
-                        {([`grid`, `list`] as const).map((view) => (
-                            <button
-                                key={view}
-                                type={`button`}
-                                aria-label={`${view === `grid` ? `Grid` : `List`} view`}
-                                aria-pressed={viewMode === view}
-                                onClick={() => setViewMode(view)}
-                                id={`directory-explorer-view-${view}`}
-                                className={`directory-explorer__view dd-icon-button${viewMode === view ? ` is-active` : ``}`}
-                            >
-                                <Icon
-                                    size={18}
-                                    name={view}
-                                    id={`directory-explorer-view-${view}-icon`}
-                                    className={`directory-explorer__view-icon`}
-                                />
-                            </button>
-                        ))}
-                    </div> */}
+                    <DirectoryCategoryFilters />
                 </div>
 
                 {/* <p id={`directory-explorer-feedback-note`} className={`directory-explorer__feedback-note`}>

@@ -23,65 +23,29 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
   return (
     <div id={identity} className={`directory-feedback`}>
       <div id={`${identity}-footer`} className={`directory-feedback__footer`}>
-        <button
-          type={`button`}
-          onClick={toggleReview}
-          disabled={!feedbackReady}
-          aria-expanded={reviewOpen}
-          id={`${identity}-review-toggle`}
-          className={`directory-feedback__review-toggle`}
-          aria-controls={`${identity}-review-panel`}
-        >
-          <Icon
-            size={14}
-            name={`file-text`}
-            id={`${identity}-review-icon`}
-            className={`directory-feedback__review-icon`}
-          />
-          <span id={`${identity}-review-toggle-label`} className={`directory-feedback__review-toggle-label`}>
-            {entry.review ? `Edit Review` : `Write Review`}
-          </span>
-        </button>
-        <div id={`${identity}-controls`} className={`directory-feedback__controls`}>
-          <div
-            role={`group`}
-            id={`${identity}-votes`}
-            className={`directory-feedback__votes`}
-            aria-label={`Your Vote For ${directoryName}`}
+        {!reviewOpen && (
+          <button
+            type={`button`}
+            onClick={toggleReview}
+            disabled={!feedbackReady}
+            aria-expanded={reviewOpen}
+            id={`${identity}-review-toggle`}
+            className={`directory-feedback__review-toggle`}
+            aria-controls={`${identity}-review-panel`}
+            aria-label={`${entry.review ? `Edit` : `Write`} Your Review For ${directoryName}`}
           >
-            <button
-              type={`button`}
-              disabled={!feedbackReady}
-              onClick={() => vote(1)}
-              id={`${identity}-upvote`}
-              aria-pressed={entry.vote === 1}
-              aria-label={`Upvote ${directoryName}`}
-              className={`directory-feedback__vote directory-feedback__vote--up${entry.vote === 1 ? ` is-selected` : ``}`}
-            >
-              <Icon
-                size={16}
-                name={`upvote`}
-                id={`${identity}-upvote-icon`}
-                className={`directory-feedback__vote-icon`}
-              />
-            </button>
-            <button
-              type={`button`}
-              disabled={!feedbackReady}
-              onClick={() => vote(-1)}
-              id={`${identity}-downvote`}
-              aria-pressed={entry.vote === -1}
-              aria-label={`Downvote ${directoryName}`}
-              className={`directory-feedback__vote directory-feedback__vote--down${entry.vote === -1 ? ` is-selected` : ``}`}
-            >
-              <Icon
-                size={16}
-                name={`downvote`}
-                id={`${identity}-downvote-icon`}
-                className={`directory-feedback__vote-icon`}
-              />
-            </button>
-          </div>
+            <Icon
+              size={14}
+              name={`star`}
+              id={`${identity}-review-icon`}
+              className={`directory-feedback__review-icon`}
+            />
+            <span id={`${identity}-review-toggle-label`} className={`directory-feedback__review-toggle-label`}>
+              {`Review`}
+            </span>
+          </button>
+        )}
+        {reviewOpen && (
           <div
             role={`group`}
             id={`${identity}-rating`}
@@ -111,6 +75,57 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
               ))}
             </div>
           </div>
+        )}
+        <div id={`${identity}-controls`} className={`directory-feedback__controls`}>
+          <div
+            role={`group`}
+            id={`${identity}-votes`}
+            className={`directory-feedback__votes`}
+            aria-label={`Your Vote For ${directoryName}`}
+          >
+            <button
+              type={`button`}
+              disabled={!feedbackReady}
+              onClick={() => vote(1)}
+              id={`${identity}-upvote`}
+              aria-pressed={entry.vote === 1}
+              aria-label={`Upvote ${directoryName}`}
+              className={`directory-feedback__vote directory-feedback__vote--up${entry.vote === 1 ? ` is-selected` : ``}`}
+            >
+              <Icon
+                size={16}
+                name={`upvote`}
+                id={`${identity}-upvote-icon`}
+                className={`directory-feedback__vote-icon`}
+              />
+            </button>
+            <span
+              role={`status`}
+              aria-atomic={true}
+              aria-live={`polite`}
+              id={`${identity}-vote-score`}
+              className={`directory-feedback__vote-score`}
+              aria-label={`Your Vote Score For ${directoryName}: ${entry.vote}`}
+            >
+              {entry.vote}
+            </span>
+            <button
+              type={`button`}
+              disabled={!feedbackReady}
+              onClick={() => vote(-1)}
+              id={`${identity}-downvote`}
+              aria-pressed={entry.vote === -1}
+              aria-label={`Downvote ${directoryName}`}
+              className={`directory-feedback__vote directory-feedback__vote--down${entry.vote === -1 ? ` is-selected` : ``}`}
+            >
+              <Icon
+                size={16}
+                name={`downvote`}
+                id={`${identity}-downvote-icon`}
+                className={`directory-feedback__vote-icon`}
+              />
+            </button>
+          </div>
         </div>
       </div>
       {reviewOpen ? (
@@ -122,19 +137,13 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
             saveReview();
           }}
         >
-          <label
-            id={`${identity}-review-label`}
-            className={`directory-feedback__review-label`}
-            htmlFor={`${identity}-review-input`}
-          >
-            {`Your Review`}
-          </label>
           <textarea
             rows={3}
             maxLength={600}
             value={reviewDraft}
             id={`${identity}-review-input`}
             className={`directory-feedback__review-input`}
+            aria-label={`Review For ${directoryName}`}
             placeholder={`What Was Helpful About ${directoryName}?`}
             onChange={(event) => updateReviewDraft(event.target.value)}
           />

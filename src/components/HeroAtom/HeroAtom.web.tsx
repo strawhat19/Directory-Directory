@@ -1,13 +1,10 @@
 import './HeroAtom.scss'
-import { atomOrbits, atomOrbitPath, useHeroAtom } from './useHeroAtom.web'
+import { atomOrbits } from './useHeroAtom.web'
 
 export default function HeroAtom() {
-  const { atom } = useHeroAtom()
-
   return (
     <div id={`hero-atom`} className={`hero-atom`} aria-hidden={true}>
       <svg
-        ref={atom}
         focusable={false}
         id={`hero-atom-orbits`}
         viewBox={`0 0 400 400`}
@@ -30,18 +27,15 @@ export default function HeroAtom() {
             />
             <circle
               r={5}
+              cx={30}
+              cy={200}
               id={`hero-atom-electron-${orbit.id}`}
               className={`hero-atom__electron`}
-            >
-              <animateMotion
-                path={atomOrbitPath}
-                dur={`${orbit.duration}s`}
-                begin={`${orbit.delay}s`}
-                repeatCount={`indefinite`}
-                id={`hero-atom-motion-${orbit.id}`}
-                className={`hero-atom__motion`}
-              />
-            </circle>
+              style={{
+                animationDelay: `${orbit.delay}s`,
+                animationDuration: `${orbit.duration}s`,
+              }}
+            />
           </g>
         ))}
         <circle
