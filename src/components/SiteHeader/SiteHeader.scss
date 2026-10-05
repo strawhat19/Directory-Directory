@@ -94,7 +94,7 @@
     align-items: center;
   }
 
-  &__actions > .auth-actions {
+  &__controls > .auth-actions {
     order: 3;
   }
 
@@ -325,7 +325,7 @@
     }
 
     &__actions {
-      order: 3;
+      order: 4;
       gap: 16px;
       width: 100%;
       display: flex;
@@ -378,22 +378,10 @@
       margin-left: auto;
     }
 
-    &__actions > .auth-actions {
+    &__controls > .auth-actions {
       gap: 8px;
-      width: 100%;
-      display: grid;
+      order: 3;
       margin-left: 0;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-
-      .auth-actions__link {
-        width: 100%;
-        min-width: 0;
-        justify-content: center;
-      }
-
-      .auth-actions__error {
-        grid-column: 1 / -1;
-      }
     }
 
     &__notifications-panel {
@@ -431,8 +419,13 @@
       gap: 6px;
     }
 
-    &__actions > .auth-actions {
+    &__controls > .auth-actions {
       gap: 6px;
+
+      &:not(.auth-actions--signed-in) {
+        width: 100%;
+        justify-content: flex-end;
+      }
     }
 
     &__notifications {

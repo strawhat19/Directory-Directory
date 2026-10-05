@@ -259,8 +259,8 @@ export default function SiteHeader() {
                 </Link>
               ))}
             </nav>
-            <AuthActions scope={`header`} />
           </div>
+          <AuthActions scope={`header`} />
         </div>
       </div>
     </header>

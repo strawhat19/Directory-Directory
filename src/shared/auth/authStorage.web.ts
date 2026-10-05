@@ -1,9 +1,27 @@
-import { authStorageKey, parseAuthData, type AuthData } from './auth.types';
+const storageError = () => new Error(`Local Storage Is Unavailable. Enable Storage And Try Again`);
 
-export async function readAuthData() {
-  return parseAuthData(window.localStorage.getItem(authStorageKey));
+export async function readStorage(key: string): Promise<string | null> {
+  if (typeof window === `undefined`) return null;
+
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    throw storageError();
+  }
 }
 
-export async function writeAuthData(data: AuthData) {
-  window.localStorage.setItem(authStorageKey, JSON.stringify(data));
+export async function removeStorage(key: string): Promise<void> {
+  try {
+    window.localStorage.removeItem(key);
+  } catch {
+    throw storageError();
+  }
+}
+
+export async function writeStorage(key: string, value: string): Promise<void> {
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {
+    throw storageError();
+  }
 }

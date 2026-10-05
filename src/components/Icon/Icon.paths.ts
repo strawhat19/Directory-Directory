@@ -8,6 +8,7 @@ export const iconPaths: Record<IconName, readonly string[]> = {
   downvote: [`M12 21 3 12h6V3h6v9h6l-9 9Z`],
   star: [`m12 3 2.8 5.7 6.3.9-4.6 4.5 1.1 6.3-5.6-3-5.6 3 1.1-6.3L2.9 9.6l6.3-.9L12 3Z`],
   plus: [`M12 5v14M5 12h14`],
+  user: [`M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z`, `M4 21v-2a8 8 0 0 1 16 0v2`],
   play: [`m8 4 12 8-12 8V4Z`],
   pause: [`M8 4v16M16 4v16`],
   close: [`m6 6 12 12M18 6 6 18`],

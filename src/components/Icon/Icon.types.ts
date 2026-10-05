@@ -13,6 +13,7 @@ export type IconName =
   | `moon`
   | `bell`
   | `sun`
+  | `user`
   | `close`
   | `check`
   | `clock`

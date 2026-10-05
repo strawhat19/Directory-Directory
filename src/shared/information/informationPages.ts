@@ -245,7 +245,7 @@ export const informationPages: Record<InformationPageId, InformationPageContent>
                 title: `Local demo profiles`,
                 paragraphs: [
                     `Sign-up saves your name and email address, and sign-in saves the active profile, in this browser's local storage or the mobile app's device storage. These details are not sent to an account server or email provider.`,
-                    `Local profiles and the active sign-in remain after a refresh or restart. Signing out removes the active sign-in while retaining your local profiles. Clear this app's browser or device storage to remove them. No passwords are requested or stored, and this demo does not verify identity.`,
+                    `Local profiles remain after a refresh or restart. Passwords are saved as salted hashes, separately from profile details. Sign-in sessions expire after 30 days; signing out removes the active session while retaining your local profiles. Clear this app's browser or device storage to remove them. This local demo does not verify email ownership.`,
                 ],
             },
             {
