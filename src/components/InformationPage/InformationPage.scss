@@ -36,6 +36,8 @@
 
 .information-main {
   animation: information-entrance 650ms ease both;
+
+  > .page-cta--banner + .information-layout { margin-top: 40px; }
 }
 
 .information-hero {
@@ -59,15 +61,15 @@
     transform: rotate(180deg);
   }
 
-  &__eyebrow {
-    color: var(--dd-blue);
-  }
+  &__intro { gap: 28px; display: grid; align-items: center; grid-template-columns: minmax(0, 1fr) auto; }
+  &__copy { min-width: 0; }
+  &__eyebrow { max-width: 260px; justify-self: end; }
 
   &__heading {
     max-width: 800px;
     font-weight: 760;
     line-height: 1.08;
-    margin: 22px 0 20px;
+    margin: 0 0 20px;
     letter-spacing: -2.8px;
     font-size: clamp(38px, 5vw, 60px);
   }
@@ -244,6 +246,8 @@
 }
 
 @media (max-width: 760px) {
+  .information-hero__intro { grid-template-columns: 1fr; }
+
   .information-layout {
     gap: 24px;
     grid-template-columns: 1fr;

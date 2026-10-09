@@ -9,6 +9,7 @@ import { useLandingPage } from './useLandingPage.web'
 import PricingSection from '../PricingSection/PricingSection'
 import DirectoryPreview from '../DirectoryPreview/DirectoryPreview'
 import DirectoryExplorer from '../DirectoryExplorer/DirectoryExplorer'
+import FeaturedArticleCarousel from '../FeaturedArticleCarousel/FeaturedArticleCarousel'
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 export default function LandingPage() {
@@ -24,7 +25,7 @@ export default function LandingPage() {
           name={`description`}
           id={`page-description`}
           className={`page-description`}
-          content={`The Directory of Directories. Explore a thoughtful collection of directories for design, tools, communities, and places.`}
+          content={`Discover directories organized by category. Directory Directory brings together resource collections for tools, design, learning, communities, and more.`}
         />
       </Head>
       <button
@@ -44,6 +45,7 @@ export default function LandingPage() {
           <main id={`landing-main`} className={`landing-main`}>
             <Hero onExplore={scrollToSection} />
             <CategoryGrid onExplore={() => scrollToSection(`explore`)} />
+            <FeaturedArticleCarousel scope={`landing`} />
             <DirectoryExplorer />
             <PricingSection />
           </main>

@@ -15,7 +15,7 @@ export function useSiteHeader() {
   const [searchVisible, setSearchVisible] = useState(pathname !== `/`)
   const links = siteNavigation.map((link) => ({
     ...link,
-    active: pathname === link.href,
+    active: pathname === link.href || (link.id === `blog` && pathname.startsWith(`/blog/`)),
   }))
 
   useEffect(() => {

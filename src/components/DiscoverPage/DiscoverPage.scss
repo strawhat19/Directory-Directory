@@ -1,4 +1,6 @@
 .discover-page {
+    .page-cta + .directory-explorer::before { border-top: 0; }
+
     &__intro {
         gap: 28px;
         display: flex;

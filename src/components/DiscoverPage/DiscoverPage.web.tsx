@@ -1,15 +1,18 @@
-import '../LandingPage/LandingPage.scss';
 import './DiscoverPage.scss';
 import Icon from '../Icon/Icon';
 import Head from 'expo-router/head';
+import PageCta from '../PageCta/PageCta';
+import '../LandingPage/LandingPage.scss';
 import { useHero } from '../Hero/useHero';
 import SiteFooter from '../SiteFooter/SiteFooter';
 import SiteHeader from '../SiteHeader/SiteHeader';
+import PageEyebrow from '../PageEyebrow/PageEyebrow';
+import { pageCtas } from '../../shared/cta/pageCtas';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import CategoryGrid from '../CategoryGrid/CategoryGrid';
+import { searchScopes } from '../../shared/landing/searchScopes';
 import DirectoryPreview from '../DirectoryPreview/DirectoryPreview';
 import DirectoryExplorer from '../DirectoryExplorer/DirectoryExplorer';
-import { searchScopes } from '../../shared/landing/searchScopes';
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement';
 
 export default function DiscoverPage() {
@@ -51,17 +54,12 @@ export default function DiscoverPage() {
                             aria-labelledby={`discover-heading`}
                         >
                             <div id={`discover-copy`} className={`discover-page__copy`}>
-                                <p id={`discover-eyebrow`} className={`discover-page__eyebrow dd-eyebrow`}>
-                                    <Icon
-                                        size={14}
-                                        name={`globe`}
-                                        id={`discover-eyebrow-icon`}
-                                        className={`discover-page__eyebrow-icon`}
-                                    />
-                                    <span id={`discover-eyebrow-label`} className={`discover-page__eyebrow-label`}>
-                                        {`Find your next favorite`}
-                                    </span>
-                                </p>
+                                <PageEyebrow
+                                    page={`discover`}
+                                    id={`discover-eyebrow`}
+                                    label={`Find your next favorite`}
+                                    className={`discover-page__eyebrow`}
+                                />
                                 <h1 id={`discover-heading`} className={`discover-page__heading`}>
                                     {`Discover directories.`}
                                 </h1>
@@ -115,6 +113,7 @@ export default function DiscoverPage() {
                             </form>
                         </section>
                         <CategoryGrid onExplore={() => scrollToSection(`explore`)} />
+                        <PageCta content={pageCtas.discover} />
                         <DirectoryExplorer />
                     </main>
                     <SiteFooter />

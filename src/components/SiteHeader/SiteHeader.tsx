@@ -64,21 +64,6 @@ export default function SiteHeader() {
         </Link>
         <div id={`header-controls`} className={`site-header__controls`}>
           <div id={`header-utility-actions`} className={`site-header__utility-actions`}>
-            <button
-              type={`button`}
-              id={`header-theme-toggle`}
-              aria-pressed={isDark}
-              onClick={toggleTheme}
-              aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
-              className={`site-header__icon-button site-header__icon-button--primary`}
-            >
-              <Icon
-                size={16}
-                name={isDark ? `sun` : `moon`}
-                id={`header-theme-icon`}
-                className={`site-header__icon`}
-              />
-            </button>
             <div
               ref={notifications}
               id={`header-notifications`}
@@ -192,6 +177,21 @@ export default function SiteHeader() {
                 </div>
               )}
             </div>
+            <button
+              type={`button`}
+              id={`header-theme-toggle`}
+              aria-pressed={isDark}
+              onClick={toggleTheme}
+              aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
+              className={`site-header__icon-button site-header__icon-button--primary`}
+            >
+              <Icon
+                size={16}
+                name={isDark ? `sun` : `moon`}
+                id={`header-theme-icon`}
+                className={`site-header__icon`}
+              />
+            </button>
             <button
               type={`button`}
               onClick={openSearch}

@@ -1,0 +1,122 @@
+.blog-layout {
+  width: 100%;
+  height: 100dvh;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--site-header-height, 180px) + 24px);
+
+  &__shell {
+    margin: 0 auto;
+    max-width: 1260px;
+    padding: 0 52px;
+  }
+
+  &__main { padding-bottom: 44px; }
+  &__main--index { padding-bottom: 0; }
+  &__hero { padding: 38px 0 44px; }
+}
+
+.blog-skip-link {
+  top: 12px;
+  left: 12px;
+  z-index: 20;
+  border: 0;
+  position: fixed;
+  font: inherit;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 12px 18px;
+  color: var(--dd-on-blue);
+  background: var(--dd-blue);
+  transform: translateY(-160%);
+  transition: transform 220ms ease;
+
+  &:focus { transform: translateY(0); }
+}
+
+.blog-back-link {
+  gap: 8px;
+  min-height: 44px;
+  font-size: 12px;
+  align-items: center;
+  display: inline-flex;
+  color: var(--dd-muted);
+  transition: color 200ms ease;
+
+  &:hover { color: var(--dd-blue); }
+}
+
+.blog-eyebrow {
+  margin-top: 24px;
+  color: var(--dd-blue);
+}
+
+.blog-heading {
+  max-width: 900px;
+  font-weight: 760;
+  line-height: 1.1;
+  margin: 22px 0 20px;
+  letter-spacing: -2.4px;
+  font-size: clamp(34px, 5vw, 60px);
+}
+
+.blog-summary {
+  margin: 0;
+  font-size: 15px;
+  max-width: 730px;
+  line-height: 1.9;
+  color: var(--dd-muted);
+}
+
+.blog-meta {
+  gap: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 11px;
+  align-items: center;
+  color: var(--dd-muted);
+
+  &__item {
+    gap: 6px;
+    align-items: center;
+    display: inline-flex;
+  }
+}
+
+.blog-action {
+  gap: 8px;
+  font-size: 12px;
+  min-height: 44px;
+  font-weight: 650;
+  align-items: center;
+  display: inline-flex;
+  color: var(--dd-blue);
+  transition: color 200ms ease, transform 200ms ease;
+
+  &:hover { transform: translateY(-2px); }
+}
+
+.blog-grid {
+  gap: 30px 22px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+  .blog-layout__shell { padding: 0 32px; }
+  .blog-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 600px) {
+  .blog-layout__shell { padding: 0 20px; }
+  .blog-layout__hero { padding: 24px 0 30px; }
+  .blog-heading { letter-spacing: -1.4px; }
+  .blog-grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-layout { scroll-behavior: auto; }
+  .blog-action, .blog-skip-link, .blog-back-link { transition: none; }
+}

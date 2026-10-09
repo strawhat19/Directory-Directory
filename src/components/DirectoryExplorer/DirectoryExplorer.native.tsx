@@ -6,7 +6,7 @@ import DirectoryPagination from '../DirectoryPagination/DirectoryPagination.nati
 import { Alert, Animated, Linking, Pressable, ScrollView, Text, View } from 'react-native';
 import DirectoryCategoryFilters from '../DirectoryCategoryFilters/DirectoryCategoryFilters';
 
-export default function DirectoryExplorer({ model }: { model: LandingPageModel }) {
+export default function DirectoryExplorer({ model, joined = false }: { model: LandingPageModel; joined?: boolean }) {
     const {
         styles,
         colors,
@@ -34,7 +34,7 @@ export default function DirectoryExplorer({ model }: { model: LandingPageModel }
     return (
         <View
             {...elementProps(`landing-explore`)}
-            style={styles.explore}
+            style={[styles.explore, joined && { borderTopWidth: 0 }]}
             onLayout={(event) => {
                 const { y, height } = event.nativeEvent.layout;
                 setExploreLayout(y, height);

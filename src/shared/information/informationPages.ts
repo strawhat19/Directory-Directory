@@ -25,7 +25,7 @@ export const informationPages: Record<InformationPageId, InformationPageContent>
         icon: `info`,
         eyebrow: `A little more about us`,
         title: `About Directory Directory`,
-        summary: `A thoughtful starting point for discovering directories, following your curiosity, and finding your next favorite thing.`,
+        summary: `Directories organize useful resources by category. Directory Directory brings those collections together to help you explore tools, design, learning, communities, and more.`,
         noteTitle: `A catalogue in progress`,
         note: `The current collection uses sample listings. Think of it as a preview of the discovery experience.`,
         sections: [

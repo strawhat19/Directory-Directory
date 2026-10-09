@@ -17,6 +17,7 @@
       "package": "com.directorydirectory.app"
     },
     "web": {
+      "output": "static",
       "bundler": "metro",
       "favicon": "./assets/icons/favicon-rounded.png"
     },

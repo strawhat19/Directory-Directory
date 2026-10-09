@@ -1,0 +1,17 @@
+.page-eyebrow {
+  gap: 8px;
+  max-width: 100%;
+  width: fit-content;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--page-accent) 16%, transparent);
+  background: color-mix(in srgb, var(--page-accent) 6%, transparent);
+
+  &__icon { flex: none; }
+  &__label {
+    min-width: 0;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+    color: color-mix(in srgb, var(--dd-ink) 88%, var(--page-accent));
+  }
+}

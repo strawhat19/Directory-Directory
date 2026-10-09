@@ -74,10 +74,10 @@
     }
 
     @each $accent, $color, $tint in (
-        yellow #b7860b #fff8db,
-        purple #8054d7 #f3edff,
-        orange #d97722 #fff1e6,
-        pink #cd4c8c #fdeef5
+        'yellow' #b7860b #fff8db,
+        'purple' #8054d7 #f3edff,
+        'orange' #d97722 #fff1e6,
+        'pink' #cd4c8c #fdeef5
     ) {
         &--#{$accent} {
             --directory-color: #{$color};

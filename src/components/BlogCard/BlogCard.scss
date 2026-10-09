@@ -1,0 +1,46 @@
+.blog-card {
+  gap: 16px;
+  display: flex;
+  padding: 26px;
+  min-width: 0;
+  overflow: visible;
+  position: relative;
+  flex-direction: column;
+  border-radius: 0 16px 16px;
+  background: var(--dd-paper);
+  border: 1px solid var(--dd-line);
+  border-top: 4px solid var(--blog-color);
+  box-shadow: 0 6px 20px rgb(20 33 61 / 3%);
+  --blog-tint: color-mix(in srgb, var(--blog-color) 10%, var(--dd-paper));
+  transition: border-color 280ms ease, transform 280ms ease, box-shadow 280ms ease;
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: var(--blog-color);
+    box-shadow: 0 12px 30px rgb(20 33 61 / 7%);
+  }
+
+  &__tab { top: -13px; left: 20px; width: 64px; height: 9px; position: absolute; pointer-events: none; border-radius: 7px 10px 0 0; background: var(--blog-color); }
+  &__top { gap: 12px; display: flex; align-items: center; }
+  &__symbol { width: 46px; height: 46px; flex: none; display: grid; border-radius: 12px; place-items: center; color: var(--blog-color); background: var(--blog-tint); }
+  &__category { margin: 0; font-size: 9px; color: var(--blog-color); }
+  &__title { margin: 0; font-size: 22px; font-weight: 800; line-height: 1.4; letter-spacing: -0.5px; }
+  &__title-link { font: inherit; font-weight: inherit; color: var(--dd-ink); transition: color 220ms ease; &:hover { color: var(--blog-color); } }
+  &__excerpt { margin: 0; font-size: 14px; line-height: 1.9; color: var(--dd-muted); }
+  &__meta { gap: 12px; display: flex; flex-wrap: wrap; font-size: 12px; margin-top: auto; padding-top: 19px; color: var(--dd-muted); border-top: 1px solid var(--dd-line); }
+  &__read { gap: 8px; min-height: 44px; display: inline-flex; font-size: 14px; font-weight: 700; align-items: center; align-self: flex-start; color: var(--blog-color); }
+  &__read-icon { transition: transform 220ms ease; }
+  &__read:hover &__read-icon { transform: translateX(3px); }
+}
+
+:root[data-theme='dark'] .blog-card {
+  --blog-tint: color-mix(in srgb, var(--blog-color) 14%, var(--dd-paper));
+  box-shadow: 0 6px 20px rgb(0 0 0 / 12%);
+
+  &:hover { box-shadow: 0 12px 30px rgb(0 0 0 / 22%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-card, .blog-card__title-link, .blog-card__read-icon { transition: none; }
+  .blog-card:hover, .blog-card__read:hover .blog-card__read-icon { transform: none; }
+}

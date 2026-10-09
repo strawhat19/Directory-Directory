@@ -5,7 +5,7 @@
   position: relative;
   padding: 72px 0 48px;
   background-size: 24px 24px;
-  background-color: var(--dd-blue);
+  background-color: var(--dd-accent);
   transition: background-color 350ms ease;
   margin-left: calc(50% - 50vw);
   background-image: radial-gradient(#ffffff1c 1px, transparent 1px);
@@ -339,6 +339,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .pricing-section { transition: none; }
   .pricing-plan__action-icon {
     transition: none;
   }

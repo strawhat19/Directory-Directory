@@ -1,0 +1,28 @@
+import { StyleSheet } from 'react-native';
+
+export const styles = StyleSheet.create({
+  section: { gap: 30 },
+  intro: { gap: 14 },
+  group: { gap: 20 },
+  groupHeader: { gap: 14, flexWrap: `wrap`, flexDirection: `row`, alignItems: `center`, justifyContent: `space-between` },
+  groupTitle: { fontSize: 20, lineHeight: 28 },
+  youtubeBand: { overflow: `hidden` },
+  youtubeNote: { opacity: 0.84, fontSize: 12, lineHeight: 23 },
+  youtubeContent: { zIndex: 1, width: `100%`, maxWidth: 1260, alignSelf: `center` },
+  youtubeDotGrid: { top: 18, left: 12, opacity: 0.14, position: `absolute` },
+  youtubeBackgroundShape: { right: -80, bottom: -100, opacity: 0.12, position: `absolute` },
+  grid: { gap: 20, rowGap: 30, flexWrap: `wrap`, flexDirection: `row` },
+  card: { gap: 16, flex: 1, padding: 22, marginTop: 14, borderWidth: 1, borderRadius: 14, borderTopWidth: 4, overflow: `visible`, borderTopLeftRadius: 0 },
+  folderTab: { top: -18, left: -1, width: 78, height: 14, position: `absolute`, borderTopLeftRadius: 7, borderTopRightRadius: 7 },
+  cardHeader: { gap: 12, flexDirection: `row`, alignItems: `center` },
+  symbol: { width: 40, height: 40, borderRadius: 10, alignItems: `center`, justifyContent: `center` },
+  sourceName: { flex: 1, fontSize: 22, lineHeight: 30 },
+  description: { fontSize: 12, lineHeight: 23 },
+  loading: { gap: 10, minHeight: 56, flexDirection: `row`, alignItems: `center` },
+  posts: { gap: 14 },
+  post: { gap: 6, minHeight: 44 },
+  postTitle: { fontSize: 13, lineHeight: 23 },
+  footer: { gap: 8, paddingTop: 12, marginTop: `auto`, borderTopWidth: 1 },
+  refresh: { gap: 8, minHeight: 44, borderWidth: 1, borderRadius: 8, paddingVertical: 10, paddingHorizontal: 14, flexDirection: `row`, alignItems: `center` },
+  disabled: { opacity: 0.5 },
+});

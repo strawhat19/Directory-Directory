@@ -1,13 +1,18 @@
 import './InformationPage.scss'
-import { Link } from 'expo-router'
 import Icon from '../Icon/Icon'
+import { Link } from 'expo-router'
 import Head from 'expo-router/head'
+import PageCta from '../PageCta/PageCta'
 import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
+import PageEyebrow from '../PageEyebrow/PageEyebrow'
+import PricingGuide from '../PricingGuide/PricingGuide'
 import PricingSection from '../PricingSection/PricingSection'
+import FeaturedArticle from '../FeaturedArticle/FeaturedArticle'
+import { pageCtas, navigationCtas } from '../../shared/cta/pageCtas'
 import type { InformationPageProps } from './InformationPage.types'
-import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages'
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
+import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages'
 
 export default function InformationPage({ page }: InformationPageProps) {
   const content = informationPages[page]
@@ -59,31 +64,36 @@ export default function InformationPage({ page }: InformationPageProps) {
                   {`Back to directories`}
                 </span>
               </Link>
-              <p
-                id={`information-eyebrow-${page}`}
-                className={`information-hero__eyebrow dd-eyebrow`}
-              >
-                <Icon
-                  name={content.icon}
-                  id={`information-eyebrow-icon-${page}`}
-                  className={`information-hero__eyebrow-icon`}
-                  size={15}
+              <div id={`information-hero-intro-${page}`} className={`information-hero__intro`}>
+                <div id={`information-hero-copy-${page}`} className={`information-hero__copy`}>
+                  <h1 id={`information-heading-${page}`} className={`information-hero__heading`}>
+                    {content.title}
+                  </h1>
+                  <p id={`information-summary-${page}`} className={`information-hero__summary`}>
+                    {content.summary}
+                  </p>
+                  {page === `terms` || page === `privacy` ? (
+                    <p id={`information-updated-${page}`} className={`information-hero__updated`}>
+                      {`Last updated ${informationUpdatedDate}`}
+                    </p>
+                  ) : null}
+                </div>
+                <PageEyebrow
+                  page={page}
+                  label={content.eyebrow}
+                  id={`information-eyebrow-${page}`}
+                  className={`information-hero__eyebrow`}
+                  iconId={`information-eyebrow-icon-${page}`}
                 />
-                {content.eyebrow}
-              </p>
-              <h1 id={`information-heading-${page}`} className={`information-hero__heading`}>
-                {content.title}
-              </h1>
-              <p id={`information-summary-${page}`} className={`information-hero__summary`}>
-                {content.summary}
-              </p>
-              {page === `terms` || page === `privacy` ? (
-                <p id={`information-updated-${page}`} className={`information-hero__updated`}>
-                  {`Last updated ${informationUpdatedDate}`}
-                </p>
-              ) : null}
+              </div>
             </div>
-            {page === `pricing` ? <PricingSection /> : (
+            {page !== `discover` && page !== `pricing` ? <PageCta banner navigationPage={page} content={navigationCtas[page]} /> : null}
+            {page === `pricing` ? (
+              <>
+                <PricingSection />
+                <PricingGuide />
+              </>
+            ) : (
             <div id={`information-layout-${page}`} className={`information-layout`}>
               <aside id={`information-sidebar-${page}`} className={`information-sidebar`}>
                 <nav
@@ -200,6 +210,10 @@ export default function InformationPage({ page }: InformationPageProps) {
               </div>
             </div>
             )}
+            {page === `about` ? <FeaturedArticle fullBleed scope={`about`} /> : null}
+            {page === `api` || page === `docs` || page === `terms` || page === `privacy` || page === `pricing` ? (
+              <PageCta content={pageCtas[page]} navigationPage={page === `pricing` ? `pricing` : undefined} />
+            ) : null}
           </main>
           <SiteFooter />
         </div>

@@ -1,9 +1,13 @@
 import './ContactPage.scss'
-import { Link } from 'expo-router'
 import Icon from '../Icon/Icon'
+import { Link } from 'expo-router'
 import Head from 'expo-router/head'
+import PageCta from '../PageCta/PageCta'
 import SiteFooter from '../SiteFooter/SiteFooter'
 import SiteHeader from '../SiteHeader/SiteHeader'
+import { pageCtas } from '../../shared/cta/pageCtas'
+import PageEyebrow from '../PageEyebrow/PageEyebrow'
+import ContactArtwork from '../ContactArtwork/ContactArtwork'
 import { contactFields, useContactForm } from './useContactForm'
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
@@ -49,16 +53,20 @@ export default function ContactPage() {
                   {`Back to directories`}
                 </span>
               </Link>
-              <p id={`contact-eyebrow`} className={`contact-intro__eyebrow dd-eyebrow`}>
-                <Icon name={`mail`} id={`contact-eyebrow-icon`} className={`contact-intro__eyebrow-icon`} size={16} />
-                {`A little conversation`}
-              </p>
+              <PageEyebrow
+                page={`contact`}
+                id={`contact-eyebrow`}
+                label={`A little conversation`}
+                iconId={`contact-eyebrow-icon`}
+                className={`contact-intro__eyebrow`}
+              />
               <h1 id={`contact-heading`} className={`contact-intro__heading`}>
                 {`Contact`}
               </h1>
               <p id={`contact-description`} className={`contact-intro__description`}>
                 {`An idea, a question, or something worth finding? There's always room for a good conversation.`}
               </p>
+              <ContactArtwork />
               <div id={`contact-notice`} className={`contact-intro__notice`}>
                 <h2 id={`contact-notice-heading`} className={`contact-intro__notice-heading`}>
                   {`A preview, for now`}
@@ -169,6 +177,7 @@ export default function ContactPage() {
                 </section>
               ) : null}
             </div>
+            <PageCta content={pageCtas.contact} />
           </main>
           <SiteFooter />
         </div>

@@ -1,0 +1,33 @@
+.blog-story-artwork {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  pointer-events: none;
+  color: var(--dd-ink);
+  background: var(--story-art-background);
+
+  &__dots { inset: 0; position: absolute; background-size: 22px 22px; background-image: radial-gradient(color-mix(in srgb, var(--story-art-color) 22%, transparent) 1px, transparent 1px); mask-image: linear-gradient(135deg, #000, transparent 75%); }
+  &__ring { top: -18%; right: -15%; width: 58%; aspect-ratio: 1; border-radius: 50%; position: absolute; border: 1px solid color-mix(in srgb, var(--story-art-color) 24%, transparent); box-shadow: 0 0 0 26px color-mix(in srgb, var(--story-art-color) 5%, transparent), 0 0 0 52px color-mix(in srgb, var(--story-art-color) 4%, transparent); }
+  &__folder { left: 16%; right: 16%; top: 23%; bottom: 20%; position: absolute; border-radius: 0 16px 16px; border: 1px solid color-mix(in srgb, var(--story-art-color) 30%, var(--dd-paper)); background: color-mix(in srgb, var(--story-art-color) 12%, var(--dd-paper)); }
+  &__folder::before { top: -18px; left: -1px; width: 32%; height: 18px; content: ''; position: absolute; border: inherit; border-bottom: 0; background: inherit; border-radius: 9px 12px 0 0; }
+  &__folder--back { transform: translate(10px, -11px) rotate(-13deg); background: color-mix(in srgb, var(--story-art-color) 24%, var(--dd-paper)); }
+  &__folder--middle { transform: translate(-10px, -1px) rotate(9deg); background: color-mix(in srgb, var(--story-art-color) 17%, var(--dd-paper)); }
+  &__folder--main { gap: 10px; display: flex; padding: 16px; align-items: center; justify-content: center; flex-direction: column; background: var(--dd-paper); box-shadow: 0 12px 24px #14213d12; }
+  &__symbol { display: flex; align-items: center; justify-content: center; }
+  &__category { max-width: 100%; font-size: clamp(14px, 1.3vw, 18px); line-height: 1.35; font-weight: 750; text-align: center; overflow-wrap: anywhere; }
+  &__brand { gap: 8px; right: 20px; bottom: 16px; display: flex; position: absolute; align-items: center; }
+  &__brand-label { font-size: 11px; line-height: 1.1; font-weight: 750; letter-spacing: -0.2px; }
+}
+
+@media (max-width: 480px) {
+  .blog-story-artwork {
+    &__folder { top: 20%; left: 16%; right: 16%; bottom: 16%; }
+    &__folder--main { gap: 6px; padding: 8px; }
+    &__icon { width: 48px; height: 48px; }
+    &__brand { right: 12px; bottom: 10px; }
+    &__brand-mark { width: 30px; height: 30px; }
+    &__brand-label { font-size: 10px; }
+  }
+}

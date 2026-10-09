@@ -1,12 +1,16 @@
 import { useRef } from 'react';
 import Icon from '../Icon/Icon';
 import { Link } from 'expo-router';
+import PageCta from '../PageCta/PageCta';
 import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import { contactFields } from './useContactForm';
 import AuthActions from '../AuthActions/AuthActions';
+import { pageCtas } from '../../shared/cta/pageCtas';
+import PageEyebrow from '../PageEyebrow/PageEyebrow';
 import { useContactPage } from './useContactPage.native';
 import { elementProps } from '../../shared/ui/elementProps';
+import ContactArtwork from '../ContactArtwork/ContactArtwork';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
@@ -107,18 +111,20 @@ export default function ContactPage() {
                         </Text>
                     </Pressable>
                 </Link>
-                <View {...elementProps(`contact-eyebrow`)} style={styles.eyebrow}>
-                    <Icon size={16} name={`mail`} color={palette.purple} id={`contact-eyebrow-icon`} className={`contact-eyebrow-icon`} />
-                    <Text {...elementProps(`contact-eyebrow-label`)} style={styles.eyebrowLabel}>
-                        {`A little conversation`}
-                    </Text>
-                </View>
+                <PageEyebrow
+                    page={`contact`}
+                    id={`contact-eyebrow`}
+                    label={`A little conversation`}
+                    iconId={`contact-eyebrow-icon`}
+                    labelId={`contact-eyebrow-label`}
+                />
                 <Text {...elementProps(`contact-heading`)} accessibilityRole={`header`} style={styles.heading}>
                     {`Contact`}
                 </Text>
                 <Text {...elementProps(`contact-description`)} style={styles.paragraph}>
                     {`An idea, a question, or something worth finding? There's always room for a good conversation.`}
                 </Text>
+                <ContactArtwork />
                 <View {...elementProps(`contact-notice`)} style={styles.notice}>
                     <Text {...elementProps(`contact-notice-heading`)} style={styles.title}>
                         {`A preview, for now`}
@@ -193,6 +199,7 @@ export default function ContactPage() {
                         </View>
                     ) : null}
                 </View>
+                <PageCta parentMaxWidth={900} content={pageCtas.contact} />
                 <View {...elementProps(`contact-footer`)} style={styles.footer}>
                     <Text {...elementProps(`contact-copyright`)} style={styles.footerText}>
                         {year === null

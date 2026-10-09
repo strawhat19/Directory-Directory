@@ -23,7 +23,7 @@ export default function Hero({ onExplore }: HeroProps) {
         </h2>
         <HeroMagicHeading />
         <p id={`hero-description`} className={`hero__description`}>
-          {`Discover the directories that help you find your next favorite thing. One thoughtful collection, endless rabbit holes.`}
+          {`A directory brings useful resources together by category. Directory Directory helps you discover directories for tools, design, learning, communities, and more—all in one place.`}
         </p>
         <div
           id={`hero-search-panel`}

@@ -4,6 +4,7 @@ import { Link } from 'expo-router';
 import { pricingPlans } from './pricingPlans';
 import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
+import { useSearchAccent } from '../../shared/landing/useSearchAccent';
 import { createPricingStyles } from './PricingSection.native.styles';
 import { Pressable, Text, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 
@@ -13,6 +14,7 @@ type PricingSectionProps = {
 };
 
 export default function PricingSection({ horizontalInset = 0, onLayout }: PricingSectionProps) {
+    const accent = useSearchAccent();
     const { isDark } = useTheme();
     const { width } = useWindowDimensions();
     const columns = width >= 1000 ? 4 : width >= 600 ? 2 : 1;
@@ -25,7 +27,7 @@ export default function PricingSection({ horizontalInset = 0, onLayout }: Pricin
             {...elementProps(`pricing-section`)}
             style={[
                 styles.section,
-                { width, marginHorizontal: -horizontalInset, paddingHorizontal: width >= 760 ? 32 : 20 },
+                { width, backgroundColor: accent.color, marginHorizontal: -horizontalInset, paddingHorizontal: width >= 760 ? 32 : 20 },
             ]}
         >
             <View {...elementProps(`pricing-section-content`)} style={styles.content}>

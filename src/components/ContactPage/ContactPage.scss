@@ -45,6 +45,8 @@
   padding: 48px 0 26px;
   grid-template-columns: 1fr 1.1fr;
   animation: contact-entrance 650ms ease both;
+
+  .page-cta { grid-column: 1 / -1; }
 }
 
 .contact-intro {

@@ -1,0 +1,68 @@
+.featured-carousel {
+  cursor: grab;
+  touch-action: pan-y pinch-zoom;
+  &--dragging { cursor: grabbing; }
+  &__stage {
+    display: grid;
+    cursor: grab;
+    user-select: none;
+    touch-action: pan-y pinch-zoom;
+    isolation: isolate;
+    perspective: 1600px;
+    -webkit-user-select: none;
+    a { cursor: grab; }
+    img { pointer-events: none; -webkit-user-drag: none; }
+    &--dragging { cursor: grabbing; a { cursor: grabbing; } .featured-carousel__slide { transition: none; } }
+  }
+  &__slide {
+    min-width: 0;
+    grid-area: 1 / 1;
+    pointer-events: none;
+    transform-origin: center;
+    backface-visibility: hidden;
+    transform: translateX(var(--slide-x)) translateZ(var(--slide-depth)) rotateY(var(--slide-angle)) scale(var(--slide-scale));
+    transition: transform 650ms cubic-bezier(0.22, 0.68, 0.2, 1), opacity 450ms ease;
+    .featured-article { height: 100%; box-sizing: border-box; box-shadow: 0 18px 42px #00000024; }
+    &--active { pointer-events: auto; }
+  }
+  &__controls { gap: 12px; display: flex; margin-top: 28px; position: relative; align-items: center; justify-content: center; }
+  &__dots { display: flex; align-items: center; }
+  &__arrow, &__dot {
+    border: 0;
+    font: inherit;
+    cursor: pointer;
+    min-height: 44px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 200ms ease, transform 200ms ease;
+    &:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  }
+  &__arrow {
+    color: var(--dd-ink);
+    background: var(--dd-paper);
+    box-shadow: 0 4px 14px #00000014;
+    &:hover:not(:disabled) { transform: translateY(-2px); }
+  }
+  &__arrow { width: 44px; flex: none; }
+  &__arrow--previous .featured-carousel__arrow-icon { transform: rotate(180deg); }
+  &__dot { width: 44px; padding: 0; background: transparent; }
+  &__dot-mark { width: 9px; height: 9px; border-radius: 50%; background: #ffffff85; transition: background-color 200ms ease, transform 200ms ease; }
+  &__dot:hover .featured-carousel__dot-mark { background: #ffffffc9; }
+  &__dot--active .featured-carousel__dot-mark { background: #fff; transform: scale(1.4); box-shadow: 0 0 0 4px #ffffff24; }
+}
+
+@media (max-width: 600px) {
+  .featured-carousel {
+    &__controls { gap: 4px; flex-wrap: wrap; margin-top: 20px; }
+    &__dots { order: -1; width: 100%; justify-content: center; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-carousel {
+    &__slide, &__arrow, &__dot, &__dot-mark { transition: none; }
+    &__arrow:hover { transform: none; }
+  }
+}

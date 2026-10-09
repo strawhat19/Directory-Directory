@@ -1,0 +1,32 @@
+.contact-artwork {
+  height: 236px;
+  margin-top: 26px;
+  position: relative;
+  isolation: isolate;
+  pointer-events: none;
+
+  &__dots { inset: 0; z-index: -1; position: absolute; background-size: 20px 20px; mask-image: radial-gradient(ellipse, #000000 10%, transparent 72%); background-image: radial-gradient(color-mix(in srgb, var(--dd-blue) 20%, transparent) 1px, transparent 1px); }
+  .hero-atom { inset: -12px -8px; opacity: 0.55; }
+  &__mark-frame { top: 0; right: 8px; z-index: 1; position: absolute; transform: rotate(8deg); filter: drop-shadow(0 8px 16px #0874f917); }
+  &__folders { gap: 13px; left: 8px; right: 76px; bottom: 12px; z-index: 1; display: grid; position: absolute; transform: rotate(-4deg); }
+  &__folder { gap: 10px; display: flex; min-width: 0; padding: 12px 14px; position: relative; align-items: center; border-radius: 0 12px 12px; border: 1px solid color-mix(in srgb, var(--folder-color) 22%, var(--dd-paper)); background: color-mix(in srgb, var(--folder-color) 8%, var(--dd-paper)); box-shadow: 0 6px 16px #14213d08; }
+  &__folder::before { top: -9px; left: -1px; width: 48px; height: 9px; content: ''; position: absolute; border-radius: 6px 8px 0 0; border: inherit; border-bottom: 0; background: inherit; }
+  &__folder--ideas { margin-right: 28px; }
+  &__folder--questions { margin-left: 14px; }
+  &__folder--finds { margin-right: 10px; }
+  &__number { font-size: 9px; color: var(--dd-muted); font-variant-numeric: tabular-nums; }
+  &__copy { gap: 4px; flex: 1; min-width: 0; display: grid; }
+  &__detail { font-size: 7px; font-weight: 650; letter-spacing: 1.3px; color: var(--dd-muted); }
+  &__label { font-size: 12px; font-weight: 650; line-height: 1.4; color: var(--dd-ink); }
+  &__icon { flex: none; }
+}
+
+@media (max-width: 420px) {
+  .contact-artwork {
+    height: 220px;
+    &__mark-frame { right: 0; }
+    &__folders { left: 2px; right: 34px; }
+    &__folder { padding: 11px 12px; }
+    &__detail { font-size: 6px; letter-spacing: 1px; }
+  }
+}

@@ -1,16 +1,21 @@
 import { useRef } from 'react';
 import Icon from '../Icon/Icon';
 import { Link } from 'expo-router';
+import PageCta from '../PageCta/PageCta';
 import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
+import PageEyebrow from '../PageEyebrow/PageEyebrow';
+import PricingGuide from '../PricingGuide/PricingGuide';
 import { elementProps } from '../../shared/ui/elementProps';
-import PricingSection from '../PricingSection/PricingSection.native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import FeaturedArticle from '../FeaturedArticle/FeaturedArticle';
 import { useInformationPage } from './useInformationPage.native';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import type { InformationPageProps } from './InformationPage.types';
+import PricingSection from '../PricingSection/PricingSection.native';
+import { pageCtas, navigationCtas } from '../../shared/cta/pageCtas';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages';
@@ -121,36 +126,46 @@ export default function InformationPage({ page }: InformationPageProps) {
                     </Pressable>
                 </Link>
                 <View {...elementProps(`information-hero`, page)} style={styles.hero}>
-                    <View {...elementProps(`information-eyebrow`, page)} style={styles.eyebrow}>
-                        <Icon
-                            size={15}
-                            name={content.icon}
-                            color={palette.blue}
-                            id={`information-eyebrow-icon-${page}`}
-                            className={`information-eyebrow-icon`}
-                        />
-                        <Text {...elementProps(`information-eyebrow-label`, page)} style={styles.eyebrowLabel}>
-                            {content.eyebrow}
-                        </Text>
-                    </View>
-                    <Text
-                        {...elementProps(`information-heading`, page)}
-                        style={styles.heading}
-                        accessibilityRole={`header`}
+                    <View
+                        {...elementProps(`information-hero-intro`, page)}
+                        style={[styles.heroIntro, width >= 760 && styles.heroIntroWide]}
                     >
-                        {content.title}
-                    </Text>
-                    <Text {...elementProps(`information-summary`, page)} style={styles.summary}>
-                        {content.summary}
-                    </Text>
-                    {page === `terms` || page === `privacy` ? (
-                        <Text {...elementProps(`information-updated`, page)} style={styles.updated}>
-                            {`Last updated ${informationUpdatedDate}`}
-                        </Text>
-                    ) : null}
+                        <View
+                            {...elementProps(`information-hero-copy`, page)}
+                            style={[styles.heroCopy, width >= 760 && styles.heroCopyWide]}
+                        >
+                            <Text
+                                {...elementProps(`information-heading`, page)}
+                                style={styles.heading}
+                                accessibilityRole={`header`}
+                            >
+                                {content.title}
+                            </Text>
+                            <Text {...elementProps(`information-summary`, page)} style={styles.summary}>
+                                {content.summary}
+                            </Text>
+                            {page === `terms` || page === `privacy` ? (
+                                <Text {...elementProps(`information-updated`, page)} style={styles.updated}>
+                                    {`Last updated ${informationUpdatedDate}`}
+                                </Text>
+                            ) : null}
+                        </View>
+                        <PageEyebrow
+                            page={page}
+                            label={content.eyebrow}
+                            id={`information-eyebrow-${page}`}
+                            iconId={`information-eyebrow-icon-${page}`}
+                            labelId={`information-eyebrow-label-${page}`}
+                            style={[styles.eyebrow, width >= 760 && styles.eyebrowWide]}
+                        />
+                    </View>
                 </View>
+                {page !== `discover` && page !== `pricing` ? <PageCta banner parentMaxWidth={900} navigationPage={page} content={navigationCtas[page]} /> : null}
                 {page === `pricing` ? (
-                    <PricingSection horizontalInset={padding + Math.max(0, (width - 900) / 2)} />
+                    <>
+                        <PricingSection horizontalInset={padding + Math.max(0, (width - 900) / 2)} />
+                        <PricingGuide />
+                    </>
                 ) : (
                 <>
                 <View {...elementProps(`information-note`, page)} style={styles.note}>
@@ -211,6 +226,10 @@ export default function InformationPage({ page }: InformationPageProps) {
                 </View>
                 </>
                 )}
+                {page === `api` || page === `docs` || page === `terms` || page === `privacy` || page === `pricing` ? (
+                    <PageCta parentMaxWidth={900} content={pageCtas[page]} navigationPage={page === `pricing` ? `pricing` : undefined} />
+                ) : null}
+                {page === `about` ? <FeaturedArticle fullBleed scope={`about`} horizontalInset={padding + Math.max(0, (width - 900) / 2)} /> : null}
                 <View {...elementProps(`information-footer`, page)} style={styles.footer}>
                     <Text {...elementProps(`information-copyright`, page)} style={styles.footerText}>
                         {year === null

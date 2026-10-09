@@ -1,3 +1,5 @@
+.featured-story + .directory-explorer::before { border-top: 0; }
+
 .directory-explorer {
     isolation: isolate;
     position: relative;

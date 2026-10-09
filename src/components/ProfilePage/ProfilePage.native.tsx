@@ -1,10 +1,12 @@
 import Icon from '../Icon/Icon';
 import { Link } from 'expo-router';
 import { useMemo, useRef } from 'react';
+import PageCta from '../PageCta/PageCta';
 import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import { useProfilePage } from './useProfilePage';
 import AuthActions from '../AuthActions/AuthActions';
+import { pageCtas } from '../../shared/cta/pageCtas';
 import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,10 +16,11 @@ import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import { useCopyrightYear } from '../../shared/time/useCopyrightYear';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
-import { Image, Pressable, ScrollView, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 
 export default function ProfilePage() {
   const state = useProfilePage();
+  const { width } = useWindowDimensions();
   const { year } = useCopyrightYear();
   const { isDark } = useTheme();
   const accent = useSearchAccent();
@@ -137,6 +140,7 @@ export default function ProfilePage() {
               <AuthActions scope={`profile-prompt`} />
             </View>
           )}
+          <PageCta parentMaxWidth={900} content={pageCtas.profile} horizontalInset={20 + Math.max(0, (width - 900) / 2)} />
           <View {...elementProps(`profile-footer`)} style={styles.footer}>
             <Text {...elementProps(`profile-copyright`)} style={styles.footerText}>
               {`© ${year ?? `—`} Directory Directory`}

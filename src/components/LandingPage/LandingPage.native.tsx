@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import Icon from '../Icon/Icon';
+import PageCta from '../PageCta/PageCta';
 import HeroAtom from '../HeroAtom/HeroAtom';
 import CategoryGrid from '../CategoryGrid/CategoryGrid.native';
 import DirectoryExplorer from '../DirectoryExplorer/DirectoryExplorer.native';
@@ -8,6 +9,8 @@ import { Link, useRouter } from 'expo-router';
 import { BlurTargetView } from 'expo-blur';
 import BrandMark from '../BrandMark/BrandMark';
 import AuthActions from '../AuthActions/AuthActions';
+import PageEyebrow from '../PageEyebrow/PageEyebrow';
+import { pageCtas } from '../../shared/cta/pageCtas';
 import { useLandingPage } from './useLandingPage.native';
 import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,6 +19,7 @@ import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import PricingSection from '../PricingSection/PricingSection.native';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { heroMagicTypeTerms } from '../../shared/landing/magicTypeTerms';
+import FeaturedArticleCarousel from '../FeaturedArticleCarousel/FeaturedArticleCarousel';
 import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
 
 const firstHeroMagicTerm = heroMagicTypeTerms[0] ?? `Directory`;
@@ -274,21 +278,6 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                 style={styles.headerUtilities}
                             >
                                 <Pressable
-                                    {...elementProps(`landing-header-theme-button`)}
-                                    onPress={toggleTheme}
-                                    accessibilityRole={`button`}
-                                    accessibilityLabel={isDark ? `Switch to light mode` : `Switch to dark mode`}
-                                    style={({ pressed }) => [styles.headerUtilityButton, pressed && styles.pressed]}
-                                >
-                                    <Icon
-                                        id={`landing-header-theme-icon`}
-                                        className={`landing-header-theme-icon`}
-                                        name={isDark ? `sun` : `moon`}
-                                        color={colors.white}
-                                        size={17}
-                                    />
-                                </Pressable>
-                                <Pressable
                                     {...elementProps(`landing-header-notifications-button`)}
                                     onPress={openNotifications}
                                     accessibilityRole={`button`}
@@ -313,6 +302,21 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                             {`2`}
                                         </Text>
                                     </View>
+                                </Pressable>
+                                <Pressable
+                                    {...elementProps(`landing-header-theme-button`)}
+                                    onPress={toggleTheme}
+                                    accessibilityRole={`button`}
+                                    accessibilityLabel={isDark ? `Switch to light mode` : `Switch to dark mode`}
+                                    style={({ pressed }) => [styles.headerUtilityButton, pressed && styles.pressed]}
+                                >
+                                    <Icon
+                                        id={`landing-header-theme-icon`}
+                                        className={`landing-header-theme-icon`}
+                                        name={isDark ? `sun` : `moon`}
+                                        color={colors.white}
+                                        size={17}
+                                    />
                                 </Pressable>
                                 <Animated.View
                                     {...elementProps(`landing-header-search-container`)}
@@ -359,6 +363,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                             {...elementProps(`discover-intro`)}
                             style={styles.discoverIntro}
                         >
+                            <PageEyebrow page={`discover`} id={`discover-eyebrow`} label={`Find your next favorite`} />
                             <Text
                                 {...elementProps(`discover-title`)}
                                 accessibilityRole={`header`}
@@ -419,7 +424,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                         enabled={motionPreferenceReady && !reduceMotion}
                                     />
                                     <Text {...elementProps(`landing-hero-description`)} style={styles.heroDescription}>
-                                        {`Discover the directories that help you find your next favorite thing. One thoughtful collection, endless rabbit holes.`}
+                                        {`A directory brings useful resources together by category. Directory Directory helps you discover directories for tools, design, learning, communities, and more—all in one place.`}
                                     </Text>
                                 </View>
                                 <View
@@ -591,7 +596,8 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                             setHeroLayout(y, height);
                         } : undefined}
                     />
-                    <DirectoryExplorer model={page} />
+                    {discover ? <PageCta parentMaxWidth={1344} content={pageCtas.discover} horizontalInset={padding + Math.max(0, (width - 1344) / 2)} /> : <FeaturedArticleCarousel scope={`landing`} horizontalInset={padding + Math.max(0, (width - 1344) / 2)} />}
+                    <DirectoryExplorer joined model={page} />
 
                     {!discover && (
                         <PricingSection

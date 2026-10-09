@@ -2,10 +2,12 @@ import './ProfilePage.scss';
 import Icon from '../Icon/Icon';
 import { Link } from 'expo-router';
 import Head from 'expo-router/head';
-import { useProfilePage } from './useProfilePage';
-import AuthActions from '../AuthActions/AuthActions';
+import PageCta from '../PageCta/PageCta';
 import SiteFooter from '../SiteFooter/SiteFooter';
 import SiteHeader from '../SiteHeader/SiteHeader';
+import { useProfilePage } from './useProfilePage';
+import AuthActions from '../AuthActions/AuthActions';
+import { pageCtas } from '../../shared/cta/pageCtas';
 
 export default function ProfilePage() {
   const state = useProfilePage();
@@ -99,6 +101,7 @@ export default function ProfilePage() {
                 <AuthActions scope={`profile-prompt`} />
               </section>
             )}
+            <PageCta content={pageCtas.profile} />
           </main>
           <SiteFooter />
         </div>

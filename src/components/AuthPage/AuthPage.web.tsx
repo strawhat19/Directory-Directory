@@ -3,11 +3,14 @@ import Icon from '../Icon/Icon';
 import { Link } from 'expo-router';
 import Head from 'expo-router/head';
 import { useEffect } from 'react';
+import PageCta from '../PageCta/PageCta';
 import SiteFooter from '../SiteFooter/SiteFooter';
 import SiteHeader from '../SiteHeader/SiteHeader';
 import AuthStory from '../AuthStory/AuthStory.web';
 import type { AuthPageProps } from './AuthPage.types';
+import { pageCtas } from '../../shared/cta/pageCtas';
 import { authDemoNotice, useAuthPage } from './useAuthPage';
+import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton';
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement';
 
 export default function AuthPage({ mode }: AuthPageProps) {
@@ -185,6 +188,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
                       aria-describedby={`auth-demo-notice-${mode}`}
                       onSubmit={(event) => { event.preventDefault(); void submit(); }}
                     >
+                      {!signingUp || step === 0 ? <GoogleAuthButton mode={mode} /> : null}
                       {fields.map((field) => {
                         const password = field.id === `password` || field.id === `confirmPassword`;
                         return (
@@ -354,6 +358,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
                 </div>
               </div>
             </section>
+            <PageCta compact content={pageCtas[mode]} />
           </main>
           <SiteFooter />
         </div>

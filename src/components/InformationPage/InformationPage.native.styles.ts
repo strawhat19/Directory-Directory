@@ -97,17 +97,26 @@ export function createInformationStyles(fontsLoaded: boolean, isDark: boolean) {
         hero: {
             gap: 18,
         },
-        eyebrow: {
-            gap: 8,
+        heroIntro: {
+            gap: 28,
+        },
+        heroIntroWide: {
             flexDirection: `row`,
             alignItems: `center`,
         },
-        eyebrowLabel: {
-            fontSize: 10,
-            letterSpacing: 1.4,
-            fontFamily: semibold,
-            color: palette.blue,
-            textTransform: `uppercase`,
+        heroCopy: {
+            gap: 18,
+            minWidth: 0,
+        },
+        heroCopyWide: {
+            flex: 1,
+        },
+        eyebrow: {
+            maxWidth: 260,
+            alignSelf: `flex-end`,
+        },
+        eyebrowWide: {
+            alignSelf: `center`,
         },
         heading: {
             fontSize: 42,
