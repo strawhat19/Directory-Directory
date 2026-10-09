@@ -22,7 +22,7 @@ const BlogPage = () => {
       <>
         <Link href={`/`} asChild>
           <Pressable {...elementProps(`blog-back-directories`)} style={({ pressed }) => [common.backLink, pressed && common.pressed]}>
-            <Icon size={14} name={`grid`} color={palette.muted} id={`blog-back-directories-icon`} className={`blog-back-directories-icon`} />
+            <Icon filled size={14} name={`folder`} color={palette.muted} id={`blog-back-directories-icon`} className={`blog-back-directories-icon`} />
             <Text {...elementProps(`blog-back-directories-label`)} style={common.backLabel}>{`Back to Directories`}</Text>
           </Pressable>
         </Link>

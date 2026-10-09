@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'expo-router'
 import { useTheme } from '../../shared/theme/useTheme'
-import { siteNavigation } from '../../shared/navigation/siteNavigation'
+import { siteHeaderNavigation } from '../../shared/navigation/siteNavigation'
 
 export function useSiteHeader() {
   const header = useRef<HTMLElement>(null)
@@ -13,7 +13,7 @@ export function useSiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [searchVisible, setSearchVisible] = useState(pathname !== `/`)
-  const links = siteNavigation.map((link) => ({
+  const links = siteHeaderNavigation.map((link) => ({
     ...link,
     active: pathname === link.href || (link.id === `blog` && pathname.startsWith(`/blog/`)),
   }))

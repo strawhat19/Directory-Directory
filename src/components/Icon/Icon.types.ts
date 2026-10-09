@@ -20,6 +20,7 @@ export type IconName =
   | `globe`
   | `tools`
   | `dragon`
+  | `folder`
   | `shield`
   | `log-in`
   | `design`

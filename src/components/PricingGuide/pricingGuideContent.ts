@@ -18,7 +18,7 @@ const items: readonly PricingGuideItem[] = [
   },
   {
     id: `directory`,
-    icon: `grid`,
+    icon: `folder`,
     color: `#21a668`,
     title: `Have a directory to share?`,
     description: `Distributor is planned for directory listings, while Director adds more visibility and growth tools. Both plans and their features are coming soon.`,

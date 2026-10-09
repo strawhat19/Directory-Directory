@@ -457,9 +457,14 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
         },
         copyright: {
             fontSize: 10,
+            textAlign: `center`,
             fontFamily: regular,
             color: colors.muted,
         },
+        footerLegal: { flex: 1, minWidth: 140, marginVertical: -8, alignItems: `center` },
+        footerNavigation: { flexWrap: `wrap`, justifyContent: `center` },
+        footerNavigationLink: { minHeight: 0, paddingVertical: 0, paddingHorizontal: 0 },
+        footerNavigationLabel: { fontSize: 12, lineHeight: 16 },
         footerDetails: {
             gap: 12,
             flexWrap: `wrap`,

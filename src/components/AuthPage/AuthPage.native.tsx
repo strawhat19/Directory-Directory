@@ -14,8 +14,8 @@ import { elementProps } from '../../shared/ui/elementProps';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import GoogleAuthButton from '../GoogleAuthButton/GoogleAuthButton';
-import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Animated, Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { siteFooterNavigation, siteHeaderNavigation } from '../../shared/navigation/siteNavigation';
 
 const storyItems = [
     { id: `places`, label: `Places`, icon: `places` },
@@ -59,7 +59,7 @@ export default function AuthPage({ mode }: AuthPageProps) {
                         </Link>
                         <View {...elementProps(`auth-header-controls`, mode)} style={styles.headerControls}>
                             <View {...elementProps(`auth-navigation`, mode)} style={styles.navigation}>
-                                {siteNavigation.map((item) => (
+                                {siteHeaderNavigation.map((item) => (
                                     <Link key={item.id} href={item.href} asChild>
                                         <Pressable
                                             {...elementProps(`auth-navigation-link`, `${mode}-${item.id}`)}
@@ -442,9 +442,25 @@ export default function AuthPage({ mode }: AuthPageProps) {
                     </View>
                     <PageCta compact parentMaxWidth={1440} content={pageCtas[mode]} />
                     <View {...elementProps(`auth-footer`, mode)} style={styles.footer}>
-                        <Text {...elementProps(`auth-copyright`, mode)} style={styles.footerText}>
-                            {state.year === null ? `© Directory Directory.` : `© ${state.year} Directory Directory.`}
-                        </Text>
+                        <View {...elementProps(`auth-footer-legal`, mode)} style={styles.footerLegal}>
+                            <Text {...elementProps(`auth-copyright`, mode)} style={[styles.footerText, styles.footerCopyright]}>
+                                {state.year === null ? `© Directory Directory.` : `© ${state.year} Directory Directory.`}
+                            </Text>
+                            <View {...elementProps(`auth-footer-navigation`, mode)} style={[styles.navigation, styles.footerNavigation]}>
+                                {siteFooterNavigation.map((item) => (
+                                    <Link key={item.id} href={item.href} asChild>
+                                        <Pressable
+                                            accessibilityRole={`link`}
+                                            {...elementProps(`auth-footer-navigation-link`, `${mode}-${item.id}`)}
+                                            style={({ pressed }) => [styles.navigationLink, styles.footerNavigationLink, pressed && styles.pressed]}
+                                        >
+                                            <Icon size={15} name={item.icon} color={item.color} id={`auth-footer-navigation-icon-${mode}-${item.id}`} className={`auth-footer-navigation-icon`} />
+                                            <Text {...elementProps(`auth-footer-navigation-label`, `${mode}-${item.id}`)} style={[styles.navigationLabel, styles.footerNavigationLabel]}>{item.label}</Text>
+                                        </Pressable>
+                                    </Link>
+                                ))}
+                            </View>
+                        </View>
                         <Link href={`https://piratechs.com/`} asChild>
                             <Pressable
                                 {...elementProps(`auth-footer-piratechs-link`, mode)}

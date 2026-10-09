@@ -15,7 +15,7 @@ const DirectoryScrollButton = ({ onExplore, target = `directories` }: DirectoryS
       aria-label={ariaLabel}
       className={`directory-scroll-button directory-scroll-button--${target}`}
     >
-      <Icon size={17} name={icon} id={`${id}-section-icon`} className={`directory-scroll-button__icon`} />
+      <Icon size={17} name={icon} filled={icon === `folder`} id={`${id}-section-icon`} className={`directory-scroll-button__icon`} />
       <span aria-hidden={true} id={`${id}-label`} className={`directory-scroll-button__label`}>
         {letters.map((letter, index) => (
           <span key={index} id={`${id}-letter-${index}`} className={`directory-scroll-button__letter`}>{letter}</span>

@@ -97,7 +97,7 @@ export default function ProfilePage() {
                     {...elementProps(`profile-navigation-home`)}
                     style={({ pressed }) => [styles.navigationLink, pressed && styles.pressed]}
                   >
-                    <Icon name={`grid`} id={`profile-navigation-home-icon`} color={palette.blue} size={16} />
+                    <Icon filled name={`folder`} id={`profile-navigation-home-icon`} color={palette.blue} size={16} />
                     <Text {...elementProps(`profile-navigation-home-label`)} style={styles.linkLabel}>
                       {`Browse directories`}
                     </Text>

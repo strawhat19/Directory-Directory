@@ -64,8 +64,9 @@ export default function DirectoryExplorer() {
                                 className={`directory-explorer__title-mark`}
                             >
                                 <Icon
+                                    filled
                                     size={20}
-                                    name={`grid`}
+                                    name={`folder`}
                                     id={`directory-explorer-title-icon`}
                                     className={`directory-explorer__title-icon`}
                                 />

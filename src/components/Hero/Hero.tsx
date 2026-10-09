@@ -51,7 +51,12 @@ export default function Hero({ onExplore }: HeroProps) {
                 onClick={() => selectScope(id)}
                 className={`hero__scope`}
               >
-                <Icon name={icon} id={`hero-search-scope-${id}-icon`} size={14} />
+                <Icon
+                  filled
+                  size={14}
+                  name={icon}
+                  id={`hero-search-scope-${id}-icon`}
+                />
                 <span
                   id={`hero-search-scope-${id}-label`}
                   className={`hero__scope-label`}

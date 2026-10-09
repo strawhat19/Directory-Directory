@@ -18,10 +18,10 @@ import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import PricingSection from '../PricingSection/PricingSection.native';
 import DirectoryIntroCta from '../DirectoryIntroCta/DirectoryIntroCta';
-import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { heroMagicTypeTerms } from '../../shared/landing/magicTypeTerms';
 import DirectoryScrollButton from '../DirectoryScrollButton/DirectoryScrollButton';
 import FeaturedArticleCarousel from '../FeaturedArticleCarousel/FeaturedArticleCarousel';
+import { siteFooterNavigation, siteHeaderNavigation } from '../../shared/navigation/siteNavigation';
 import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
 
 const firstHeroMagicTerm = heroMagicTypeTerms[0] ?? `Directory`;
@@ -193,7 +193,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
         void Linking.openURL(href).catch(() => Alert.alert(`Unable To Open Website`, `Please Try Again`));
     };
 
-    const headerMenuLinks = siteNavigation.map((item) => (
+    const headerMenuLinks = siteHeaderNavigation.map((item) => (
         <Link
             {...elementProps(`landing-header-menu-link`, item.id)}
             asChild
@@ -519,6 +519,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                                 ]}
                                             >
                                                 <Icon
+                                                    filled
                                                     id={`landing-search-tab-icon-${item.id}`}
                                                     className={`landing-search-tab-icon`}
                                                     name={item.icon}
@@ -633,9 +634,25 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                     {`Directory Directory`}
                                 </Text>
                             </View>
-                            <Text {...elementProps(`landing-footer-copyright`)} style={styles.copyright}>
-                                {`© ${year ?? `—`} Directory Directory`}
-                            </Text>
+                            <View {...elementProps(`landing-footer-legal`)} style={styles.footerLegal}>
+                                <Text {...elementProps(`landing-footer-copyright`)} style={styles.copyright}>
+                                    {`© ${year ?? `—`} Directory Directory`}
+                                </Text>
+                                <View {...elementProps(`landing-footer-navigation`)} style={[styles.menuScrollContent, styles.footerNavigation]}>
+                                    {siteFooterNavigation.map((item) => (
+                                        <Link key={item.id} href={item.href} asChild>
+                                            <Pressable
+                                                accessibilityRole={`link`}
+                                                {...elementProps(`landing-footer-navigation-link`, item.id)}
+                                                style={({ pressed }) => [styles.menuButton, styles.footerNavigationLink, pressed && styles.pressed]}
+                                            >
+                                                <Icon size={16} name={item.icon} color={item.color} id={`landing-footer-navigation-icon-${item.id}`} className={`landing-footer-navigation-icon`} />
+                                                <Text {...elementProps(`landing-footer-navigation-label`, item.id)} style={[styles.menuLabel, styles.footerNavigationLabel]}>{item.label}</Text>
+                                            </Pressable>
+                                        </Link>
+                                    ))}
+                                </View>
+                            </View>
                         </View>
                         <View
                             {...elementProps(`landing-footer-details`)}

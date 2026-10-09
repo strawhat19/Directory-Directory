@@ -102,7 +102,7 @@ const PageCta = ({ content, banner = false, compact = false, fullBleed = true, p
                 {...elementProps(`${id}-link`)}
                 style={({ pressed }) => [styles.primary, { backgroundColor: banner ? palette.white : buttonColor }, pressed && common.pressed]}
               >
-                {content.primary.icon !== `arrow-right` ? <Icon size={16} name={content.primary.icon} color={primaryInk} id={primaryIconId} className={`${id}-primary-icon`} /> : null}
+                {content.primary.icon !== `arrow-right` ? <Icon size={16} name={content.primary.icon} color={primaryInk} id={primaryIconId} filled={content.primary.icon === `folder`} className={`${id}-primary-icon`} /> : null}
                 <Text {...elementProps(`${id}-label`)} style={[common.actionLabel, styles.primaryLabel, { color: primaryInk }]}>{content.primary.label}</Text>
                 <Icon size={16} name={`arrow-right`} color={primaryInk} id={`${id}-icon`} className={`${id}-icon`} />
               </Pressable>
@@ -110,7 +110,7 @@ const PageCta = ({ content, banner = false, compact = false, fullBleed = true, p
             {content.secondary ? (
               <Link href={content.secondary.href} asChild>
                 <Pressable accessibilityRole={`link`} {...elementProps(`${id}-secondary-link`)} style={({ pressed }) => [styles.secondary, pressed && common.pressed]}>
-                  <Icon size={15} name={content.secondary.icon} color={textColor} id={`${id}-secondary-icon`} className={`${id}-secondary-icon`} />
+                  <Icon size={15} name={content.secondary.icon} color={textColor} filled={content.secondary.icon === `folder`} id={`${id}-secondary-icon`} className={`${id}-secondary-icon`} />
                   <Text {...elementProps(`${id}-secondary-label`)} style={[common.actionLabel, styles.secondaryLabel, { color: textColor }]}>{content.secondary.label}</Text>
                 </Pressable>
               </Link>

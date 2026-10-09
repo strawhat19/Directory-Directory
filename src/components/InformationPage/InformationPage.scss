@@ -57,10 +57,6 @@
     }
   }
 
-  &__back-icon {
-    transform: rotate(180deg);
-  }
-
   &__intro { gap: 28px; display: grid; align-items: center; grid-template-columns: minmax(0, 1fr) auto; }
   &__copy { min-width: 0; }
   &__eyebrow { max-width: 260px; justify-self: end; }

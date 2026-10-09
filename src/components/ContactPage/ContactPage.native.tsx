@@ -14,8 +14,8 @@ import ContactArtwork from '../ContactArtwork/ContactArtwork';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
-import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { siteFooterNavigation, siteHeaderNavigation } from '../../shared/navigation/siteNavigation';
 
 export default function ContactPage() {
     const blurTarget = useRef<View | null>(null);
@@ -66,7 +66,7 @@ export default function ContactPage() {
                             style={styles.headerControls}
                         >
                             <View {...elementProps(`contact-navigation`)} style={styles.navigation}>
-                                {siteNavigation.map((item) => (
+                                {siteHeaderNavigation.map((item) => (
                                     <Link key={item.id} href={item.href} asChild>
                                         <Pressable
                                             {...elementProps(`contact-navigation-link`, item.id)}
@@ -105,7 +105,7 @@ export default function ContactPage() {
                         {...elementProps(`contact-back-link`)}
                         style={({ pressed }) => [styles.backLink, pressed && styles.pressed]}
                     >
-                        <Icon size={14} name={`grid`} color={palette.muted} id={`contact-back-icon`} className={`contact-back-icon`} />
+                        <Icon filled size={14} name={`folder`} color={palette.muted} id={`contact-back-icon`} className={`contact-back-icon`} />
                         <Text {...elementProps(`contact-back-label`)} style={styles.paragraph}>
                             {`Back to directories`}
                         </Text>
@@ -201,11 +201,27 @@ export default function ContactPage() {
                 </View>
                 <PageCta parentMaxWidth={900} content={pageCtas.contact} />
                 <View {...elementProps(`contact-footer`)} style={styles.footer}>
-                    <Text {...elementProps(`contact-copyright`)} style={styles.footerText}>
-                        {year === null
-                            ? `© Directory Directory.`
-                            : `© ${year} Directory Directory.`}
-                    </Text>
+                    <View {...elementProps(`contact-footer-legal`)} style={styles.footerLegal}>
+                        <Text {...elementProps(`contact-copyright`)} style={[styles.footerText, styles.footerCopyright]}>
+                            {year === null
+                                ? `© Directory Directory.`
+                                : `© ${year} Directory Directory.`}
+                        </Text>
+                        <View {...elementProps(`contact-footer-navigation`)} style={[styles.navigation, styles.footerNavigation]}>
+                            {siteFooterNavigation.map((item) => (
+                                <Link key={item.id} href={item.href} asChild>
+                                    <Pressable
+                                        accessibilityRole={`link`}
+                                        {...elementProps(`contact-footer-navigation-link`, item.id)}
+                                        style={({ pressed }) => [styles.navigationLink, styles.footerNavigationLink, pressed && styles.pressed]}
+                                    >
+                                        <Icon size={15} name={item.icon} color={item.color} id={`contact-footer-navigation-icon-${item.id}`} className={`contact-footer-navigation-icon`} />
+                                        <Text {...elementProps(`contact-footer-navigation-label`, item.id)} style={[styles.navigationLabel, styles.footerNavigationLabel]}>{item.label}</Text>
+                                    </Pressable>
+                                </Link>
+                            ))}
+                        </View>
+                    </View>
                     <Link href={`https://piratechs.com/`} asChild>
                         <Pressable
                             {...elementProps(`contact-footer-piratechs-link`)}

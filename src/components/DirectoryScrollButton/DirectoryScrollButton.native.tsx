@@ -23,7 +23,7 @@ const DirectoryScrollButton = ({ onExplore, target = `directories` }: DirectoryS
         style={({ pressed }) => [styles.button, pressed && styles.pressed]}
       >
         <View {...elementProps(`${id}-icon-container`)} style={styles.icon} pointerEvents={`none`}>
-          <Icon size={16} color={`#ffffff`} name={action.icon} id={`${id}-icon`} className={`${id}-icon`} />
+          <Icon size={16} color={`#ffffff`} name={action.icon} filled={action.icon === `folder`} id={`${id}-icon`} className={`${id}-icon`} />
         </View>
         <View {...elementProps(`${id}-label-container`)} style={styles.labelContainer} pointerEvents={`none`}>
           {action.letters.map((letter, index) => (

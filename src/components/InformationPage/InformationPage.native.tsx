@@ -16,9 +16,9 @@ import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import type { InformationPageProps } from './InformationPage.types';
 import PricingSection from '../PricingSection/PricingSection.native';
 import { pageCtas, navigationCtas } from '../../shared/cta/pageCtas';
-import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 import { informationPages, informationUpdatedDate } from '../../shared/information/informationPages';
+import { siteFooterNavigation, siteHeaderNavigation } from '../../shared/navigation/siteNavigation';
 
 export default function InformationPage({ page }: InformationPageProps) {
     const { width } = useWindowDimensions();
@@ -71,7 +71,7 @@ export default function InformationPage({ page }: InformationPageProps) {
                             style={styles.headerControls}
                         >
                             <View {...elementProps(`information-navigation`, page)} style={styles.navigation}>
-                                {siteNavigation.map((item) => (
+                                {siteHeaderNavigation.map((item) => (
                                     <Link key={item.id} href={item.href} asChild>
                                         <Pressable
                                             {...elementProps(`information-navigation-link`, `${page}-${item.id}`)}
@@ -114,8 +114,9 @@ export default function InformationPage({ page }: InformationPageProps) {
                         style={({ pressed }) => [styles.backLink, pressed && styles.pressed]}
                     >
                         <Icon
+                            filled
                             size={14}
-                            name={`grid`}
+                            name={`folder`}
                             color={palette.muted}
                             id={`information-back-icon-${page}`}
                             className={`information-back-icon`}
@@ -231,11 +232,28 @@ export default function InformationPage({ page }: InformationPageProps) {
                 ) : null}
                 {page === `about` ? <FeaturedArticle fullBleed scope={`about`} horizontalInset={padding + Math.max(0, (width - 900) / 2)} /> : null}
                 <View {...elementProps(`information-footer`, page)} style={styles.footer}>
-                    <Text {...elementProps(`information-copyright`, page)} style={styles.footerText}>
-                        {year === null
-                            ? `© Directory Directory.`
-                            : `© ${year} Directory Directory.`}
-                    </Text>
+                    <View {...elementProps(`information-footer-legal`, page)} style={styles.footerLegal}>
+                        <Text {...elementProps(`information-copyright`, page)} style={[styles.footerText, styles.footerCopyright]}>
+                            {year === null
+                                ? `© Directory Directory.`
+                                : `© ${year} Directory Directory.`}
+                        </Text>
+                        <View {...elementProps(`information-footer-navigation`, page)} style={[styles.navigation, styles.footerNavigation]}>
+                            {siteFooterNavigation.map((item) => (
+                                <Link key={item.id} href={item.href} asChild>
+                                    <Pressable
+                                        accessibilityRole={`link`}
+                                        accessibilityState={{ selected: item.id === page }}
+                                        {...elementProps(`information-footer-navigation-link`, `${page}-${item.id}`)}
+                                        style={({ pressed }) => [styles.navigationLink, styles.footerNavigationLink, item.id === page && styles.navigationLinkActive, pressed && styles.pressed]}
+                                    >
+                                        <Icon size={15} name={item.icon} color={item.color} id={`information-footer-navigation-icon-${page}-${item.id}`} className={`information-footer-navigation-icon`} />
+                                        <Text {...elementProps(`information-footer-navigation-label`, `${page}-${item.id}`)} style={[styles.navigationLabel, styles.footerNavigationLabel, item.id === page && styles.activeLabel]}>{item.label}</Text>
+                                    </Pressable>
+                                </Link>
+                            ))}
+                        </View>
+                    </View>
                     <Link href={`https://piratechs.com/`} asChild>
                         <Pressable
                             {...elementProps(`information-footer-piratechs-link`, page)}

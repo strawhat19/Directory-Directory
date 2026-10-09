@@ -12,5 +12,8 @@ export const siteNavigation = [
 
 export type SiteNavigationId = typeof siteNavigation[number][`id`];
 
+export const siteFooterNavigation = siteNavigation.filter((item) => item.id === `terms` || item.id === `privacy`);
+export const siteHeaderNavigation = siteNavigation.filter((item) => item.id !== `terms` && item.id !== `privacy`);
+
 export const getPageNavigation = (page: SiteNavigationId) =>
   siteNavigation.find((item) => item.id === page) ?? siteNavigation[0];

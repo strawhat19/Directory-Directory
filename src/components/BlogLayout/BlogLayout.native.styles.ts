@@ -36,8 +36,13 @@ export const createBlogStyles = (fontsLoaded: boolean, isDark: boolean) => {
     metaLabel: { fontSize: 11, fontFamily: regular, color: palette.muted },
     action: { gap: 8, minHeight: 44, flexDirection: `row`, alignItems: `center`, alignSelf: `flex-start` },
     actionLabel: { fontSize: 13, fontFamily: semibold, color: palette.blue },
-    footer: { gap: 14, paddingTop: 24, borderTopWidth: 1, borderColor: palette.border },
+    footer: { gap: 16, paddingTop: 22, borderTopWidth: 1, borderColor: palette.border },
     footerText: { fontSize: 11, lineHeight: 19, fontFamily: regular, color: palette.muted },
+    footerLegal: { width: `100%`, marginVertical: -7.5, alignItems: `center` },
+    footerNavigation: { justifyContent: `center` },
+    footerNavigationLink: { minHeight: 0, paddingVertical: 0, paddingHorizontal: 0 },
+    footerNavigationLabel: { fontSize: 11, lineHeight: 15 },
+    footerCopyright: { textAlign: `center` },
     pressed: { opacity: 0.65 },
   });
 };

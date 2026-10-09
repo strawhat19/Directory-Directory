@@ -36,13 +36,13 @@ const PageCta = ({ content, banner = false, compact = false, fullBleed = true, n
           </div>
           <div id={`${id}-actions`} className={`page-cta__actions`}>
             <Link href={primary.href} id={`${id}-link`} className={`page-cta__link dd-button dd-button--primary`}>
-              <Icon size={16} name={primary.icon} id={primaryIconId} className={`page-cta__action-icon`} />
+              <Icon size={16} name={primary.icon} filled={primary.icon === `folder`} id={primaryIconId} className={`page-cta__action-icon`} />
               <span id={`${id}-label`} className={`page-cta__action-label`}>{primary.label}</span>
               <Icon size={16} name={`arrow-right`} id={`${id}-icon`} className={`page-cta__action-arrow`} />
             </Link>
             {secondary ? (
               <Link href={secondary.href} id={`${id}-secondary-link`} className={`page-cta__secondary dd-button`}>
-                <Icon size={15} name={secondary.icon} id={`${id}-secondary-icon`} className={`page-cta__secondary-icon`} />
+                <Icon size={15} name={secondary.icon} filled={secondary.icon === `folder`} id={`${id}-secondary-icon`} className={`page-cta__secondary-icon`} />
                 <span id={`${id}-secondary-label`} className={`page-cta__secondary-label`}>{secondary.label}</span>
               </Link>
             ) : null}

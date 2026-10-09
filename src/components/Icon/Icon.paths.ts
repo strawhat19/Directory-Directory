@@ -33,6 +33,7 @@ export const iconPaths: Record<IconName, readonly string[]> = {
   shield: [`M12 3 3 7v5c0 5 9 10 9 10s9-5 9-10V7l-9-4Z`, `m8 12 3 3 5-6`],
   'file-text': [`M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6Z`, `M14 2v6h6M8 13h8M8 17h6`],
   list: [`M9 6h11M9 12h11M9 18h11`, `M4 6h.01M4 12h.01M4 18h.01`],
+  folder: [`M4 4h5l2 3h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z`],
   'arrow-right': [`M4 12h15m-6-6 6 6-6 6`],
   'arrow-up': [`M12 19V5m-7 7 7-7 7 7`],
   'chevron-up': [`m6 15 6-6 6 6`],

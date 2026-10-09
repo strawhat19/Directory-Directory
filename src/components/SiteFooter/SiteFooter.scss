@@ -1,5 +1,5 @@
 .site-footer {
-  padding: 44px 0 26px;
+  padding: 26px 0;
 
   &__bottom {
     gap: 20px;
@@ -21,11 +21,37 @@
   }
 
   &__details {
-    gap: 5px;
+    gap: 4px;
     flex: 1;
     display: flex;
+    margin: -9.5px 0;
+    text-align: center;
     align-items: center;
     flex-direction: column;
+  }
+
+  &__navigation {
+    gap: 12px;
+    display: flex;
+    width: max-content;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__nav-link {
+    gap: 7px;
+    display: flex;
+    font-size: 10px;
+    line-height: 1.2;
+    font-weight: 550;
+    align-items: center;
+    color: var(--dd-ink);
+    transition: color 200ms ease;
+
+    &:hover,
+    &--active {
+      color: var(--dd-blue);
+    }
   }
 
   &__actions {
@@ -76,12 +102,17 @@
       order: 3;
       width: 100%;
       flex: auto;
-      align-items: flex-start;
     }
 
     &__actions {
       margin-left: auto;
     }
 
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__nav-link {
+    transition: none;
   }
 }

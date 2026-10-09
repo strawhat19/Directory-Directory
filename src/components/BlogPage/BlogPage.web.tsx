@@ -17,7 +17,7 @@ const BlogPage = () => (
     <BlogLayout scope={`index`} hero={(
       <>
         <Link href={`/`} id={`blog-back-directories`} className={`blog-back-link`}>
-          <Icon size={14} name={`grid`} id={`blog-back-directories-icon`} className={`blog-back-link__icon`} />
+          <Icon filled size={14} name={`folder`} id={`blog-back-directories-icon`} className={`blog-back-link__icon`} />
           <span id={`blog-back-directories-label`} className={`blog-back-link__label`}>{`Back to Directories`}</span>
         </Link>
         <div id={`blog-index-hero-intro`} className={`blog-page__hero-intro`}>

@@ -59,7 +59,7 @@ export default function ProfilePage() {
                     </span>
                   </Link>
                   <Link href={`/`} id={`profile-navigation-home`} className={`profile-navigation__link`}>
-                    <Icon name={`grid`} id={`profile-navigation-home-icon`} size={16} />
+                    <Icon filled name={`folder`} id={`profile-navigation-home-icon`} size={16} />
                     <span id={`profile-navigation-home-label`} className={`profile-navigation__label`}>
                       {`Browse directories`}
                     </span>

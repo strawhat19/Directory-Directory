@@ -58,8 +58,9 @@ export default function DirectoryExplorer({ model, joined = false }: { model: La
                             style={[styles.exploreTitleAccent, searchThemeStyle]}
                         >
                             <Icon
+                                filled
                                 size={17}
-                                name={`grid`}
+                                name={`folder`}
                                 color={colors.white}
                                 id={`landing-explore-title-icon`}
                                 className={`landing-explore-title-icon`}

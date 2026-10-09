@@ -21,7 +21,7 @@ const PricingGuide = () => (
           style={{ [`--guide-color`]: item.color } as CSSProperties}
         >
           <span id={`pricing-guide-symbol-${item.id}`} className={`pricing-guide__symbol`}>
-            <Icon size={22} name={item.icon} id={`pricing-guide-icon-${item.id}`} className={`pricing-guide__icon`} />
+            <Icon size={22} name={item.icon} filled={item.icon === `folder`} id={`pricing-guide-icon-${item.id}`} className={`pricing-guide__icon`} />
           </span>
           <h3 id={`pricing-guide-title-${item.id}`} className={`pricing-guide__title`}>{item.title}</h3>
           <p id={`pricing-guide-description-${item.id}`} className={`pricing-guide__description`}>{item.description}</p>

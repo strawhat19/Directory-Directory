@@ -48,7 +48,7 @@ export default function ContactPage() {
                 id={`contact-back-link`}
                 className={`contact-intro__back-link`}
               >
-                <Icon name={`grid`} id={`contact-back-icon`} className={`contact-intro__back-icon`} size={14} />
+                <Icon filled name={`folder`} id={`contact-back-icon`} className={`contact-intro__back-icon`} size={14} />
                 <span id={`contact-back-label`} className={`contact-intro__back-label`}>
                   {`Back to directories`}
                 </span>

@@ -18,7 +18,7 @@ export const navigationCtas: Record<Exclude<SiteNavigationId, `blog` | `pricing`
     pattern: `rings`,
     title: `See what we're bringing together`,
     description: `Explore collections for tools, learning, communities, and more.`,
-    primary: { icon: `sparkles`, href: `/discover`, label: `Discover Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Discover Directories` },
   }),
   api: createNavigationCta(`api`, {
     pattern: `grid`,
@@ -55,7 +55,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `For Curious Builders`,
     title: `Explore the experience behind the API plans`,
     description: `There isn't a public API yet. Browse the preview or read the guide to see how directories, search, and filters work today.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
     secondary: { href: `/docs`, icon: `file-text`, label: `Read the Docs` },
   },
   docs: {
@@ -66,7 +66,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `Try It Yourself`,
     title: `Turn this guide into your next discovery`,
     description: `Choose a category, try a search, and open a listing in the sample catalogue. Keep a few bookmarks during your visit.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
     secondary: { href: `/blog`, icon: `file-text`, label: `Read the Blog` },
   },
   terms: {
@@ -77,7 +77,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `Keep Exploring`,
     title: `A clearer path to your next find`,
     description: `Browse the sample collection with these terms in mind, or read how Directory Directory handles your information.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
     secondary: { icon: `shield`, href: `/privacy`, label: `Read the Privacy Policy` },
   },
   privacy: {
@@ -88,7 +88,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `Browse at Your Pace`,
     title: `Explore with a little more context`,
     description: `Public browsing doesn't require an account. See the sample directories or read the guide to understand the current experience.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
     secondary: { href: `/docs`, icon: `file-text`, label: `Read the Docs` },
   },
   pricing: {
@@ -111,7 +111,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     title: `Let a good question lead somewhere`,
     description: `Your message preview stays on this page. While you shape your idea, explore the sample directories or learn more about the project.`,
     secondary: { icon: `info`, href: `/about`, label: `About the Project` },
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
   },
   discover: {
     tone: `green`,
@@ -132,7 +132,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `Follow Your Curiosity`,
     title: `Your next discovery is still out there`,
     description: `Explore the public collection or find a guide for your next project. Browsing is available with or without a local demo profile.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
     secondary: { href: `/blog`, icon: `file-text`, label: `Read the Blog` },
   },
   'sign-in': {
@@ -143,7 +143,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `The Door Is Open`,
     title: `Curiosity doesn't need a sign-in`,
     description: `Browse sample directories and read the blog while you decide whether to use a local demo profile.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Browse Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Browse Directories` },
     secondary: { href: `/blog`, icon: `file-text`, label: `Explore the Blog` },
   },
   'sign-up': {
@@ -154,7 +154,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `Your Own Starting Point`,
     title: `Start exploring at your own pace`,
     description: `The collection and blog are open to browse. Take a look around before or after creating a local demo profile.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Browse Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Browse Directories` },
     secondary: { href: `/blog`, icon: `file-text`, label: `Explore the Blog` },
   },
   'blog-directory': {
@@ -165,7 +165,7 @@ export const pageCtas: Record<PageCtaPage, PageCtaContent> = {
     eyebrow: `Your Next Discovery`,
     title: `Ready to put your curiosity to work?`,
     description: `Explore our directory of directories.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
   },
 };
 
@@ -177,7 +177,7 @@ const articleCtas: Record<string, Omit<PageCtaContent, `id`>> = {
     eyebrow: `From the Story to the Screen`,
     title: `See the directory idea in action`,
     description: `From printed guides to online collections, organization gives discovery a starting point. Explore the sample directory experience or learn when to browse and search.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
     secondary: { icon: `search`, label: `Compare Browsing and Search`, href: `/blog/directory-vs-search-engine` },
   },
   'directory-vs-search-engine': {
@@ -227,7 +227,7 @@ const articleCtas: Record<string, Omit<PageCtaContent, `id`>> = {
     eyebrow: `Find the Collection First`,
     title: `Choose a collection to begin your next search`,
     description: `Explore the sample directory listings by category, or take a closer look at how specialist collections can help you discover unfamiliar resources.`,
-    primary: { icon: `grid`, href: `/discover`, label: `Explore Directories` },
+    primary: { icon: `folder`, href: `/discover`, label: `Explore Directories` },
     secondary: { icon: `sparkles`, label: `Read the Niche Discovery Guide`, href: `/blog/discover-niche-resources` },
   },
   'directories-for-local-discovery': {

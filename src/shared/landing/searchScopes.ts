@@ -17,7 +17,7 @@ export const searchScopes = [
   },
   {
     id: `directories`,
-    icon: `grid`,
+    icon: `folder`,
     tint: `#ecf7f1`,
     color: `#21a668`,
     label: `Directories`,
@@ -26,7 +26,7 @@ export const searchScopes = [
   },
   {
     id: `directors`,
-    icon: `list`,
+    icon: `clapperboard`,
     tint: `#fceff0`,
     color: `#d83b42`,
     label: `Directors`,

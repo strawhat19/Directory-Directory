@@ -6,7 +6,7 @@ export const directoryScrollActions = {
     letters: Array.from(`Categories`),
   },
   directories: {
-    icon: `list`,
+    icon: `folder`,
     label: `Directories`,
     ariaLabel: `Explore Directories`,
     letters: Array.from(`Directories`),

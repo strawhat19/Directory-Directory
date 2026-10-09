@@ -12,8 +12,8 @@ import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import { useBlogPresentation } from './useBlogPresentation.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { useCopyrightYear } from '../../shared/time/useCopyrightYear';
-import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { AccessibilityInfo, Animated, Pressable, ScrollView, Text, View } from 'react-native';
+import { siteFooterNavigation, siteHeaderNavigation } from '../../shared/navigation/siteNavigation';
 
 const BlogLayout = ({ hero, scope, children, sticky = true }: BlogLayoutProps) => {
   const { year } = useCopyrightYear();
@@ -74,7 +74,7 @@ const BlogLayout = ({ hero, scope, children, sticky = true }: BlogLayoutProps) =
             </Link>
             <View {...elementProps(`blog-header-controls`, scope)} style={styles.controls}>
               <View {...elementProps(`blog-navigation`, scope)} style={styles.navigation}>
-                {siteNavigation.map((item) => (
+                {siteHeaderNavigation.map((item) => (
                   <Link key={item.id} href={item.href} asChild>
                     <Pressable
                       accessibilityState={{ selected: item.id === `blog` }}
@@ -95,7 +95,23 @@ const BlogLayout = ({ hero, scope, children, sticky = true }: BlogLayoutProps) =
           <View {...elementProps(`blog-hero`, scope)} style={styles.hero} onLayout={(event) => { const { y, height } = event.nativeEvent.layout; heroBottom.current = y + height; }}>{hero}</View>
           {children}
           <View {...elementProps(`blog-footer`, scope)} style={styles.footer}>
-            <Text {...elementProps(`blog-copyright`, scope)} style={styles.footerText}>{year === null ? `© Directory Directory` : `© ${year} Directory Directory`}</Text>
+            <View {...elementProps(`blog-footer-legal`, scope)} style={styles.footerLegal}>
+              <Text {...elementProps(`blog-copyright`, scope)} style={[styles.footerText, styles.footerCopyright]}>{year === null ? `© Directory Directory` : `© ${year} Directory Directory`}</Text>
+              <View {...elementProps(`blog-footer-navigation`, scope)} style={[styles.navigation, styles.footerNavigation]}>
+                {siteFooterNavigation.map((item) => (
+                  <Link key={item.id} href={item.href} asChild>
+                    <Pressable
+                      accessibilityRole={`link`}
+                      {...elementProps(`blog-footer-navigation-link`, `${scope}-${item.id}`)}
+                      style={({ pressed }) => [styles.navigationLink, styles.footerNavigationLink, pressed && styles.pressed]}
+                    >
+                      <Icon size={15} name={item.icon} color={item.color} id={`blog-footer-navigation-icon-${scope}-${item.id}`} className={`blog-footer-navigation-icon`} />
+                      <Text {...elementProps(`blog-footer-navigation-label`, `${scope}-${item.id}`)} style={[styles.navigationLabel, styles.footerNavigationLabel]}>{item.label}</Text>
+                    </Pressable>
+                  </Link>
+                ))}
+              </View>
+            </View>
             <Link href={`https://piratechs.com/`} asChild>
               <Pressable {...elementProps(`blog-footer-piratechs-link`, scope)} style={({ pressed }) => [styles.action, pressed && styles.pressed]}>
                 <Text {...elementProps(`blog-footer-piratechs-label`, scope)} style={styles.actionLabel}>{`Piratechs`}</Text>

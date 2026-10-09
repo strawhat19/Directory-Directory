@@ -1,11 +1,12 @@
 import './SiteFooter.scss'
 import Icon from '../Icon/Icon'
+import { Link } from 'expo-router'
 import { useSiteFooter } from './useSiteFooter'
 import BrandMark from '../BrandMark/BrandMark'
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
 
 export default function SiteFooter() {
-  const { year, isHome } = useSiteFooter()
+  const { year, links, isHome } = useSiteFooter()
   const scrollToTop = () => smoothScrollToElement(isHome ? `#top` : `#site-header`)
 
   return (
@@ -30,6 +31,32 @@ export default function SiteFooter() {
           <p id={`footer-copyright`} className={`site-footer__copyright`}>
             {`© ${year === null ? `` : `${year} `}Directory Directory.`}
           </p>
+          <nav
+            id={`footer-navigation`}
+            className={`site-footer__navigation`}
+            aria-label={`Legal navigation`}
+          >
+            {links.map((link) => (
+              <Link
+                key={link.id}
+                href={link.href}
+                id={`footer-${link.id}-link`}
+                aria-current={link.active ? `page` : undefined}
+                className={`site-footer__nav-link${link.active ? ` site-footer__nav-link--active` : ``}`}
+              >
+                <Icon
+                  size={15}
+                  name={link.icon}
+                  color={link.color}
+                  id={`footer-${link.id}-icon`}
+                  className={`site-footer__nav-icon`}
+                />
+                <span id={`footer-${link.id}-label`} className={`site-footer__nav-label`}>
+                  {link.label}
+                </span>
+              </Link>
+            ))}
+          </nav>
         </div>
         <div id={`footer-actions`} className={`site-footer__actions`}>
           <a

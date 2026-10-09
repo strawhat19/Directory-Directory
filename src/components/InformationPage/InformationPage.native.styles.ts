@@ -192,8 +192,8 @@ export function createInformationStyles(fontsLoaded: boolean, isDark: boolean) {
             color: palette.blue,
         },
         footer: {
-            gap: 14,
-            paddingTop: 24,
+            gap: 16,
+            paddingTop: 22,
             borderTopWidth: 1,
             borderColor: palette.border,
         },
@@ -203,6 +203,11 @@ export function createInformationStyles(fontsLoaded: boolean, isDark: boolean) {
             fontFamily: regular,
             color: palette.muted,
         },
+        footerLegal: { width: `100%`, marginVertical: -7.5, alignItems: `center` },
+        footerNavigation: { justifyContent: `center` },
+        footerNavigationLink: { minHeight: 0, paddingVertical: 0, paddingHorizontal: 0 },
+        footerNavigationLabel: { fontSize: 11, lineHeight: 15 },
+        footerCopyright: { textAlign: `center` },
         pressed: {
             opacity: 0.65,
         },

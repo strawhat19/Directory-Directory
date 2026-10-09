@@ -31,7 +31,7 @@ const DirectoryIntroCta = ({ onExplore }: DirectoryIntroCtaProps) => {
             aria-label={`Explore Directories`}
             className={`directory-intro-cta__explore dd-button`}
           >
-            <Icon size={13} name={`grid`} id={`${id}-explore-icon`} className={`directory-intro-cta__action-icon`} />
+            <Icon filled size={13} name={`folder`} id={`${id}-explore-icon`} className={`directory-intro-cta__action-icon`} />
             <span id={`${id}-explore-label`} className={`directory-intro-cta__action-label`}>{`Explore`}</span>
             <Icon size={13} name={`arrow-up`} id={`${id}-explore-arrow`} className={`directory-intro-cta__down-icon`} />
           </button>

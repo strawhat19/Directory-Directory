@@ -52,7 +52,8 @@ export default function InformationPage({ page }: InformationPageProps) {
                 className={`information-hero__back-link`}
               >
                 <Icon
-                  name={`arrow-right`}
+                  filled
+                  name={`folder`}
                   id={`information-back-icon-${page}`}
                   className={`information-hero__back-icon`}
                   size={14}

@@ -6,8 +6,8 @@ import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
 import { createPricingStyles } from './PricingSection.native.styles';
-import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
 import { Pressable, Text, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { useFonts, Inter_700Bold, Inter_500Medium, Inter_400Regular, Inter_600SemiBold } from '@expo-google-fonts/inter';
 
 type PricingSectionProps = {
     horizontalInset?: number;
@@ -18,9 +18,9 @@ export default function PricingSection({ horizontalInset = 0, onLayout }: Pricin
     const accent = useSearchAccent();
     const { isDark } = useTheme();
     const { width } = useWindowDimensions();
-    const { styles: common } = useBlogPresentation();
+    const [fontsLoaded] = useFonts({ Inter_700Bold, Inter_500Medium, Inter_400Regular, Inter_600SemiBold });
     const columns = width >= 1000 ? 4 : width >= 600 ? 2 : 1;
-    const styles = useMemo(() => createPricingStyles(isDark), [isDark]);
+    const styles = useMemo(() => createPricingStyles(isDark, fontsLoaded), [isDark, fontsLoaded]);
     const columnWidth = columns === 4 ? `25%` : columns === 2 ? `50%` : `100%`;
 
     return (
@@ -100,10 +100,26 @@ export default function PricingSection({ horizontalInset = 0, onLayout }: Pricin
                             </Text>
                             <View {...elementProps(`pricing-section-plan-price-row`, plan.id)} style={styles.priceRow}>
                                 <Text {...elementProps(`pricing-section-plan-price`, plan.id)} style={styles.price}>
-                                    {plan.price}
+                                    <Text
+                                        style={[styles.priceCurrency, { color: plan.color }]}
+                                        {...elementProps(`pricing-section-plan-currency`, plan.id)}
+                                    >
+                                        {plan.price.slice(0, 1)}
+                                    </Text>
+                                    {plan.price.slice(1)}
                                 </Text>
                                 <Text {...elementProps(`pricing-section-plan-period`, plan.id)} style={styles.pricePeriod}>
-                                    {plan.period}
+                                    {plan.period.startsWith(`/`) ? (
+                                        <>
+                                            <Text
+                                                style={{ color: plan.color }}
+                                                {...elementProps(`pricing-section-plan-period-separator`, plan.id)}
+                                            >
+                                                {`/`}
+                                            </Text>
+                                            {plan.period.slice(1)}
+                                        </>
+                                    ) : plan.period}
                                 </Text>
                             </View>
                             <Text {...elementProps(`pricing-section-plan-detail`, plan.id)} style={styles.detail}>
@@ -145,7 +161,7 @@ export default function PricingSection({ horizontalInset = 0, onLayout }: Pricin
                                     style={({ pressed }) => [styles.action, pressed && styles.pressed]}
                                 >
                                     <Text
-                                        style={[common.actionLabel, styles.actionLabel]}
+                                        style={styles.actionLabel}
                                         {...elementProps(`pricing-section-plan-action-label`, plan.id)}
                                     >
                                         {plan.id === `free` ? `Explore Free` : `Get In Touch`}

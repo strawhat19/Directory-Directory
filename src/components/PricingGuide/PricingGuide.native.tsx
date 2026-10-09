@@ -32,7 +32,7 @@ const PricingGuide = () => {
               style={[styles.tab, { backgroundColor: `${item.color}66` }]}
             />
             <View {...elementProps(`pricing-guide-card-symbol`, item.id)} style={[styles.symbol, { backgroundColor: `${item.color}12` }]}>
-              <Icon size={22} name={item.icon} color={item.color} id={`pricing-guide-card-icon-${item.id}`} className={`pricing-guide-card-icon`} />
+              <Icon size={22} name={item.icon} color={item.color} filled={item.icon === `folder`} id={`pricing-guide-card-icon-${item.id}`} className={`pricing-guide-card-icon`} />
             </View>
             <Text {...elementProps(`pricing-guide-card-title`, item.id)} accessibilityRole={`header`} style={[common.title, styles.title]}>{item.title}</Text>
             <Text {...elementProps(`pricing-guide-card-description`, item.id)} style={[common.paragraph, styles.description]}>{item.description}</Text>

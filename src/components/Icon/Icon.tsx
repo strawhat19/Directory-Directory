@@ -30,7 +30,7 @@ export default function Icon({
       fill={isSolid || name === `moon` ? color : `none`}
       stroke={isSolid ? `none` : color}
       strokeWidth={isSolid ? 0 : strokeWidth ?? (name === `moon` ? 1.1 : 1.7)}
-      style={styles.icon}
+      style={[styles.icon, name === `dragon` && styles.dragon]}
       viewBox={`0 0 24 24`}
       strokeLinecap={`round`}
       strokeLinejoin={`round`}

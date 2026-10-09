@@ -1,8 +1,12 @@
 import { StyleSheet } from 'react-native';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 
-export const createPricingStyles = (isDark: boolean) => {
+export const createPricingStyles = (isDark: boolean, fontsLoaded = false) => {
     const palette = getNativePalette(isDark);
+    const bold = fontsLoaded ? `Inter_700Bold` : undefined;
+    const medium = fontsLoaded ? `Inter_500Medium` : undefined;
+    const regular = fontsLoaded ? `Inter_400Regular` : undefined;
+    const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
 
     return StyleSheet.create({
         section: {
@@ -25,22 +29,25 @@ export const createPricingStyles = (isDark: boolean) => {
             lineHeight: 18,
             letterSpacing: 2,
             marginBottom: 14,
-            fontWeight: `600`,
+            fontFamily: semibold,
             textAlign: `center`,
             color: `rgba(255, 255, 255, 0.78)`,
+            fontWeight: fontsLoaded ? undefined : `600`,
         },
         title: {
             fontSize: 38,
             lineHeight: 46,
-            fontWeight: `700`,
+            fontFamily: bold,
             color: palette.white,
             textAlign: `center`,
             letterSpacing: -1.2,
+            fontWeight: fontsLoaded ? undefined : `700`,
         },
         description: {
             fontSize: 15,
             marginTop: 14,
             lineHeight: 24,
+            fontFamily: regular,
             textAlign: `center`,
             color: `rgba(255, 255, 255, 0.84)`,
         },
@@ -99,10 +106,11 @@ export const createPricingStyles = (isDark: boolean) => {
             flexShrink: 1,
             lineHeight: 14,
             borderRadius: 6,
-            fontWeight: `600`,
             color: palette.blue,
             paddingVertical: 5,
             paddingHorizontal: 7,
+            fontFamily: semibold,
+            fontWeight: fontsLoaded ? undefined : `600`,
             backgroundColor: isDark ? `#1b3555` : `#e3efff`,
         },
         audience: {
@@ -110,21 +118,24 @@ export const createPricingStyles = (isDark: boolean) => {
             lineHeight: 16,
             minHeight: 16,
             letterSpacing: 1,
-            fontWeight: `600`,
             color: palette.muted,
+            fontFamily: semibold,
             textTransform: `uppercase`,
+            fontWeight: fontsLoaded ? undefined : `600`,
         },
         planName: {
             marginTop: 5,
             fontSize: 23,
             lineHeight: 31,
-            fontWeight: `700`,
+            fontFamily: bold,
+            fontWeight: fontsLoaded ? undefined : `700`,
         },
         summary: {
             fontSize: 12,
             marginTop: 10,
             minHeight: 63,
             lineHeight: 21,
+            fontFamily: regular,
             color: palette.muted,
         },
         priceRow: {
@@ -137,21 +148,27 @@ export const createPricingStyles = (isDark: boolean) => {
         price: {
             fontSize: 34,
             lineHeight: 44,
-            fontWeight: `700`,
+            fontFamily: bold,
             color: palette.ink,
             letterSpacing: -1,
+            fontWeight: fontsLoaded ? undefined : `700`,
+        },
+        priceCurrency: {
+            fontSize: 24,
         },
         pricePeriod: {
             fontSize: 11,
             lineHeight: 18,
-            fontWeight: `500`,
+            fontFamily: medium,
             color: palette.muted,
+            fontWeight: fontsLoaded ? undefined : `500`,
         },
         detail: {
             fontSize: 11,
             marginTop: 7,
             minHeight: 36,
             lineHeight: 18,
+            fontFamily: regular,
             color: palette.muted,
         },
         features: {
@@ -171,6 +188,7 @@ export const createPricingStyles = (isDark: boolean) => {
             flex: 1,
             fontSize: 12,
             lineHeight: 19,
+            fontFamily: regular,
             color: palette.ink,
         },
         action: {
@@ -190,8 +208,9 @@ export const createPricingStyles = (isDark: boolean) => {
         actionLabel: {
             fontSize: 11,
             lineHeight: 18,
-            fontWeight: `600`,
             color: palette.ink,
+            fontFamily: semibold,
+            fontWeight: fontsLoaded ? undefined : `600`,
         },
         pressed: {
             opacity: 0.65,
@@ -209,6 +228,7 @@ export const createPricingStyles = (isDark: boolean) => {
             fontSize: 11,
             flexShrink: 1,
             lineHeight: 18,
+            fontFamily: regular,
             textAlign: `center`,
             color: `rgba(255, 255, 255, 0.82)`,
         },

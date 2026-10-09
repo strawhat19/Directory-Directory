@@ -64,10 +64,23 @@ export default function PricingSection() {
               <div id={`pricing-plan-pricing-${plan.id}`} className={`pricing-plan__pricing`}>
                 <div id={`pricing-plan-price-row-${plan.id}`} className={`pricing-plan__price-row`}>
                   <p id={`pricing-plan-price-${plan.id}`} className={`pricing-plan__price`}>
-                    {plan.price}
+                    <span id={`pricing-plan-currency-${plan.id}`} className={`pricing-plan__currency`}>
+                      {plan.price.slice(0, 1)}
+                    </span>
+                    {plan.price.slice(1)}
                   </p>
                   <span id={`pricing-plan-period-${plan.id}`} className={`pricing-plan__period`}>
-                    {plan.period}
+                    {plan.period.startsWith(`/`) ? (
+                      <>
+                        <span
+                          id={`pricing-plan-period-separator-${plan.id}`}
+                          className={`pricing-plan__period-separator`}
+                        >
+                          {`/`}
+                        </span>
+                        {plan.period.slice(1)}
+                      </>
+                    ) : plan.period}
                   </span>
                 </div>
                 <p id={`pricing-plan-detail-${plan.id}`} className={`pricing-plan__detail`}>

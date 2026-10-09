@@ -77,7 +77,7 @@ const DirectoryIntroCta = ({ onExplore, backgroundStyle, horizontalInset }: Dire
         <View {...elementProps(`${id}-actions`)} style={[styles.actions, !wide && styles.actionsSmall]}>
           <Pressable {...elementProps(`${id}-explore`)} onPress={onExplore} accessibilityRole={`button`} hitSlop={{ top: 6, left: 6, right: 6, bottom: 6 }} accessibilityLabel={`Explore Directories`} style={({ pressed }) => [styles.button, styles.exploreButton, pressed && styles.pressed]}>
             <Text {...elementProps(`${id}-explore-label`)} style={[common.actionLabel, styles.buttonLabel, styles.exploreLabel]}>{`Explore`}</Text>
-            <Icon size={13} name={`grid`} color={`#ffffff`} id={`${id}-explore-icon`} className={`${id}-explore-icon`} />
+            <Icon filled size={13} name={`folder`} color={`#ffffff`} id={`${id}-explore-icon`} className={`${id}-explore-icon`} />
           </Pressable>
           <Link href={directoryIntroCta.href} asChild>
             <Pressable {...elementProps(`${id}-link`)} accessibilityRole={`link`} hitSlop={{ top: 6, left: 6, right: 6, bottom: 6 }} accessibilityLabel={`Read More About What A Directory Is`} style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
