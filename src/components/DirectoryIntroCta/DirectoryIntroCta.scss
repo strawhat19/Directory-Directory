@@ -19,6 +19,7 @@
   &__eyebrow { gap: 7px; color: #fff; font-size: 9px; letter-spacing: 1.2px; }
   &__eyebrow-icon { color: #fff; }
   &__eyebrow-icon, &__action-icon { flex: none; }
+  &__period { color: #000; }
   &__heading { margin: 8px 0; font-weight: 720; line-height: 1.2; letter-spacing: -0.7px; font-size: clamp(23px, 2.3vw, 29px); }
   &__description { margin: 0; font-size: 15px; line-height: 1.55; }
   &__actions { gap: 8px; z-index: 1; display: flex; align-self: center; flex-direction: column; }

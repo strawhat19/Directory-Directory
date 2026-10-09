@@ -7,6 +7,7 @@ export const styles = StyleSheet.create({
   copy: { gap: 8, flex: 1, maxWidth: 740 },
   copySmall: { flex: 0, width: `100%` },
   eyebrowRow: { gap: 7, flexDirection: `row`, alignItems: `center` },
+  period: { color: `#000000` },
   eyebrow: { color: `#ffffff`, opacity: 0.84, fontSize: 9, flexShrink: 1, letterSpacing: 1.2 },
   heading: { color: `#ffffff`, fontSize: 25, lineHeight: 32, letterSpacing: -0.7 },
   headingSmall: { fontSize: 22, lineHeight: 29 },

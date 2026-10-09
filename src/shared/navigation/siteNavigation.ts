@@ -7,7 +7,7 @@ export const siteNavigation = [
   { id: `pricing`, tone: `green`, href: `/pricing`, label: `Pricing`, icon: `business`, color: `#21a668` },
   { id: `terms`, tone: `red`, href: `/terms`, label: `Terms`, icon: `file-text`, color: `#d83b42` },
   { id: `privacy`, tone: `purple`, href: `/privacy`, label: `Privacy`, icon: `shield`, color: `#8054d7` },
-  { id: `contact`, tone: `blue`, href: `/contact`, label: `Contact`, icon: `mail`, color: `#0874f9` },
+  { id: `contact`, tone: `blue`, href: `/contact`, label: `Contact`, icon: `mail`, color: `#d83b42` },
 ] as const;
 
 export type SiteNavigationId = typeof siteNavigation[number][`id`];

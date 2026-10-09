@@ -53,4 +53,5 @@ export type IconProps = {
   filled?: boolean;
   strokeWidth?: number;
   className?: string;
+  pathStrokeColors?: readonly string[];
 };

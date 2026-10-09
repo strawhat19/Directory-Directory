@@ -15,6 +15,9 @@ const dots = Array.from({ length: 48 }, (_, index) => ({
   x: 10 + index % 8 * 18,
   y: 10 + Math.floor(index / 8) * 18,
 }));
+const renderBlackPeriods = (text: string, scope: string) => text.split(/(\.)/).map((part, index) => part === `.` ? (
+  <Text {...elementProps(`${scope}-period`, `${index}`)} key={`${scope}-period-${index}`} style={styles.period}>{part}</Text>
+) : part);
 
 type DirectoryIntroCtaProps = {
   onExplore: () => void;
@@ -68,11 +71,11 @@ const DirectoryIntroCta = ({ onExplore, backgroundStyle, horizontalInset }: Dire
       <View {...elementProps(`${id}-content`)} style={[styles.content, !wide && styles.contentSmall]}>
         <View {...elementProps(`${id}-copy`)} style={[styles.copy, !wide && styles.copySmall]}>
           <View {...elementProps(`${id}-eyebrow-row`)} style={styles.eyebrowRow}>
-            <Icon size={14} name={`grid`} color={`#ffffff`} id={`${id}-eyebrow-icon`} className={`${id}-eyebrow-icon`} />
-            <Text {...elementProps(`${id}-eyebrow`)} style={[common.eyebrowLabel, styles.eyebrow]}>{directoryIntroCta.eyebrow}</Text>
+            <Icon size={14} name={`grid`} color={`#ffffff`} id={`${id}-eyebrow-icon`} className={`${id}-eyebrow-icon`} pathStrokeColors={[`#ffffff`, `#000000`, `#000000`, `#ffffff`]} />
+            <Text {...elementProps(`${id}-eyebrow`)} style={[common.eyebrowLabel, styles.eyebrow]}>{renderBlackPeriods(directoryIntroCta.eyebrow, `${id}-eyebrow`)}</Text>
           </View>
-          <Text {...elementProps(`${id}-heading`)} accessibilityRole={`header`} style={[common.strongTitle, styles.heading, !wide && styles.headingSmall]}>{directoryIntroCta.title}</Text>
-          <Text {...elementProps(`${id}-description`)} style={[common.paragraph, styles.description]}>{directoryIntroCta.description}</Text>
+          <Text {...elementProps(`${id}-heading`)} accessibilityRole={`header`} style={[common.strongTitle, styles.heading, !wide && styles.headingSmall]}>{renderBlackPeriods(directoryIntroCta.title, `${id}-heading`)}</Text>
+          <Text {...elementProps(`${id}-description`)} style={[common.paragraph, styles.description]}>{renderBlackPeriods(directoryIntroCta.description, `${id}-description`)}</Text>
         </View>
         <View {...elementProps(`${id}-actions`)} style={[styles.actions, !wide && styles.actionsSmall]}>
           <Pressable {...elementProps(`${id}-explore`)} onPress={onExplore} accessibilityRole={`button`} hitSlop={{ top: 6, left: 6, right: 6, bottom: 6 }} accessibilityLabel={`Explore Directories`} style={({ pressed }) => [styles.button, styles.exploreButton, pressed && styles.pressed]}>
@@ -81,7 +84,7 @@ const DirectoryIntroCta = ({ onExplore, backgroundStyle, horizontalInset }: Dire
           </Pressable>
           <Link href={directoryIntroCta.href} asChild>
             <Pressable {...elementProps(`${id}-link`)} accessibilityRole={`link`} hitSlop={{ top: 6, left: 6, right: 6, bottom: 6 }} accessibilityLabel={`Read More About What A Directory Is`} style={({ pressed }) => [styles.button, pressed && styles.pressed]}>
-              <Text {...elementProps(`${id}-link-label`)} style={[common.actionLabel, styles.buttonLabel]}>{directoryIntroCta.label}</Text>
+              <Text {...elementProps(`${id}-link-label`)} style={[common.actionLabel, styles.buttonLabel]}>{renderBlackPeriods(directoryIntroCta.label, `${id}-link-label`)}</Text>
               <Icon size={13} name={`arrow-right`} color={`#18243a`} id={`${id}-link-icon`} className={`${id}-link-icon`} />
             </Pressable>
           </Link>

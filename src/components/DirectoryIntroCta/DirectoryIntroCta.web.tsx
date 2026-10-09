@@ -8,6 +8,10 @@ type DirectoryIntroCtaProps = {
   onExplore: () => void;
 };
 
+const renderCtaText = (text: string, scope: string) => text.split(/(\.)/).map((part, index) => part === `.` ? (
+  <span key={`${scope}-period-${index}`} id={`${scope}-period-${index}`} className={`directory-intro-cta__period`}>{part}</span>
+) : part);
+
 const DirectoryIntroCta = ({ onExplore }: DirectoryIntroCtaProps) => {
   const { canvasRef, sectionRef } = useDirectoryIntroCta();
   const { id, title, eyebrow, description, href, label } = directoryIntroCta;
@@ -17,11 +21,11 @@ const DirectoryIntroCta = ({ onExplore }: DirectoryIntroCtaProps) => {
       <div id={`${id}-content`} className={`directory-intro-cta__content`}>
         <div id={`${id}-copy`} className={`directory-intro-cta__copy`}>
           <p id={`${id}-eyebrow`} className={`directory-intro-cta__eyebrow dd-eyebrow`}>
-            <Icon size={13} name={`grid`} id={`${id}-eyebrow-icon`} className={`directory-intro-cta__eyebrow-icon`} />
-            <span id={`${id}-eyebrow-label`} className={`directory-intro-cta__eyebrow-label`}>{eyebrow}</span>
+            <Icon size={13} name={`grid`} id={`${id}-eyebrow-icon`} className={`directory-intro-cta__eyebrow-icon`} pathStrokeColors={[`#ffffff`, `#000000`, `#000000`, `#ffffff`]} />
+            <span id={`${id}-eyebrow-label`} className={`directory-intro-cta__eyebrow-label`}>{renderCtaText(eyebrow, `${id}-eyebrow-label`)}</span>
           </p>
-          <h2 id={`${id}-heading`} className={`directory-intro-cta__heading`}>{title}</h2>
-          <p id={`${id}-description`} className={`directory-intro-cta__description`}>{description}</p>
+          <h2 id={`${id}-heading`} className={`directory-intro-cta__heading`}>{renderCtaText(title, `${id}-heading`)}</h2>
+          <p id={`${id}-description`} className={`directory-intro-cta__description`}>{renderCtaText(description, `${id}-description`)}</p>
         </div>
         <div id={`${id}-actions`} className={`directory-intro-cta__actions`}>
           <button
@@ -42,7 +46,7 @@ const DirectoryIntroCta = ({ onExplore }: DirectoryIntroCtaProps) => {
             aria-label={`Read More About What a Directory Is`}
           >
             <Icon size={13} name={`file-text`} id={`${id}-read-icon`} className={`directory-intro-cta__action-icon`} />
-            <span id={`${id}-read-label`} className={`directory-intro-cta__action-label`}>{label}</span>
+            <span id={`${id}-read-label`} className={`directory-intro-cta__action-label`}>{renderCtaText(label, `${id}-read-label`)}</span>
             <Icon size={13} name={`arrow-right`} id={`${id}-arrow-icon`} className={`directory-intro-cta__action-icon`} />
           </Link>
         </div>

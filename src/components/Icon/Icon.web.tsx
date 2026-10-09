@@ -9,6 +9,7 @@ export default function Icon({
   size = 20,
   filled = false,
   strokeWidth,
+  pathStrokeColors,
   className = ``,
   color = `currentColor`,
 }: IconProps) {
@@ -35,6 +36,7 @@ export default function Icon({
         <path
           d={path}
           className={`icon-path`}
+          stroke={pathStrokeColors?.[index]}
           fillRule={isSolid ? `evenodd` : `nonzero`}
           key={`${iconId}-${index}`}
           id={`${iconId}-path-${index}`}

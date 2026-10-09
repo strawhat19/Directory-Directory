@@ -43,8 +43,10 @@ export const iconPaths: Record<IconName, readonly string[]> = {
   design: [`m4 16 11-11 4 4L8 20l-5 1 1-5Z`, `m13 7 4 4M4 16l4 4`],
   places: [`M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z`, `M15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z`],
   grid: [
-    `M4 4h6v6H4V4ZM14 4h6v6h-6V4Z`,
-    `M4 14h6v6H4v-6ZM14 14h6v6h-6v-6Z`,
+    `M4 4h6v6H4V4Z`,
+    `M14 4h6v6h-6V4Z`,
+    `M4 14h6v6H4v-6Z`,
+    `M14 14h6v6h-6v-6Z`,
   ],
   tools: [
     `M21 6a7 7 0 0 1-9 8l-7 7a2.8 2.8 0 0 1-4-4l7-7a7 7 0 0 1 8-9l-4 4 2 4 4 1 3-4Z`,
