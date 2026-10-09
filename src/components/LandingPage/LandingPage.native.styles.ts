@@ -367,7 +367,7 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
         searchInput: {
             flex: 1,
             height: 36,
-            fontSize: 14,
+            fontSize: 16,
             paddingVertical: 0,
             fontFamily: regular,
             color: colors.ink,

@@ -1,0 +1,108 @@
+[
+  {
+    "id": "udacity",
+    "sourceUrl": "https://www.udacity.com/catalog",
+    "additionalSourceUrl": "https://www.udacity.com/blog/udacity-is-now-part-of-accenture/",
+    "evidence": "Official catalog lists courses, Nanodegree programs, skill collections, and subject, level, and duration filters. Udacity's official acquisition letter states more than 21 million professionals served since its 2011 launch; no independent ranking is asserted.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "openstax",
+    "sourceUrl": "https://openstax.org/subjects",
+    "additionalSourceUrl": "https://openstax.org/new-subjects/science-books",
+    "evidence": "Official subject catalog and textbook access guide confirm category browsing for free textbooks. OpenStax is a Rice University educational initiative providing peer-reviewed, openly licensed high-school and college books with instructor resources; its science page states adoption in over 38,000 classrooms.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "codecademy",
+    "sourceUrl": "https://www.codecademy.com/catalog",
+    "evidence": "Official catalog returned 848 courses and paths during research, with language, subject, level, free/paid, duration, and learning format filters. Supports interactive coding courses, projects, career paths, and certification preparation.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "alison",
+    "sourceUrl": "https://alison.com/courses",
+    "evidence": "Official catalog describes thousands of free self-paced courses across nine main subject categories, with certificate and diploma courses. Its page states more than 50 million learners and that the platform has operated since 2007; certificates can be purchased separately.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "hipcamp",
+    "sourceUrl": "https://www.hipcamp.com/en-US",
+    "evidence": "Official discovery homepage provides destination and road-trip searches, campsite collections, and maps. It describes more than 500,000 campsites and tent, RV, cabin, and glamping options.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "hostelworld",
+    "sourceUrl": "https://www.hostelworld.com/",
+    "evidence": "Official accommodation discovery homepage supports destination, dates, and guest searches with hostel and hotel directories. The page reports millions of traveler experiences and app installs, with international destinations.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "pitchup",
+    "sourceUrl": "https://www.pitchup.com/",
+    "evidence": "Official catalog offers tent pitches, caravan and motorhome sites, lodges, cabins, and glamping, with national-park, destination, and facilities filters. It reports more than 1.48 million verified customer reviews and destinations across Europe and the United States.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "campspot",
+    "sourceUrl": "https://www.campspot.com/about",
+    "directorySourceUrl": "https://www.campspot.com/",
+    "evidence": "Official About page describes a camping marketplace launched in 2020 and over 130,000 campsites available for research and instant booking. Its software About page describes more than 3,500 private and public campgrounds across North America.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "webmd-doctor-directory",
+    "sourceUrl": "https://doctor.webmd.com/",
+    "evidence": "Official physician directory advertises profiles for over 3 million physicians and more than 8 million ratings and reviews. Search supports doctor, condition, procedure, location, and medical specialty; dentistry and psychology are included.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "super-lawyers",
+    "sourceUrl": "https://www.superlawyers.com/",
+    "evidence": "Official United States attorney directory provides legal issue, attorney name, and location searches, detailed profiles, and practice-area browsing. The publisher describes a peer-influenced research selection process; no Directory Directory ranking badge is assigned.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "topdoctors",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.topdoctors.co.uk/",
+    "evidence": "Official UK homepage provides medical specialist discovery and appointment information for specialists across the UK.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "allevents",
+    "sourceUrl": "https://allevents.in/about",
+    "directorySourceUrl": "https://allevents.in/",
+    "evidence": "Official About page identifies AllEvents as an event discovery and ticketing platform founded in 2011, reporting 20 million monthly event explorers and availability in over 40,000 cities. Homepage serves markdown to the web crawler; official About and developer pages confirm browsable city and interest listings.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "greatnonprofits",
+    "sourceUrl": "https://greatnonprofits.org/",
+    "additionalSourceUrl": "https://www.about.greatnonprofits.org/faq",
+    "evidence": "Official discovery homepage supports nonprofit location and cause discovery with firsthand community reviews. Official FAQ describes more than 1.8 million nonprofit listings; its Why GreatNonprofits page reports more than 3 million annual visitors.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "united-way-211",
+    "sourceUrl": "https://211.org/about-us/your-local-211",
+    "directorySourceUrl": "https://211.org/",
+    "evidence": "Official United Way 211 locator provides zip-code and state lookup for local 211 agencies and resource directories. The network homepage reports over 19 million referrals during 2025 and United States housing, utility, healthcare, and public-benefit support.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "counselling-directory",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.counselling-directory.org.uk/",
+    "evidence": "Official homepage provides postcode, town, or county search for verified counsellors and therapists and online/phone session discovery. Site reports operating since 2005 across the UK. Official relationship counselling page confirms relationship and couples support and links to therapist discovery.",
+    "additionalSourceUrl": "https://www.counselling-directory.org.uk/relationship.html",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "therapyden",
+    "sourceUrl": "https://www.therapyden.com/specialties/sex-therapy",
+    "directorySourceUrl": "https://www.therapyden.com/about",
+    "evidence": "Official specialty directory lists sex therapy providers with service, location, specialty, insurance, cost, and other filters. The About page identifies TherapyDen as a national therapist platform; the selected specialty preserves the existing adult category's non-explicit sexual wellness and relationship scope.",
+    "verifiedOn": "2026-10-09"
+  }
+]

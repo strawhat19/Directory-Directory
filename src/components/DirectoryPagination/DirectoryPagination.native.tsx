@@ -1,11 +1,12 @@
 import Icon from '../Icon/Icon';
 import { useMemo } from 'react';
-import { Pressable, Text, View } from 'react-native';
 import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
+import { Pressable, Text, View, useWindowDimensions } from 'react-native';
 import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
+import { getDirectoryPageItems } from '../../shared/landing/directoryPagination';
 import { createDirectoryPaginationStyles } from './DirectoryPagination.native.styles';
 
 type DirectoryPaginationProps = {
@@ -18,11 +19,13 @@ type DirectoryPaginationProps = {
 export default function DirectoryPagination({
     currentPage,
     totalPages,
-    pageNumbers,
     onPageChange,
 }: DirectoryPaginationProps) {
     const accent = useSearchAccent();
     const { isDark } = useTheme();
+    const { width } = useWindowDimensions();
+    const compact = width <= 600;
+    const pageItems = getDirectoryPageItems(currentPage, totalPages, compact);
     const { styles: common } = useBlogPresentation();
     const palette = useMemo(() => getNativePalette(isDark, accent), [isDark, accent]);
     const styles = useMemo(() => createDirectoryPaginationStyles(palette), [palette]);
@@ -35,7 +38,7 @@ export default function DirectoryPagination({
         <View
             {...elementProps(`directory-pagination`)}
             accessibilityLabel={`Directory pages`}
-            style={styles.pagination}
+            style={[styles.pagination, compact && styles.paginationCompact]}
         >
             <Text
                 {...elementProps(`directory-pagination-summary`)}
@@ -46,7 +49,7 @@ export default function DirectoryPagination({
             </Text>
             <View
                 {...elementProps(`directory-pagination-controls`)}
-                style={styles.controls}
+                style={[styles.controls, compact && styles.controlsCompact]}
             >
                 <Pressable
                     {...elementProps(`directory-pagination-previous`)}
@@ -55,7 +58,7 @@ export default function DirectoryPagination({
                     accessibilityLabel={`Previous directory page`}
                     accessibilityState={{ disabled: firstPage }}
                     onPress={() => onPageChange(currentPage - 1)}
-                    style={({ pressed }) => [styles.button, firstPage && styles.disabled, pressed && styles.pressed]}
+                    style={({ pressed }) => [styles.button, compact && styles.buttonCompact, firstPage && styles.disabled, pressed && styles.pressed]}
                 >
                     <View
                         {...elementProps(`directory-pagination-previous-icon-container`)}
@@ -70,7 +73,19 @@ export default function DirectoryPagination({
                         />
                     </View>
                 </Pressable>
-                {pageNumbers.map((page) => {
+                {pageItems.map((page) => {
+                    if (typeof page !== `number`) return (
+                        <Text
+                            key={page}
+                            accessible={false}
+                            accessibilityElementsHidden
+                            style={[common.actionLabel, styles.ellipsis]}
+                            importantForAccessibility={`no-hide-descendants`}
+                            {...elementProps(`directory-pagination-${page}`)}
+                        >
+                            {`…`}
+                        </Text>
+                    );
                     const active = currentPage === page;
 
                     return (
@@ -81,11 +96,11 @@ export default function DirectoryPagination({
                             accessibilityLabel={`Directory page ${page} of ${totalPages}`}
                             accessibilityState={{ selected: active }}
                             onPress={() => onPageChange(page)}
-                            style={({ pressed }) => [styles.button, active && styles.activeButton, pressed && styles.pressed]}
+                            style={({ pressed }) => [styles.button, compact && styles.buttonCompact, active && styles.activeButton, active && compact && styles.activeButtonCompact, pressed && styles.pressed]}
                         >
                             <Text
                                 {...elementProps(`directory-pagination-page-label`, `${page}`)}
-                                style={[common.actionLabel, styles.label, active && styles.activeLabel]}
+                                style={[common.actionLabel, styles.label, active && styles.activeLabel, active && compact && styles.activeLabelCompact]}
                             >
                                 {page}
                             </Text>
@@ -99,7 +114,7 @@ export default function DirectoryPagination({
                     accessibilityLabel={`Next directory page`}
                     accessibilityState={{ disabled: lastPage }}
                     onPress={() => onPageChange(currentPage + 1)}
-                    style={({ pressed }) => [styles.button, lastPage && styles.disabled, pressed && styles.pressed]}
+                    style={({ pressed }) => [styles.button, compact && styles.buttonCompact, lastPage && styles.disabled, pressed && styles.pressed]}
                 >
                     <Icon
                         size={16}

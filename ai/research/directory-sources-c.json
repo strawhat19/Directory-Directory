@@ -1,0 +1,19 @@
+[
+  {"id":"aitools-fyi","checkedAt":"2026-10-09","sourceUrl":"https://aitools.fyi/","evidence":"Official searchable catalog shows category links, pricing types, individual tool profiles, and newly added AI tools."},
+  {"id":"aixploria","checkedAt":"2026-10-09","sourceUrl":"https://www.aixploria.com/en/","evidence":"Official AI tools directory provides search, categories, free and paid filters, tutorials, and recently added listings."},
+  {"id":"futuretools","checkedAt":"2026-10-09","sourceUrl":"https://futuretools.io/tools","evidence":"Official AI Tools Database has search, category and pricing filters, recommendations, and thousands of browsable tools."},
+  {"id":"topai-tools","checkedAt":"2026-10-09","sourceUrl":"https://topai.tools/","evidence":"Official catalog organizes AI tools by task and category with product summaries, pricing, and alternatives."},
+  {"id":"aitoptools","checkedAt":"2026-10-09","sourceUrl":"https://aitoptools.com/","evidence":"Official AI software directory includes task and category navigation, pricing, reviews, and newly added listings."},
+  {"id":"opentools","checkedAt":"2026-10-09","sourceUrl":"https://opentools.ai/","evidence":"Official searchable catalog covers AI tools, models, MCP servers, and expert resources with category and pricing filters."},
+  {"id":"startup-stash","checkedAt":"2026-10-09","sourceUrl":"https://startupstash.com/","evidence":"Official directory lists startup software and resources under business categories including collaboration, development, marketing, and finance."},
+  {"id":"betalist","checkedAt":"2026-10-09","sourceUrl":"https://betalist.com/","evidence":"Official homepage provides early stage startup discovery, individual product profiles, and links to browse startups by market."},
+  {"id":"appsumo","checkedAt":"2026-10-09","sourceUrl":"https://appsumo.com/","evidence":"Official marketplace has browsable business software listings, product details, deal terms, and customer reviews."},
+  {"id":"openvc","checkedAt":"2026-10-09","sourceUrl":"https://www.openvc.app/","evidence":"Official homepage presents a startup investor database with profiles and geography, check size, stage, and industry fields."},
+  {"id":"remoteok","checkedAt":"2026-10-09","sourceUrl":"https://remoteok.com/","evidence":"Official job board lists remote roles with tags, companies, salaries, and location or worldwide requirements."},
+  {"id":"pexels","checkedAt":"2026-10-09","sourceUrl":"https://www.pexels.com/","evidence":"Official media library offers photo and video search, collections, creator profiles, and downloads."},
+  {"id":"pixabay","checkedAt":"2026-10-09","sourceUrl":"https://pixabay.com/","evidence":"Official homepage has searchable photos, illustrations, vectors, videos, music, sound effects, and curated collections; selected banner is its published featured homepage photo."},
+  {"id":"coolors","checkedAt":"2026-10-09","sourceUrl":"https://coolors.co/palettes/trending","additionalSourceUrl":"https://coolors-help.zendesk.com/hc/en-us/articles/360010698899-Explore-all-color-palettes","evidence":"Official Help Center explains Explore palette browsing by popularity, creation date, trend, color, style, keyword, and hex color; direct page metadata supplies the preview banner."},
+  {"id":"fonts-in-use","checkedAt":"2026-10-09","sourceUrl":"https://fontsinuse.com/","evidence":"Official typography archive offers search and browsing by typeface, topic, and format, with contributed real design examples."},
+  {"id":"land-book","checkedAt":"2026-10-09","sourceUrl":"https://land-book.com/","evidence":"Official curated website design gallery exposes industry, style, type, typography, color, and platform filters."},
+  {"id":"one-page-love","checkedAt":"2026-10-09","sourceUrl":"https://onepagelove.com/","evidence":"Official gallery curates single page websites, section examples, and templates, with search and category links."}
+]

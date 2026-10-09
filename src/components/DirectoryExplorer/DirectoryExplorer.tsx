@@ -19,7 +19,7 @@ export default function DirectoryExplorer() {
         totalPages,
         changePage,
         currentPage,
-        pageNumbers,
+        pageItems,
         changeTopic,
         emptySaved,
         hasFilters,
@@ -429,7 +429,7 @@ export default function DirectoryExplorer() {
                             />
                         </button>
 
-                        {pageNumbers.map((page) => (
+                        {pageItems.map((page) => typeof page === `number` ? (
                             <button
                                 key={page}
                                 type={`button`}
@@ -447,6 +447,15 @@ export default function DirectoryExplorer() {
                                     {page}
                                 </span>
                             </button>
+                        ) : (
+                            <span
+                                key={page}
+                                aria-hidden={true}
+                                id={`directory-explorer-page-${page}`}
+                                className={`directory-explorer__page-gap`}
+                            >
+                                {`…`}
+                            </span>
                         ))}
 
                         <button

@@ -2,6 +2,7 @@ import Icon from '../Icon/Icon';
 import { elementProps } from '../../shared/ui/elementProps';
 import DirectoryFeedback from '../DirectoryFeedback/DirectoryFeedback';
 import type { LandingPageModel } from '../LandingPage/LandingPage.native.types';
+import DirectoryCardPreview from '../DirectoryCardPreview/DirectoryCardPreview.native';
 import DirectoryPagination from '../DirectoryPagination/DirectoryPagination.native';
 import { Alert, Animated, Linking, Pressable, ScrollView, Text, View } from 'react-native';
 import DirectoryCategoryFilters from '../DirectoryCategoryFilters/DirectoryCategoryFilters';
@@ -205,17 +206,12 @@ export default function DirectoryExplorer({ model, joined = false }: { model: La
                             style={({ pressed }) => [styles.directoryPreview, pressed && styles.pressed]}
                         >
                             <View {...elementProps(`landing-directory-card-header`, directory.id)} style={styles.directoryCardHeader}>
-                                <View
-                                    {...elementProps(`landing-directory-monogram`, directory.id)}
-                                    style={[styles.directoryMonogram, { backgroundColor: directory.accentStyle.background }]}
-                                >
-                                    <Text
-                                        {...elementProps(`landing-directory-initials`, directory.id)}
-                                        style={[styles.directoryInitials, { color: directory.accentStyle.color }]}
-                                    >
-                                        {directory.initials}
-                                    </Text>
-                                </View>
+                                <DirectoryCardPreview
+                                    directory={directory}
+                                    color={directory.accentStyle.color}
+                                    fontFamily={styles.directoryInitials.fontFamily}
+                                    backgroundColor={directory.accentStyle.background}
+                                />
                                 {directory.featured && (
                                     <View {...elementProps(`landing-directory-featured`, directory.id)} style={styles.featuredBadge}>
                                         <Icon id={`landing-directory-featured-icon-${directory.id}`} className={`landing-directory-featured-icon`} name={`sparkles`} color={colors.muted} size={11} />

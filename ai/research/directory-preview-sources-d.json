@@ -1,0 +1,172 @@
+[
+  {
+    "id": "thetvdb",
+    "href": "https://www.thetvdb.com/",
+    "checkedAt": "2026-10-09T18:07:58+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://www.thetvdb.com/",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://www.thetvdb.com/",
+    "previewImage": "/directory-previews/thetvdb.webp",
+    "reviewed": true
+  },
+  {
+    "id": "world-bank-data-catalog",
+    "href": "https://datacatalog.worldbank.org/",
+    "checkedAt": "2026-10-09T18:07:58+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://datacatalog.worldbank.org/",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://datacatalog.worldbank.org/",
+    "previewImage": "/directory-previews/world-bank-data-catalog.webp",
+    "reviewed": true
+  },
+  {
+    "id": "my-anime-list",
+    "href": "https://myanimelist.net/",
+    "checkedAt": "2026-10-09T18:07:13+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://myanimelist.net/",
+    "imageUrl": "https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png",
+    "previewImage": "/directory-previews/my-anime-list.webp",
+    "reviewed": true
+  },
+  {
+    "id": "justwatch",
+    "href": "https://www.justwatch.com/",
+    "checkedAt": "2026-10-09T18:07:13+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.justwatch.com/",
+    "imageUrl": "https://www.justwatch.com/appassets/img/JustWatch_logo_with_claim.png",
+    "previewImage": "/directory-previews/justwatch.webp",
+    "reviewed": true
+  },
+  {
+    "id": "cdc-health-topics",
+    "href": "https://www.cdc.gov/health-topics.html",
+    "checkedAt": "2026-10-09T18:08:00+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://www.cdc.gov/health-topics.html",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://www.cdc.gov/health-topics.html",
+    "previewImage": "/directory-previews/cdc-health-topics.webp",
+    "reviewed": true
+  },
+  {
+    "id": "openalex",
+    "href": "https://openalex.org/",
+    "checkedAt": "2026-10-09T18:07:14+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://openalex.org/",
+    "imageUrl": "https://openalex.org/brand-assets/openalex-mark-square.png",
+    "previewImage": "/directory-previews/openalex.webp",
+    "reviewed": true
+  },
+  {
+    "id": "drugs-com",
+    "href": "https://www.drugs.com/drug_information.html",
+    "checkedAt": "2026-10-09T18:07:58+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://www.drugs.com/drug_information.html",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://www.drugs.com/drug_information.html",
+    "previewImage": "/directory-previews/drugs-com.webp",
+    "reviewed": true
+  },
+  {
+    "id": "nord-rare-diseases",
+    "href": "https://rarediseases.org/rare-diseases/",
+    "checkedAt": "2026-10-09T18:07:59+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://rarediseases.org/rare-diseases/",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://rarediseases.org/rare-diseases/",
+    "previewImage": "/directory-previews/nord-rare-diseases.webp",
+    "reviewed": true
+  },
+  {
+    "id": "carvana",
+    "href": "https://www.carvana.com/cars",
+    "checkedAt": "2026-10-09T18:08:03+00:00",
+    "kind": "published-page-image",
+    "sourceUrl": "https://www.carvana.com/cars",
+    "imageUrl": "https://assets.fastly.carvana.io/merchui/images/helios/promoBanners/priceDrop/mobile.png",
+    "previewImage": "/directory-previews/carvana.webp",
+    "reviewed": true
+  },
+  {
+    "id": "classic-com",
+    "href": "https://www.classic.com/",
+    "checkedAt": "2026-10-09T18:08:04+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://www.classic.com/",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://www.classic.com/",
+    "previewImage": "/directory-previews/classic-com.webp",
+    "reviewed": true
+  },
+  {
+    "id": "carfax-used-cars",
+    "href": "https://www.carfax.com/cars-for-sale",
+    "checkedAt": "2026-10-09T18:08:03+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://www.carfax.com/cars-for-sale",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://www.carfax.com/cars-for-sale",
+    "previewImage": "/directory-previews/carfax-used-cars.webp",
+    "reviewed": true
+  },
+  {
+    "id": "autoscout24",
+    "href": "https://www.autoscout24.com/",
+    "checkedAt": "2026-10-09T18:08:05+00:00",
+    "kind": "published-page-image",
+    "sourceUrl": "https://www.autoscout24.com/",
+    "imageUrl": "https://www.autoscout24.com/assets/as24-home/images/newsletter/newsletter_car2x.png",
+    "previewImage": "/directory-previews/autoscout24.webp",
+    "reviewed": true
+  },
+  {
+    "id": "rawg",
+    "href": "https://rawg.io/",
+    "checkedAt": "2026-10-09T18:07:13+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://rawg.io/",
+    "imageUrl": "https://rawg.io/assets/en/share-fb.jpg?v=4",
+    "previewImage": "/directory-previews/rawg.webp",
+    "reviewed": true
+  },
+  {
+    "id": "nasa-open-data",
+    "href": "https://data.nasa.gov/",
+    "checkedAt": "2026-10-09T18:07:58+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://data.nasa.gov/",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://data.nasa.gov/",
+    "previewImage": "/directory-previews/nasa-open-data.webp",
+    "reviewed": true
+  },
+  {
+    "id": "tvmaze",
+    "href": "https://www.tvmaze.com/",
+    "checkedAt": "2026-10-09T18:09:40+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://www.tvmaze.com/",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://www.tvmaze.com/",
+    "previewImage": "/directory-previews/tvmaze.webp",
+    "reviewed": true
+  },
+  {
+    "id": "openaire-explore",
+    "href": "https://explore.openaire.eu/",
+    "checkedAt": "2026-10-09T18:10:27+00:00",
+    "kind": "published-page-image",
+    "sourceUrl": "https://explore.openaire.eu/",
+    "imageUrl": "https://explore.openaire.eu/assets/explore-assets/home/explore.jpg",
+    "previewImage": "/directory-previews/openaire-explore.webp",
+    "reviewed": true
+  },
+  {
+    "id": "musclewiki",
+    "href": "https://musclewiki.com/",
+    "checkedAt": "2026-10-09T18:10:58+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://musclewiki.com/",
+    "imageUrl": "https://musclewiki.com/og-image.jpg",
+    "previewImage": "/directory-previews/musclewiki.webp",
+    "reviewed": true
+  }
+]

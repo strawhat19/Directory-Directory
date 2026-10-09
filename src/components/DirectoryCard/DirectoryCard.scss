@@ -43,19 +43,8 @@
         color: var(--dd-ink);
     }
 
-    &__monogram {
-        width: 56px;
-        height: 56px;
-        display: grid;
-        flex-shrink: 0;
-        font-size: 23px;
-        font-weight: 700;
+    .directory-card-preview {
         margin-bottom: 26px;
-        border-radius: 13px;
-        letter-spacing: -1px;
-        place-items: center;
-        color: var(--directory-color);
-        background: var(--directory-tint);
     }
 
     &--green {
@@ -141,12 +130,14 @@
         color: var(--dd-muted);
     }
 
-    &__save {
-        top: 24px;
+    &__save.dd-icon-button {
+        top: 20px;
         right: 21px;
         position: absolute;
         color: var(--dd-muted);
+        background: var(--dd-paper);
 
+        &:hover,
         &.is-saved {
             color: var(--dd-blue);
             background: var(--dd-blue-soft);
@@ -248,7 +239,8 @@
         padding: 24px 76px 24px 24px;
     }
 
-    &__monogram {
+    .directory-card-preview {
+        width: 160px;
         margin-bottom: 0;
     }
 
@@ -286,10 +278,9 @@
             padding: 22px;
         }
 
-        &__monogram {
-            width: 44px;
-            height: 44px;
-            font-size: 19px;
+        .directory-card-preview {
+            width: 160px;
+            max-width: calc(100% - 44px);
         }
 
         &__body {
@@ -311,7 +302,7 @@
         }
 
         &__save {
-            top: 23px;
+            top: 19px;
             right: 17px;
         }
 

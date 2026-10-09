@@ -1,8 +1,9 @@
 import './DirectoryCard.scss';
 import Icon from '../Icon/Icon';
 import useDirectoryCard from './useDirectoryCard';
-import DirectoryFeedback from '../DirectoryFeedback/DirectoryFeedback';
 import type { DirectoryEntry } from '../../shared/catalog/catalog';
+import DirectoryFeedback from '../DirectoryFeedback/DirectoryFeedback';
+import DirectoryCardPreview from '../DirectoryCardPreview/DirectoryCardPreview';
 
 interface DirectoryCardProps {
     directory: DirectoryEntry;
@@ -36,13 +37,7 @@ export default function DirectoryCard({ directory }: DirectoryCardProps) {
                 id={`${identity}-main`}
                 className={`directory-card__main`}
             >
-                <span
-                    aria-hidden={true}
-                    id={`${identity}-monogram`}
-                    className={`directory-card__monogram`}
-                >
-                    {directory.initials}
-                </span>
+                <DirectoryCardPreview directory={directory} />
 
                 <div
                     id={`${identity}-body`}

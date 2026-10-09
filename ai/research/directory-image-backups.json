@@ -1,0 +1,119 @@
+[
+  {
+    "entry": {
+      "id": "counselling-directory",
+      "name": "Counselling Directory",
+      "initials": "Cd",
+      "href": "https://www.counselling-directory.org.uk/",
+      "category": "professionals",
+      "accent": "green",
+      "featured": false,
+      "label": "Counsellors & therapists in the UK",
+      "summary": "Find counsellors and therapists by location, therapy type, and session format, with professional profiles and contact details.",
+      "topics": [
+        "Therapists"
+      ],
+      "statuses": [
+        "new",
+        "local",
+        "national"
+      ],
+      "previewImage": "/directory-previews/counselling-directory.webp"
+    },
+    "source": {
+      "id": "counselling-directory",
+      "checkedAt": "2026-10-09",
+      "sourceUrl": "https://www.counselling-directory.org.uk/",
+      "evidence": "Official homepage provides postcode, town, or county search for verified counsellors and therapists and online/phone session discovery. Site reports operating since 2005 across the UK. Official relationship counselling page confirms relationship and couples support and links to therapist discovery.",
+      "additionalSourceUrl": "https://www.counselling-directory.org.uk/relationship.html"
+    },
+    "preview": {
+      "id": "counselling-directory",
+      "href": "https://www.counselling-directory.org.uk/",
+      "checkedAt": "2026-10-09T18:10:29+00:00",
+      "kind": "homepage-image",
+      "sourceUrl": "https://www.counselling-directory.org.uk/",
+      "imageUrl": "https://www.counselling-directory.org.uk/resources/images/hero/default/mobile%401x.png",
+      "previewImage": "/directory-previews/counselling-directory.webp",
+      "reviewedAt": "2026-10-09",
+      "reviewNotes": "Reviewed saved official image; usable published logo banner or homepage illustration"
+    }
+  },
+  {
+    "entry": {
+      "id": "doctify",
+      "name": "Doctify",
+      "initials": "Do",
+      "href": "https://www.doctify.com/uk",
+      "category": "professionals",
+      "accent": "blue",
+      "featured": false,
+      "label": "Healthcare professionals & patient reviews",
+      "summary": "Browse doctors, dentists, therapists, and healthcare providers by specialty and location, with patient reviews and profile details.",
+      "topics": [
+        "Doctors",
+        "Dentists",
+        "Therapists"
+      ],
+      "statuses": [
+        "new",
+        "local",
+        "national"
+      ]
+    },
+    "source": {
+      "id": "doctify",
+      "checkedAt": "2026-10-09",
+      "sourceUrl": "https://www.doctify.com/uk",
+      "evidence": "Official UK homepage has specialty, treatment, condition, name, and location search for doctors, dentists, practices, hospitals, and other healthcare providers with patient reviews."
+    },
+    "preview": {
+      "id": "doctify",
+      "href": "https://www.doctify.com/uk",
+      "checkedAt": "2026-10-09T18:10:25+00:00",
+      "kind": "screenshot",
+      "sourceUrl": "https://www.doctify.com/uk",
+      "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://www.doctify.com/uk",
+      "rejectedReason": "Captured screenshot was blank; unsuitable for a preview banner"
+    }
+  },
+  {
+    "entry": {
+      "id": "topdoctors",
+      "name": "Top Doctors",
+      "initials": "Td",
+      "href": "https://www.topdoctors.co.uk/",
+      "category": "professionals",
+      "accent": "blue",
+      "featured": false,
+      "label": "Medical specialists in the UK",
+      "summary": "Find medical specialists by expertise and location, with profiles, patient reviews, and appointment information.",
+      "topics": [
+        "Doctors"
+      ],
+      "statuses": [
+        "new",
+        "local",
+        "national"
+      ],
+      "previewImage": "/directory-previews/topdoctors.webp"
+    },
+    "source": {
+      "id": "topdoctors",
+      "checkedAt": "2026-10-09",
+      "sourceUrl": "https://www.topdoctors.co.uk/",
+      "evidence": "Official UK homepage provides medical specialist discovery and appointment information for specialists across the UK."
+    },
+    "preview": {
+      "id": "topdoctors",
+      "href": "https://www.topdoctors.co.uk/",
+      "checkedAt": "2026-10-09T18:10:01+00:00",
+      "kind": "og:image",
+      "sourceUrl": "https://www.topdoctors.co.uk/",
+      "imageUrl": "https://www.topdoctors.co.uk/images/topdoctors_opengraph.webp",
+      "previewImage": "/directory-previews/topdoctors.webp",
+      "reviewedAt": "2026-10-09",
+      "reviewNotes": "Reviewed saved official image; usable published logo banner or homepage illustration"
+    }
+  }
+]

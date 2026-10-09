@@ -1,0 +1,111 @@
+[
+  {
+    "id": "clinical-trials-gov",
+    "sourceUrl": "https://clinicaltrials.gov/",
+    "evidence": "National Library of Medicine maintained research registry; the official homepage reports more than 600,000 studies in all 50 US states and 226 countries and territories. Counts change as records are added.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "mayo-clinic-conditions",
+    "sourceUrl": "https://www.mayoclinic.org/diseases-conditions",
+    "evidence": "Mayo Clinic's official disease and condition collection provides alphabetical guides on hundreds of conditions. Selection is based on established medical institution stature and breadth; no audience ranking is asserted.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "cleveland-clinic-health-library",
+    "sourceUrl": "https://health.clevelandclinic.org/about-us",
+    "directorySourceUrl": "https://my.clevelandclinic.org/health/about",
+    "evidence": "Cleveland Clinic's official About Us page describes a Health Library of more than 6,000 articles. Its library policy confirms diseases, conditions, treatments, and body systems are covered, with editorial and medical review.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "coursera",
+    "sourceUrl": "https://www.coursera.org/about",
+    "evidence": "Founded in 2012; the official About page describes worldwide learning and partnerships with more than 375 universities and companies, covering projects, courses, certificates, and degrees.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "edx",
+    "sourceUrl": "https://www.edx.org/about-us",
+    "evidence": "Founded by Harvard and MIT professors in 2012; the official About page lists more than 5,300 programs, 250 content partners, and learners in more than 190 countries.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "project-gutenberg",
+    "sourceUrl": "https://www.gutenberg.org/about/",
+    "evidence": "Official About page describes more than 75,000 free ebooks and a project founded by Michael Hart in 1971, maintained with thousands of volunteer contributors.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "airbnb",
+    "sourceUrl": "https://news.airbnb.com/about-us/",
+    "evidence": "Official newsroom About page reports more than 5.5 million hosts, 2.5 billion guest arrivals, and listings in countries and regions across the globe. Provides stays, experiences, and services.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "getyourguide",
+    "sourceUrl": "https://www.getyourguide.com/c/about/",
+    "evidence": "Official About page reports more than 150,000 experiences across 12,000 cities, millions of verified reviews, and more than 200 million tickets sold.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "viator",
+    "sourceUrl": "https://www.viator.com/",
+    "evidence": "Official discovery homepage offers more than 400,000 travel experiences and states millions of traveler reviews. The site supports searches by destination and activity.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "justia-lawyers",
+    "sourceUrl": "https://lawyers.justia.com/lawyer-directory-listings",
+    "directorySourceUrl": "https://lawyers.justia.com/faq",
+    "evidence": "Justia's official listing page reports more than 12 million visits a month to Justia as a whole. Its directory FAQ confirms free US lawyer, law firm, and nonprofit legal aid profiles searchable by issue and geography. The traffic number is sitewide, not a separate directory audience metric.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "ada-find-a-dentist",
+    "sourceUrl": "https://findadentist.ada.org/",
+    "directorySourceUrl": "https://findadentist.ada.org/dentists",
+    "evidence": "American Dental Association's official directory advertises a network of more than 100,000 dentists. Search filters include distance, specialty, language, and insurance.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "doximity-physicians",
+    "sourceUrl": "https://support.doximity.com/hc/en-us/articles/360047806713-What-is-Doximity",
+    "directorySourceUrl": "https://www.doximity.com/directory/physicians",
+    "evidence": "Doximity's official help page describes more than 2 million US healthcare professionals and membership encompassing 80% of US physicians. The public physician directory provides specialties and states. Membership reach is a platform metric, not a visitor ranking.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "eventbrite",
+    "sourceUrl": "https://www.eventbrite.com/about/",
+    "directorySourceUrl": "https://www.eventbrite.com/features/event-discovery/",
+    "evidence": "Eventbrite's official About page reports 4.7 million events in nearly 180 countries and 89 million monthly average users for 2024. Its discovery page confirms a searchable global event marketplace.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "charity-navigator",
+    "sourceUrl": "https://www.charitynavigator.org/about-us/",
+    "evidence": "Official About page states it has served millions of donors since 2001 and rated more than 245,000 charities. The homepage offers charity search and donor resources.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "usa-gov-agency-index",
+    "sourceUrl": "https://www.usa.gov/agency-index",
+    "evidence": "Official US government A-Z directory of federal departments, agencies, corporations, and other bodies with websites, emails, telephone numbers, and addresses. Selected for authoritative scope and established public-service stature; no audience ranking is asserted.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "gottman-referral-network",
+    "sourceUrl": "https://www.gottman.com/professionals/referral-network/",
+    "directorySourceUrl": "https://gottmanreferralnetwork.com/",
+    "evidence": "The Gottman Institute says thousands of couples visit its network each month. The directory describes licensed independent clinicians with Gottman training and supports country, location, training, and service filters.",
+    "verifiedOn": "2026-10-09"
+  },
+  {
+    "id": "iceeft-therapist-directory",
+    "sourceUrl": "https://iceeft.com/",
+    "directorySourceUrl": "https://directory.iceeft.com/",
+    "evidence": "ICEEFT's official site lists more than 11,000 members, over 100 communities, and activity in more than 40 countries. Its public directory connects users with EFT trained individual, couple, and family therapists. These numbers describe the organization, not directory visitor counts.",
+    "verifiedOn": "2026-10-09"
+  }
+]

@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from 'react';
 import { useLanding } from '../../shared/landing/useLanding';
 import type { DirectoryTopic } from '../../shared/landing/LandingProvider';
 import useDirectoryPagination from '../../shared/landing/useDirectoryPagination';
+import { getDirectoryPageItems } from '../../shared/landing/directoryPagination';
 import { categories, directories, directoryStatuses } from '../../shared/catalog/catalog';
 
 export default function useDirectoryExplorer() {
@@ -35,11 +36,12 @@ export default function useDirectoryExplorer() {
         return () => window.removeEventListener(`resize`, updateColumns);
     }, []);
 
-    const { pagedDirectories, currentPage, totalPages, pageNumbers, setPage } = useDirectoryPagination(
+    const { pagedDirectories, currentPage, totalPages, setPage } = useDirectoryPagination(
         visibleDirectories,
         viewMode === `list` ? 1 : gridColumnCount,
         JSON.stringify([query, category, topic, status, directoryTopic, viewMode, searchDirectoryIds]),
     );
+    const pageItems = getDirectoryPageItems(currentPage, totalPages, gridColumnCount === 1);
     const selectedCategory = categories.find((item) => item.id === category);
     const emptySaved = topic === `Saved` && savedIds.length === 0;
     const hasFilters = Boolean(query.trim() || selectedCategory || status || directoryTopic || searchDirectoryIds.length);
@@ -93,7 +95,7 @@ export default function useDirectoryExplorer() {
         totalPages,
         changePage,
         currentPage,
-        pageNumbers,
+        pageItems,
         changeTopic,
         emptySaved,
         hasFilters,

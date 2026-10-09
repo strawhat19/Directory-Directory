@@ -1,0 +1,178 @@
+[
+  {
+    "id": "udacity",
+    "href": "https://www.udacity.com/catalog",
+    "checkedAt": "2026-10-09T18:09:56+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.udacity.com/catalog",
+    "imageUrl": "https://cdn.sanity.io/images/tlr8oxjg/production/7cc0b59f97026b44887add8983f9ed3b5664a3eb-1200x630.webp?fit=crop&w=1200&h=630",
+    "previewImage": "/directory-previews/udacity.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "openstax",
+    "href": "https://openstax.org/subjects",
+    "checkedAt": "2026-10-09T18:10:29+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://openstax.org/subjects",
+    "imageUrl": "https://images.openstax.org/apps/image-cdn/v1/assets.openstax.org/f=webp,w=640,h=480/oscms-prodcms/media/images/240919_OpenStax_Students_Martin_272.original.webp",
+    "previewImage": "/directory-previews/openstax.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "codecademy",
+    "href": "https://www.codecademy.com/catalog",
+    "checkedAt": "2026-10-09T18:10:50+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.codecademy.com/catalog",
+    "imageUrl": "https://images.codecademy.com/social/logo-codecademy-social.png",
+    "previewImage": "/directory-previews/codecademy.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "alison",
+    "href": "https://alison.com/courses",
+    "checkedAt": "2026-10-09T18:08:30+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://alison.com/courses",
+    "imageUrl": "https://cdn01.alison-static.net/social_share/49/share.jpg",
+    "previewImage": "/directory-previews/alison.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "hipcamp",
+    "href": "https://www.hipcamp.com/",
+    "checkedAt": "2026-10-09T18:08:30+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.hipcamp.com/en-US",
+    "imageUrl": "https://dxynby2r8cy0b.cloudfront.net/image/upload/c_fill,f_auto,g_auto,h_400,q_60,w_780/v1626916641/homepage/W15-2024/W15-USA-BEST-OF-HEADER.png",
+    "previewImage": "/directory-previews/hipcamp.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "hostelworld",
+    "href": "https://www.hostelworld.com/",
+    "checkedAt": "2026-10-09T18:08:30+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.hostelworld.com/",
+    "imageUrl": "https://a.hwstatic.com/image/upload/f_auto,q_auto,h_600/v1647449187/pwa/hostelworld.png",
+    "previewImage": "/directory-previews/hostelworld.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "pitchup",
+    "href": "https://www.pitchup.com/",
+    "checkedAt": "2026-10-09T18:08:51+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.pitchup.com/",
+    "imageUrl": "https://www.pitchup.com/app-icons/pitchup_logo_og.png",
+    "previewImage": "/directory-previews/pitchup.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "campspot",
+    "href": "https://www.campspot.com/",
+    "checkedAt": "2026-10-09T18:08:30+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.campspot.com/",
+    "imageUrl": "https://www.campspot.com/static/assets/og-home.FncfaKKQ.png",
+    "previewImage": "/directory-previews/campspot.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "webmd-doctor-directory",
+    "href": "https://doctor.webmd.com/",
+    "checkedAt": "2026-10-09T18:08:51+00:00",
+    "kind": "screenshot",
+    "sourceUrl": "https://doctor.webmd.com/",
+    "imageUrl": "https://image.thum.io/get/noanimate/width/960/crop/675/https://doctor.webmd.com/",
+    "previewImage": "/directory-previews/webmd-doctor-directory.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "super-lawyers",
+    "href": "https://www.superlawyers.com/",
+    "checkedAt": "2026-10-09T18:09:56+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.superlawyers.com/",
+    "imageUrl": "https://cdn.superlawyers.com/image/upload/c_pad,w_500,h_500,e_colorize,co_rgb:fff/q_auto,f_auto,c_lpad,w_600,h_600,b_rgb:027793/v1678323363/resources/shared/superlawyers-stacked-ib_theme.png",
+    "previewImage": "/directory-previews/super-lawyers.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "topdoctors",
+    "href": "https://www.topdoctors.co.uk/",
+    "checkedAt": "2026-10-09T18:10:01+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.topdoctors.co.uk/",
+    "imageUrl": "https://www.topdoctors.co.uk/images/topdoctors_opengraph.webp",
+    "previewImage": "/directory-previews/topdoctors.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved official image; usable published logo banner or homepage illustration"
+  },
+  {
+    "id": "allevents",
+    "href": "https://allevents.in/",
+    "checkedAt": "2026-10-09T18:08:30+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://allevents.in/",
+    "imageUrl": "https://cdn2.allevents.in/transup/f7/435c5934e34d6ab5a257558be3eb4e/images/ae-logo.png",
+    "previewImage": "/directory-previews/allevents.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "greatnonprofits",
+    "href": "https://greatnonprofits.org/",
+    "checkedAt": "2026-10-09T18:10:29+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://greatnonprofits.org/",
+    "imageUrl": "https://cdn.greatnonprofits.org/img/gnp-facebook-share-lg.png",
+    "previewImage": "/directory-previews/greatnonprofits.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "united-way-211",
+    "href": "https://211.org/about-us/your-local-211",
+    "checkedAt": "2026-10-09T18:08:30+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://211.org/about-us/your-local-211",
+    "imageUrl": "https://211.org/themes/custom/uw211/images/OG-image.jpg",
+    "previewImage": "/directory-previews/united-way-211.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  },
+  {
+    "id": "counselling-directory",
+    "href": "https://www.counselling-directory.org.uk/",
+    "checkedAt": "2026-10-09T18:10:29+00:00",
+    "kind": "homepage-image",
+    "sourceUrl": "https://www.counselling-directory.org.uk/",
+    "imageUrl": "https://www.counselling-directory.org.uk/resources/images/hero/default/mobile%401x.png",
+    "previewImage": "/directory-previews/counselling-directory.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved official image; usable published logo banner or homepage illustration"
+  },
+  {
+    "id": "therapyden",
+    "href": "https://www.therapyden.com/specialties/sex-therapy",
+    "checkedAt": "2026-10-09T18:08:30+00:00",
+    "kind": "og:image",
+    "sourceUrl": "https://www.therapyden.com/specialties/sex-therapy",
+    "imageUrl": "https://cdn.therapyden.com/_1200x630_crop_center-center_82_none/therapyden-fb-og.png?mtime=1526510268",
+    "previewImage": "/directory-previews/therapyden.webp",
+    "reviewedAt": "2026-10-09",
+    "reviewNotes": "Reviewed saved image; usable published site banner or website screenshot"
+  }
+]

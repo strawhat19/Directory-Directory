@@ -1,0 +1,365 @@
+[
+  {
+    "id": "aitools-fyi",
+    "name": "aitools.fyi",
+    "initials": "Af",
+    "href": "https://aitools.fyi/",
+    "category": "ai",
+    "accent": "blue",
+    "featured": false,
+    "label": "AI tools by use case",
+    "summary": "Discover AI tools by category, pricing model, and use case, with tool profiles and newly added listings.",
+    "topics": [
+      "Tools",
+      "Software",
+      "Generation"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/aitools-fyi.webp"
+  },
+  {
+    "id": "aixploria",
+    "name": "AIxploria",
+    "initials": "Ax",
+    "href": "https://www.aixploria.com/en/",
+    "category": "ai",
+    "accent": "blue",
+    "featured": false,
+    "label": "AI tools & category guides",
+    "summary": "Browse AI tools by category, pricing model, and purpose, with tutorials and regularly updated listings.",
+    "topics": [
+      "Tools",
+      "Software",
+      "Generation",
+      "News"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/aixploria.webp"
+  },
+  {
+    "id": "futuretools",
+    "name": "Future Tools",
+    "initials": "Ft",
+    "href": "https://futuretools.io/tools",
+    "category": "ai",
+    "accent": "purple",
+    "featured": false,
+    "label": "Curated AI tools & discoveries",
+    "summary": "Explore a curated collection of AI tools by task, category, and pricing, with recommendations and new discoveries.",
+    "topics": [
+      "Tools",
+      "Software",
+      "Generation",
+      "News"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/futuretools.webp"
+  },
+  {
+    "id": "topai-tools",
+    "name": "TopAI.tools",
+    "initials": "Ta",
+    "href": "https://topai.tools/",
+    "category": "ai",
+    "accent": "purple",
+    "featured": false,
+    "label": "AI tools for everyday tasks",
+    "summary": "Find AI tools by use case and category, with pricing details and alternatives to help compare options.",
+    "topics": [
+      "Tools",
+      "Software",
+      "Generation"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/topai-tools.webp"
+  },
+  {
+    "id": "aitoptools",
+    "name": "AITopTools",
+    "initials": "At",
+    "href": "https://aitoptools.com/",
+    "category": "ai",
+    "accent": "blue",
+    "featured": false,
+    "label": "AI software, reviews & categories",
+    "summary": "Search AI software by task and category, compare pricing, and read user reviews of tools for work and creativity.",
+    "topics": [
+      "Tools",
+      "Software",
+      "Generation",
+      "Builders"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/aitoptools.webp"
+  },
+  {
+    "id": "opentools",
+    "name": "OpenTools",
+    "initials": "Ot",
+    "href": "https://opentools.ai/",
+    "category": "ai",
+    "accent": "purple",
+    "featured": false,
+    "label": "AI tools, models & integrations",
+    "summary": "Search curated AI tools, models, and MCP servers by task, category, and pricing, with comparisons and practical guides.",
+    "topics": [
+      "Tools",
+      "Models",
+      "Software",
+      "Builders"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/opentools.webp"
+  },
+  {
+    "id": "startup-stash",
+    "name": "Startup Stash",
+    "initials": "Ss",
+    "href": "https://startupstash.com/",
+    "category": "business",
+    "accent": "yellow",
+    "featured": false,
+    "label": "Startup tools & resources",
+    "summary": "Browse tools and resources for startups by business need, including marketing, collaboration, development, and finance.",
+    "topics": [
+      "Products",
+      "Marketing",
+      "Productivity",
+      "Small Business"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/startup-stash.webp"
+  },
+  {
+    "id": "betalist",
+    "name": "BetaList",
+    "initials": "Bl",
+    "href": "https://betalist.com/",
+    "category": "business",
+    "accent": "blue",
+    "featured": false,
+    "label": "Early stage startups & products",
+    "summary": "Discover emerging startups and new products by market, with descriptions and early access links.",
+    "topics": [
+      "Products",
+      "Ideas",
+      "Websites & Apps",
+      "Small Business"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/betalist.webp"
+  },
+  {
+    "id": "appsumo",
+    "name": "AppSumo",
+    "initials": "As",
+    "href": "https://appsumo.com/",
+    "category": "business",
+    "accent": "yellow",
+    "featured": false,
+    "label": "Business software & deals",
+    "summary": "Discover software for entrepreneurs and small businesses, with product details, customer reviews, and deal information.",
+    "topics": [
+      "Products",
+      "Productivity",
+      "Websites & Apps",
+      "Small Business"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/appsumo.webp"
+  },
+  {
+    "id": "openvc",
+    "name": "OpenVC",
+    "initials": "Ov",
+    "href": "https://www.openvc.app/",
+    "category": "business",
+    "accent": "blue",
+    "featured": false,
+    "label": "Startup investor directory",
+    "summary": "Find venture capital firms and angel investors by geography, investment stage, industry, and check size.",
+    "topics": [
+      "Finance",
+      "Corporate",
+      "Small Business"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/openvc.webp"
+  },
+  {
+    "id": "remoteok",
+    "name": "Remote OK",
+    "initials": "Ro",
+    "href": "https://remoteok.com/",
+    "category": "business",
+    "accent": "red",
+    "featured": false,
+    "label": "Remote jobs & hiring companies",
+    "summary": "Browse remote job listings by role, technology, salary, and location requirements across companies worldwide.",
+    "topics": [
+      "Jobs",
+      "Careers",
+      "Websites & Apps"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/remoteok.webp"
+  },
+  {
+    "id": "pexels",
+    "name": "Pexels",
+    "initials": "Pe",
+    "href": "https://www.pexels.com/",
+    "category": "creative",
+    "accent": "green",
+    "featured": false,
+    "label": "Stock photos & videos",
+    "summary": "Discover community contributed photos and videos by subject, collection, or creator for creative projects.",
+    "topics": [
+      "Photo",
+      "Video",
+      "Design"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/pexels.webp"
+  },
+  {
+    "id": "pixabay",
+    "name": "Pixabay",
+    "initials": "Pi",
+    "href": "https://pixabay.com/",
+    "category": "creative",
+    "accent": "green",
+    "featured": false,
+    "label": "Images, video, music & sound",
+    "summary": "Browse photos, illustrations, vectors, videos, music, and sound effects in a searchable creative media library.",
+    "topics": [
+      "Photo",
+      "Art",
+      "Video",
+      "Music"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/pixabay.webp"
+  },
+  {
+    "id": "coolors",
+    "name": "Coolors",
+    "initials": "Co",
+    "href": "https://coolors.co/palettes/trending",
+    "category": "creative",
+    "accent": "blue",
+    "featured": false,
+    "label": "Color palette inspiration",
+    "summary": "Explore color palettes by style, color, popularity, and trend, with options to save, export, or customize a scheme.",
+    "topics": [
+      "Design",
+      "Art",
+      "Development"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/coolors.webp"
+  },
+  {
+    "id": "fonts-in-use",
+    "name": "Fonts In Use",
+    "initials": "Fu",
+    "href": "https://fontsinuse.com/",
+    "category": "creative",
+    "accent": "yellow",
+    "featured": false,
+    "label": "Typography examples & typefaces",
+    "summary": "Explore real typography examples by typeface, topic, and format in an independent archive of design work.",
+    "topics": [
+      "Design",
+      "Art",
+      "Development"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/fonts-in-use.webp"
+  },
+  {
+    "id": "land-book",
+    "name": "Landbook",
+    "initials": "Lb",
+    "href": "https://land-book.com/",
+    "category": "creative",
+    "accent": "purple",
+    "featured": false,
+    "label": "Website design inspiration gallery",
+    "summary": "Browse curated website designs with filters for industry, style, typography, color, and platform.",
+    "topics": [
+      "Design",
+      "Development"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/land-book.webp"
+  },
+  {
+    "id": "one-page-love",
+    "name": "One Page Love",
+    "initials": "Ol",
+    "href": "https://onepagelove.com/",
+    "category": "creative",
+    "accent": "red",
+    "featured": false,
+    "label": "Single page websites & templates",
+    "summary": "Explore curated single page websites, section examples, and templates for landing pages, portfolios, and products.",
+    "topics": [
+      "Design",
+      "Development"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/one-page-love.webp"
+  }
+]

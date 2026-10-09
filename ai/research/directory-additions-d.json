@@ -1,0 +1,350 @@
+[
+  {
+    "id": "rawg",
+    "name": "RAWG",
+    "href": "https://rawg.io/",
+    "initials": "Rw",
+    "category": "entertainment",
+    "accent": "ink",
+    "featured": false,
+    "label": "Video games & discovery",
+    "topics": [
+      "Gaming"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Browse video games by platform, genre, release date, and player ratings, with screenshots and store links.",
+    "previewImage": "/directory-previews/rawg.webp"
+  },
+  {
+    "id": "tvmaze",
+    "name": "TVmaze",
+    "href": "https://www.tvmaze.com/",
+    "initials": "Tv",
+    "category": "entertainment",
+    "accent": "green",
+    "featured": false,
+    "label": "Television shows & episode guides",
+    "topics": [
+      "TV Shows",
+      "Celebrities"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Discover television shows with detailed episode guides, cast and character profiles, broadcast schedules, and community lists.",
+    "previewImage": "/directory-previews/tvmaze.webp"
+  },
+  {
+    "id": "my-anime-list",
+    "name": "MyAnimeList",
+    "href": "https://myanimelist.net/",
+    "initials": "Ma",
+    "category": "entertainment",
+    "accent": "blue",
+    "featured": false,
+    "label": "Anime, manga & recommendations",
+    "topics": [
+      "TV Shows",
+      "Movies"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Discover anime and manga through title profiles, seasonal lists, community ratings, and recommendations.",
+    "previewImage": "/directory-previews/my-anime-list.webp"
+  },
+  {
+    "id": "justwatch",
+    "name": "JustWatch",
+    "href": "https://www.justwatch.com/",
+    "initials": "Jw",
+    "category": "entertainment",
+    "accent": "yellow",
+    "featured": false,
+    "label": "Movies & streaming availability",
+    "topics": [
+      "Movies",
+      "TV Shows"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Find where movies and television shows are streaming, with filters for provider, genre, release year, and rating.",
+    "previewImage": "/directory-previews/justwatch.webp"
+  },
+  {
+    "id": "thetvdb",
+    "name": "TheTVDB",
+    "href": "https://www.thetvdb.com/",
+    "initials": "Tv",
+    "category": "entertainment",
+    "accent": "green",
+    "featured": false,
+    "label": "Television, films & episode guides",
+    "topics": [
+      "TV Shows",
+      "Movies",
+      "Celebrities"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Search television and film profiles with episode guides, cast information, artwork, and fan curated lists.",
+    "previewImage": "/directory-previews/thetvdb.webp"
+  },
+  {
+    "id": "world-bank-data-catalog",
+    "name": "World Bank Data Catalog",
+    "href": "https://datacatalog.worldbank.org/",
+    "initials": "Wb",
+    "category": "news",
+    "accent": "blue",
+    "featured": false,
+    "label": "Global development datasets",
+    "topics": [
+      "Data",
+      "Charts",
+      "Government"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Find development datasets and statistical resources from the World Bank by topic, country, and collection.",
+    "previewImage": "/directory-previews/world-bank-data-catalog.webp"
+  },
+  {
+    "id": "nasa-open-data",
+    "name": "NASA Open Data",
+    "href": "https://data.nasa.gov/",
+    "initials": "Na",
+    "category": "news",
+    "accent": "blue",
+    "featured": false,
+    "label": "Space & science dataset catalog",
+    "topics": [
+      "Science",
+      "Data"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Discover NASA datasets covering space exploration, aeronautics, and science, with links to the archives hosting them.",
+    "previewImage": "/directory-previews/nasa-open-data.webp"
+  },
+  {
+    "id": "openalex",
+    "name": "OpenAlex",
+    "href": "https://openalex.org/",
+    "initials": "Oa",
+    "category": "news",
+    "accent": "blue",
+    "featured": false,
+    "label": "Research works & scholarly connections",
+    "topics": [
+      "Science",
+      "Articles",
+      "Data"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Explore research publications, authors, institutions, and topics in an open catalog of the global research system.",
+    "previewImage": "/directory-previews/openalex.webp"
+  },
+  {
+    "id": "openaire-explore",
+    "name": "OpenAIRE Explore",
+    "href": "https://explore.openaire.eu/",
+    "initials": "Oe",
+    "category": "news",
+    "accent": "blue",
+    "featured": false,
+    "label": "Open research & datasets",
+    "topics": [
+      "Science",
+      "Articles",
+      "Data"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Search linked publications, research datasets, software, projects, and organizations from open scholarly sources worldwide.",
+    "previewImage": "/directory-previews/openaire-explore.webp"
+  },
+  {
+    "id": "drugs-com",
+    "name": "Drugs.com",
+    "href": "https://www.drugs.com/drug_information.html",
+    "initials": "Dc",
+    "category": "health",
+    "accent": "blue",
+    "featured": false,
+    "label": "Medicines & drug information",
+    "topics": [
+      "Disease",
+      "Biological",
+      "Wellness"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Look up prescription and nonprescription medicines through alphabetical listings, drug classes, and reference guides.",
+    "previewImage": "/directory-previews/drugs-com.webp"
+  },
+  {
+    "id": "nord-rare-diseases",
+    "name": "NORD Rare Disease Database",
+    "href": "https://rarediseases.org/rare-diseases/",
+    "initials": "Nr",
+    "category": "health",
+    "accent": "blue",
+    "featured": false,
+    "label": "Rare diseases & support resources",
+    "topics": [
+      "Disease",
+      "Biological"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Explore rare disease reports with information about symptoms, research, treatment options, and patient support organizations.",
+    "previewImage": "/directory-previews/nord-rare-diseases.webp"
+  },
+  {
+    "id": "cdc-health-topics",
+    "name": "CDC Health Topics",
+    "href": "https://www.cdc.gov/health-topics.html",
+    "initials": "Cd",
+    "category": "health",
+    "accent": "blue",
+    "featured": false,
+    "label": "Public health topics A-Z",
+    "topics": [
+      "Disease",
+      "Outbreaks",
+      "Wellness",
+      "Policy"
+    ],
+    "statuses": [
+      "new",
+      "national"
+    ],
+    "summary": "Browse the CDC's alphabetical index of diseases, healthy living, safety, and public health information.",
+    "previewImage": "/directory-previews/cdc-health-topics.webp"
+  },
+  {
+    "id": "musclewiki",
+    "name": "MuscleWiki",
+    "href": "https://musclewiki.com/",
+    "initials": "Mw",
+    "category": "health",
+    "accent": "blue",
+    "featured": false,
+    "label": "Exercise library & muscle map",
+    "topics": [
+      "Fitness",
+      "Wellness"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Find exercise demonstrations by muscle group and equipment through an interactive body map and searchable exercise library.",
+    "previewImage": "/directory-previews/musclewiki.webp"
+  },
+  {
+    "id": "carfax-used-cars",
+    "name": "CARFAX Used Cars",
+    "href": "https://www.carfax.com/cars-for-sale",
+    "initials": "Cf",
+    "category": "auto",
+    "accent": "blue",
+    "featured": false,
+    "label": "Used cars & vehicle history",
+    "topics": [
+      "Cars",
+      "Used Cars"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "summary": "Find used vehicles by make, model, budget, and location, with vehicle history information included in the listings.",
+    "previewImage": "/directory-previews/carfax-used-cars.webp"
+  },
+  {
+    "id": "carvana",
+    "name": "Carvana",
+    "href": "https://www.carvana.com/cars",
+    "initials": "Cv",
+    "category": "auto",
+    "accent": "blue",
+    "featured": false,
+    "label": "Online used vehicle inventory",
+    "topics": [
+      "Cars",
+      "Used Cars"
+    ],
+    "statuses": [
+      "new",
+      "national"
+    ],
+    "summary": "Browse an online used car inventory by price, make, mileage, body type, and features, with delivery information.",
+    "previewImage": "/directory-previews/carvana.webp"
+  },
+  {
+    "id": "classic-com",
+    "name": "CLASSIC.COM",
+    "href": "https://www.classic.com/",
+    "initials": "Cc",
+    "category": "auto",
+    "accent": "ink",
+    "featured": false,
+    "label": "Classic cars & market listings",
+    "topics": [
+      "Cars",
+      "Used Cars"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "summary": "Discover classic and specialty cars for sale alongside auction results, model histories, and market data.",
+    "previewImage": "/directory-previews/classic-com.webp"
+  },
+  {
+    "id": "autoscout24",
+    "name": "AutoScout24",
+    "href": "https://www.autoscout24.com/",
+    "initials": "As",
+    "category": "auto",
+    "accent": "orange",
+    "featured": false,
+    "label": "European vehicle marketplace",
+    "topics": [
+      "Cars",
+      "Used Cars",
+      "Motorcycles"
+    ],
+    "statuses": [
+      "new",
+      "regional"
+    ],
+    "summary": "Find new and used vehicles across European markets with filters for make, model, price, mileage, and location.",
+    "previewImage": "/directory-previews/autoscout24.webp"
+  }
+]

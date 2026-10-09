@@ -49,7 +49,7 @@ export const informationPages: Record<InformationPageId, InformationPageContent>
                 id: `the-collection`,
                 title: `A clear starting point`,
                 paragraphs: [
-                    `The current listings are sample content that demonstrates the directory experience. Their names and descriptions are examples, rather than verified recommendations or endorsements of real services.`,
+                    `The collection includes real directories and resource catalogs across the listed categories. Each card links to the original website and includes a website preview where one is available.`,
                     `If you follow a link to another website, take a moment to assess that website and read its own terms and privacy information.`,
                 ],
             },

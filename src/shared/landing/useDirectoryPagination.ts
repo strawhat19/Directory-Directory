@@ -5,7 +5,7 @@ export default function useDirectoryPagination<T>(
     columnCount: number,
     filterKey: string,
 ) {
-    const pageSize = 5 * columnCount;
+    const pageSize = 3 * columnCount;
     const pageKey = `${columnCount}:${filterKey}`;
     const totalPages = Math.ceil(directories.length / pageSize);
     const lastPage = Math.max(1, totalPages);

@@ -1,0 +1,116 @@
+[
+  {
+    "id": "toolify",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.toolify.ai/",
+    "evidence": "Official homepage provides task categories, model/app/extension directories and multilingual navigation. Category counts include thousands of tools; scale supports choosing it as an established AI directory without claiming a traffic ranking."
+  },
+  {
+    "id": "openrouter-models",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://openrouter.ai/models",
+    "evidence": "Official model catalog lists capabilities, pricing and context limits with token usage. Official discovery page reports a catalog of 537 models; an established cross-provider catalog rather than an unsupported popularity rank.",
+    "additionalSourceUrl": "https://openrouter.ai/discover"
+  },
+  {
+    "id": "replicate",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://replicate.com/explore",
+    "evidence": "Official explore page lists runnable models with individual run counts in the millions. Official pricing page describes thousands of community contributed machine learning models.",
+    "additionalSourceUrl": "https://replicate.com/pricing"
+  },
+  {
+    "id": "trustpilot",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.trustpilot.com/about",
+    "evidence": "Official about page reports 300M+ reviews and 1.27M websites reviewed, with those figures labeled accurate March 18, 2025. Official categories page confirms category-based business discovery.",
+    "additionalSourceUrl": "https://www.trustpilot.com/categories"
+  },
+  {
+    "id": "software-advice",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.softwareadvice.com/about-us/",
+    "evidence": "Official about page says founded in 2005 and reports 1M+ businesses helped, 2.5M+ verified software reviews and a directory spanning 150 industries."
+  },
+  {
+    "id": "wellfound",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://wellfound.com/candidates/overview",
+    "evidence": "Official candidate overview reports 27K+ startups hiring, 10M+ candidates and 100K+ hires, including remote and onsite roles around the world. Official jobs page confirms browsable role listings.",
+    "additionalSourceUrl": "https://wellfound.com/jobs"
+  },
+  {
+    "id": "unsplash",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://unsplash.com/about",
+    "evidence": "Official about page reports 6M+ curated images, 400K contributors and 7B+ downloads by creators worldwide."
+  },
+  {
+    "id": "font-squirrel",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.fontsquirrel.com/about",
+    "evidence": "Official catalog provides popular/recent font lists and filters for classifications, languages, foundries and typical license uses. Included as a recognized specialist catalog; no traffic metric or ranking verified.",
+    "additionalSourceUrl": "https://www.fontsquirrel.com/faq"
+  },
+  {
+    "id": "lapa-ninja",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.lapa.ninja/about/",
+    "evidence": "Official about page says it has curated landing pages since 2015 and reports 7,500+ pages, 15,000+ screenshots and 1,600+ Product Hunt votes."
+  },
+  {
+    "id": "discogs",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://support.discogs.com/hc/en-us/articles/360004936634-Database-FAQ",
+    "evidence": "Official database FAQ confirms a user built music release catalog with artists and labels. Official history describes its launch in 2000 and nearly two decades of community cataloging as of its 2019 publication; established stature rather than a current traffic ranking.",
+    "additionalSourceUrl": "https://localization.discogs.com/the-evolution-of-the-database-submission-guidelines/"
+  },
+  {
+    "id": "allmusic",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.allmusic.com/about/",
+    "evidence": "Official about page describes the album, musician and song resource with advanced discovery filters. Official founder biography dates the All Music Guide database to 1991; established music reference rather than a current traffic ranking.",
+    "additionalSourceUrl": "https://www.allmusic.com/artist/michael-erlewine-mn0002154668/biography"
+  },
+  {
+    "id": "boardgamegeek",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://boardgamegeek.com/wiki/page/Welcome_to_BoardGameGeek",
+    "evidence": "Official welcome wiki reports more than 2M registered users and describes its board/card game database, ratings, reviews and resources."
+  },
+  {
+    "id": "us-newspaper-directory",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.loc.gov/collections/directory-of-us-newspapers-in-american-libraries/about-this-collection/",
+    "evidence": "Library of Congress maintained directory of U.S. newspapers since 1690, built from a national cataloging program. Official search guide reports more than 150K newspaper title records and hundreds of thousands of holdings records.",
+    "additionalSourceUrl": "https://guides.loc.gov/directory-of-us-newspapers/search-tips"
+  },
+  {
+    "id": "doaj",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://doaj.org/?func=home",
+    "evidence": "Official homepage reports 23,084 journals and 13,137,251 article records across 140 countries. Official 2026 metadata article dates the directory to 2003; figures describe catalog scale, not a traffic ranking.",
+    "additionalSourceUrl": "https://blog.doaj.org/2026/07/21/doajs-journal-metadata-an-original-and-open-metadata-set/"
+  },
+  {
+    "id": "autotempest",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.autotempest.com/about",
+    "evidence": "Official about page dates the search engine to 2008. Its how-it-works page confirms aggregation of millions of dealer and private seller listings, with location and vehicle filters.",
+    "additionalSourceUrl": "https://www.autotempest.com/how-autotempest-works"
+  },
+  {
+    "id": "hemmings",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.hemmings.com/classifieds/cars-for-sale",
+    "evidence": "Official marketplace confirms classic car listings, auctions and dealers. Official Hemmings parts marketplace reports nearly 2M classic car enthusiasts monthly and states it has served the hobby since 1954.",
+    "additionalSourceUrl": "https://assets-origin-aws.hemmings.com/placeparts"
+  },
+  {
+    "id": "cycle-trader",
+    "checkedAt": "2026-10-09",
+    "sourceUrl": "https://www.cycletrader.com/",
+    "evidence": "Official homepage describes over 300K new and used motorcycle listings nationwide and millions of monthly visitors. About page identifies the established Trader family of classifieds marketplaces.",
+    "additionalSourceUrl": "https://www.cycletrader.com/research/about"
+  }
+]

@@ -1,0 +1,344 @@
+[
+  {
+    "id": "udacity",
+    "name": "Udacity",
+    "initials": "Ud",
+    "href": "https://www.udacity.com/catalog",
+    "category": "learning",
+    "accent": "blue",
+    "featured": false,
+    "label": "Technology courses & career programs",
+    "summary": "Browse technology courses and Nanodegree programs by subject, skill level, duration, and career goal, with hands-on projects.",
+    "topics": [
+      "Skills",
+      "Students",
+      "Projects"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/udacity.webp"
+  },
+  {
+    "id": "openstax",
+    "name": "OpenStax",
+    "initials": "Os",
+    "href": "https://openstax.org/subjects",
+    "category": "learning",
+    "accent": "orange",
+    "featured": false,
+    "label": "Free textbooks & teaching resources",
+    "summary": "Explore free, peer-reviewed textbooks by subject for high school and college, with online reading and instructor resources.",
+    "topics": [
+      "Math",
+      "Science",
+      "Students",
+      "Teachers"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/openstax.webp"
+  },
+  {
+    "id": "codecademy",
+    "name": "Codecademy",
+    "initials": "Cc",
+    "href": "https://www.codecademy.com/catalog",
+    "category": "learning",
+    "accent": "blue",
+    "featured": false,
+    "label": "Coding courses & skill paths",
+    "summary": "Find coding courses, projects, and career paths by programming language, subject, skill level, and learning format.",
+    "topics": [
+      "Skills",
+      "Projects",
+      "Students",
+      "Testing"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/codecademy.webp"
+  },
+  {
+    "id": "alison",
+    "name": "Alison",
+    "initials": "Al",
+    "href": "https://alison.com/courses",
+    "category": "learning",
+    "accent": "green",
+    "featured": false,
+    "label": "Free skills & diploma courses",
+    "summary": "Discover free, self-paced courses across technology, business, trades, health, and teaching, with optional paid certificates.",
+    "topics": [
+      "Skills",
+      "Trades",
+      "Teachers"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/alison.webp"
+  },
+  {
+    "id": "hipcamp",
+    "name": "Hipcamp",
+    "initials": "Hc",
+    "href": "https://www.hipcamp.com/",
+    "category": "travel",
+    "accent": "green",
+    "featured": false,
+    "label": "Campsites, cabins & glamping",
+    "summary": "Find tent sites, RV parks, cabins, and glamping stays with destination searches, maps, and traveler reviews.",
+    "topics": [
+      "Stays",
+      "Vacations",
+      "Family Trips"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "international"
+    ],
+    "previewImage": "/directory-previews/hipcamp.webp"
+  },
+  {
+    "id": "hostelworld",
+    "name": "Hostelworld",
+    "initials": "Hw",
+    "href": "https://www.hostelworld.com/",
+    "category": "travel",
+    "accent": "orange",
+    "featured": false,
+    "label": "Hostels & budget accommodation",
+    "summary": "Discover hostels and budget stays around the world through destination searches, guest reviews, and booking information.",
+    "topics": [
+      "Stays",
+      "Vacations",
+      "Planners"
+    ],
+    "statuses": [
+      "new",
+      "international"
+    ],
+    "previewImage": "/directory-previews/hostelworld.webp"
+  },
+  {
+    "id": "pitchup",
+    "name": "Pitchup.com",
+    "initials": "Pu",
+    "href": "https://www.pitchup.com/",
+    "category": "travel",
+    "accent": "green",
+    "featured": false,
+    "label": "Campsites & holiday parks",
+    "summary": "Browse campsites, caravan parks, cabins, and glamping by destination, accommodation type, and family-friendly facilities.",
+    "topics": [
+      "Stays",
+      "Vacations",
+      "Family Trips"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "international"
+    ],
+    "previewImage": "/directory-previews/pitchup.webp"
+  },
+  {
+    "id": "campspot",
+    "name": "Campspot",
+    "initials": "Cs",
+    "href": "https://www.campspot.com/",
+    "category": "travel",
+    "accent": "orange",
+    "featured": false,
+    "label": "Campgrounds & RV resorts",
+    "summary": "Find campgrounds, RV resorts, cabins, and glamping across North America with availability, amenities, and booking options.",
+    "topics": [
+      "Stays",
+      "Vacations",
+      "Family Trips"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "international"
+    ],
+    "previewImage": "/directory-previews/campspot.webp"
+  },
+  {
+    "id": "webmd-doctor-directory",
+    "name": "WebMD Doctor Directory",
+    "initials": "Wd",
+    "href": "https://doctor.webmd.com/",
+    "category": "professionals",
+    "accent": "blue",
+    "featured": false,
+    "label": "Doctors, dentists & healthcare providers",
+    "summary": "Search physician and dentist profiles by specialty and location, with patient reviews and practice information.",
+    "topics": [
+      "Doctors",
+      "Dentists",
+      "Therapists"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "previewImage": "/directory-previews/webmd-doctor-directory.webp"
+  },
+  {
+    "id": "super-lawyers",
+    "name": "Super Lawyers",
+    "initials": "Sl",
+    "href": "https://www.superlawyers.com/",
+    "category": "professionals",
+    "accent": "blue",
+    "featured": false,
+    "label": "Attorney profiles by practice area",
+    "summary": "Browse United States attorney profiles by legal issue and location, with practice information and professional background.",
+    "topics": [
+      "Lawyers"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "previewImage": "/directory-previews/super-lawyers.webp"
+  },
+  {
+    "id": "topdoctors",
+    "name": "Top Doctors UK",
+    "initials": "Td",
+    "href": "https://www.topdoctors.co.uk/",
+    "category": "professionals",
+    "accent": "blue",
+    "featured": false,
+    "label": "Medical specialists in the UK",
+    "summary": "Find medical specialists by expertise and location, with profiles, patient reviews, and appointment information.",
+    "topics": [
+      "Doctors"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "previewImage": "/directory-previews/topdoctors.webp"
+  },
+  {
+    "id": "allevents",
+    "name": "AllEvents",
+    "initials": "Ae",
+    "href": "https://allevents.in/",
+    "category": "community",
+    "accent": "orange",
+    "featured": false,
+    "label": "Events in your city",
+    "summary": "Discover concerts, festivals, workshops, and community events by city, date, and interest with ticket information.",
+    "topics": [
+      "Events",
+      "Culture"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "international"
+    ],
+    "previewImage": "/directory-previews/allevents.webp"
+  },
+  {
+    "id": "greatnonprofits",
+    "name": "GreatNonprofits",
+    "initials": "Gn",
+    "href": "https://greatnonprofits.org/",
+    "category": "community",
+    "accent": "orange",
+    "featured": false,
+    "label": "Nonprofit organizations & community reviews",
+    "summary": "Discover charities and nonprofit organizations by location and cause through reviews and stories from donors, volunteers, and people served.",
+    "topics": [
+      "Leaders",
+      "Culture",
+      "Legal"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "previewImage": "/directory-previews/greatnonprofits.webp"
+  },
+  {
+    "id": "united-way-211",
+    "name": "United Way 211",
+    "initials": "21",
+    "href": "https://211.org/about-us/your-local-211",
+    "category": "community",
+    "accent": "blue",
+    "featured": false,
+    "label": "Local community service directories",
+    "summary": "Find your local United States 211 service and its community resource directory for assistance and public support programs.",
+    "topics": [
+      "Government",
+      "Legal"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "previewImage": "/directory-previews/united-way-211.webp"
+  },
+  {
+    "id": "counselling-directory",
+    "name": "Counselling Directory",
+    "initials": "Cd",
+    "href": "https://www.counselling-directory.org.uk/",
+    "category": "adult",
+    "accent": "green",
+    "featured": false,
+    "label": "Counsellors & relationship therapists",
+    "summary": "Find UK counsellors and therapists by location and therapy type, including relationship and couples support with online and in-person sessions.",
+    "topics": [
+      "Relationships",
+      "Therapists"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "previewImage": "/directory-previews/counselling-directory.webp"
+  },
+  {
+    "id": "therapyden",
+    "name": "TherapyDen",
+    "initials": "Td",
+    "href": "https://www.therapyden.com/specialties/sex-therapy",
+    "category": "adult",
+    "accent": "purple",
+    "featured": false,
+    "label": "Sexual wellness & intimacy therapists",
+    "summary": "Browse therapists specializing in sexual health, intimacy, and relationship concerns, with location, insurance, and service filters.",
+    "topics": [
+      "Therapists",
+      "Relationships",
+      "Sexual Wellness"
+    ],
+    "statuses": [
+      "new",
+      "local",
+      "national"
+    ],
+    "previewImage": "/directory-previews/therapyden.webp"
+  }
+]

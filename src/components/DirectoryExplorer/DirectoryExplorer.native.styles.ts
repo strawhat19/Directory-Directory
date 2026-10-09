@@ -193,18 +193,9 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
             paddingBottom: 12,
         },
         directoryCardHeader: {
-            gap: 12,
+            width: `100%`,
+            maxWidth: 400,
             marginBottom: 20,
-            flexDirection: `row`,
-            alignItems: `center`,
-            justifyContent: `space-between`,
-        },
-        directoryMonogram: {
-            width: 44,
-            height: 44,
-            borderRadius: 11,
-            alignItems: `center`,
-            justifyContent: `center`,
         },
         directoryInitials: {
             fontSize: 15,
@@ -212,6 +203,9 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
         },
         featuredBadge: {
             gap: 4,
+            top: 10,
+            right: 10,
+            position: `absolute`,
             paddingVertical: 5,
             paddingHorizontal: 7,
             borderRadius: 6,
@@ -332,6 +326,7 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
             backgroundColor: isDark ? `#243249` : `#f4f6f9`,
         },
         bookmarkButton: {
+            top: -4,
             width: 40,
             height: 40,
             borderRadius: 9,

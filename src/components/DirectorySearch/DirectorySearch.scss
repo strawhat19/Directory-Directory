@@ -256,6 +256,13 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
+@media (max-width: 760px), (hover: none) and (pointer: coarse) {
+    .directory-search__input {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+}
+
 @media (max-width: 600px) {
     .directory-search.directory-search--explorer {
         gap: 4px;
