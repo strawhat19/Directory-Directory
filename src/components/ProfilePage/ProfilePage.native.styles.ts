@@ -2,8 +2,10 @@ import { StyleSheet } from 'react-native';
 import type { SearchAccent } from '../../shared/landing/searchScopes';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 
-export function createProfileStyles(isDark: boolean, accent: SearchAccent) {
+export function createProfileStyles(fontsLoaded: boolean, isDark: boolean, accent: SearchAccent) {
   const palette = getNativePalette(isDark, accent);
+  const bold = fontsLoaded ? `Inter_700Bold` : undefined;
+  const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
 
   return StyleSheet.create({
     screen: {
@@ -38,6 +40,7 @@ export function createProfileStyles(isDark: boolean, accent: SearchAccent) {
       fontSize: 16,
       lineHeight: 18,
       fontWeight: `700`,
+      fontFamily: bold,
       color: palette.ink,
       letterSpacing: -0.6,
     },
@@ -86,6 +89,7 @@ export function createProfileStyles(isDark: boolean, accent: SearchAccent) {
     linkLabel: {
       fontSize: 12,
       fontWeight: `600`,
+      fontFamily: semibold,
       color: palette.blue,
     },
     card: {

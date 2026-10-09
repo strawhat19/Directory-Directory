@@ -32,7 +32,7 @@ const BlogArticlePage = ({ slug }: BlogArticlePageProps) => {
       <>
         {backLink}
         <PageEyebrow page={`blog`} label={`The Directory Journal`} id={`blog-article-eyebrow-${scope}`} />
-        <Text {...elementProps(`blog-heading`, scope)} accessibilityRole={`header`} style={common.heading}>{`This Article Couldn't Be Found`}</Text>
+        <Text {...elementProps(`blog-heading`, scope)} accessibilityRole={`header`} style={[common.title, styles.heading]}>{`This Article Couldn't Be Found`}</Text>
         <Text {...elementProps(`blog-missing-summary`)} style={[common.summary, styles.summary]}>{`Browse the journal to find stories and guides about directories, resources, and discovery.`}</Text>
       </>
     )}>
@@ -56,7 +56,7 @@ const BlogArticlePage = ({ slug }: BlogArticlePageProps) => {
           labelId={`blog-article-category-${scope}`}
           iconId={`blog-article-eyebrow-icon-${scope}`}
         />
-        <Text {...elementProps(`blog-heading`, scope)} accessibilityRole={`header`} style={common.heading}>{article.title}</Text>
+        <Text {...elementProps(`blog-heading`, scope)} accessibilityRole={`header`} style={[common.title, styles.heading]}>{article.title}</Text>
         <Text {...elementProps(`blog-article-summary`, scope)} style={[common.summary, styles.summary]}>{article.excerpt}</Text>
         <View {...elementProps(`blog-article-meta`, scope)} style={common.metadata}>
           <Text {...elementProps(`blog-article-byline`, scope)} style={[common.metaLabel, styles.metadataLabel]}>{`By Directory Directory`}</Text>
@@ -80,13 +80,13 @@ const BlogArticlePage = ({ slug }: BlogArticlePageProps) => {
       <View {...elementProps(`blog-article-prose`, scope)} style={[styles.prose, { borderColor: palette.border, backgroundColor: palette.surface }]}>
         {article.sections.map((section) => (
           <View key={section.id} {...elementProps(`blog-article-section`, `${scope}-${section.id}`)} style={[styles.section, { borderColor: palette.border }]}>
-            <Text {...elementProps(`blog-article-section-title`, `${scope}-${section.id}`)} accessibilityRole={`header`} style={[common.strongTitle, styles.sectionTitle]}>{section.title}</Text>
+            <Text {...elementProps(`blog-article-section-title`, `${scope}-${section.id}`)} accessibilityRole={`header`} style={[common.title, styles.sectionTitle]}>{section.title}</Text>
             {section.paragraphs.map((paragraph, index) => <Text key={index} {...elementProps(`blog-article-paragraph`, `${scope}-${section.id}-${index}`)} style={[common.paragraph, styles.paragraph]}>{paragraph}</Text>)}
           </View>
         ))}
         {article.sources?.length ? (
           <View {...elementProps(`blog-article-sources`, scope)} style={styles.sources}>
-            <Text {...elementProps(`blog-article-sources-heading`, scope)} accessibilityRole={`header`} style={[common.strongTitle, styles.sectionTitle]}>{`Sources & Further Reading`}</Text>
+            <Text {...elementProps(`blog-article-sources-heading`, scope)} accessibilityRole={`header`} style={[common.title, styles.sectionTitle]}>{`Sources & Further Reading`}</Text>
             {article.sources.map((source, index) => (
               <Link key={source.url} href={source.url} asChild>
                 <Pressable {...elementProps(`blog-article-source-link`, `${scope}-${index}`)} style={({ pressed }) => [styles.source, pressed && common.pressed]}>
@@ -102,7 +102,7 @@ const BlogArticlePage = ({ slug }: BlogArticlePageProps) => {
       <View {...elementProps(`blog-related`, scope)} style={styles.related}>
         <View {...elementProps(`blog-related-intro`, scope)} style={styles.relatedIntro}>
           <Text {...elementProps(`blog-related-eyebrow`, scope)} style={common.eyebrowLabel}>{`Follow Your Curiosity`}</Text>
-          <Text {...elementProps(`blog-related-heading`, scope)} accessibilityRole={`header`} style={[common.strongTitle, styles.sectionTitle]}>{`Related Articles`}</Text>
+          <Text {...elementProps(`blog-related-heading`, scope)} accessibilityRole={`header`} style={[common.title, styles.relatedHeading]}>{`Related Articles`}</Text>
         </View>
         <View {...elementProps(`blog-related-grid`, scope)} style={styles.relatedGrid}>
           {getRelatedArticles(article).map((related) => (

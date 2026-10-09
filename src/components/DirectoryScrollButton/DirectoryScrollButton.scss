@@ -1,0 +1,31 @@
+.directory-scroll-button {
+  gap: 12px;
+  border: 0;
+  width: 45px;
+  flex: 0 0 45px;
+  display: flex;
+  cursor: pointer;
+  font: inherit;
+  color: #ffffff;
+  padding: 16px 8px;
+  border-radius: 10px;
+  align-self: stretch;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  --scroll-button-color: var(--dd-accent);
+  background-color: var(--scroll-button-color);
+  transition: background-color 400ms ease, box-shadow 220ms ease;
+
+  &--categories { --scroll-button-color: #000000; }
+  &__label { display: flex; font-size: 13px; font-weight: 600; line-height: 1.1; min-height: 12.1em; align-items: center; flex-direction: column; }
+  &__letter { display: block; }
+  &__icon { flex: none; }
+  &__arrow { transform: rotate(180deg); }
+  &:hover { background-color: color-mix(in srgb, var(--scroll-button-color) 88%, #000); box-shadow: 0 6px 18px color-mix(in srgb, var(--scroll-button-color) 17%, transparent); }
+  &:focus-visible { outline-offset: 3px; outline: 2px solid var(--scroll-button-color); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .directory-scroll-button { transition: none; }
+}

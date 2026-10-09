@@ -37,7 +37,7 @@ const BlogCard = ({ scope, article }: BlogCardProps) => {
           </View>
           <Text {...elementProps(`blog-card-category`, id)} style={[common.eyebrowLabel, styles.category, { color: accent.color }]}>{article.category}</Text>
         </View>
-        <Text {...elementProps(`blog-card-title`, id)} accessibilityRole={`header`} style={[common.strongTitle, styles.title]}>{article.title}</Text>
+        <Text {...elementProps(`blog-card-title`, id)} accessibilityRole={`header`} style={[common.title, styles.title]}>{article.title}</Text>
         <Text {...elementProps(`blog-card-excerpt`, id)} style={[common.paragraph, styles.excerpt]}>{article.excerpt}</Text>
         <View {...elementProps(`blog-card-footer`, id)} style={[styles.footer, { borderColor: palette.border }]}>
           <View {...elementProps(`blog-card-meta`, id)} style={common.metadata}>

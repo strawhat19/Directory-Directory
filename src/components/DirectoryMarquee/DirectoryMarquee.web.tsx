@@ -14,7 +14,6 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
     cycle,
     viewport,
     dragging,
-    measured,
     copyCount,
     onPointerUp,
     onPointerEnter,
@@ -48,7 +47,6 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
         onLostPointerCapture={onLostPointerCapture}
         id={`directory-marquee-viewport-${scope}`}
         data-dragging={dragging ? `true` : undefined}
-        data-measured={measured ? `true` : undefined}
         className={`directory-marquee__viewport`}
         onDragStart={(event) => event.preventDefault()}
       >

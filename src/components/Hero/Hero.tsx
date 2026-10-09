@@ -5,6 +5,7 @@ import HeroArtwork from '../HeroArtwork/HeroArtwork'
 import { useHeroMagicType } from './useHeroMagicType'
 import DirectorySearch from '../DirectorySearch/DirectorySearch'
 import { searchScopes } from '../../shared/landing/searchScopes'
+import DirectoryScrollButton from '../DirectoryScrollButton/DirectoryScrollButton'
 
 type HeroProps = {
   onExplore: (id: string) => void
@@ -17,14 +18,20 @@ export default function Hero({ onExplore }: HeroProps) {
   return (
     <section id={`top`} className={`hero`} aria-labelledby={`hero-heading`}>
       <div id={`hero-copy`} className={`hero__copy`}>
-        <h2 id={`hero-eyebrow`} className={`hero__eyebrow dd-eyebrow`}>
-          <span id={`hero-status-dot`} className={`hero__status-dot`} aria-hidden={true} />
-          {`Directory Database`}
-        </h2>
-        <HeroMagicHeading />
-        <p id={`hero-description`} className={`hero__description`}>
-          {`A directory brings useful resources together by category. Directory Directory helps you discover directories for tools, design, learning, communities, and more—all in one place.`}
-        </p>
+        <div id={`hero-intro`} className={`hero__intro`}>
+          <h2 id={`hero-eyebrow`} className={`hero__eyebrow dd-eyebrow`}>
+            <span id={`hero-status-dot`} className={`hero__status-dot`} aria-hidden={true} />
+            {`Directory Database`}
+          </h2>
+          <HeroMagicHeading />
+          <p id={`hero-description`} className={`hero__description`}>
+            {`A directory brings useful resources together by category. Directory Directory helps you discover directories for tools, design, learning, communities, and more—all in one place.`}
+          </p>
+        </div>
+        <div id={`hero-vertical-actions`} className={`hero__vertical-actions`} role={`group`} aria-label={`Browse Categories and Directories`}>
+          <DirectoryScrollButton target={`categories`} onExplore={() => onExplore(`categories`)} />
+          <DirectoryScrollButton onExplore={() => onExplore(`explore`)} />
+        </div>
         <div
           id={`hero-search-panel`}
           className={`hero__search-panel hero__search-panel--${searchScope}`}

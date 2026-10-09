@@ -106,6 +106,7 @@ a {
 
 button {
   cursor: pointer;
+  font-family: var(--dd-font);
 }
 
 a {
@@ -135,11 +136,8 @@ input:focus-visible {
   padding: 14px 20px;
   font-size: 13px;
   font-weight: 650;
-  transition: color 350ms ease, transform 220ms ease, background 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
+  font-family: var(--dd-font);
+  transition: color 350ms ease, background 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
 
   &--primary {
     color: var(--dd-on-blue);

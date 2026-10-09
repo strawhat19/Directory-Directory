@@ -1,0 +1,14 @@
+.color-cycle {
+  background-color: #0869df;
+  animation: color-cycle-background 36s ease-in-out infinite;
+}
+
+@keyframes color-cycle-background {
+  0%, 100% { background-color: #0869df; }
+  33% { background-color: #6d43bb; }
+  66% { background-color: #157b4a; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .color-cycle { animation: none; }
+}

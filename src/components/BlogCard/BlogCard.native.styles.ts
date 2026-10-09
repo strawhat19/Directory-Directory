@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   folderTab: { top: -18, left: -1, width: 78, height: 14, position: `absolute`, borderTopLeftRadius: 7, borderTopRightRadius: 7 },
   top: { gap: 12, flexDirection: `row`, alignItems: `center` },
   symbol: { width: 46, height: 46, borderRadius: 12, alignItems: `center`, justifyContent: `center` },
-  title: { fontSize: 22, lineHeight: 30 },
+  title: { fontSize: 20, lineHeight: 27 },
   excerpt: { fontSize: 14, lineHeight: 26 },
   actionLabel: { fontSize: 14, lineHeight: 20 },
   metadataLabel: { fontSize: 12, lineHeight: 18 },

@@ -13,7 +13,7 @@ export const searchScopes = [
     color: `#0874f9`,
     tint: `#edf4ff`,
     darkTint: `#15294c`,
-    placeholder: `Search Directories, Directors, etc.`,
+    placeholder: `Directories, Directors, etc.`,
   },
   {
     id: `directories`,
@@ -22,7 +22,7 @@ export const searchScopes = [
     color: `#21a668`,
     label: `Directories`,
     darkTint: `#15372d`,
-    placeholder: `Search directories…`,
+    placeholder: `Directories, etc.`,
   },
   {
     id: `directors`,
@@ -31,7 +31,7 @@ export const searchScopes = [
     color: `#d83b42`,
     label: `Directors`,
     darkTint: `#3b2029`,
-    placeholder: `Search directors…`,
+    placeholder: `Directors, etc.`,
   },
 ] as const;
 

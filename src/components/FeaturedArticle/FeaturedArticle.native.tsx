@@ -33,7 +33,7 @@ const FeaturedArticle = ({ scope, article = featuredArticle, accentColor: suppli
         <Pressable
           accessibilityLabel={`Read ${article.title}`}
           {...elementProps(`featured-article-image-link`, scope)}
-          style={({ pressed }) => [styles.imageLink, wide ? { flex: 1, minHeight: 260 } : { width: `100%`, aspectRatio: 1.65 }, pressed && common.pressed]}
+          style={({ pressed }) => [styles.imageLink, wide ? { flex: 1, minHeight: 240 } : { width: `100%`, aspectRatio: 1.65 }, pressed && common.pressed]}
         >
           {article.id === featuredArticle.id ? <Image
             resizeMode={`cover`}
@@ -56,7 +56,7 @@ const FeaturedArticle = ({ scope, article = featuredArticle, accentColor: suppli
             {...elementProps(`featured-article-title-link`, scope)}
             style={({ pressed }) => [pressed && common.pressed]}
           >
-            <Text {...elementProps(`featured-article-title`, scope)} accessibilityRole={`header`} style={[common.strongTitle, styles.title]}>{article.title}</Text>
+            <Text {...elementProps(`featured-article-title`, scope)} accessibilityRole={`header`} style={[common.title, styles.title]}>{article.title}</Text>
           </Pressable>
         </Link>
         <Text {...elementProps(`featured-article-excerpt`, scope)} style={[common.paragraph, styles.excerpt]}>{article.excerpt}</Text>

@@ -2,7 +2,7 @@
   width: 100vw;
   overflow: hidden;
   position: relative;
-  padding: 72px 0 48px;
+  padding: 48px 0 36px;
   margin: 32px 0 0;
   background-size: 24px 24px;
   margin-left: calc(50% - 50vw);
@@ -40,16 +40,16 @@
   border: 1px solid var(--dd-line);
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
 
-  &__image-link { display: block; min-height: 330px; position: relative; background: var(--dd-blue-soft); }
+  &__image-link { display: block; min-height: 280px; position: relative; background: var(--dd-blue-soft); }
   &__image { inset: 0; width: 100%; height: 100%; display: block; position: absolute; object-fit: cover; }
   &__image-label { gap: 7px; left: 22px; bottom: 22px; padding: 10px 14px; display: inline-flex; position: absolute; border-radius: 999px; align-items: center; color: var(--dd-ink); font-size: 10px; font-weight: 650; background: var(--dd-paper); border: 1px solid var(--dd-line); }
-  &__copy { padding: 38px; align-self: center; }
+  &__copy { padding: 28px; align-self: center; }
   &__eyebrow { margin: 0; color: var(--dd-blue); }
-  &__title { font-size: clamp(28px, 3.2vw, 38px); margin: 18px 0; font-weight: 800; line-height: 1.25; letter-spacing: -1px; }
-  &__title-link { font: inherit; font-weight: 800; color: var(--dd-ink); transition: color 200ms ease; &:hover { color: var(--dd-blue); } }
+  &__title { font-size: 30px; margin: 14px 0; font-weight: 650; line-height: 1.3; letter-spacing: -0.9px; }
+  &__title-link { font: inherit; font-weight: inherit; color: var(--dd-ink); transition: color 200ms ease; &:hover { color: var(--dd-blue); } }
   &__excerpt { margin: 0; font-size: 15px; line-height: 1.9; color: var(--dd-muted); }
-  &__meta { gap: 14px; display: flex; flex-wrap: wrap; font-size: 12px; margin: 20px 0 0; color: var(--dd-muted); }
-  &__actions { gap: 18px; display: flex; flex-wrap: wrap; margin-top: 22px; align-items: center; }
+  &__meta { gap: 14px; display: flex; flex-wrap: wrap; font-size: 12px; margin: 16px 0 0; color: var(--dd-muted); }
+  &__actions { gap: 18px; display: flex; flex-wrap: wrap; margin-top: 16px; align-items: center; }
   & .featured-article__blog-link { gap: 8px; min-height: 44px; font-size: 14px; font-weight: 700; }
   &__read-link { gap: 8px; min-height: 44px; font-size: 14px; font-weight: 700; align-items: center; display: inline-flex; color: var(--dd-blue); transition: transform 200ms ease; &:hover { transform: translateX(3px); } }
 }
@@ -68,7 +68,7 @@
 
 @media (max-width: 600px) {
   .featured-story {
-    padding: 48px 0 32px;
+    padding: 36px 0 28px;
     margin-top: 26px;
     &__content { padding: 0 20px; }
     &::before, &::after { width: 144px; height: 112px; }

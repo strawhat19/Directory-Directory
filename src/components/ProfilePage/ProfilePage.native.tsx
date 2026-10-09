@@ -16,6 +16,7 @@ import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import { useCopyrightYear } from '../../shared/time/useCopyrightYear';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
+import { useFonts, Inter_700Bold, Inter_600SemiBold } from '@expo-google-fonts/inter';
 import { Image, Pressable, ScrollView, Text, View, useWindowDimensions } from 'react-native';
 
 export default function ProfilePage() {
@@ -24,9 +25,10 @@ export default function ProfilePage() {
   const { year } = useCopyrightYear();
   const { isDark } = useTheme();
   const accent = useSearchAccent();
+  const [fontsLoaded] = useFonts({ Inter_700Bold, Inter_600SemiBold });
   const blurTarget = useRef<View | null>(null);
   const palette = getNativePalette(isDark, accent);
-  const styles = useMemo(() => createProfileStyles(isDark, accent), [isDark, accent]);
+  const styles = useMemo(() => createProfileStyles(fontsLoaded, isDark, accent), [fontsLoaded, isDark, accent]);
   const { user, ready } = state;
 
   return (

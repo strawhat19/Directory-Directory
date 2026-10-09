@@ -112,10 +112,6 @@
     place-items: center;
     transition: color 350ms ease, width 250ms ease, margin 250ms ease, opacity 250ms ease, transform 250ms ease, background 350ms ease, box-shadow 350ms ease;
 
-    &:hover {
-      transform: translateY(-2px);
-    }
-
     &--primary {
       color: var(--dd-on-blue);
       background: var(--dd-blue);
@@ -316,10 +312,9 @@
       cursor: pointer;
       background: transparent;
       border: 1px solid var(--dd-line);
-      transition: background 200ms ease, transform 200ms ease;
+      transition: background 200ms ease;
 
       &:hover {
-        transform: translateY(-2px);
         background: var(--dd-paper);
       }
     }

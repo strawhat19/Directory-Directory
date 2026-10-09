@@ -175,8 +175,26 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
             flexDirection: `row`,
             alignItems: `center`,
         },
+        heroIntro: {
+            gap: 12,
+            minWidth: 0,
+            flexDirection: `row`,
+            alignItems: `stretch`,
+        },
+        heroIntroWide: {
+            flex: 1,
+        },
+        heroVerticalActions: {
+            gap: 10,
+            width: 100,
+            flexShrink: 0,
+            alignSelf: `stretch`,
+            flexDirection: `row`,
+            alignItems: `stretch`,
+        },
         heroCopy: {
             flex: 1,
+            minWidth: 0,
         },
         eyebrowLine: {
             gap: 8,

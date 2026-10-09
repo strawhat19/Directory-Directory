@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  fullBleed: { overflow: `hidden`, paddingVertical: 72 },
+  fullBleed: { overflow: `hidden`, paddingVertical: 40 },
   dotGrid: { opacity: 0.14, position: `absolute` },
   dotGridTop: { top: 18, left: 12 },
   dotGridBottom: { right: 12, bottom: 18 },
@@ -9,8 +9,8 @@ export const styles = StyleSheet.create({
   feature: { borderWidth: 1, borderRadius: 20, overflow: `hidden` },
   imageLink: { minWidth: 0 },
   image: { ...StyleSheet.absoluteFillObject, width: `100%`, height: `100%` },
-  copy: { gap: 18, flex: 1, padding: 28 },
-  title: { fontSize: 32, lineHeight: 40, letterSpacing: -0.8 },
+  copy: { gap: 14, flex: 1, padding: 24 },
+  title: { fontSize: 30, lineHeight: 39, letterSpacing: -0.9 },
   excerpt: { fontSize: 15, lineHeight: 27 },
   actionLabel: { fontSize: 14, lineHeight: 20 },
   metadataLabel: { fontSize: 12, lineHeight: 18 },

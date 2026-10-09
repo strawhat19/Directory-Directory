@@ -26,7 +26,6 @@ export function useDirectoryMarquee() {
   const viewport = useRef<HTMLDivElement>(null);
   const clickTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const [dragging, setDragging] = useState(false);
-  const [measured, setMeasured] = useState(false);
   const [copyCount, setCopyCount] = useState(3);
 
   const paint = () => {
@@ -53,7 +52,6 @@ export function useDirectoryMarquee() {
       cycleWidth.current = width;
       phase.current = loopPosition(phase.current, width);
       setCopyCount(Math.max(3, Math.ceil(viewport.current.clientWidth / width) + 2));
-      setMeasured(true);
       paint();
     };
 
@@ -197,7 +195,6 @@ export function useDirectoryMarquee() {
     cycle,
     viewport,
     dragging,
-    measured,
     copyCount,
     onPointerDown,
     onPointerMove,

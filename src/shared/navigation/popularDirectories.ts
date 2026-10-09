@@ -21,10 +21,17 @@ const accentColors: Record<DirectoryAccent, { color: string; background: string 
     orange: { color: `#d97722`, background: `#fff1e6` },
 };
 
-export const popularDirectories: PopularDirectory[] = linkedDirectories.map((directory) => ({
-    id: directory.id,
-    href: directory.href,
-    icon: categories.find((category) => category.id === directory.category)?.icon ?? `globe`,
-    label: directory.name,
-    ...accentColors[directory.accent],
-}));
+const marqueeAccents: DirectoryAccent[] = [`blue`, `orange`, `green`, `pink`, `ink`, `red`, `purple`, `yellow`];
+
+export const popularDirectories: PopularDirectory[] = linkedDirectories.map((directory, index) => {
+    const accent = marqueeAccents[index % marqueeAccents.length] ?? `blue`;
+    const loopNeedsContrast = index === linkedDirectories.length - 1 && [`blue`, `ink`, `purple`].includes(accent);
+
+    return {
+        id: directory.id,
+        href: directory.href,
+        label: directory.name,
+        ...accentColors[loopNeedsContrast ? `green` : accent],
+        icon: categories.find((category) => category.id === directory.category)?.icon ?? `globe`,
+    };
+});

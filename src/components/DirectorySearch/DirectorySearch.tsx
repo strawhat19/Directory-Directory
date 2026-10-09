@@ -8,8 +8,8 @@ export default function DirectorySearch({
     onSearch,
     className = ``,
     variant = `hero`,
-    submitLabel = `Explore`,
-    placeholder = `Search directories…`,
+    submitLabel = `Search`,
+    placeholder = `Directories, etc.`,
 }: DirectorySearchProps) {
     const {
         query,

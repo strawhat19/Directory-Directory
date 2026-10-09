@@ -6,10 +6,12 @@ import { Pressable, Text, View, TextInput } from 'react-native';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import type { DirectoryFeedbackProps } from './DirectoryFeedback.types';
 import { ratingValues, useDirectoryFeedback } from './useDirectoryFeedback';
+import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
 import { createDirectoryFeedbackStyles } from './DirectoryFeedback.native.styles';
 
 export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
   const { isDark } = useTheme();
+  const { styles: common } = useBlogPresentation();
   const palette = getNativePalette(isDark);
   const styles = useMemo(() => createDirectoryFeedbackStyles(isDark), [isDark]);
   const {
@@ -46,7 +48,7 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
             id={`${identity}-review-icon`}
             className={`directory-feedback-review-icon`}
           />
-          <Text {...elementProps(`directory-feedback-review-toggle-label`, props.directoryId)} style={styles.linkLabel}>
+          <Text {...elementProps(`directory-feedback-review-toggle-label`, props.directoryId)} style={[common.actionLabel, styles.linkLabel]}>
             {entry.review ? `Edit Review` : `Write Review`}
           </Text>
         </Pressable>
@@ -149,7 +151,7 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
                 id={`${identity}-cancel-icon`}
                 className={`directory-feedback-cancel-icon`}
               />
-              <Text {...elementProps(`directory-feedback-cancel-label`, props.directoryId)} style={styles.actionLabel}>
+              <Text {...elementProps(`directory-feedback-cancel-label`, props.directoryId)} style={[common.actionLabel, styles.actionLabel]}>
                 {`Cancel`}
               </Text>
             </Pressable>
@@ -167,7 +169,7 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
                 id={`${identity}-save-icon`}
                 className={`directory-feedback-save-icon`}
               />
-              <Text {...elementProps(`directory-feedback-save-label`, props.directoryId)} style={[styles.actionLabel, styles.saveLabel]}>
+              <Text {...elementProps(`directory-feedback-save-label`, props.directoryId)} style={[common.actionLabel, styles.actionLabel, styles.saveLabel]}>
                 {`Save Review`}
               </Text>
             </Pressable>

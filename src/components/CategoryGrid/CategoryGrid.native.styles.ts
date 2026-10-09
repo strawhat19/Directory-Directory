@@ -9,7 +9,7 @@ export function createCategoryGridStyles(fontsLoaded: boolean, isDark: boolean) 
 
     return StyleSheet.create({
         categorySection: {
-            marginBottom: 44,
+            marginBottom: 20,
         },
         categories: {
             gap: 12,

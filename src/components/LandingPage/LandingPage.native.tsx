@@ -17,8 +17,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import PricingSection from '../PricingSection/PricingSection.native';
+import DirectoryIntroCta from '../DirectoryIntroCta/DirectoryIntroCta';
 import { siteNavigation } from '../../shared/navigation/siteNavigation';
 import { heroMagicTypeTerms } from '../../shared/landing/magicTypeTerms';
+import DirectoryScrollButton from '../DirectoryScrollButton/DirectoryScrollButton';
 import FeaturedArticleCarousel from '../FeaturedArticleCarousel/FeaturedArticleCarousel';
 import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
 
@@ -99,7 +101,7 @@ function HeroMagicHeading({ enabled, styles, wide, accentStyle }: {
                 {...elementProps(`landing-hero-heading-first-line`)}
                 numberOfLines={1}
                 adjustsFontSizeToFit
-                minimumFontScale={0.72}
+                minimumFontScale={wide ? 0.72 : 0.45}
                 style={[styles.heading, wide && styles.headingWide, styles.headingFirstLine]}
             >
                 {`The `}
@@ -115,6 +117,9 @@ function HeroMagicHeading({ enabled, styles, wide, accentStyle }: {
             </Text>
             <Animated.Text
                 {...elementProps(`landing-hero-heading-second-line`)}
+                numberOfLines={wide ? undefined : 1}
+                adjustsFontSizeToFit={!wide}
+                minimumFontScale={0.45}
                 style={[styles.heading, wide && styles.headingWide, styles.headingAccent, accentStyle]}
             >
                 {`of Directories.`}
@@ -152,6 +157,8 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
         showScrollToTop,
         scrollToTopOverPricing,
         scrollToTop,
+        scrollToExplore,
+        scrollToCategories,
         scrollToHeroSearch,
         entranceStyle,
         radarRingStyles,
@@ -167,6 +174,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
         setHeaderHeight,
         setSearchLayout,
         setHeroLayout,
+        setCategoriesOffset,
         setPricingLayout,
         setScrollToTopLayout,
         setViewportHeight,
@@ -388,44 +396,50 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                     setHeroLayout(y, height);
                                 }}
                             >
-                                <View {...elementProps(`landing-hero-copy`)} style={styles.heroCopy}>
-                                    <View
-                                        {...elementProps(`landing-hero-eyebrow-line`)}
-                                        style={styles.eyebrowLine}
-                                    >
+                                <View {...elementProps(`landing-hero-intro`)} style={[styles.heroIntro, wide && styles.heroIntroWide]}>
+                                    <View {...elementProps(`landing-hero-copy`)} style={styles.heroCopy}>
                                         <View
-                                            {...elementProps(`landing-hero-eyebrow-radar`)}
-                                            pointerEvents={`none`}
-                                            style={styles.eyebrowRadar}
+                                            {...elementProps(`landing-hero-eyebrow-line`)}
+                                            style={styles.eyebrowLine}
                                         >
-                                            {radarRingStyles.map((ringStyle, index) => (
+                                            <View
+                                                {...elementProps(`landing-hero-eyebrow-radar`)}
+                                                pointerEvents={`none`}
+                                                style={styles.eyebrowRadar}
+                                            >
+                                                {radarRingStyles.map((ringStyle, index) => (
+                                                    <Animated.View
+                                                        {...elementProps(`landing-hero-eyebrow-radar-ring`, `${index}`)}
+                                                        key={index}
+                                                        style={[styles.eyebrowRadarRing, ringStyle]}
+                                                    />
+                                                ))}
                                                 <Animated.View
-                                                    {...elementProps(`landing-hero-eyebrow-radar-ring`, `${index}`)}
-                                                    key={index}
-                                                    style={[styles.eyebrowRadarRing, ringStyle]}
+                                                    {...elementProps(`landing-hero-eyebrow-dot`)}
+                                                    style={[styles.eyebrowDot, dotStyle]}
                                                 />
-                                            ))}
-                                            <Animated.View
-                                                {...elementProps(`landing-hero-eyebrow-dot`)}
-                                                style={[styles.eyebrowDot, dotStyle]}
-                                            />
+                                            </View>
+                                            <Animated.Text
+                                                {...elementProps(`landing-hero-eyebrow`)}
+                                                style={[styles.eyebrow, accentTextStyle]}
+                                            >
+                                                {`The Directory of Directories`}
+                                            </Animated.Text>
                                         </View>
-                                        <Animated.Text
-                                            {...elementProps(`landing-hero-eyebrow`)}
-                                            style={[styles.eyebrow, accentTextStyle]}
-                                        >
-                                            {`The Directory of Directories`}
-                                        </Animated.Text>
+                                        <HeroMagicHeading
+                                            wide={wide}
+                                            styles={styles}
+                                            accentStyle={accentTextStyle}
+                                            enabled={motionPreferenceReady && !reduceMotion}
+                                        />
+                                        <Text {...elementProps(`landing-hero-description`)} style={styles.heroDescription}>
+                                            {`A directory brings useful resources together by category. Directory Directory helps you discover directories for tools, design, learning, communities, and more—all in one place.`}
+                                        </Text>
                                     </View>
-                                    <HeroMagicHeading
-                                        wide={wide}
-                                        styles={styles}
-                                        accentStyle={accentTextStyle}
-                                        enabled={motionPreferenceReady && !reduceMotion}
-                                    />
-                                    <Text {...elementProps(`landing-hero-description`)} style={styles.heroDescription}>
-                                        {`A directory brings useful resources together by category. Directory Directory helps you discover directories for tools, design, learning, communities, and more—all in one place.`}
-                                    </Text>
+                                    <View {...elementProps(`landing-hero-vertical-actions`)} style={styles.heroVerticalActions}>
+                                        <DirectoryScrollButton target={`categories`} onExplore={scrollToCategories} />
+                                        <DirectoryScrollButton onExplore={scrollToExplore} />
+                                    </View>
                                 </View>
                                 <View
                                     {...elementProps(`landing-hero-artwork`)}
@@ -576,7 +590,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                         >
                                             <Icon id={`landing-search-button-icon`} className={`landing-search-button-icon`} name={`arrow-right`} color={colors.white} size={17} />
                                             <Text {...elementProps(`landing-search-button-label`)} style={styles.searchButtonLabel}>
-                                                {`Explore`}
+                                                {`Search`}
                                             </Text>
                                         </Pressable>
                                     </Animated.View>
@@ -589,12 +603,14 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                         </>
                     )}
 
+                    {!discover && <DirectoryIntroCta onExplore={scrollToExplore} backgroundStyle={searchThemeStyle} horizontalInset={padding + Math.max(0, (width - 1344) / 2)} />}
                     <CategoryGrid
                         model={page}
-                        onLayout={discover ? (event) => {
+                        onLayout={(event) => {
                             const { y, height } = event.nativeEvent.layout;
-                            setHeroLayout(y, height);
-                        } : undefined}
+                            setCategoriesOffset(y);
+                            if (discover) setHeroLayout(y, height);
+                        }}
                     />
                     {discover ? <PageCta parentMaxWidth={1344} content={pageCtas.discover} horizontalInset={padding + Math.max(0, (width - 1344) / 2)} /> : <FeaturedArticleCarousel scope={`landing`} horizontalInset={padding + Math.max(0, (width - 1344) / 2)} />}
                     <DirectoryExplorer joined model={page} />

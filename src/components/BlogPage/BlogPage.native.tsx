@@ -28,7 +28,7 @@ const BlogPage = () => {
         </Link>
         <View {...elementProps(`blog-index-hero-intro`)} style={[styles.heroIntro, width >= 760 && styles.heroIntroWide]}>
           <View {...elementProps(`blog-index-hero-copy`)} style={[styles.heroCopy, width >= 760 && styles.heroCopyWide]}>
-            <Text {...elementProps(`blog-heading-index`)} accessibilityRole={`header`} style={common.heading}>{`Blog`}</Text>
+            <Text {...elementProps(`blog-heading-index`)} accessibilityRole={`header`} style={[common.title, styles.heading]}>{`Blog`}</Text>
             <Text {...elementProps(`blog-index-summary`)} style={common.summary}>{`Learn what directories are, discover their story, and find practical ways to explore collections of websites, tools, communities, and resources.`}</Text>
           </View>
           <PageEyebrow
@@ -46,7 +46,7 @@ const BlogPage = () => {
       <View {...elementProps(`blog-articles`)} style={styles.section}>
         <View {...elementProps(`blog-articles-intro`)} style={styles.intro}>
           <Text {...elementProps(`blog-articles-eyebrow`)} style={common.eyebrowLabel}>{`Keep Exploring`}</Text>
-          <Text {...elementProps(`blog-articles-heading`)} accessibilityRole={`header`} style={common.title}>{`Good Finds Start With Curiosity.`}</Text>
+          <Text {...elementProps(`blog-articles-heading`)} accessibilityRole={`header`} style={[common.title, styles.heading]}>{`Good Finds Start With Curiosity.`}</Text>
           <Text {...elementProps(`blog-articles-summary`)} style={common.paragraph}>{`A few useful guides to help you browse with purpose and follow your interests further.`}</Text>
         </View>
         <View {...elementProps(`blog-articles-grid`)} style={styles.grid}>

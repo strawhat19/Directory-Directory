@@ -6,6 +6,7 @@ import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
 import { createPricingStyles } from './PricingSection.native.styles';
+import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
 import { Pressable, Text, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 
 type PricingSectionProps = {
@@ -17,6 +18,7 @@ export default function PricingSection({ horizontalInset = 0, onLayout }: Pricin
     const accent = useSearchAccent();
     const { isDark } = useTheme();
     const { width } = useWindowDimensions();
+    const { styles: common } = useBlogPresentation();
     const columns = width >= 1000 ? 4 : width >= 600 ? 2 : 1;
     const styles = useMemo(() => createPricingStyles(isDark), [isDark]);
     const columnWidth = columns === 4 ? `25%` : columns === 2 ? `50%` : `100%`;
@@ -143,7 +145,7 @@ export default function PricingSection({ horizontalInset = 0, onLayout }: Pricin
                                     style={({ pressed }) => [styles.action, pressed && styles.pressed]}
                                 >
                                     <Text
-                                        style={styles.actionLabel}
+                                        style={[common.actionLabel, styles.actionLabel]}
                                         {...elementProps(`pricing-section-plan-action-label`, plan.id)}
                                     >
                                         {plan.id === `free` ? `Explore Free` : `Get In Touch`}

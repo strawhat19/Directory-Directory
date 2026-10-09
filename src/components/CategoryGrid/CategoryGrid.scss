@@ -1,5 +1,5 @@
 .category-section {
-  padding: 16px 0 46px;
+  padding: 16px 0 20px;
 
   &__header {
     gap: 20px;
@@ -40,6 +40,11 @@
     font-size: 12px;
     color: var(--dd-muted);
   }
+}
+
+.category-section + .featured-story,
+.category-section + .page-cta {
+  margin-top: 0;
 }
 
 .category-grid {
@@ -217,7 +222,7 @@
 
 @media (max-width: 600px) {
   .category-section {
-    padding-bottom: 36px;
+    padding-bottom: 16px;
 
     &__note {
       display: none;

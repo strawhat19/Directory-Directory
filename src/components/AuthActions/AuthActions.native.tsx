@@ -9,16 +9,18 @@ import { getNativePalette } from '../../shared/theme/nativePalette';
 import { createAuthActionsStyles } from './AuthActions.native.styles';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
 import { Image, Modal, Pressable, Text, View, useWindowDimensions } from 'react-native';
+import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold } from '@expo-google-fonts/inter';
 
 export default function AuthActions({ scope }: AuthActionsProps) {
   const { isDark } = useTheme();
   const accent = useSearchAccent();
   const state = useAuthActions();
   const { width, height } = useWindowDimensions();
+  const [fontsLoaded] = useFonts({ Inter_400Regular, Inter_600SemiBold, Inter_700Bold });
   const trigger = useRef<View>(null);
   const [anchor, setAnchor] = useState({ top: 80, right: 16 });
   const palette = getNativePalette(isDark, accent);
-  const styles = useMemo(() => createAuthActionsStyles(isDark, accent), [isDark, accent]);
+  const styles = useMemo(() => createAuthActionsStyles(isDark, accent, fontsLoaded), [isDark, accent, fontsLoaded]);
   const { user, ready, error, busy } = state;
   const darkHeaderSignIn = isDark && scope.includes(`header`);
 

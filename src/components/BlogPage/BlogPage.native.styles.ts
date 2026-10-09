@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   heroCopy: { gap: 18 },
   heroIntro: { gap: 28 },
   heroCopyWide: { flex: 1 },
+  heading: { fontSize: 30, lineHeight: 39, letterSpacing: -0.9 },
   heroBadgeWide: { alignSelf: `center` },
   heroBadge: { maxWidth: 260, alignSelf: `flex-end` },
   heroIntroWide: { flexDirection: `row`, alignItems: `center` },

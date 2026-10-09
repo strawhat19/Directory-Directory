@@ -5,6 +5,7 @@ import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import { useSearchAccent } from '../../shared/landing/useSearchAccent';
+import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
 import { createDirectoryPaginationStyles } from './DirectoryPagination.native.styles';
 
 type DirectoryPaginationProps = {
@@ -22,6 +23,7 @@ export default function DirectoryPagination({
 }: DirectoryPaginationProps) {
     const accent = useSearchAccent();
     const { isDark } = useTheme();
+    const { styles: common } = useBlogPresentation();
     const palette = useMemo(() => getNativePalette(isDark, accent), [isDark, accent]);
     const styles = useMemo(() => createDirectoryPaginationStyles(palette), [palette]);
     const firstPage = currentPage === 1;
@@ -83,7 +85,7 @@ export default function DirectoryPagination({
                         >
                             <Text
                                 {...elementProps(`directory-pagination-page-label`, `${page}`)}
-                                style={[styles.label, active && styles.activeLabel]}
+                                style={[common.actionLabel, styles.label, active && styles.activeLabel]}
                             >
                                 {page}
                             </Text>

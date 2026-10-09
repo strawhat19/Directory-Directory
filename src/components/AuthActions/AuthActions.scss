@@ -30,16 +30,12 @@
     place-items: center;
     background: var(--dd-paper);
     border: 1px solid var(--dd-line);
-    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    transition: box-shadow 220ms ease, border-color 220ms ease;
 
     &:hover,
     &[aria-expanded='true'] {
       border-color: var(--dd-accent);
       box-shadow: 0 4px 14px color-mix(in srgb, var(--dd-accent) 18%, transparent);
-    }
-
-    &:hover {
-      transform: translateY(-2px);
     }
 
     &:disabled {

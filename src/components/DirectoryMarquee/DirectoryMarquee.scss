@@ -21,18 +21,12 @@
     &[data-dragging='true'] {
       cursor: grabbing;
     }
-
-    &[data-measured='true'] .directory-marquee__track {
-      opacity: 1;
-    }
   }
 
   &__track {
-    opacity: 0;
     display: flex;
     width: max-content;
     will-change: transform;
-    transition: opacity 220ms ease;
   }
 
   &__cycle {

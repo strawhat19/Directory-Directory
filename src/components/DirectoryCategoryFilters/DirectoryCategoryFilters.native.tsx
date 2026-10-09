@@ -1,9 +1,11 @@
 import Icon from '../Icon/Icon';
 import { Pressable, Text, View } from 'react-native';
 import { elementProps } from '../../shared/ui/elementProps';
+import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
 import { useNativeDirectoryCategoryFilters } from './useNativeDirectoryCategoryFilters';
 
 export default function DirectoryCategoryFilters() {
+    const { styles: common } = useBlogPresentation();
     const { rows, colors, styles, accents, category, changeCategory, setContainerWidth } = useNativeDirectoryCategoryFilters();
 
     return (
@@ -57,7 +59,7 @@ export default function DirectoryCategoryFilters() {
                                 <Text
                                     {...elementProps(`directory-category-filter-label`, id)}
                                     numberOfLines={1}
-                                    style={[styles.label, { color: active ? accent.color : colors.ink }]}
+                                    style={[common.actionLabel, styles.label, { color: active ? accent.color : colors.ink }]}
                                 >
                                     {item.label}
                                 </Text>

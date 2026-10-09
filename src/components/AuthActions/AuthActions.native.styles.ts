@@ -2,8 +2,11 @@ import { StyleSheet } from 'react-native';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import type { SearchAccent } from '../../shared/landing/searchScopes';
 
-export const createAuthActionsStyles = (isDark: boolean, accent?: SearchAccent) => {
+export const createAuthActionsStyles = (isDark: boolean, accent?: SearchAccent, fontsLoaded = false) => {
   const palette = getNativePalette(isDark, accent);
+  const bold = fontsLoaded ? `Inter_700Bold` : undefined;
+  const regular = fontsLoaded ? `Inter_400Regular` : undefined;
+  const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
 
   return StyleSheet.create({
   actions: {
@@ -27,6 +30,7 @@ export const createAuthActionsStyles = (isDark: boolean, accent?: SearchAccent) 
   },
   label: {
     fontSize: 12,
+    fontFamily: regular,
     color: palette.blue,
   },
   white: {
@@ -57,7 +61,8 @@ export const createAuthActionsStyles = (isDark: boolean, accent?: SearchAccent) 
   },
   initial: {
     fontSize: 16,
-    fontWeight: `700`,
+    fontFamily: bold,
+    fontWeight: fontsLoaded ? undefined : `700`,
   },
   skeleton: {
     width: 44,
@@ -105,7 +110,8 @@ export const createAuthActionsStyles = (isDark: boolean, accent?: SearchAccent) 
   },
   menuLabel: {
     fontSize: 12,
-    fontWeight: `600`,
+    fontFamily: semibold,
+    fontWeight: fontsLoaded ? undefined : `600`,
     color: palette.ink,
   },
   signOut: {
@@ -115,7 +121,8 @@ export const createAuthActionsStyles = (isDark: boolean, accent?: SearchAccent) 
   },
   signOutLabel: {
     fontSize: 12,
-    fontWeight: `600`,
+    fontFamily: semibold,
+    fontWeight: fontsLoaded ? undefined : `600`,
     color: palette.red,
   },
   itemPressed: {

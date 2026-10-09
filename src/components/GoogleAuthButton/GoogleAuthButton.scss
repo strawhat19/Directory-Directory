@@ -13,7 +13,7 @@
     justify-content: center;
     border: 1px solid var(--dd-line);
     cursor: not-allowed;
-    font: 500 14px/20px 'Google Sans', 'Roboto', Arial, sans-serif;
+    font: 500 14px/20px var(--dd-font);
     -webkit-text-fill-color: #1f1f1f;
   }
   &__logo { flex: none; width: 20px; height: 20px; display: block; object-fit: contain; }

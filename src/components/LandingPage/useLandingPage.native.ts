@@ -47,6 +47,7 @@ export function useLandingPage() {
     const pricingLayout = useRef<{ y: number; height: number } | null>(null);
     const scrollToTopLayout = useRef<{ y: number; height: number } | null>(null);
     const exploreOffset = useRef(0);
+    const categoriesOffset = useRef(0);
     const exploreGridOffset = useRef(0);
     const exploreControlsHeight = useRef(0);
     const pendingScroll = useRef(false);
@@ -195,6 +196,16 @@ export function useLandingPage() {
         const offset = mainOffset.current + searchLayout.current.y - headerHeight.current - 18;
         scroll.current?.scrollTo({ y: Math.max(0, offset), animated: !reduceMotion });
         setTimeout(() => searchInput.current?.focus(), reduceMotion ? 0 : 300);
+    };
+
+    const scrollToExplore = () => {
+        const offset = mainOffset.current + exploreOffset.current - headerHeight.current - 18;
+        scroll.current?.scrollTo({ y: Math.max(0, offset), animated: !reduceMotion });
+    };
+
+    const scrollToCategories = () => {
+        const offset = mainOffset.current + categoriesOffset.current - headerHeight.current - 18;
+        scroll.current?.scrollTo({ y: Math.max(0, offset), animated: !reduceMotion });
     };
 
     const scrollToResults = () => {
@@ -427,6 +438,8 @@ export function useLandingPage() {
         showScrollToTop,
         scrollToTopOverPricing,
         scrollToTop,
+        scrollToExplore,
+        scrollToCategories,
         scrollToHeroSearch,
         contentWidth,
         categoryItems,
@@ -438,6 +451,7 @@ export function useLandingPage() {
         selectedAccent,
         selectedIsSaved,
         setExploreLayout,
+        setCategoriesOffset: (offset: number) => { categoriesOffset.current = offset; },
         setExploreGridOffset: (offset: number) => { exploreGridOffset.current = offset; },
         setExploreControlsLayout: (offset: number, height: number) => {
             exploreControlsHeight.current = height;

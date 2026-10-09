@@ -36,14 +36,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 200ms ease, transform 200ms ease;
+    transition: background-color 200ms ease;
     &:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
   }
   &__arrow {
     color: var(--dd-ink);
     background: var(--dd-paper);
     box-shadow: 0 4px 14px #00000014;
-    &:hover:not(:disabled) { transform: translateY(-2px); }
   }
   &__arrow { width: 44px; flex: none; }
   &__arrow--previous .featured-carousel__arrow-icon { transform: rotate(180deg); }

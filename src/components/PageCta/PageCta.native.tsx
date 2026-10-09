@@ -38,6 +38,7 @@ const PageCta = ({ content, banner = false, compact = false, fullBleed = true, p
   const patternSize = content.pattern === `dots` ? { width: 160, height: 120 } : content.pattern === `rings` ? { width: 240, height: 240 } : { width: 240, height: 168 };
   const patternStyles = content.pattern === `dots` ? [styles.dotsTop, styles.dotsBottom] : content.pattern === `rings` ? [styles.ringsTop, styles.ringsBottom] : [styles.gridTop, styles.gridBottom];
   const id = content.id;
+  const isBlogCta = id === `blog-directory-cta` || id.startsWith(`article-cta-`);
   const primaryIconId = id === `blog-directory-cta` && content.primary.icon === `grid` ? `${id}-grid-icon` : `${id}-primary-icon`;
 
   return (
@@ -45,7 +46,7 @@ const PageCta = ({ content, banner = false, compact = false, fullBleed = true, p
       {...elementProps(id)}
       style={[
         styles.section,
-        compact && styles.compact,
+        (compact || isBlogCta) && styles.compact,
         banner && styles.banner,
         !fullBleed && styles.contained,
         { width: fullBleed ? width : `100%`, backgroundColor: accentColor, paddingHorizontal: contentPadding, marginHorizontal: fullBleed ? -inset : 0 },
@@ -79,9 +80,9 @@ const PageCta = ({ content, banner = false, compact = false, fullBleed = true, p
       <View {...elementProps(`${id}-content`)} style={[styles.content, { maxWidth: Math.max(0, parentMaxWidth - contentPadding * 2) }]}>
         <View
           {...elementProps(`${id}-card`)}
-          style={[styles.card, compact && styles.cardCompact, { flexDirection: wide ? `row` : `column`, borderColor: palette.border, backgroundColor: palette.surface }, banner && styles.cardBanner]}
+          style={[styles.card, (compact || isBlogCta) && styles.cardCompact, { flexDirection: wide ? `row` : `column`, borderColor: palette.border, backgroundColor: palette.surface }, banner && styles.cardBanner]}
         >
-          <View {...elementProps(`${id}-copy`)} style={[styles.copy, wide ? { flex: 1 } : { width: `100%` }]}>
+          <View {...elementProps(`${id}-copy`)} style={[styles.copy, isBlogCta && styles.blogCopy, wide ? { flex: 1 } : { width: `100%` }]}>
             {!banner ? <View {...elementProps(`${id}-eyebrow`)} style={common.eyebrow}>
               <Icon size={15} name={icon} color={textColor} id={`${id}-eyebrow-icon`} className={`${id}-eyebrow-icon`} />
               <Text {...elementProps(`${id}-eyebrow-label`)} style={[common.eyebrowLabel, { color: textColor }]}>{content.eyebrow}</Text>
@@ -91,7 +92,7 @@ const PageCta = ({ content, banner = false, compact = false, fullBleed = true, p
                 <Icon size={24} name={icon} color={bannerInk} id={`${id}-heading-icon`} className={`${id}-heading-icon`} />
                 <Text {...elementProps(`${id}-heading`)} accessibilityRole={`header`} style={[common.title, styles.heading, styles.bannerHeadingLabel, { color: bannerInk }]}>{content.title}</Text>
               </View>
-            ) : <Text {...elementProps(`${id}-heading`)} accessibilityRole={`header`} style={[common.title, styles.heading, compact && styles.headingCompact]}>{content.title}</Text>}
+            ) : <Text {...elementProps(`${id}-heading`)} accessibilityRole={`header`} style={[common.title, styles.heading, compact && styles.headingCompact, isBlogCta && styles.blogHeading]}>{content.title}</Text>}
             <Text {...elementProps(`${id}-text`)} style={[common.paragraph, banner && { color: bannerInk }]}>{content.description}</Text>
           </View>
           <View {...elementProps(`${id}-actions`)} style={[styles.actions, { alignSelf: wide ? `center` : `flex-start` }]}>

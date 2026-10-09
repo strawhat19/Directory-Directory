@@ -8,6 +8,7 @@ import CategoryGrid from '../CategoryGrid/CategoryGrid'
 import { useLandingPage } from './useLandingPage.web'
 import PricingSection from '../PricingSection/PricingSection'
 import DirectoryPreview from '../DirectoryPreview/DirectoryPreview'
+import DirectoryIntroCta from '../DirectoryIntroCta/DirectoryIntroCta'
 import DirectoryExplorer from '../DirectoryExplorer/DirectoryExplorer'
 import FeaturedArticleCarousel from '../FeaturedArticleCarousel/FeaturedArticleCarousel'
 import { smoothScrollToElement } from '../../shared/navigation/smoothScrollToElement'
@@ -44,6 +45,7 @@ export default function LandingPage() {
           <SiteHeader />
           <main id={`landing-main`} className={`landing-main`}>
             <Hero onExplore={scrollToSection} />
+            <DirectoryIntroCta onExplore={() => scrollToSection(`explore`)} />
             <CategoryGrid onExplore={() => scrollToSection(`explore`)} />
             <FeaturedArticleCarousel scope={`landing`} />
             <DirectoryExplorer />

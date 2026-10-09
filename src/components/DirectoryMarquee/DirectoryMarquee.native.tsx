@@ -7,6 +7,7 @@ import { useTheme } from '../../shared/theme/useTheme';
 import { elementProps } from '../../shared/ui/elementProps';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import { popularDirectories } from '../../shared/navigation/popularDirectories';
+import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
 
 type DirectoryMarqueeProps = {
   scope?: string;
@@ -16,6 +17,7 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
   const { isDark } = useTheme();
   const palette = getNativePalette(isDark);
   const { width } = useWindowDimensions();
+  const { styles: common } = useBlogPresentation();
   const fadeWidth = Math.max(32, Math.min(72, width * 0.06));
   const {
     copies,
@@ -94,7 +96,7 @@ export default function DirectoryMarquee({ scope = `header` }: DirectoryMarqueeP
                     id={`directory-marquee-pill-icon-${scope}-${copyIndex}-${directory.id}`}
                   />
                   <Text
-                    style={[styles.label, { color }]}
+                    style={[common.actionLabel, styles.label, { color }]}
                     {...elementProps(`directory-marquee-pill-label`, `${scope}-${copyIndex}-${directory.id}`)}
                   >
                     {directory.label}

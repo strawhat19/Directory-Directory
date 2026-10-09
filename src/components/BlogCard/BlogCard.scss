@@ -1,7 +1,7 @@
 .blog-card {
-  gap: 16px;
+  gap: 14px;
   display: flex;
-  padding: 26px;
+  padding: 22px;
   min-width: 0;
   overflow: visible;
   position: relative;
@@ -24,7 +24,7 @@
   &__top { gap: 12px; display: flex; align-items: center; }
   &__symbol { width: 46px; height: 46px; flex: none; display: grid; border-radius: 12px; place-items: center; color: var(--blog-color); background: var(--blog-tint); }
   &__category { margin: 0; font-size: 9px; color: var(--blog-color); }
-  &__title { margin: 0; font-size: 22px; font-weight: 800; line-height: 1.4; letter-spacing: -0.5px; }
+  &__title { margin: 0; font-size: 20px; font-weight: 650; line-height: 1.35; letter-spacing: -0.5px; }
   &__title-link { font: inherit; font-weight: inherit; color: var(--dd-ink); transition: color 220ms ease; &:hover { color: var(--blog-color); } }
   &__excerpt { margin: 0; font-size: 14px; line-height: 1.9; color: var(--dd-muted); }
   &__meta { gap: 12px; display: flex; flex-wrap: wrap; font-size: 12px; margin-top: auto; padding-top: 19px; color: var(--dd-muted); border-top: 1px solid var(--dd-line); }
