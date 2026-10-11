@@ -91,7 +91,7 @@ export default function PricingSection({ horizontalInset = 0, onLayout }: Pricin
                             </View>
                             <Text
                                 {...elementProps(`pricing-section-plan-name`, plan.id)}
-                                style={[styles.planName, { color: plan.color }]}
+                                style={styles.planName}
                             >
                                 {plan.name}
                             </Text>

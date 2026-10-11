@@ -35,6 +35,7 @@ export default function SiteHeader() {
     toggleTheme,
     notifications,
     searchVisible,
+    showAccountActions,
     notificationsOpen,
     toggleNotifications,
   } = useSiteHeader()
@@ -259,8 +260,13 @@ export default function SiteHeader() {
                 </Link>
               ))}
             </nav>
+            {!showAccountActions && (
+              <div id={`header-menu-footer`} className={`site-header__menu-footer`}>
+                <AuthActions scope={`header`} />
+              </div>
+            )}
           </div>
-          <AuthActions scope={`header`} />
+          {showAccountActions && <AuthActions scope={`header`} />}
         </div>
       </div>
     </header>

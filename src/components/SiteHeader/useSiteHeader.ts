@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePathname, useRouter } from 'expo-router'
+import { useAuth } from '../../shared/auth/useAuth'
 import { useTheme } from '../../shared/theme/useTheme'
 import { siteHeaderNavigation } from '../../shared/navigation/siteNavigation'
 
@@ -8,6 +9,7 @@ export function useSiteHeader() {
   const notifications = useRef<HTMLDivElement>(null)
   const pathname = usePathname()
   const router = useRouter()
+  const { user, ready } = useAuth()
   const { isDark, toggleTheme } = useTheme()
   const [headerHeight, setHeaderHeight] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -140,6 +142,7 @@ export function useSiteHeader() {
     toggleTheme,
     notifications,
     searchVisible,
+    showAccountActions: Boolean(user) || !ready,
     notificationsOpen,
     toggleNotifications: () => setNotificationsOpen((open) => !open),
   }

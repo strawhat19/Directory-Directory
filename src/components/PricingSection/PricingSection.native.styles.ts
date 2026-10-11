@@ -127,6 +127,7 @@ export const createPricingStyles = (isDark: boolean, fontsLoaded = false) => {
             marginTop: 5,
             fontSize: 23,
             lineHeight: 31,
+            color: palette.ink,
             fontFamily: bold,
             fontWeight: fontsLoaded ? undefined : `700`,
         },

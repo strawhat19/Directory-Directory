@@ -60,7 +60,8 @@
     display: none;
   }
 
-  &__actions {
+  &__actions,
+  &__menu-footer {
     display: contents;
   }
 
@@ -94,7 +95,8 @@
     align-items: center;
   }
 
-  &__controls > .auth-actions {
+  &__controls > .auth-actions,
+  &__menu-footer > .auth-actions {
     order: 3;
   }
 
@@ -355,6 +357,21 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
+    &__menu-footer {
+      order: 2;
+      width: 100%;
+      display: flex;
+      padding-top: 14px;
+      justify-content: flex-end;
+      border-top: 1px solid var(--dd-line);
+
+      > .auth-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     &__nav-link {
       min-height: 44px;
       padding: 9px 12px;
@@ -373,7 +390,8 @@
       margin-left: auto;
     }
 
-    &__controls > .auth-actions {
+    &__controls > .auth-actions,
+    &__menu-footer > .auth-actions {
       gap: 8px;
       order: 3;
       margin-left: 0;
@@ -414,7 +432,8 @@
       gap: 6px;
     }
 
-    &__controls > .auth-actions {
+    &__controls > .auth-actions,
+    &__menu-footer > .auth-actions {
       gap: 6px;
 
       &:not(.auth-actions--signed-in) {
