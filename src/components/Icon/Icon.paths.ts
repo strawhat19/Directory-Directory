@@ -1,6 +1,7 @@
 import type { IconName } from './Icon.types';
 
 export const iconPaths: Record<IconName, readonly string[]> = {
+  eye: [`M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z`, `M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z`],
   map: [`m9 18-6 3V6l6-3 6 3 6-3v15l-6 3-6-3Z`, `M9 3v15M15 6v15`],
   flag: [`M4 22V3`, `M4 3c4-3 8 3 12 0v10c-4 3-8-3-12 0`],
   trophy: [`M8 3h8v6a4 4 0 0 1-8 0V3Z`, `M8 5H4v2a4 4 0 0 0 4 4M16 5h4v2a4 4 0 0 1-4 4M12 13v5M8 21h8M10 18h4v3h-4v-3Z`],
@@ -13,6 +14,7 @@ export const iconPaths: Record<IconName, readonly string[]> = {
   pause: [`M8 4v16M16 4v16`],
   close: [`m6 6 12 12M18 6 6 18`],
   check: [`m5 12 4 4L19 6`],
+  filter: [`M3 4h18l-7 8v7l-4 2v-9L3 4Z`],
   menu: [`M4 6h16M4 12h16M4 18h16`],
   sun: [`M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42`, `M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z`],
   moon: [
@@ -37,6 +39,7 @@ export const iconPaths: Record<IconName, readonly string[]> = {
   'arrow-right': [`M4 12h15m-6-6 6 6-6 6`],
   'arrow-up': [`M12 19V5m-7 7 7-7 7 7`],
   'chevron-up': [`m6 15 6-6 6 6`],
+  'chevron-right': [`m9 6 6 6-6 6`],
   'arrow-up-right': [`M6 18 18 6M6 6h12v12`],
   search: [`M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z`, `m15 15 6 6`],
   bookmark: [`M6 4h12v17l-6-4-6 4V4Z`],

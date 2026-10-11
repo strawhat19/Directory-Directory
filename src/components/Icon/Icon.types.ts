@@ -1,4 +1,5 @@
 export type IconName =
+  | `eye`
   | `map`
   | `grid`
   | `flag`
@@ -22,6 +23,7 @@ export type IconName =
   | `dragon`
   | `folder`
   | `shield`
+  | `filter`
   | `log-in`
   | `design`
   | `search`
@@ -43,6 +45,7 @@ export type IconName =
   | `chevron-up`
   | `communities`
   | `clapperboard`
+  | `chevron-right`
   | `arrow-up-right`;
 
 export type IconProps = {

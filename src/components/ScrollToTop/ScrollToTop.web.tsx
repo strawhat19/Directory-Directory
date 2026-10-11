@@ -2,8 +2,8 @@ import './ScrollToTop.scss'
 import Icon from '../Icon/Icon'
 import { useScrollToTop } from './useScrollToTop.web'
 
-export default function ScrollToTop() {
-  const { visible, buttonRef, overPricing, scrollToTop } = useScrollToTop()
+export default function ScrollToTop({ heroSelector = `#top` }: { heroSelector?: string } = {}) {
+  const { visible, buttonRef, overPricing, scrollToTop } = useScrollToTop(heroSelector)
 
   return (
     <button

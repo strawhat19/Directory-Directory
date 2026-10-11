@@ -18,11 +18,12 @@ import GlassBackdrop from '../GlassBackdrop/GlassBackdrop.native';
 import DirectoryMarquee from '../DirectoryMarquee/DirectoryMarquee';
 import PricingSection from '../PricingSection/PricingSection.native';
 import DirectoryIntroCta from '../DirectoryIntroCta/DirectoryIntroCta';
+import DirectoryDetails from '../DirectoryDetails/DirectoryDetails';
 import { heroMagicTypeTerms } from '../../shared/landing/magicTypeTerms';
 import DirectoryScrollButton from '../DirectoryScrollButton/DirectoryScrollButton';
 import FeaturedArticleCarousel from '../FeaturedArticleCarousel/FeaturedArticleCarousel';
 import { siteFooterNavigation, siteHeaderNavigation } from '../../shared/navigation/siteNavigation';
-import { Alert, Animated, Linking, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
+import { Alert, Animated, Modal, Pressable, ScrollView, Text, TextInput, View, useWindowDimensions } from 'react-native';
 
 const firstHeroMagicTerm = heroMagicTypeTerms[0] ?? `Directory`;
 
@@ -155,6 +156,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
         toggleTheme,
         showHeaderSearch,
         showScrollToTop,
+        scrollToTopBottomOffset,
         scrollToTopOverPricing,
         scrollToTop,
         scrollToExplore,
@@ -165,8 +167,6 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
         searchIconItems,
         searchThemeStyle,
         searchPlaceholder,
-        selectedAccent,
-        selectedIsSaved,
         searchBoxThemeStyle,
         showSearchResults,
         selectSearchScope,
@@ -176,6 +176,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
         setHeroLayout,
         setCategoriesOffset,
         setPricingLayout,
+        setFooterOffset,
         setScrollToTopLayout,
         setViewportHeight,
         headerSearchStyle,
@@ -189,10 +190,6 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
             { text: `Sign up`, onPress: () => router.push(`/sign-up`) },
         ],
     );
-    const visitDirectory = (href: string) => {
-        void Linking.openURL(href).catch(() => Alert.alert(`Unable To Open Website`, `Please Try Again`));
-    };
-
     const headerMenuLinks = siteHeaderNavigation.map((item) => (
         <Link
             {...elementProps(`landing-header-menu-link`, item.id)}
@@ -311,21 +308,6 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                         </Text>
                                     </View>
                                 </Pressable>
-                                <Pressable
-                                    {...elementProps(`landing-header-theme-button`)}
-                                    onPress={toggleTheme}
-                                    accessibilityRole={`button`}
-                                    accessibilityLabel={isDark ? `Switch to light mode` : `Switch to dark mode`}
-                                    style={({ pressed }) => [styles.headerUtilityButton, pressed && styles.pressed]}
-                                >
-                                    <Icon
-                                        id={`landing-header-theme-icon`}
-                                        className={`landing-header-theme-icon`}
-                                        name={isDark ? `sun` : `moon`}
-                                        color={colors.white}
-                                        size={17}
-                                    />
-                                </Pressable>
                                 <Animated.View
                                     {...elementProps(`landing-header-search-container`)}
                                     pointerEvents={showHeaderSearch ? `auto` : `none`}
@@ -349,6 +331,21 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                         />
                                     </Pressable>
                                 </Animated.View>
+                                <Pressable
+                                    {...elementProps(`landing-header-theme-button`)}
+                                    onPress={toggleTheme}
+                                    accessibilityRole={`button`}
+                                    accessibilityLabel={isDark ? `Switch to light mode` : `Switch to dark mode`}
+                                    style={({ pressed }) => [styles.headerUtilityButton, styles.headerThemeButton, pressed && styles.pressed]}
+                                >
+                                    <Icon
+                                        id={`landing-header-theme-icon`}
+                                        className={`landing-header-theme-icon`}
+                                        name={isDark ? `sun` : `moon`}
+                                        color={isDark ? `#000` : colors.white}
+                                        size={17}
+                                    />
+                                </Pressable>
                             </View>
                             <AuthActions scope={`landing-header`} />
                         </View>
@@ -626,7 +623,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                         />
                     )}
 
-                    <View {...elementProps(`landing-footer`)} style={styles.footer}>
+                    <View {...elementProps(`landing-footer`)} style={styles.footer} onLayout={(event) => setFooterOffset(event.nativeEvent.layout.y)}>
                         <View {...elementProps(`landing-footer-bottom`)} style={styles.footerBottom}>
                             <View {...elementProps(`landing-footer-brand`)} style={styles.footerBrand}>
                                 <BrandMark id={`landing-footer-mark`} className={`landing-footer-mark`} size={26} />
@@ -634,11 +631,13 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                     {`Directory Directory`}
                                 </Text>
                             </View>
-                            <View {...elementProps(`landing-footer-legal`)} style={styles.footerLegal}>
-                                <Text {...elementProps(`landing-footer-copyright`)} style={styles.copyright}>
-                                    {`© ${year ?? `—`} Directory Directory`}
+                            <View {...elementProps(`landing-footer-legal`)} style={[styles.footerLegal, !wide && styles.footerLegalMobile]}>
+                                <Text {...elementProps(`landing-footer-copyright`)} style={[styles.copyright, !wide && styles.copyrightMobile]}>
+                                    <Text {...elementProps(`landing-footer-copyright-symbol`)} style={styles.copyrightAccent}>{`©`}</Text>
+                                    {` ${year ?? `—`} Directory Directory`}
+                                    <Text {...elementProps(`landing-footer-copyright-period`)} style={styles.copyrightAccent}>{`.`}</Text>
                                 </Text>
-                                <View {...elementProps(`landing-footer-navigation`)} style={[styles.menuScrollContent, styles.footerNavigation]}>
+                                <View {...elementProps(`landing-footer-navigation`)} style={[styles.menuScrollContent, styles.footerNavigation, !wide && styles.footerNavigationMobile]}>
                                     {siteFooterNavigation.map((item) => (
                                         <Link key={item.id} href={item.href} asChild>
                                             <Pressable
@@ -668,11 +667,18 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                                     accessibilityRole={`link`}
                                     style={({ pressed }) => [styles.footerLink, pressed && styles.pressed]}
                                 >
+                                    <Icon
+                                        size={14}
+                                        name={`globe`}
+                                        color={colors.blue}
+                                        id={`landing-footer-piratechs-globe-icon`}
+                                        className={`landing-footer-piratechs-globe-icon`}
+                                    />
                                     <Text
                                         {...elementProps(`landing-footer-piratechs-label`)}
                                         style={styles.footerLinkLabel}
                                     >
-                                        {`Piratechs`}
+                                        {`Made by Piratechs`}
                                     </Text>
                                     <Icon
                                         id={`landing-footer-piratechs-icon`}
@@ -692,6 +698,7 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
             <ScrollToTop
                 visible={showScrollToTop}
                 onPress={scrollToTop}
+                bottomOffset={scrollToTopBottomOffset}
                 reduceMotion={reduceMotion}
                 overPricing={scrollToTopOverPricing}
                 onLayout={(event) => {
@@ -711,67 +718,23 @@ export default function LandingPage({ discover = false }: { discover?: boolean }
                     {selected && (
                         <View {...elementProps(`landing-modal-card`, selected.id)} style={styles.modalCard}>
                             <View {...elementProps(`landing-modal-header`, selected.id)} style={styles.modalHeader}>
-                                <View
-                                    {...elementProps(`landing-modal-monogram`, selected.id)}
-                                    style={[styles.directoryMonogram, { backgroundColor: selectedAccent.background }]}
-                                >
-                                    <Text
-                                        {...elementProps(`landing-modal-initials`, selected.id)}
-                                        style={[styles.directoryInitials, { color: selectedAccent.color }]}
-                                    >
-                                        {selected.initials}
-                                    </Text>
-                                </View>
                                 <Pressable
                                     {...elementProps(`landing-modal-close`, selected.id)}
                                     onPress={landing.closeDirectory}
                                     accessibilityRole={`button`}
-                                    accessibilityLabel={`Close directory preview`}
+                                    accessibilityLabel={`Close Directory Details`}
                                     style={({ pressed }) => [styles.bookmarkButton, pressed && styles.pressed]}
                                 >
                                     <Icon id={`landing-modal-close-icon`} className={`landing-modal-close-icon`} name={`close`} color={colors.ink} size={22} />
                                 </Pressable>
                             </View>
-                            <Text {...elementProps(`landing-modal-title`, selected.id)} accessibilityRole={`header`} style={styles.modalTitle}>
-                                {selected.name}
-                            </Text>
-                            <Text {...elementProps(`landing-modal-description`, selected.id)} style={styles.modalDescription}>
-                                {selected.summary}
-                            </Text>
-                            <Text {...elementProps(`landing-modal-category`, selected.id)} style={styles.directoryLabel}>
-                                {selected.label}
-                            </Text>
-                            <Pressable
-                                {...elementProps(`landing-modal-visit`, selected.id)}
-                                onPress={() => visitDirectory(selected.href)}
-                                accessibilityRole={`link`}
-                                accessibilityLabel={`Visit ${selected.name} in browser`}
-                                style={({ pressed }) => [styles.modalVisitButton, pressed && styles.pressed]}
+                            <ScrollView
+                                keyboardShouldPersistTaps={`handled`}
+                                style={styles.modalScroll}
+                                {...elementProps(`landing-modal-content`, selected.id)}
                             >
-                                <Icon
-                                    size={18}
-                                    name={`arrow-up-right`}
-                                    color={colors.blue}
-                                    id={`landing-modal-visit-icon-${selected.id}`}
-                                    className={`landing-modal-visit-icon`}
-                                />
-                                <Text {...elementProps(`landing-modal-visit-label`, selected.id)} style={styles.modalVisitLabel}>
-                                    {`Visit Directory`}
-                                </Text>
-                            </Pressable>
-                            <Pressable
-                                {...elementProps(`landing-modal-save`, selected.id)}
-                                disabled={!landing.feedbackReady}
-                                onPress={() => landing.toggleSaved(selected.id)}
-                                accessibilityRole={`button`}
-                                accessibilityState={{ selected: selectedIsSaved, disabled: !landing.feedbackReady }}
-                                style={({ pressed }) => [styles.modalSaveButton, pressed && styles.pressed]}
-                            >
-                                <Icon id={`landing-modal-save-icon`} className={`landing-modal-save-icon`} name={selectedIsSaved ? `check` : `bookmark`} color={colors.white} size={18} />
-                                <Text {...elementProps(`landing-modal-save-label`, selected.id)} style={styles.searchButtonLabel}>
-                                    {selectedIsSaved ? `Saved to your collection` : `Save to your collection`}
-                                </Text>
-                            </Pressable>
+                                <DirectoryDetails directory={selected} scope={`modal`} onNavigate={landing.closeDirectory} />
+                            </ScrollView>
                         </View>
                     )}
                 </View>

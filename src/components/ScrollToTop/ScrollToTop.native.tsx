@@ -4,13 +4,18 @@ import type { ScrollToTopProps } from './ScrollToTop.types';
 import { useScrollToTop } from './useScrollToTop.native';
 import { elementProps } from '../../shared/ui/elementProps';
 
+type NativeScrollToTopProps = ScrollToTopProps & {
+    bottomOffset?: number | Animated.AnimatedInterpolation<number>;
+};
+
 export default function ScrollToTop({
     visible,
     onPress,
     onLayout,
+    bottomOffset,
     reduceMotion,
     overPricing = false,
-}: ScrollToTopProps) {
+}: NativeScrollToTopProps) {
     const {
         styles,
         palette,
@@ -19,7 +24,7 @@ export default function ScrollToTop({
         backgroundStyle,
         defaultIconStyle,
         pricingIconStyle,
-    } = useScrollToTop(visible, reduceMotion, overPricing);
+    } = useScrollToTop(visible, reduceMotion, overPricing, bottomOffset);
 
     return (
         <Animated.View

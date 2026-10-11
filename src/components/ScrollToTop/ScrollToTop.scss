@@ -36,7 +36,7 @@
 @media (max-width: 600px) {
   .scroll-to-top {
     right: max(20px, env(safe-area-inset-right));
-    bottom: max(20px, env(safe-area-inset-bottom));
+    bottom: calc(max(20px, env(safe-area-inset-bottom)) + var(--scroll-to-top-footer-offset, 0px));
   }
 }
 

@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react'
 
-export const useScrollToTop = () => {
+export const useScrollToTop = (heroSelector = `#top`) => {
   const [visible, setVisible] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
   const [overPricing, setOverPricing] = useState(false)
@@ -11,8 +11,9 @@ export const useScrollToTop = () => {
   useEffect(() => {
     const button = buttonRef.current
     const container = button?.closest<HTMLElement>(`#landing-page`)
-    const hero = container?.querySelector<HTMLElement>(`#top`)
+    const hero = container?.querySelector<HTMLElement>(heroSelector)
     const main = container?.querySelector<HTMLElement>(`#landing-main`)
+    const footer = container?.querySelector<HTMLElement>(`#site-footer`)
     const header = container?.querySelector<HTMLElement>(`#site-header`)
     const pricing = container?.querySelector<HTMLElement>(`#pricing`)
 
@@ -27,6 +28,14 @@ export const useScrollToTop = () => {
       const contentTop = containerBounds.top + headerHeight
 
       setVisible(hero.getBoundingClientRect().bottom <= contentTop)
+
+      const footerOffset = window.innerWidth <= 600 && footer
+        ? Math.max(0, window.innerHeight - footer.getBoundingClientRect().top)
+        : 0
+      const footerOffsetValue = `${footerOffset}px`
+      if (button?.style.getPropertyValue(`--scroll-to-top-footer-offset`) !== footerOffsetValue) {
+        button?.style.setProperty(`--scroll-to-top-footer-offset`, footerOffsetValue)
+      }
 
       const buttonBounds = button?.getBoundingClientRect()
       const pricingBounds = pricing?.getBoundingClientRect()
@@ -56,6 +65,7 @@ export const useScrollToTop = () => {
     observer?.observe(hero)
     observer?.observe(container)
     if (main) observer?.observe(main)
+    if (footer) observer?.observe(footer)
     if (button) observer?.observe(button)
     if (header) observer?.observe(header)
     if (pricing) observer?.observe(pricing)
@@ -64,12 +74,13 @@ export const useScrollToTop = () => {
 
     return () => {
       delete container.dataset.pricingVisible
+      button?.style.removeProperty(`--scroll-to-top-footer-offset`)
       observer?.disconnect()
       window.cancelAnimationFrame(frame)
       window.removeEventListener(`resize`, scheduleMeasure)
       container.removeEventListener(`scroll`, scheduleMeasure)
     }
-  }, [])
+  }, [heroSelector])
 
   const scrollToTop = () => {
     cancelScroll.current?.()

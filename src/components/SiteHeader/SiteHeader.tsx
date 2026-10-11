@@ -180,21 +180,6 @@ export default function SiteHeader() {
             </div>
             <button
               type={`button`}
-              id={`header-theme-toggle`}
-              aria-pressed={isDark}
-              onClick={toggleTheme}
-              aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
-              className={`site-header__icon-button site-header__icon-button--primary`}
-            >
-              <Icon
-                size={16}
-                name={isDark ? `sun` : `moon`}
-                id={`header-theme-icon`}
-                className={`site-header__icon`}
-              />
-            </button>
-            <button
-              type={`button`}
               onClick={openSearch}
               id={`header-search-toggle`}
               tabIndex={searchVisible ? 0 : -1}
@@ -209,23 +194,38 @@ export default function SiteHeader() {
                 className={`site-header__icon`}
               />
             </button>
+            <button
+              type={`button`}
+              id={`header-theme-toggle`}
+              aria-pressed={isDark}
+              onClick={toggleTheme}
+              aria-label={isDark ? `Switch to light mode` : `Switch to dark mode`}
+              className={`site-header__icon-button site-header__icon-button--primary site-header__theme-button`}
+            >
+              <Icon
+                size={16}
+                name={isDark ? `sun` : `moon`}
+                id={`header-theme-icon`}
+                className={`site-header__icon`}
+              />
+            </button>
+            <button
+              type={`button`}
+              onClick={toggleMenu}
+              id={`header-menu-toggle`}
+              aria-expanded={menuOpen}
+              aria-controls={`header-actions`}
+              aria-label={menuOpen ? `Close menu` : `Open menu`}
+              className={`site-header__icon-button site-header__icon-button--secondary site-header__menu-toggle`}
+            >
+              <Icon
+                size={16}
+                name={menuOpen ? `close` : `menu`}
+                id={`header-menu-icon`}
+                className={`site-header__icon site-header__menu-icon`}
+              />
+            </button>
           </div>
-          <button
-            type={`button`}
-            onClick={toggleMenu}
-            id={`header-menu-toggle`}
-            aria-expanded={menuOpen}
-            aria-controls={`header-actions`}
-            aria-label={menuOpen ? `Close menu` : `Open menu`}
-            className={`site-header__menu-toggle`}
-          >
-            <Icon
-              size={16}
-              name={menuOpen ? `close` : `menu`}
-              id={`header-menu-icon`}
-              className={`site-header__menu-icon`}
-            />
-          </button>
           <div
             id={`header-actions`}
             className={`site-header__actions${menuOpen ? ` site-header__actions--open` : ``}`}

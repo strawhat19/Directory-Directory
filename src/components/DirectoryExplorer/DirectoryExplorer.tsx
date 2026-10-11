@@ -13,6 +13,7 @@ export default function DirectoryExplorer() {
         topic,
         status,
         topics,
+        mobile,
         results,
         controls,
         viewMode,
@@ -23,12 +24,18 @@ export default function DirectoryExplorer() {
         changeTopic,
         emptySaved,
         hasFilters,
+        filterPanel,
+        filtersOpen,
         resultCount,
+        filterButton,
         clearFilters,
         setViewMode,
         changeStatus,
+        setFiltersOpen,
         selectedStatus,
         directoryTopic,
+        controlsStuck,
+        activeFilterCount,
         directoryStatuses,
         selectedCategory,
         pagedDirectories,
@@ -44,7 +51,7 @@ export default function DirectoryExplorer() {
             <div
                 ref={controls}
                 id={`directory-explorer-sticky-controls`}
-                className={`directory-explorer__sticky-controls`}
+                className={`directory-explorer__sticky-controls${controlsStuck ? ` is-stuck` : ``}`}
             >
                 <div
                     id={`directory-explorer-header`}
@@ -65,7 +72,7 @@ export default function DirectoryExplorer() {
                             >
                                 <Icon
                                     filled
-                                    size={20}
+                                    size={28}
                                     name={`folder`}
                                     id={`directory-explorer-title-icon`}
                                     className={`directory-explorer__title-icon`}
@@ -76,12 +83,6 @@ export default function DirectoryExplorer() {
                                 id={`directory-explorer-title`}
                                 className={`directory-explorer__title`}
                             >
-                                <span
-                                    id={`directory-explorer-title-prefix`}
-                                    className={`directory-explorer__title-prefix`}
-                                >
-                                    {`Explore `}
-                                </span>
                                 {`Directories`}
                             </h2>
                         </div>
@@ -97,9 +98,36 @@ export default function DirectoryExplorer() {
                     <DirectorySearch
                         variant={`explorer`}
                         idPrefix={`directory-explorer-search`}
-                        placeholder={`Search directories…`}
+                        placeholder={mobile ? `Search ${resultCount} Directories` : `Search`}
                         className={`directory-explorer__search`}
                     />
+
+                    <button
+                        type={`button`}
+                        ref={filterButton}
+                        aria-expanded={filtersOpen}
+                        aria-label={`Directory filters${activeFilterCount ? `, ${activeFilterCount} active` : ``}`}
+                        id={`directory-explorer-filter-toggle`}
+                        aria-controls={`directory-explorer-filter-row`}
+                        onClick={() => setFiltersOpen((open) => !open)}
+                        className={`directory-explorer__filter-toggle site-header__icon-button site-header__icon-button--secondary${activeFilterCount ? ` is-active` : ``}`}
+                    >
+                        <Icon
+                            size={17}
+                            name={`filter`}
+                            id={`directory-explorer-filter-toggle-icon`}
+                            className={`directory-explorer__filter-toggle-icon`}
+                        />
+                        {activeFilterCount > 0 ? (
+                            <span
+                                aria-hidden={`true`}
+                                id={`directory-explorer-filter-badge`}
+                                className={`directory-explorer__filter-badge site-header__notification-badge`}
+                            >
+                                {activeFilterCount}
+                            </span>
+                        ) : null}
+                    </button>
 
                     <div
                         id={`directory-explorer-metadata`}
@@ -108,9 +136,22 @@ export default function DirectoryExplorer() {
                         <span
                             aria-live={`polite`}
                             id={`directory-explorer-collection-label`}
-                            className={`directory-explorer__collection-label dd-eyebrow`}
+                            className={`directory-explorer__collection-label`}
+                            aria-label={`${resultCount} ${resultCount === 1 ? `directory` : `directories`}`}
                         >
-                            {`${resultCount} ${resultCount === 1 ? `directory` : `directories`}`}
+                            <span
+                                aria-hidden={`true`}
+                                id={`directory-explorer-collection-prefix`}
+                                className={`directory-explorer__collection-prefix`}
+                            >
+                                {`#`}
+                            </span>
+                            <span
+                                id={`directory-explorer-collection-number`}
+                                className={`directory-explorer__collection-number`}
+                            >
+                                {resultCount}
+                            </span>
                         </span>
 
                         {/* <span
@@ -124,205 +165,218 @@ export default function DirectoryExplorer() {
                 </div>
 
                 <div
+                    role={`group`}
+                    ref={filterPanel}
+                    aria-label={`Directory filters`}
                     id={`directory-explorer-filter-row`}
-                    className={`directory-explorer__filter-row`}
+                    className={`directory-explorer__filter-row${filtersOpen ? ` is-open` : ``}`}
                 >
-                    <div
-                        id={`directory-explorer-toolbar`}
-                        className={`directory-explorer__toolbar`}
-                        data-scroll-left={scrollEdges.left ? `true` : undefined}
-                        data-scroll-right={scrollEdges.right ? `true` : undefined}
-                    >
+                    <div id={`directory-explorer-status-group`} className={`directory-explorer__filter-group`}>
+                        <span id={`directory-explorer-status-heading`} className={`directory-explorer__filter-heading`}>
+                            {`Status`}
+                        </span>
                         <div
-                            ref={viewport}
-                            role={`group`}
-                            aria-label={`Directory filters`}
-                            id={`directory-explorer-topics`}
-                            className={`directory-explorer__topics`}
+                            id={`directory-explorer-toolbar`}
+                            className={`directory-explorer__toolbar`}
+                            data-scroll-left={scrollEdges.left ? `true` : undefined}
+                            data-scroll-right={scrollEdges.right ? `true` : undefined}
                         >
                             <div
-                                ref={track}
-                                id={`directory-explorer-topics-track`}
-                                className={`directory-explorer__topics-track`}
+                                ref={viewport}
+                                role={`group`}
+                                aria-label={`Filter directories by status`}
+                                id={`directory-explorer-topics`}
+                                className={`directory-explorer__topics`}
                             >
-                                {topics.map((item) => (
-                                    <button
-                                        key={item.id}
-                                        type={`button`}
-                                        aria-pressed={!status && topic === item.label}
-                                        onClick={() => changeTopic(item.label)}
-                                        id={`directory-explorer-topic-${item.id}`}
-                                        className={`directory-explorer__topic${!status && topic === item.label ? ` is-active` : ``}`}
-                                    >
-                                        <Icon
-                                            size={13}
-                                            name={item.label === `All` ? `grid` : `sparkles`}
-                                            id={`directory-explorer-topic-${item.id}-icon`}
-                                            className={`directory-explorer__topic-icon`}
-                                        />
+                                <div
+                                    ref={track}
+                                    id={`directory-explorer-topics-track`}
+                                    className={`directory-explorer__topics-track`}
+                                >
+                                    {topics.map((item) => (
+                                        <button
+                                            key={item.id}
+                                            type={`button`}
+                                            aria-pressed={!status && topic === item.label}
+                                            onClick={() => changeTopic(item.label)}
+                                            id={`directory-explorer-topic-${item.id}`}
+                                            className={`directory-explorer__topic directory-category-filters__button${!status && topic === item.label ? ` is-active` : ``}`}
+                                        >
+                                            <Icon
+                                                size={14}
+                                                name={item.label === `All` ? `grid` : `sparkles`}
+                                                id={`directory-explorer-topic-${item.id}-icon`}
+                                                className={`directory-explorer__topic-icon directory-category-filters__icon`}
+                                            />
 
-                                        <span
-                                            id={`directory-explorer-topic-${item.id}-label`}
-                                            className={`directory-explorer__topic-label`}
-                                        >
-                                            {item.label}
-                                        </span>
+                                            <span
+                                                id={`directory-explorer-topic-${item.id}-label`}
+                                                className={`directory-explorer__topic-label directory-category-filters__label`}
+                                            >
+                                                {item.label}
+                                            </span>
 
-                                        <span
-                                            id={`directory-explorer-topic-${item.id}-count`}
-                                            className={`directory-explorer__topic-count`}
+                                            <span
+                                                id={`directory-explorer-topic-${item.id}-count`}
+                                                className={`directory-explorer__topic-count directory-category-filters__count`}
+                                            >
+                                                {item.count}
+                                            </span>
+                                        </button>
+                                    ))}
+                                    {directoryStatuses.map((item) => (
+                                        <button
+                                            key={item.id}
+                                            type={`button`}
+                                            title={item.description}
+                                            aria-pressed={status === item.id}
+                                            id={`directory-explorer-status-${item.id}`}
+                                            onClick={() => changeStatus(status === item.id ? `` : item.id)}
+                                            className={`directory-explorer__status directory-category-filters__button directory-category-filters__button--${item.tone === `gray` ? `ink` : item.tone}${status === item.id ? ` is-active` : ``}`}
                                         >
-                                            {item.count}
-                                        </span>
-                                    </button>
-                                ))}
-                                {directoryStatuses.map((item) => (
-                                    <button
-                                        key={item.id}
-                                        type={`button`}
-                                        title={item.description}
-                                        aria-pressed={status === item.id}
-                                        id={`directory-explorer-status-${item.id}`}
-                                        onClick={() => changeStatus(status === item.id ? `` : item.id)}
-                                        className={`directory-explorer__topic directory-explorer__status${status === item.id ? ` is-active` : ``}`}
-                                    >
-                                        <Icon
-                                            size={13}
-                                            name={item.icon}
-                                            id={`directory-explorer-status-${item.id}-icon`}
-                                            className={`directory-explorer__topic-icon directory-explorer__status-icon directory-explorer__status-icon--${item.tone}`}
-                                        />
-                                        <span
-                                            id={`directory-explorer-status-${item.id}-label`}
-                                            className={`directory-explorer__topic-label`}
-                                        >
-                                            {item.label}
-                                        </span>
-                                        <span
-                                            id={`directory-explorer-status-${item.id}-count`}
-                                            className={`directory-explorer__topic-count`}
-                                        >
-                                            {item.count}
-                                        </span>
-                                    </button>
-                                ))}
+                                            <Icon
+                                                size={14}
+                                                name={item.icon}
+                                                id={`directory-explorer-status-${item.id}-icon`}
+                                                className={`directory-explorer__status-icon directory-category-filters__icon`}
+                                            />
+                                            <span
+                                                id={`directory-explorer-status-${item.id}-label`}
+                                                className={`directory-explorer__status-label directory-category-filters__label`}
+                                            >
+                                                {item.label}
+                                            </span>
+                                            <span
+                                                id={`directory-explorer-status-${item.id}-count`}
+                                                className={`directory-explorer__status-count directory-category-filters__count`}
+                                            >
+                                                {item.count}
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                        </div>
 
-                        {/* <div
-                            role={`group`}
-                            aria-label={`Directory layout`}
-                            id={`directory-explorer-view-controls`}
-                            className={`directory-explorer__view-controls`}
+                            {/* <div
+                                role={`group`}
+                                aria-label={`Directory layout`}
+                                id={`directory-explorer-view-controls`}
+                                className={`directory-explorer__view-controls`}
+                            >
+                                {([`grid`, `list`] as const).map((view) => (
+                                    <button
+                                        key={view}
+                                        type={`button`}
+                                        aria-label={`${view === `grid` ? `Grid` : `List`} view`}
+                                        aria-pressed={viewMode === view}
+                                        onClick={() => setViewMode(view)}
+                                        id={`directory-explorer-view-${view}`}
+                                        className={`directory-explorer__view dd-icon-button${viewMode === view ? ` is-active` : ``}`}
+                                    >
+                                        <Icon
+                                            size={18}
+                                            name={view}
+                                            id={`directory-explorer-view-${view}-icon`}
+                                            className={`directory-explorer__view-icon`}
+                                        />
+                                    </button>
+                                ))}
+                            </div> */}
+                        </div>
+                    </div>
+
+                    <div id={`directory-explorer-category-group`} className={`directory-explorer__filter-group`}>
+                        <span id={`directory-explorer-category-heading`} className={`directory-explorer__filter-heading`}>
+                            {`Categories`}
+                        </span>
+                        <DirectoryCategoryFilters />
+                    </div>
+
+                    {/* <p id={`directory-explorer-feedback-note`} className={`directory-explorer__feedback-note`}>
+                        {`New Means Recently Added Here • Your Votes And Reviews Stay On This Device`}
+                    </p> */}
+
+                    {hasFilters && (
+                        <div
+                            id={`directory-explorer-filters`}
+                            className={`directory-explorer__filters`}
                         >
-                            {([`grid`, `list`] as const).map((view) => (
-                                <button
-                                    key={view}
-                                    type={`button`}
-                                    aria-label={`${view === `grid` ? `Grid` : `List`} view`}
-                                    aria-pressed={viewMode === view}
-                                    onClick={() => setViewMode(view)}
-                                    id={`directory-explorer-view-${view}`}
-                                    className={`directory-explorer__view dd-icon-button${viewMode === view ? ` is-active` : ``}`}
+                            {query.trim() && (
+                                <span
+                                    id={`directory-explorer-query-filter`}
+                                    className={`directory-explorer__filter`}
                                 >
                                     <Icon
-                                        size={18}
-                                        name={view}
-                                        id={`directory-explorer-view-${view}-icon`}
-                                        className={`directory-explorer__view-icon`}
+                                        size={13}
+                                        name={`search`}
+                                        id={`directory-explorer-query-filter-icon`}
+                                        className={`directory-explorer__filter-icon`}
                                     />
-                                </button>
-                            ))}
-                        </div> */}
-                    </div>
 
-                    <DirectoryCategoryFilters />
+                                    <span
+                                        id={`directory-explorer-query-filter-label`}
+                                        className={`directory-explorer__filter-label`}
+                                    >
+                                        {query.trim()}
+                                    </span>
+                                </span>
+                            )}
+
+                            {selectedCategory && (
+                                <span
+                                    id={`directory-explorer-category-filter-${selectedCategory.id}`}
+                                    className={`directory-explorer__filter`}
+                                >
+                                    <Icon
+                                        size={13}
+                                        name={selectedCategory.icon}
+                                        id={`directory-explorer-category-filter-${selectedCategory.id}-icon`}
+                                        className={`directory-explorer__filter-icon`}
+                                    />
+
+                                    <span
+                                        id={`directory-explorer-category-filter-${selectedCategory.id}-label`}
+                                        className={`directory-explorer__filter-label`}
+                                    >
+                                        {selectedCategory.label}
+                                    </span>
+                                </span>
+                            )}
+
+                            {directoryTopic && (
+                                <span id={`directory-explorer-topic-filter`} className={`directory-explorer__filter`}>
+                                    {`#${directoryTopic.replaceAll(/[^a-zA-Z0-9]/g, ``)}`}
+                                </span>
+                            )}
+                            {selectedStatus && (
+                                <span id={`directory-explorer-status-filter`} className={`directory-explorer__filter`} title={selectedStatus.description}>
+                                    {selectedStatus.label}
+                                </span>
+                            )}
+
+                            <button
+                                type={`button`}
+                                onClick={clearFilters}
+                                id={`directory-explorer-clear-filters`}
+                                className={`directory-explorer__clear-filters`}
+                            >
+                                <Icon
+                                    size={13}
+                                    name={`close`}
+                                    id={`directory-explorer-clear-filters-icon`}
+                                    className={`directory-explorer__clear-filters-icon`}
+                                />
+
+                                <span
+                                    id={`directory-explorer-clear-filters-label`}
+                                    className={`directory-explorer__clear-filters-label`}
+                                >
+                                    {`Clear filters`}
+                                </span>
+                            </button>
+                        </div>
+                    )}
                 </div>
-
-                {/* <p id={`directory-explorer-feedback-note`} className={`directory-explorer__feedback-note`}>
-                    {`New Means Recently Added Here • Your Votes And Reviews Stay On This Device`}
-                </p> */}
-
-                {hasFilters && (
-                    <div
-                        id={`directory-explorer-filters`}
-                        className={`directory-explorer__filters`}
-                    >
-                        {query.trim() && (
-                            <span
-                                id={`directory-explorer-query-filter`}
-                                className={`directory-explorer__filter`}
-                            >
-                                <Icon
-                                    size={13}
-                                    name={`search`}
-                                    id={`directory-explorer-query-filter-icon`}
-                                    className={`directory-explorer__filter-icon`}
-                                />
-
-                                <span
-                                    id={`directory-explorer-query-filter-label`}
-                                    className={`directory-explorer__filter-label`}
-                                >
-                                    {query.trim()}
-                                </span>
-                            </span>
-                        )}
-
-                        {selectedCategory && (
-                            <span
-                                id={`directory-explorer-category-filter-${selectedCategory.id}`}
-                                className={`directory-explorer__filter`}
-                            >
-                                <Icon
-                                    size={13}
-                                    name={selectedCategory.icon}
-                                    id={`directory-explorer-category-filter-${selectedCategory.id}-icon`}
-                                    className={`directory-explorer__filter-icon`}
-                                />
-
-                                <span
-                                    id={`directory-explorer-category-filter-${selectedCategory.id}-label`}
-                                    className={`directory-explorer__filter-label`}
-                                >
-                                    {selectedCategory.label}
-                                </span>
-                            </span>
-                        )}
-
-                        {directoryTopic && (
-                            <span id={`directory-explorer-topic-filter`} className={`directory-explorer__filter`}>
-                                {`#${directoryTopic.replaceAll(/[^a-zA-Z0-9]/g, ``)}`}
-                            </span>
-                        )}
-                        {selectedStatus && (
-                            <span id={`directory-explorer-status-filter`} className={`directory-explorer__filter`} title={selectedStatus.description}>
-                                {selectedStatus.label}
-                            </span>
-                        )}
-
-                        <button
-                            type={`button`}
-                            onClick={clearFilters}
-                            id={`directory-explorer-clear-filters`}
-                            className={`directory-explorer__clear-filters`}
-                        >
-                            <Icon
-                                size={13}
-                                name={`close`}
-                                id={`directory-explorer-clear-filters-icon`}
-                                className={`directory-explorer__clear-filters-icon`}
-                            />
-
-                            <span
-                                id={`directory-explorer-clear-filters-label`}
-                                className={`directory-explorer__clear-filters-label`}
-                            >
-                                {`Clear filters`}
-                            </span>
-                        </button>
-                    </div>
-                )}
             </div>
 
             {resultCount > 0 ? (

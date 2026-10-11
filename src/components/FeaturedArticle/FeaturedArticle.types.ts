@@ -6,6 +6,7 @@ export type FeaturedArticleProps = {
   article?: BlogArticle;
   accentColor?: string;
   showBlogLink?: boolean;
+  showMetadata?: boolean;
   horizontalInset?: number;
   backgroundColor?: string;
 };

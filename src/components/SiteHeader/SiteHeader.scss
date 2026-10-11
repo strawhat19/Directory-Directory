@@ -56,10 +56,6 @@
     align-items: center;
   }
 
-  &__menu-toggle {
-    display: none;
-  }
-
   &__actions,
   &__menu-footer {
     display: contents;
@@ -91,6 +87,7 @@
   &__utility-actions {
     gap: 8px;
     order: 2;
+    flex: none;
     display: flex;
     align-items: center;
   }
@@ -98,6 +95,10 @@
   &__controls > .auth-actions,
   &__menu-footer > .auth-actions {
     order: 3;
+  }
+
+  .auth-actions__link--sign-in > .icon {
+    color: var(--dd-accent);
   }
 
   &__icon-button {
@@ -132,6 +133,10 @@
         background: color-mix(in srgb, var(--dd-blue) 14%, var(--dd-paper));
       }
     }
+  }
+
+  &__menu-toggle {
+    display: none;
   }
 
   &__notifications {
@@ -261,6 +266,10 @@
   }
 }
 
+:root:not([data-theme='dark']) .site-header__theme-button {
+  --dd-blue: #000;
+}
+
 :root[data-theme='dark'] .site-header {
   &__brand,
   &__nav-link {
@@ -280,7 +289,16 @@
     color: var(--dd-blue);
   }
 
-  &__notifications .site-header__icon-button--secondary,
+  &__theme-button {
+    --dd-blue: #fff;
+    --dd-on-blue: #000;
+
+    &:hover {
+      background: var(--dd-blue);
+    }
+  }
+
+  &__icon-button--secondary,
   .auth-actions__link--sign-in {
     color: var(--dd-ink);
   }
@@ -303,22 +321,7 @@
     }
 
     &__menu-toggle {
-      order: 2;
-      width: 32px;
-      height: 32px;
-      padding: 0;
       display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: var(--dd-ink);
-      cursor: pointer;
-      background: transparent;
-      border: 1px solid var(--dd-line);
-      transition: background 200ms ease;
-
-      &:hover {
-        background: var(--dd-paper);
-      }
     }
 
     &__actions {
@@ -361,9 +364,18 @@
       order: 2;
       width: 100%;
       display: flex;
-      padding-top: 14px;
+      padding-top: 8px;
       justify-content: flex-end;
       border-top: 1px solid var(--dd-line);
+
+      .auth-actions__link {
+        gap: 5px;
+        font-size: 11px;
+        min-height: 30px;
+        line-height: 1.2;
+        padding: 6px 10px;
+        border-radius: 8px;
+      }
 
       > .auth-actions {
         width: 100%;
@@ -426,10 +438,6 @@
 
     &__actions {
       gap: 12px 8px;
-    }
-
-    &__utility-actions {
-      gap: 6px;
     }
 
     &__controls > .auth-actions,
@@ -544,7 +552,7 @@
 @media (prefers-reduced-motion: reduce) {
   .site-header__bar,
   .site-header__actions,
-  .site-header__menu-toggle {
+  .site-header__icon-button {
     transition: none;
   }
 }

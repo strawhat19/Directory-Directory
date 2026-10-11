@@ -23,6 +23,7 @@ type CarouselMeasurements = { width: number; maximum: number; heights: Record<st
 const FeaturedArticleCarousel = ({ scope, horizontalInset = 0 }: FeaturedArticleCarouselProps) => {
   const accent = useSearchAccent();
   const { width, padding, palette, styles: common } = useBlogPresentation();
+  const mobile = width <= 600;
   const [focused, setFocused] = useState(false);
   const [interacting, setInteracting] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(true);
@@ -169,7 +170,7 @@ const FeaturedArticleCarousel = ({ scope, horizontalInset = 0 }: FeaturedArticle
   return (
     <View
       {...elementProps(`featured-carousel`, scope)}
-      style={[styles.band, { width, marginHorizontal: -horizontalInset, backgroundColor: accent.color, paddingTop: width >= 760 ? 72 : 48 }]}
+      style={[styles.band, mobile && styles.mobileBand, { width, marginHorizontal: -horizontalInset, backgroundColor: accent.color, paddingTop: mobile ? 32 : width >= 760 ? 72 : 48 }]}
     >
       {dotPositions.map((position) => (
         <Svg
@@ -219,16 +220,16 @@ const FeaturedArticleCarousel = ({ scope, horizontalInset = 0 }: FeaturedArticle
                   { perspective: 1100 },
                   { translateX: position.interpolate({ inputRange: [-1, 0, 1], outputRange: [-dragDistance, 0, dragDistance] }) },
                   { scale: position.interpolate({ inputRange: [-2, -1, 0, 1, 2], outputRange: [0.62, 0.78, 1, 0.78, 0.62], extrapolate: `clamp` }) },
-                  { rotateY: position.interpolate({ inputRange: [-3, 0, 3], outputRange: [`72deg`, `0deg`, `-72deg`], extrapolate: `clamp` }) },
+                  { rotateY: mobile ? `0deg` : position.interpolate({ inputRange: [-3, 0, 3], outputRange: [`72deg`, `0deg`, `-72deg`], extrapolate: `clamp` }) },
                 ],
               }]}
             >
-              <FeaturedArticle article={article} fullBleed={false} accentColor={accent.color} scope={`${scope}-${article.id}`} showBlogLink />
+              <FeaturedArticle article={article} fullBleed={false} showMetadata={false} accentColor={accent.color} scope={`${scope}-${article.id}`} showBlogLink />
             </Animated.View>
           );
         })}
       </View>
-      <View {...elementProps(`featured-carousel-controls`, scope)} style={[styles.controls, { paddingHorizontal: padding }]}>
+      <View {...elementProps(`featured-carousel-controls`, scope)} style={[styles.controls, mobile && styles.mobileControls, { paddingHorizontal: padding }]}>
         <View {...elementProps(`featured-carousel-dots`, scope)} style={styles.dots}>
           {blogArticles.map((article, index) => (
             <Pressable
@@ -246,11 +247,11 @@ const FeaturedArticleCarousel = ({ scope, horizontalInset = 0 }: FeaturedArticle
         </View>
         <View {...elementProps(`featured-carousel-actions`, scope)} style={styles.actions}>
           <Pressable accessibilityRole={`button`} accessibilityLabel={`Previous story`} onPress={previousSlide} {...elementProps(`featured-carousel-previous`, scope)} style={({ pressed }) => [styles.button, pressed && common.pressed]}>
-            <View style={styles.previousIcon} {...elementProps(`featured-carousel-previous-icon-frame`, scope)}><Icon size={18} name={`arrow-right`} color={accent.color} id={`featured-carousel-previous-icon-${scope}`} className={`featured-carousel-previous-icon`} /></View>
+            <View style={styles.previousIcon} {...elementProps(`featured-carousel-previous-icon-frame`, scope)}><Icon size={18} strokeWidth={2.4} name={`chevron-right`} color={accent.color} id={`featured-carousel-previous-icon-${scope}`} className={`featured-carousel-previous-icon`} /></View>
           </Pressable>
           <Text {...elementProps(`featured-carousel-position`, scope)} accessibilityLabel={`Story ${activeIndex + 1} of ${blogArticles.length}`} accessibilityLiveRegion={isAutoplaying ? `none` : `polite`} style={[common.metaLabel, styles.position, { color: bandInk }]}>{`${activeIndex + 1} / ${blogArticles.length}`}</Text>
           <Pressable accessibilityRole={`button`} accessibilityLabel={`Next story`} onPress={nextSlide} {...elementProps(`featured-carousel-next`, scope)} style={({ pressed }) => [styles.button, pressed && common.pressed]}>
-            <Icon size={18} name={`arrow-right`} color={accent.color} id={`featured-carousel-next-icon-${scope}`} className={`featured-carousel-next-icon`} />
+            <Icon size={18} strokeWidth={2.4} name={`chevron-right`} color={accent.color} id={`featured-carousel-next-icon-${scope}`} className={`featured-carousel-next-icon`} />
           </Pressable>
         </View>
       </View>

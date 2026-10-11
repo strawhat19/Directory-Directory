@@ -97,7 +97,6 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
             backgroundColor: selectedAccent.color,
         },
         headerNotificationButton: {
-            marginLeft: 8,
             backgroundColor: selectedAccent.background,
         },
         headerNotificationBadge: {
@@ -118,6 +117,10 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
         },
         headerSearchContainer: {
             overflow: `hidden`,
+        },
+        headerThemeButton: {
+            marginLeft: 8,
+            backgroundColor: isDark ? colors.white : `#000`,
         },
         brand: {
             gap: 10,
@@ -462,7 +465,18 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
             color: colors.muted,
         },
         footerLegal: { flex: 1, minWidth: 140, marginVertical: -8, alignItems: `center` },
+        copyrightMobile: { textAlign: `right` },
+        copyrightAccent: { color: colors.blue },
+        footerLegalMobile: {
+            flex: 0,
+            gap: 12,
+            width: `100%`,
+            alignItems: `center`,
+            flexDirection: `row-reverse`,
+            justifyContent: `space-between`,
+        },
         footerNavigation: { flexWrap: `wrap`, justifyContent: `center` },
+        footerNavigationMobile: { justifyContent: `flex-start` },
         footerNavigationLink: { minHeight: 0, paddingVertical: 0, paddingHorizontal: 0 },
         footerNavigationLabel: { fontSize: 12, lineHeight: 16 },
         footerDetails: {
@@ -491,18 +505,22 @@ export function createLandingStyles(fontsLoaded: boolean, isDark = false, accent
             backgroundColor: `rgba(20, 33, 61, 0.38)`,
         },
         modalCard: {
-            padding: 26,
+            padding: 16,
             width: `100%`,
-            maxWidth: 480,
+            maxWidth: 960,
+            maxHeight: `90%`,
             borderRadius: 20,
             backgroundColor: colors.surface,
         },
         modalHeader: {
             gap: 12,
-            marginBottom: 24,
+            marginBottom: 8,
             flexDirection: `row`,
             alignItems: `center`,
-            justifyContent: `space-between`,
+            justifyContent: `flex-end`,
+        },
+        modalScroll: {
+            flexShrink: 1,
         },
         modalTitle: {
             fontSize: 27,

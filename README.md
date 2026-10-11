@@ -51,6 +51,8 @@ The public blog lives at `/blog` (`/blogs` redirects there). Seven articles have
 
 Web output uses Expo Router static rendering so an export includes HTML for every article. Set `EXPO_PUBLIC_SITE_URL` to the full public origin (for example, `https://your-domain.com`) before exporting with `npx expo export --platform web`. Without it, canonical and structured-data URLs use relative paths; social image URLs need the public origin for external sharing. The featured image and its generation prompt are saved in `public/blog/directory-history.png` and `assets/blog/PROMPT.md`.
 
+Directory details are statically rendered at `/directory/[catalog-id]`, with crawlable catalog links, descriptions, social metadata, and structured data. Their absolute canonical URLs and breadcrumbs use `EXPO_PUBLIC_SITE_URL`. Ratings, reviews, and signed-in comments are stored on the current device and are excluded from public structured data.
+
 - `app/` contains the landing and informational routes and platform layouts.
 - `src/components/` contains one folder per component, with structure, logic, and styles separated.
 - `src/shared/landing/` holds the sample catalog and shared React context.

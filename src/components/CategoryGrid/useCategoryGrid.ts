@@ -1,8 +1,10 @@
 import { useLanding } from '../../shared/landing/useLanding'
 import type { CategoryId } from '../../shared/catalog/catalog'
 import { directories } from '../../shared/catalog/catalog'
+import { useStickySectionHeader } from '../../shared/ui/useStickySectionHeader.web'
 
 export function useCategoryGrid(onExplore: () => void) {
+  const { stuck, header } = useStickySectionHeader()
   const { category, setQuery, clearFilters, selectCategory, visibleCategories } = useLanding()
   const categoryItems = visibleCategories.map((item) => ({
     ...item,
@@ -15,5 +17,5 @@ export function useCategoryGrid(onExplore: () => void) {
     onExplore()
   }
 
-  return { category, clearFilters, categoryItems, exploreCategory }
+  return { stuck, header, category, clearFilters, categoryItems, exploreCategory }
 }

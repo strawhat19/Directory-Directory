@@ -54,8 +54,13 @@
 
 @media (max-width: 600px) {
   .featured-carousel {
-    &__controls { gap: 4px; flex-wrap: wrap; margin-top: 20px; }
-    &__dots { order: -1; width: 100%; justify-content: center; }
+    &__stage { perspective: none; }
+    &__slide { transform: translateX(var(--slide-x)) scale(var(--slide-scale)); }
+    &__controls { gap: 8px; margin-top: 18px; justify-content: space-between; }
+    &__dots { flex: 1; min-width: 0; justify-content: center; }
+    &__dot { flex: 1; width: auto; min-width: 24px; max-width: 44px; }
+    &__dot-mark { width: 7px; height: 7px; transition: width 200ms ease, background-color 200ms ease; }
+    &__dot--active .featured-carousel__dot-mark { width: 20px; transform: none; box-shadow: none; border-radius: 999px; }
   }
 }
 

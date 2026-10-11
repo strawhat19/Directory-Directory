@@ -12,6 +12,10 @@ export const createDirectoryFeedbackStyles = (isDark: boolean) => {
       paddingHorizontal: 14,
       borderTopColor: palette.border,
     },
+    feedbackCard: {
+      borderTopWidth: 0,
+      paddingVertical: 8,
+    },
     footer: {
       gap: 10,
       flexWrap: `wrap`,
@@ -56,6 +60,10 @@ export const createDirectoryFeedbackStyles = (isDark: boolean) => {
       borderRadius: 7,
       alignItems: `center`,
       justifyContent: `center`,
+    },
+    voteCard: {
+      borderWidth: 1,
+      borderColor: `transparent`,
     },
     upvoteSelected: {
       backgroundColor: isDark ? `#15372d` : `#ecf7f1`,

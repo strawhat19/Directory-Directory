@@ -103,6 +103,21 @@
   }
 
   &__review-icon { color: var(--directory-color, var(--dd-blue)); }
+  &__details-toggle { color: var(--dd-ink); }
+  &__details-icon { color: var(--directory-color, var(--dd-blue)); }
+
+  &--card {
+    gap: 0;
+    border-top: 0;
+    padding-block: 8px;
+  }
+
+  &--card &__vote { color: var(--directory-color, var(--dd-blue)); }
+  &--card &__vote:hover,
+  &--card &__vote.is-selected {
+    color: var(--directory-color, var(--dd-blue));
+    background: var(--directory-tint, var(--dd-blue-soft));
+  }
 
   &__review-toggle:hover,
   &__review-toggle[aria-expanded='true'] {

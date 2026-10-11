@@ -74,14 +74,14 @@ const FeaturedArticleCarousel = ({ scope }: FeaturedArticleCarouselProps) => {
                 id={`featured-carousel-slide-${scope}-${article.id}`}
                 className={`featured-carousel__slide${active ? ` featured-carousel__slide--active` : ``}`}
               >
-                <FeaturedArticle article={article} scope={`${scope}-carousel-${article.id}`} />
+                <FeaturedArticle article={article} showMetadata={false} scope={`${scope}-carousel-${article.id}`} />
               </div>
             );
           })}
         </div>
         <div id={`featured-carousel-controls-${scope}`} className={`featured-carousel__controls`}>
           <button type={`button`} onClick={previousSlide} aria-label={`Previous Story`} id={`featured-carousel-previous-${scope}`} className={`featured-carousel__arrow featured-carousel__arrow--previous`}>
-            <Icon size={18} name={`arrow-right`} id={`featured-carousel-previous-icon-${scope}`} className={`featured-carousel__arrow-icon`} />
+            <Icon size={18} strokeWidth={2.4} name={`chevron-right`} id={`featured-carousel-previous-icon-${scope}`} className={`featured-carousel__arrow-icon`} />
           </button>
           <div role={`group`} aria-label={`Choose a Story`} id={`featured-carousel-dots-${scope}`} className={`featured-carousel__dots`}>
             {blogArticles.map((article, index) => (
@@ -99,7 +99,7 @@ const FeaturedArticleCarousel = ({ scope }: FeaturedArticleCarouselProps) => {
             ))}
           </div>
           <button type={`button`} onClick={nextSlide} aria-label={`Next Story`} id={`featured-carousel-next-${scope}`} className={`featured-carousel__arrow`}>
-            <Icon size={18} name={`arrow-right`} id={`featured-carousel-next-icon-${scope}`} className={`featured-carousel__arrow-icon`} />
+            <Icon size={18} strokeWidth={2.4} name={`chevron-right`} id={`featured-carousel-next-icon-${scope}`} className={`featured-carousel__arrow-icon`} />
           </button>
         </div>
       </div>

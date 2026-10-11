@@ -68,6 +68,10 @@
     color: var(--dd-muted);
   }
 
+  &__copyright-accent {
+    color: var(--dd-blue);
+  }
+
   &__creator,
   &__back-top {
     gap: 5px;
@@ -100,8 +104,13 @@
 
     &__details {
       order: 3;
+      gap: 12px;
       width: 100%;
       flex: auto;
+      text-align: left;
+      align-items: center;
+      flex-direction: row-reverse;
+      justify-content: space-between;
     }
 
     &__actions {

@@ -11,6 +11,29 @@ export function createCategoryGridStyles(fontsLoaded: boolean, isDark: boolean) 
         categorySection: {
             marginBottom: 20,
         },
+        categoryStickyHeading: {
+            zIndex: 4,
+            paddingVertical: 8,
+        },
+        categoryHeading: {
+            gap: 8,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        categoryHeadingCount: {
+            fontSize: 16,
+            fontFamily: bold,
+            color: colors.ink,
+        },
+        categoryHeadingCountRow: {
+            gap: 4,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        categoryHeadingCountPrefix: {
+            fontSize: 11,
+            fontFamily: bold,
+        },
         categories: {
             gap: 12,
             flexWrap: `wrap`,
@@ -41,6 +64,30 @@ export function createCategoryGridStyles(fontsLoaded: boolean, isDark: boolean) 
             lineHeight: 20,
             fontFamily: bold,
             color: colors.ink,
+        },
+        categoryTitleRow: {
+            gap: 6,
+            minWidth: 0,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        categoryTitleLabel: {
+            flexShrink: 1,
+        },
+        categoryFollowButton: {
+            right: 12,
+            width: 32,
+            height: 32,
+            borderRadius: 16,
+            position: `absolute`,
+            alignItems: `center`,
+            justifyContent: `center`,
+        },
+        categoryFollowButtonWide: {
+            bottom: 12,
+        },
+        categoryFollowButtonMobile: {
+            top: 18.5,
         },
         categoryDescription: {
             fontSize: 11,

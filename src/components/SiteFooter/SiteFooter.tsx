@@ -29,7 +29,9 @@ export default function SiteFooter() {
         </a>
         <div id={`footer-details`} className={`site-footer__details`}>
           <p id={`footer-copyright`} className={`site-footer__copyright`}>
-            {`© ${year === null ? `` : `${year} `}Directory Directory.`}
+            <span id={`footer-copyright-symbol`} className={`site-footer__copyright-accent`}>{`©`}</span>
+            {` ${year === null ? `` : `${year} `}Directory Directory`}
+            <span id={`footer-copyright-period`} className={`site-footer__copyright-accent`}>{`.`}</span>
           </p>
           <nav
             id={`footer-navigation`}
@@ -66,6 +68,13 @@ export default function SiteFooter() {
             rel={`noopener noreferrer`}
             className={`site-footer__creator`}
           >
+            <Icon
+              size={13}
+              name={`globe`}
+              color={`var(--dd-blue)`}
+              id={`footer-piratechs-globe-icon`}
+              className={`site-footer__globe`}
+            />
             {`Made by Piratechs`}
             <Icon
               size={13}

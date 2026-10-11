@@ -34,6 +34,8 @@ export function useLandingPage() {
     const [motionPreferenceReady, setMotionPreferenceReady] = useState(false);
     const [showHeaderSearch, setShowHeaderSearch] = useState(false);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
+    const [footerOffset, setFooterOffset] = useState<number | null>(null);
+    const [scrollViewportHeight, setScrollViewportHeight] = useState(0);
     const [scrollToTopOverPricing, setScrollToTopOverPricing] = useState(false);
     const scroll = useRef<ScrollView>(null);
     const searchInput = useRef<TextInput>(null);
@@ -57,6 +59,12 @@ export function useLandingPage() {
         height: 0,
         mainOffset: 0,
         headerHeight: 0,
+        controlsOffset: 0,
+        controlsHeight: 0,
+    });
+    const [categoryStickyLayout, setCategoryStickyLayout] = useState({
+        offset: 0,
+        height: 0,
         controlsOffset: 0,
         controlsHeight: 0,
     });
@@ -238,6 +246,10 @@ export function useLandingPage() {
             pendingScroll.current = false;
         }
     };
+    const setCategoriesLayout = (offset: number, height: number) => {
+        categoriesOffset.current = offset;
+        setCategoryStickyLayout((current) => ({ ...current, offset, height }));
+    };
 
     const selectSearchScope = (scope: SearchScope) => {
         landing.setSearchScope(scope);
@@ -406,6 +418,11 @@ export function useLandingPage() {
         + exploreStickyLayout.controlsOffset - exploreStickyLayout.headerHeight;
     const stickyDistance = Math.max(0, exploreStickyLayout.height
         - exploreStickyLayout.controlsOffset - exploreStickyLayout.controlsHeight);
+    const categoryStickyStart = exploreStickyLayout.mainOffset + categoryStickyLayout.offset
+        + categoryStickyLayout.controlsOffset - exploreStickyLayout.headerHeight;
+    const categoryStickyDistance = Math.max(0, categoryStickyLayout.height
+        - categoryStickyLayout.controlsOffset - categoryStickyLayout.controlsHeight);
+    const footerScrollLimit = exploreStickyLayout.mainOffset + (footerOffset ?? 0) - scrollViewportHeight;
 
     return {
         accent,
@@ -436,6 +453,12 @@ export function useLandingPage() {
         toggleTheme,
         showHeaderSearch,
         showScrollToTop,
+        scrollToTopBottomOffset: !wide && footerOffset !== null && scrollViewportHeight > 0 ? exploreScroll.interpolate({
+            inputRange: [footerScrollLimit, footerScrollLimit + 1],
+            outputRange: [0, 1],
+            extrapolateLeft: `clamp`,
+            extrapolateRight: `extend`,
+        }) : 0,
         scrollToTopOverPricing,
         scrollToTop,
         scrollToExplore,
@@ -451,7 +474,11 @@ export function useLandingPage() {
         selectedAccent,
         selectedIsSaved,
         setExploreLayout,
+        setCategoriesLayout,
         setCategoriesOffset: (offset: number) => { categoriesOffset.current = offset; },
+        setCategoriesControlsLayout: (offset: number, height: number) => {
+            setCategoryStickyLayout((current) => ({ ...current, controlsOffset: offset, controlsHeight: height }));
+        },
         setExploreGridOffset: (offset: number) => { exploreGridOffset.current = offset; },
         setExploreControlsLayout: (offset: number, height: number) => {
             exploreControlsHeight.current = height;
@@ -480,6 +507,7 @@ export function useLandingPage() {
             pricingLayout.current = { y, height };
             updateScrollToTopAppearance();
         },
+        setFooterOffset,
         setScrollToTopLayout: (y: number, height: number) => {
             scrollToTopLayout.current = { y, height };
             updateScrollToTopAppearance();
@@ -487,6 +515,7 @@ export function useLandingPage() {
         setViewportHeight: (height: number, y = 0) => {
             viewportHeight.current = height;
             viewportOffset.current = y;
+            setScrollViewportHeight(height);
             updateHeaderSearchVisibility();
             updateScrollToTopAppearance();
         },
@@ -496,6 +525,27 @@ export function useLandingPage() {
             marginLeft: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 8] }),
             width: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [0, 34] }),
             transform: [{ translateX: headerSearchProgress.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+        },
+        explorePinnedBackgroundStyle: {
+            backgroundColor: stickyDistance > 0 && exploreStickyLayout.controlsHeight > 0 ? exploreScroll.interpolate({
+                inputRange: [stickyStart, stickyStart + 0.1],
+                outputRange: [`transparent`, colors.background],
+                extrapolate: `clamp`,
+            }) : `transparent`,
+        },
+        categoryStickyStyle: {
+            backgroundColor: categoryStickyDistance > 0 && categoryStickyLayout.controlsHeight > 0 ? exploreScroll.interpolate({
+                inputRange: [categoryStickyStart, categoryStickyStart + 0.1],
+                outputRange: [`transparent`, colors.background],
+                extrapolate: `clamp`,
+            }) : `transparent`,
+            transform: [{
+                translateY: categoryStickyDistance > 0 ? exploreScroll.interpolate({
+                    inputRange: [categoryStickyStart, categoryStickyStart + categoryStickyDistance],
+                    outputRange: [0, categoryStickyDistance],
+                    extrapolate: `clamp`,
+                }) : 0,
+            }],
         },
         exploreStickyStyle: {
             transform: [{

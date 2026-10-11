@@ -6,7 +6,7 @@ import { useSearchAccent } from '../../shared/landing/useSearchAccent';
 import { getNativePalette } from '../../shared/theme/nativePalette';
 import { createScrollToTopStyles } from './ScrollToTop.native.styles';
 
-export function useScrollToTop(visible: boolean, reduceMotion = false, overPricing = false) {
+export function useScrollToTop(visible: boolean, reduceMotion = false, overPricing = false, bottomOffset: number | Animated.AnimatedInterpolation<number> = 0) {
     const { isDark } = useTheme();
     const accent = useSearchAccent();
     const { bottom } = useSafeAreaInsets();
@@ -55,7 +55,7 @@ export function useScrollToTop(visible: boolean, reduceMotion = false, overPrici
                 outputRange: [palette.blue, palette.background],
             }),
         },
-        positionStyle: { bottom: bottom + 20 },
+        positionStyle: { bottom: Animated.add(bottom + 20, bottomOffset) },
         animationStyle: {
             opacity: progress,
             transform: [{

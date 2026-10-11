@@ -1,4 +1,5 @@
 import {
+    useRef,
     useMemo,
     useState,
     useEffect,
@@ -10,6 +11,7 @@ import {
 } from 'react';
 import type { SearchScope } from './searchScopes';
 import { readLandingState, writeLandingState } from './landingStorage';
+import { getCommentAuthor, createDirectoryComment } from './directoryComments';
 import { emptyDirectoryFeedback, parseLandingState, type DirectoryFeedbackEntry } from './feedback.types';
 import {
     categories,
@@ -53,6 +55,8 @@ export interface LandingContextValue {
     setDirectoryReview: (id: string, review: string) => void;
     setDirectoryRating: (id: string, rating: number) => void;
     setDirectoryVote: (id: string, vote: -1 | 1) => void;
+    addDirectoryComment: (id: string, text: string) => Promise<void>;
+    removeDirectoryComment: (id: string, commentId: string) => Promise<void>;
     selectDirectoryTopic: (categoryId: CategoryId, topic: string) => void;
 }
 
@@ -73,6 +77,9 @@ export function LandingProvider({ children }: PropsWithChildren) {
     const [status, setStatus] = useState<DirectoryStatusId | null>(null);
     const [feedback, setFeedback] = useState<Record<string, DirectoryFeedbackEntry>>({});
     const [selectedDirectory, setSelectedDirectory] = useState<DirectoryEntry | null>(null);
+    const storageWritable = useRef(false);
+    const feedbackRef = useRef(feedback);
+    feedbackRef.current = feedback;
 
     useEffect(() => {
         let active = true;
@@ -80,10 +87,12 @@ export function LandingProvider({ children }: PropsWithChildren) {
         readLandingState().then((raw) => {
             if (!active) return;
             const stored = parseLandingState(raw, directoryIds);
+            storageWritable.current = true;
+            feedbackRef.current = stored.feedback;
             setSavedIds(stored.savedIds);
             setFeedback(stored.feedback);
-        }).catch(() => {
-            if (active) setFeedbackError(`Device Storage Is Unavailable; Changes Stay In This Session`);
+        }).catch((failure) => {
+            if (active) setFeedbackError(`${failure instanceof Error ? failure.message : `Device Storage Is Unavailable`}; Changes Stay In This Session`);
         }).finally(() => {
             if (active) setFeedbackReady(true);
         });
@@ -92,9 +101,10 @@ export function LandingProvider({ children }: PropsWithChildren) {
     }, []);
 
     useEffect(() => {
-        if (!feedbackReady) return;
+        if (!feedbackReady || !storageWritable.current) return;
 
-        writeLandingState({ savedIds, feedback }).catch(() => {
+        writeLandingState({ version: 2, savedIds, feedback }).catch(() => {
+            storageWritable.current = false;
             setFeedbackError(`Device Storage Is Unavailable; Changes Stay In This Session`);
         });
     }, [savedIds, feedback, feedbackReady]);
@@ -173,6 +183,27 @@ export function LandingProvider({ children }: PropsWithChildren) {
         }));
     }, [feedbackReady]);
 
+    const addDirectoryComment = useCallback(async (id: string, text: string) => {
+        if (!feedbackReady || !directoryIds.has(id)) throw new Error(`Directory Feedback Is Still Loading`);
+        const numbers = Object.values(feedbackRef.current).flatMap((entry) => entry.comments?.map((comment) => comment.number) ?? []);
+        const comment = await createDirectoryComment(text, Math.max(0, ...numbers) + 1);
+        setFeedback((current) => {
+            const entry = current[id] ?? emptyDirectoryFeedback;
+            return { ...current, [id]: { ...entry, comments: [...(entry.comments ?? []), comment] } };
+        });
+    }, [feedbackReady]);
+
+    const removeDirectoryComment = useCallback(async (id: string, commentId: string) => {
+        if (!feedbackReady || !directoryIds.has(id)) throw new Error(`Directory Feedback Is Still Loading`);
+        const author = await getCommentAuthor();
+        const comment = feedbackRef.current?.[id]?.comments?.find((entry) => entry.id === commentId);
+        if (!comment || comment.authorId !== author.id) throw new Error(`Only Your Own Comments Can Be Removed`);
+        setFeedback((current) => {
+            const entry = current[id] ?? emptyDirectoryFeedback;
+            return { ...current, [id]: { ...entry, comments: entry.comments.filter((item) => item.id !== commentId || item.authorId !== author.id) } };
+        });
+    }, [feedbackReady]);
+
     const visibleCategories = categories;
 
     const visibleDirectories = useMemo(() => {
@@ -219,9 +250,11 @@ export function LandingProvider({ children }: PropsWithChildren) {
         openDirectory,
         selectCategory,
         closeDirectory,
+        addDirectoryComment,
         setDirectoryVote,
         setDirectoryReview,
         setDirectoryRating,
+        removeDirectoryComment,
         selectDirectoryTopic,
         visibleCategories,
         visibleDirectories,
@@ -244,9 +277,11 @@ export function LandingProvider({ children }: PropsWithChildren) {
         openDirectory,
         selectCategory,
         closeDirectory,
+        addDirectoryComment,
         setDirectoryVote,
         setDirectoryReview,
         setDirectoryRating,
+        removeDirectoryComment,
         selectDirectoryTopic,
         visibleCategories,
         visibleDirectories,

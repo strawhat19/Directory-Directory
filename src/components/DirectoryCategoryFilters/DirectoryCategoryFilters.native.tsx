@@ -1,25 +1,19 @@
 import Icon from '../Icon/Icon';
-import { Pressable, Text, View } from 'react-native';
 import { elementProps } from '../../shared/ui/elementProps';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { useBlogPresentation } from '../BlogLayout/useBlogPresentation.native';
 import { useNativeDirectoryCategoryFilters } from './useNativeDirectoryCategoryFilters';
 
-export default function DirectoryCategoryFilters() {
+export default function DirectoryCategoryFilters({ horizontal = false }: { horizontal?: boolean }) {
     const { styles: common } = useBlogPresentation();
     const { rows, colors, styles, accents, category, changeCategory, setContainerWidth } = useNativeDirectoryCategoryFilters();
 
-    return (
-        <View
-            {...elementProps(`directory-category-filters`)}
-            style={styles.filters}
-            accessibilityLabel={`Filter directories by category`}
-            onLayout={(event) => setContainerWidth(event.nativeEvent.layout.width)}
-        >
-            {rows.map((row, index) => (
+    const filterRows = horizontal ? [rows.flat()] : rows;
+    const content = filterRows.map((row, index) => (
                 <View
                     {...elementProps(`directory-category-filter-row`, `${index}`)}
                     key={index}
-                    style={styles.row}
+                    style={[styles.row, horizontal && styles.horizontalRow]}
                 >
                     {row.map((item) => {
                         const id = item.id ?? `all`;
@@ -36,6 +30,7 @@ export default function DirectoryCategoryFilters() {
                                 accessibilityState={{ selected: active }}
                                 style={({ pressed }) => [
                                     styles.button,
+                                    horizontal && styles.horizontalButton,
                                     {
                                         borderColor: active ? accent.color : `${accent.color}33`,
                                         borderTopColor: accent.color,
@@ -67,7 +62,28 @@ export default function DirectoryCategoryFilters() {
                         );
                     })}
                 </View>
-            ))}
+    ));
+
+    return horizontal ? (
+        <ScrollView
+            {...elementProps(`directory-category-filters`)}
+            horizontal
+            style={styles.horizontalScroll}
+            contentContainerStyle={styles.horizontalFilters}
+            keyboardShouldPersistTaps={`handled`}
+            showsHorizontalScrollIndicator={false}
+            accessibilityLabel={`Filter directories by category`}
+        >
+            {content}
+        </ScrollView>
+    ) : (
+        <View
+            {...elementProps(`directory-category-filters`)}
+            style={styles.filters}
+            accessibilityLabel={`Filter directories by category`}
+            onLayout={(event) => setContainerWidth(event.nativeEvent.layout.width)}
+        >
+            {content}
         </View>
     );
 }

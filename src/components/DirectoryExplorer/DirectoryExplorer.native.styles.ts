@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { getNativePalette } from '../../shared/theme/nativePalette';
+import { createDirectoryCategoryFilterStyles } from '../DirectoryCategoryFilters/DirectoryCategoryFilters.native.styles';
 
 export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: boolean) {
     const colors = getNativePalette(isDark);
@@ -7,31 +8,30 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
     const semibold = fontsLoaded ? `Inter_600SemiBold` : undefined;
     const bold = fontsLoaded ? `Inter_700Bold` : undefined;
     const regular = fontsLoaded ? `Inter_400Regular` : undefined;
+    const categoryFilterStyles = createDirectoryCategoryFilterStyles();
 
     return StyleSheet.create({
         exploreCaption: {
+            fontSize: 16,
+            fontFamily: bold,
+            color: colors.ink,
+        },
+        exploreCountRow: {
+            gap: 4,
+            flexShrink: 0,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        exploreCountPrefix: {
             fontSize: 11,
-            borderRadius: 7,
-            paddingVertical: 5,
-            paddingHorizontal: 10,
-            fontFamily: medium,
-            color: colors.blue,
-            backgroundColor: colors.blueSoft,
+            fontFamily: bold,
         },
         exploreTitleGroup: {
-            gap: 10,
+            gap: 8,
             flex: 1,
             minWidth: 0,
             flexDirection: `row`,
             alignItems: `center`,
-        },
-        exploreTitleAccent: {
-            width: 32,
-            height: 32,
-            flexShrink: 0,
-            borderRadius: 9,
-            alignItems: `center`,
-            justifyContent: `center`,
         },
         exploreTitle: {
             flexShrink: 1,
@@ -42,53 +42,126 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
             marginBottom: 48,
             borderColor: colors.border,
         },
+        exploreMobile: {
+            paddingTop: 16,
+        },
+        exploreHeadingMobile: {
+            marginBottom: 4,
+        },
         exploreStickyControls: {
             zIndex: 4,
-            elevation: 4,
-            borderBottomWidth: 1,
-            borderColor: colors.border,
-            backgroundColor: colors.background,
         },
         exploreControls: {
             gap: 8,
-            padding: 4,
-            borderWidth: 1,
-            borderRadius: 12,
             marginBottom: 16,
+            flexDirection: `row`,
+            alignItems: `center`,
+            justifyContent: `space-between`,
+        },
+        exploreMobileToolbar: {
+            gap: 8,
+            paddingTop: 12,
+            marginBottom: 8,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        exploreSearch: {
+            gap: 6,
+            flex: 1,
+            minWidth: 0,
+            minHeight: 34,
+            borderWidth: 1,
+            borderRadius: 8,
+            paddingHorizontal: 9,
             flexDirection: `row`,
             alignItems: `center`,
             borderColor: colors.border,
             backgroundColor: colors.surface,
+        },
+        exploreSearchInput: {
+            flex: 1,
+            height: 32,
+            padding: 0,
+            minWidth: 0,
+            fontSize: 12,
+            lineHeight: 16,
+            color: colors.ink,
+            fontFamily: regular,
+        },
+        exploreFilterButton: {
+            width: 34,
+            height: 34,
+            flexShrink: 0,
+            borderWidth: 1,
+            borderRadius: 8,
+            alignItems: `center`,
+            justifyContent: `center`,
+            borderColor: colors.border,
+            backgroundColor: colors.surface,
+        },
+        exploreFilterToggle: {
+            flexShrink: 0,
+        },
+        exploreFilterMenu: {
+            left: 0,
+            right: 0,
+            zIndex: 8,
+            gap: 12,
+            padding: 12,
+            elevation: 8,
+            borderWidth: 1,
+            borderRadius: 12,
+            position: `absolute`,
+            borderColor: colors.border,
+            backgroundColor: colors.surface,
+        },
+        exploreFilterGroup: {
+            gap: 6,
+            minWidth: 0,
+            width: `100%`,
+        },
+        exploreFilterGroupHeading: {
+            gap: 8,
+            flexDirection: `row`,
+            alignItems: `center`,
             justifyContent: `space-between`,
+        },
+        exploreFilterMenuActions: {
+            gap: 8,
+            flexDirection: `row`,
+            alignItems: `center`,
+        },
+        exploreFilterLabel: {
+            fontSize: 11,
+            lineHeight: 16,
+            color: colors.ink,
+            fontFamily: semibold,
+        },
+        exploreMenuScroll: {
+            flex: 0,
+            height: 45,
+            flexGrow: 0,
         },
         topicTabsScroll: {
             flex: 1,
             minWidth: 0,
         },
         topicTabs: {
-            gap: 4,
+            gap: 8,
+            paddingTop: 4,
             flexDirection: `row`,
             alignItems: `center`,
         },
         topicTab: {
-            gap: 4,
+            ...categoryFilterStyles.button,
+            flex: 0,
             flexShrink: 0,
-            minHeight: 30,
-            borderRadius: 8,
-            paddingHorizontal: 8,
-            flexDirection: `row`,
-            alignItems: `center`,
         },
-        topicTabActive: {
-            backgroundColor: getNativePalette(false).ink,
-        },
+        topicTabFolderTab: categoryFilterStyles.tab,
+        topicTabPressed: categoryFilterStyles.pressed,
         topicTabLabel: {
-            fontSize: 11,
+            ...categoryFilterStyles.label,
             fontFamily: semibold,
-            color: colors.muted,
-        },
-        topicTabLabelActive: {
-            color: colors.white,
         },
         viewControls: {
             gap: 2,
@@ -166,6 +239,10 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
             flexWrap: `wrap`,
             flexDirection: `row`,
         },
+        directoryGridMobile: {
+            gap: 12,
+            paddingTop: 8,
+        },
         directoryCard: {
             elevation: 2,
             borderWidth: 1,
@@ -190,12 +267,12 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
         },
         directoryPreview: {
             padding: 21,
-            paddingBottom: 12,
+            paddingBottom: 8,
         },
         directoryCardHeader: {
             width: `100%`,
             maxWidth: 400,
-            marginBottom: 20,
+            marginBottom: 12,
         },
         directoryInitials: {
             fontSize: 15,
@@ -220,10 +297,15 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
         },
         directoryTitleRow: {
             gap: 10,
-            marginBottom: 8,
             flexDirection: `row`,
             alignItems: `center`,
             justifyContent: `space-between`,
+        },
+        directoryTitleDivider: {
+            width: 32,
+            height: 2,
+            borderRadius: 1,
+            marginVertical: 7,
         },
         directoryTitle: {
             flex: 1,
@@ -235,20 +317,29 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
         },
         directoryDescription: {
             fontSize: 12,
-            minHeight: 54,
             lineHeight: 19,
             fontFamily: regular,
             color: colors.muted,
         },
         directoryMetadata: {
-            gap: 10,
+            gap: 8,
             paddingHorizontal: 21,
             paddingBottom: 15,
         },
+        directoryStatusRow: {
+            gap: 8,
+            flexDirection: `row`,
+            alignItems: `flex-start`,
+            justifyContent: `space-between`,
+        },
         directoryStatuses: {
+            flex: 1,
             gap: 6,
             flexWrap: `wrap`,
             flexDirection: `row`,
+        },
+        directoryCategory: {
+            flexShrink: 0,
         },
         directoryStatus: {
             gap: 5,
@@ -267,6 +358,7 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
         directoryStatusLabel: {
             fontSize: 9,
             fontFamily: medium,
+            color: colors.ink,
         },
         directoryTopics: {
             gap: 5,
@@ -275,7 +367,7 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
         },
         directoryTopic: {
             borderRadius: 6,
-            paddingVertical: 5,
+            paddingVertical: 4,
             paddingHorizontal: 7,
             backgroundColor: colors.blueSoft,
         },
@@ -298,15 +390,14 @@ export function createDirectoryExplorerStyles(fontsLoaded: boolean, isDark: bool
             textDecorationLine: `underline`,
         },
         directoryFeedback: {
-            paddingBottom: 14,
-            paddingHorizontal: 21,
+            flex: 1,
+            minWidth: 0,
         },
         directoryFooter: {
-            gap: 8,
-            paddingTop: 8,
-            paddingLeft: 21,
+            gap: 4,
+            paddingLeft: 7,
             paddingRight: 11,
-            paddingBottom: 11,
+            paddingBottom: 4,
             borderTopWidth: 1,
             flexDirection: `row`,
             alignItems: `center`,

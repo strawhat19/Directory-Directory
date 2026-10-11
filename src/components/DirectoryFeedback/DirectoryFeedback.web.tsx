@@ -9,7 +9,7 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
     vote,
     entry,
     message,
-    identity,
+    identity: feedbackIdentity,
     saveReview,
     reviewOpen,
     reviewDraft,
@@ -19,11 +19,34 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
     directoryName,
     updateReviewDraft,
   } = useDirectoryFeedback(props);
+  const cardMode = props.variant === `card`;
+  const identity = props.scope ? `${feedbackIdentity}-${props.scope}` : feedbackIdentity;
 
   return (
-    <div id={identity} className={`directory-feedback`}>
+    <div id={identity} className={`directory-feedback directory-feedback--${props.variant ?? `details`}`}>
       <div id={`${identity}-footer`} className={`directory-feedback__footer`}>
-        {!reviewOpen && (
+        {cardMode ? (
+          <button
+            type={`button`}
+            onClick={props.onDetails}
+            disabled={!props.onDetails}
+            aria-haspopup={`dialog`}
+            id={`${identity}-details-toggle`}
+            aria-label={`Details For ${directoryName}`}
+            className={`directory-feedback__review-toggle directory-feedback__details-toggle`}
+          >
+            <Icon
+              size={14}
+              name={`info`}
+              color={props.color}
+              id={`${identity}-details-icon`}
+              className={`directory-feedback__details-icon`}
+            />
+            <span id={`${identity}-details-toggle-label`} className={`directory-feedback__details-toggle-label`}>
+              {`Details`}
+            </span>
+          </button>
+        ) : !reviewOpen && (
           <button
             type={`button`}
             onClick={toggleReview}
@@ -41,11 +64,11 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
               className={`directory-feedback__review-icon`}
             />
             <span id={`${identity}-review-toggle-label`} className={`directory-feedback__review-toggle-label`}>
-              {`Review`}
+              {entry.review ? `Edit Review` : `Write Review`}
             </span>
           </button>
         )}
-        {reviewOpen && (
+        {!cardMode && (
           <div
             role={`group`}
             id={`${identity}-rating`}
@@ -128,7 +151,7 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
           </div>
         </div>
       </div>
-      {reviewOpen ? (
+      {!cardMode && (reviewOpen ? (
         <form
           id={`${identity}-review-panel`}
           className={`directory-feedback__review-panel`}
@@ -189,9 +212,9 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
         <p id={`${identity}-review-text`} className={`directory-feedback__review-text`}>
           {entry.review}
         </p>
-      ) : null}
+      ) : null)}
       {feedbackError || message ? (
-        <p id={`${identity}-message`} className={`directory-feedback__message${feedbackError ? ` is-error` : ``}`} role={`status`}>
+        <p id={`${identity}-message`} className={`directory-feedback__message${feedbackError ? ` is-error` : ``}${cardMode ? ` dd-visually-hidden` : ``}`} role={`status`}>
           {feedbackError ?? message}
         </p>
       ) : null}

@@ -8,6 +8,21 @@ export function createDirectoryCategoryFilterStyles() {
             paddingTop: 4,
             marginBottom: 12,
         },
+        horizontalScroll: {
+            height: 45,
+            flexGrow: 0,
+        },
+        horizontalFilters: {
+            paddingTop: 4,
+            paddingBottom: 1,
+        },
+        horizontalRow: {
+            width: `auto`,
+        },
+        horizontalButton: {
+            flex: 0,
+            flexShrink: 0,
+        },
         row: {
             gap: 8,
             width: `100%`,

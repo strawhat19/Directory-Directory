@@ -1,13 +1,16 @@
 import { useLanding } from '../../shared/landing/useLanding';
+import { getDirectoryDomain, getDirectoryHref } from '../../shared/catalog/directoryDetails';
 import { categories, directoryStatuses, type DirectoryEntry } from '../../shared/catalog/catalog';
 
 export default function useDirectoryCard(directory: DirectoryEntry) {
-    const { savedIds, toggleSaved, feedbackReady, category: selectedCategory, directoryTopic, selectDirectoryTopic } = useLanding();
+    const { savedIds, toggleSaved, openDirectory, feedbackReady, category: selectedCategory, directoryTopic, selectDirectoryTopic } = useLanding();
     const category = categories.find((item) => item.id === directory.category);
     const saved = savedIds.includes(directory.id);
     const identity = `directory-card-${directory.id}`;
     const statuses = directoryStatuses.filter((status) => directory.statuses.includes(status.id));
-    const websiteLabel = directory.href.split(`/`)?.[2]?.replace(/^www\./, ``) ?? `Visit Website`;
+    const domain = getDirectoryDomain(directory.href);
+    const detailsHref = getDirectoryHref(directory);
+    const openDetails = () => openDirectory(directory);
     const isTopicSelected = (topic: string) => selectedCategory === directory.category && directoryTopic === topic;
     const selectTopic = (topic: string) => selectDirectoryTopic(directory.category, topic);
 
@@ -17,11 +20,13 @@ export default function useDirectoryCard(directory: DirectoryEntry) {
 
     return {
         saved,
+        domain,
         statuses,
         category,
         identity,
         selectTopic,
-        websiteLabel,
+        openDetails,
+        detailsHref,
         feedbackReady,
         isTopicSelected,
         toggleDirectorySaved,

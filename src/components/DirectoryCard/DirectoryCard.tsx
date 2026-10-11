@@ -1,5 +1,6 @@
 import './DirectoryCard.scss';
 import Icon from '../Icon/Icon';
+import { Link, type Href } from 'expo-router';
 import useDirectoryCard from './useDirectoryCard';
 import type { DirectoryEntry } from '../../shared/catalog/catalog';
 import DirectoryFeedback from '../DirectoryFeedback/DirectoryFeedback';
@@ -12,11 +13,13 @@ interface DirectoryCardProps {
 export default function DirectoryCard({ directory }: DirectoryCardProps) {
     const {
         saved,
+        domain,
         statuses,
         category,
         identity,
         selectTopic,
-        websiteLabel,
+        openDetails,
+        detailsHref,
         feedbackReady,
         isTopicSelected,
         toggleDirectorySaved,
@@ -44,15 +47,17 @@ export default function DirectoryCard({ directory }: DirectoryCardProps) {
                     className={`directory-card__body`}
                 >
                     <div
-                        id={`${identity}-category-row`}
-                        className={`directory-card__category-row`}
+                        id={`${identity}-title-row`}
+                        className={`directory-card__title-row`}
                     >
-                        <span
-                            id={`${identity}-category`}
-                            className={`directory-card__category dd-eyebrow`}
+                        <h3
+                            id={`${identity}-name`}
+                            className={`directory-card__name`}
                         >
-                            {category?.label}
-                        </span>
+                            <Link href={detailsHref as Href} id={`${identity}-details-link`} className={`directory-card__name-link`}>
+                                {directory.name}
+                            </Link>
+                        </h3>
 
                         <a
                             target={`_blank`}
@@ -69,36 +74,44 @@ export default function DirectoryCard({ directory }: DirectoryCardProps) {
                                 className={`directory-card__website-icon`}
                             />
                             <span id={`${identity}-website-label`} className={`directory-card__website-label`}>
-                                {websiteLabel}
+                                {domain.name}
+                                <span id={`${identity}-website-extension`} className={`directory-card__website-extension`}>
+                                    {domain.extension}
+                                </span>
                             </span>
                         </a>
                     </div>
 
-                    <h3
-                        id={`${identity}-name`}
-                        className={`directory-card__name`}
-                    >
-                        {directory.name}
-                    </h3>
-
+                    <span aria-hidden={true} id={`${identity}-title-separator`} className={`directory-card__title-separator`} />
                     <p
                         id={`${identity}-summary`}
                         className={`directory-card__summary`}
                     >
+                        <strong id={`${identity}-summary-lead`} className={`directory-card__summary-lead`}>
+                            {`${directory.label.replace(/[.!?]+$/, ``)}. `}
+                        </strong>
                         {directory.summary}
                     </p>
+                    <div id={`${identity}-topics`} className={`directory-card__topics`}>
+                        {directory.topics.map((topic, index) => (
+                            <button
+                                key={topic}
+                                type={`button`}
+                                onClick={() => selectTopic(topic)}
+                                aria-pressed={isTopicSelected(topic)}
+                                id={`${identity}-topic-${index}`}
+                                className={`directory-card__topic`}
+                            >
+                                {topic}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 <div
                     id={`${identity}-footer`}
                     className={`directory-card__footer`}
                 >
-                    <span
-                        id={`${identity}-label`}
-                        className={`directory-card__label`}
-                    >
-                        {directory.label}
-                    </span>
                     <div id={`${identity}-statuses`} className={`directory-card__statuses actionsCell`}>
                         {statuses.map((status) => (
                             <span
@@ -119,25 +132,21 @@ export default function DirectoryCard({ directory }: DirectoryCardProps) {
                             </span>
                         ))}
                     </div>
+                    <span id={`${identity}-category`} className={`directory-card__category directory-card__status rowStatus`}>
+                        <Icon size={13} name={category?.icon ?? `folder`} id={`${identity}-category-icon`} className={`directory-card__category-icon directory-card__status-icon`} />
+                        <span id={`${identity}-category-label`} className={`statusText`}>{category?.label}</span>
+                    </span>
                 </div>
             </div>
 
             <div id={`${identity}-details`} className={`directory-card__details`}>
-                <div id={`${identity}-topics`} className={`directory-card__topics`}>
-                    {directory.topics.map((topic, index) => (
-                        <button
-                            key={topic}
-                            type={`button`}
-                            onClick={() => selectTopic(topic)}
-                            aria-pressed={isTopicSelected(topic)}
-                            id={`${identity}-topic-${index}`}
-                            className={`directory-card__topic`}
-                        >
-                            {topic}
-                        </button>
-                    ))}
-                </div>
-                <DirectoryFeedback directoryId={directory.id} directoryName={directory.name} />
+                <DirectoryFeedback
+                    scope={`card`}
+                    variant={`card`}
+                    onDetails={openDetails}
+                    directoryId={directory.id}
+                    directoryName={directory.name}
+                />
             </div>
 
             <button
