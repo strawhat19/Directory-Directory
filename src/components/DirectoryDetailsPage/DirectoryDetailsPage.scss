@@ -3,7 +3,7 @@
   &__shell { margin: 0 auto; max-width: 1260px; padding: 0 52px; }
   &__main { padding-bottom: 38px; }
   &__breadcrumbs { gap: 9px; display: flex; padding: 24px 0; font-size: 11px; flex-wrap: wrap; align-items: center; color: var(--dd-muted); .icon { color: var(--dd-accent); } }
-  &__breadcrumb:hover { color: var(--dd-accent); }
+  &__breadcrumbs &__breadcrumb { color: var(--dd-muted); transition: color 220ms ease; &:hover, &:focus-visible { color: var(--dd-accent); } }
   &__breadcrumb-current { color: var(--dd-ink); }
   &__hero { overflow: hidden; border-radius: 12px; background: var(--dd-paper); border: 1px solid var(--dd-line); }
   &__related { margin-top: 30px; }

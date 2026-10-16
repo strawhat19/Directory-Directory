@@ -3,13 +3,17 @@
     "name": "Directory Directory",
     "slug": "directory-directory",
     "scheme": "directorydirectory",
-    "icon": "./assets/concepts/logos/v15/01-indexed-d-compact-blue.png",
+    "icon": "./assets/icons/app-icon-black.png",
     "orientation": "default",
     "backgroundColor": "#f7f8fa",
     "primaryColor": "#0874f9",
     "userInterfaceStyle": "light",
     "plugins": ["expo-router"],
     "ios": {
+      "icon": {
+        "light": "./assets/icons/app-icon-black.png",
+        "dark": "./assets/icons/app-icon-blue-dark.png"
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.directorydirectory.app"
     },
@@ -19,7 +23,7 @@
     "web": {
       "output": "static",
       "bundler": "metro",
-      "favicon": "./assets/icons/favicon-rounded.png"
+      "favicon": "./assets/icons/favicon-black.png"
     },
     "experiments": {
       "typedRoutes": true

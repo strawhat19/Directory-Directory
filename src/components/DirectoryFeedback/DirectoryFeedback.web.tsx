@@ -109,16 +109,16 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
             <button
               type={`button`}
               disabled={!feedbackReady}
-              onClick={() => vote(1)}
-              id={`${identity}-upvote`}
-              aria-pressed={entry.vote === 1}
-              aria-label={`Upvote ${directoryName}`}
-              className={`directory-feedback__vote directory-feedback__vote--up${entry.vote === 1 ? ` is-selected` : ``}`}
+              onClick={() => vote(-1)}
+              id={`${identity}-downvote`}
+              aria-pressed={entry.vote === -1}
+              aria-label={`Downvote ${directoryName}`}
+              className={`directory-feedback__vote directory-feedback__vote--down${entry.vote === -1 ? ` is-selected` : ``}`}
             >
               <Icon
                 size={16}
-                name={`upvote`}
-                id={`${identity}-upvote-icon`}
+                name={`downvote`}
+                id={`${identity}-downvote-icon`}
                 className={`directory-feedback__vote-icon`}
               />
             </button>
@@ -135,16 +135,16 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
             <button
               type={`button`}
               disabled={!feedbackReady}
-              onClick={() => vote(-1)}
-              id={`${identity}-downvote`}
-              aria-pressed={entry.vote === -1}
-              aria-label={`Downvote ${directoryName}`}
-              className={`directory-feedback__vote directory-feedback__vote--down${entry.vote === -1 ? ` is-selected` : ``}`}
+              onClick={() => vote(1)}
+              id={`${identity}-upvote`}
+              aria-pressed={entry.vote === 1}
+              aria-label={`Upvote ${directoryName}`}
+              className={`directory-feedback__vote directory-feedback__vote--up${entry.vote === 1 ? ` is-selected` : ``}`}
             >
               <Icon
                 size={16}
-                name={`downvote`}
-                id={`${identity}-downvote-icon`}
+                name={`upvote`}
+                id={`${identity}-upvote-icon`}
                 className={`directory-feedback__vote-icon`}
               />
             </button>

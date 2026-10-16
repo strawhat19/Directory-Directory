@@ -12,7 +12,6 @@ export default function DirectoryPreview() {
       ref={dialogRef}
       id={`directory-preview`}
       className={`directory-preview`}
-      onClose={closeDirectory}
       onCancel={handleCancel}
       onClick={handleBackdropClick}
       aria-label={`Directory Details`}

@@ -62,23 +62,6 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
           <View {...elementProps(`directory-feedback-votes`, suffix)} style={styles.votes}>
             <Pressable
               disabled={!feedbackReady}
-              onPress={() => vote(1)}
-              accessibilityRole={`button`}
-              {...elementProps(`directory-feedback-upvote`, suffix)}
-              accessibilityLabel={`Upvote ${directoryName}`}
-              accessibilityState={{ selected: entry.vote === 1, disabled: !feedbackReady }}
-              style={({ pressed }) => [styles.vote, card && styles.voteCard, entry.vote === 1 && styles.upvoteSelected, card && entry.vote === 1 && { borderColor: `${color}55`, backgroundColor: `${color}1a` }, pressed && styles.pressed, !feedbackReady && styles.disabled]}
-            >
-              <Icon
-                size={16}
-                name={`upvote`}
-                id={`${identity}-upvote-icon`}
-                className={`directory-feedback-vote-icon`}
-                color={card ? color : entry.vote === 1 ? palette.green : palette.muted}
-              />
-            </Pressable>
-            <Pressable
-              disabled={!feedbackReady}
               onPress={() => vote(-1)}
               accessibilityRole={`button`}
               {...elementProps(`directory-feedback-downvote`, suffix)}
@@ -92,6 +75,23 @@ export default function DirectoryFeedback(props: DirectoryFeedbackProps) {
                 id={`${identity}-downvote-icon`}
                 className={`directory-feedback-vote-icon`}
                 color={card ? color : entry.vote === -1 ? palette.red : palette.muted}
+              />
+            </Pressable>
+            <Pressable
+              disabled={!feedbackReady}
+              onPress={() => vote(1)}
+              accessibilityRole={`button`}
+              {...elementProps(`directory-feedback-upvote`, suffix)}
+              accessibilityLabel={`Upvote ${directoryName}`}
+              accessibilityState={{ selected: entry.vote === 1, disabled: !feedbackReady }}
+              style={({ pressed }) => [styles.vote, card && styles.voteCard, entry.vote === 1 && styles.upvoteSelected, card && entry.vote === 1 && { borderColor: `${color}55`, backgroundColor: `${color}1a` }, pressed && styles.pressed, !feedbackReady && styles.disabled]}
+            >
+              <Icon
+                size={16}
+                name={`upvote`}
+                id={`${identity}-upvote-icon`}
+                className={`directory-feedback-vote-icon`}
+                color={card ? color : entry.vote === 1 ? palette.green : palette.muted}
               />
             </Pressable>
           </View>

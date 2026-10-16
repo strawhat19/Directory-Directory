@@ -48,6 +48,23 @@ export function ThemeProvider({ children }: PropsWithChildren) {
     }
 
     themeColor.content = theme === `dark` ? `#0b1220` : `#f7f8fa`;
+
+    const favicons = Array.from(document.querySelectorAll<HTMLLinkElement>(`link[rel~='icon']`));
+
+    if (!favicons.length) {
+      const favicon = document.createElement(`link`);
+      favicon.rel = `icon`;
+      favicon.id = `directory-favicon`;
+      document.head.appendChild(favicon);
+      favicons.push(favicon);
+    }
+
+    favicons.forEach((favicon) => {
+      favicon.type = `image/svg+xml`;
+      favicon.setAttribute(`sizes`, `any`);
+      favicon.removeAttribute(`media`);
+      favicon.href = `/brand/logo/app-icon-${theme === `dark` ? `blue-dark` : `black`}.svg`;
+    });
   }, [theme]);
 
   const setTheme = useCallback((next: Theme) => {

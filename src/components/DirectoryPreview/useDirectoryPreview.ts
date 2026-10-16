@@ -1,21 +1,29 @@
-import { useRef, useEffect, type MouseEvent, type SyntheticEvent } from 'react';
 import { useLanding } from '../../shared/landing/useLanding';
+import { useIsFocused, useFocusEffect } from 'expo-router';
+import { useRef, useEffect, useCallback, type MouseEvent, type SyntheticEvent } from 'react';
 
 export default function useDirectoryPreview() {
     const dialogRef = useRef<HTMLDialogElement>(null);
-    const { selectedDirectory, closeDirectory } = useLanding();
+    const isFocused = useIsFocused();
+    const { selectedDirectory, closeDirectory: clearDirectory } = useLanding();
+    const closeDirectory = useCallback(() => {
+        if (dialogRef.current?.open) dialogRef.current.close();
+        clearDirectory();
+    }, [clearDirectory]);
+
+    useFocusEffect(useCallback(() => () => closeDirectory(), [closeDirectory]));
 
     useEffect(() => {
         const dialog = dialogRef.current;
 
         if (!dialog) return;
 
-        if (selectedDirectory && !dialog.open) {
-            dialog.showModal();
-        } else if (!selectedDirectory && dialog.open) {
+        if (isFocused && selectedDirectory) {
+            if (!dialog.open) dialog.showModal();
+        } else if (dialog.open) {
             dialog.close();
         }
-    }, [selectedDirectory]);
+    }, [isFocused, selectedDirectory]);
 
     const handleCancel = (event: SyntheticEvent<HTMLDialogElement>) => {
         event.preventDefault();

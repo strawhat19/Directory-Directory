@@ -6,3 +6,14 @@ export const brandMarkXml = `<svg id="directory-v15-indexed-d-blue" class="direc
   <path id="directory-blue-folder-row" class="directory-folder-row" d="M34 79H48C50.8 79 52.2 80 53.6 81.5L55.8 83.9Q56.8 85 59 85H117A5 5 0 0 1 117 95H34A5 5 0 0 1 29 90V84A5 5 0 0 1 34 79Z" fill="#0874F9"/>
   <path id="directory-red-folder-row" class="directory-folder-row" d="M34 103H48C50.8 103 52.2 104 53.6 105.5L55.8 107.9Q56.8 109 59 109H103A5 5 0 0 1 103 119H34A5 5 0 0 1 29 114V108A5 5 0 0 1 34 103Z" fill="#D83B42"/>
 </svg>`;
+
+const createBrandMarkVariant = (name: string, color: string) => brandMarkXml
+  .replace(`stroke="#0874F9"`, `stroke="${color}"`)
+  .replace(`Compact rows · blue`, `Compact rows · ${name}`)
+  .replace(`The original blue folder D`, `The ${name} folder D`)
+  .replace(`id="directory-v15-indexed-d-blue"`, `id="directory-v15-indexed-d-${name}"`);
+
+export const brandMarkXmlByTheme = {
+  dark: brandMarkXml,
+  light: createBrandMarkVariant(`black`, `#000000`),
+};

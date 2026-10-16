@@ -1,6 +1,6 @@
 # Directory Directory
 
-The Directory of Directories is built with Expo Router, React Native, TypeScript, and Sass. It runs on web, iOS, and Android with a light editorial layout and the selected [V15 indexed D logo](assets/concepts/logos/v15/01-indexed-d-compact-blue.svg).
+The Directory of Directories is built with Expo Router, React Native, TypeScript, and Sass. It runs on web, iOS, and Android with the [V15 indexed D logo variants](public/brand/logo/README.md): a black D in light mode and the original blue D in dark mode. The white logo remains available.
 
 The sticky header places Blog (`/blog`) next to About (`/about`), with Terms (`/terms`), Privacy (`/privacy`), and Contact (`/contact`) in the menu beside Sign In (`/sign-in`) and Sign Up (`/sign-up`). A looping directory marquee beneath it has colored links, mouse/touch dragging, and a pause control. The account pages use local demo profiles and return to the originating page after success. The footer includes the current copyright year and a link to [Piratechs](https://piratechs.com/).
 
@@ -57,7 +57,7 @@ Directory details are statically rendered at `/directory/[catalog-id]`, with cra
 - `src/components/` contains one folder per component, with structure, logic, and styles separated.
 - `src/shared/landing/` holds the sample catalog and shared React context.
 - `src/shared/ui/` provides descriptive element identifiers for native components.
-- `public/` contains the exact selected SVG for the web header.
+- `public/` contains theme-aware logo variants and browser icons.
 - `assets/concepts/` preserves the original design and logo concepts.
 
 Web components use Sass. Native components use React Native styles and adapt the same page for smaller screens. Visible elements have descriptive classes and identifiers to make feedback easy to reference.
